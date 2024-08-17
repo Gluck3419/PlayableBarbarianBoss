@@ -22,21 +22,21 @@ function f_LoadNewLevel(zone)
             break;
          case 3:
          case 4:
-            var _loc2_ = undefined;
+            var loc2 = undefined;
             if(GetGameMode() != 3)
             {
-               _loc2_ = 1;
-               while(_loc2_ <= 4)
+               loc2 = 1;
+               while(loc2 <= 4)
                {
-                  f_SavePlayerInfoToHudForLevelChange(p_game["p" + int(_loc2_)]);
-                  _loc2_ = _loc2_ + 1;
+                  f_SavePlayerInfoToHudForLevelChange(p_game["p" + int(loc2)]);
+                  loc2 = loc2 + 1;
                }
             }
-            _loc2_ = 1;
-            while(_loc2_ <= 4)
+            loc2 = 1;
+            while(loc2 <= 4)
             {
-               _root.p_game["p" + int(_loc2_)].gotoAndStop("blank");
-               _loc2_ = _loc2_ + 1;
+               _root.p_game["p" + int(loc2)].gotoAndStop("blank");
+               loc2 = loc2 + 1;
             }
             _root.fader.f_JumpOut();
             f_ResetLevelVars();
@@ -91,14 +91,14 @@ function f_FirstTimeInitOnce()
 {
    if(GetGameMode() == 3)
    {
-      var _loc2_ = 1;
-      while(_loc2_ <= 4)
+      var loc2 = 1;
+      while(loc2 <= 4)
       {
-         _root["player" + int(_loc2_) + "wins"] = 0;
-         _root["player" + int(_loc2_) + "losses"] = 0;
-         _root["player" + int(_loc2_) + "winner"] = 0;
-         SetScores(_loc2_ - 1,0,0,0);
-         _loc2_ = _loc2_ + 1;
+         _root["player" + int(loc2) + "wins"] = 0;
+         _root["player" + int(loc2) + "losses"] = 0;
+         _root["player" + int(loc2) + "winner"] = 0;
+         SetScores(loc2 - 1,0,0,0);
+         loc2 = loc2 + 1;
       }
    }
    SetFlashGlobal("g_bExitGame",false);
@@ -113,7 +113,7 @@ function f_FirstTimeInitOnce()
    gravity = 3;
    g_dash_timer = 6;
    PI = 0.017453292519943295;
-   players = 10;
+   players = 11;
    total_enemies = 0;
    total_towers = 0;
    total_animals = 0;
@@ -158,11 +158,11 @@ function f_FirstTimeInitOnce()
    nowaypoints = false;
    ez_enemies = GetCheat(6);
    all_combos_unlocked = new Array(10);
-   _loc2_ = 0;
-   while(_loc2_ < 10)
+   loc2 = 0;
+   while(loc2 < 10)
    {
-      all_combos_unlocked[_loc2_] = true;
-      _loc2_ = _loc2_ + 1;
+      all_combos_unlocked[loc2] = true;
+      loc2 = loc2 + 1;
    }
    f_InitSaveSystem();
    f_InitCharColors();
@@ -214,38 +214,38 @@ function f_SetLetterbox(letterbox)
    {
       if(IsPalMode() and GetWidescreen())
       {
-         var _loc3_ = 10;
+         var loc3 = 10;
       }
       else
       {
-         _loc3_ = 25;
+         loc3 = 25;
       }
-      var _loc1_ = SCREEN_HEIGHT - (SCREEN_WIDTH + _loc3_) / GAME_ASPECT_RATIO;
+      var loc1 = SCREEN_HEIGHT - (SCREEN_WIDTH + loc3) / GAME_ASPECT_RATIO;
       if(IsPalMode())
       {
          if(GetWidescreen() == true)
          {
-            var _loc2_ = 0.5 * _loc1_;
+            var loc2 = 0.5 * loc1;
          }
          else
          {
-            _loc2_ = 0.6 * _loc1_;
+            loc2 = 0.6 * loc1;
          }
       }
       else
       {
-         _loc2_ = 0.45 * _loc1_;
+         loc2 = 0.45 * loc1;
       }
-      GAME_X_OFFSET = (- _loc3_) / 2;
-      GAME_Y_OFFSET = _loc2_;
-      GAME_SCALE = (SCREEN_WIDTH + _loc3_) / GAME_WIDTH;
-      var _loc4_ = _loc1_ - _loc2_;
+      GAME_X_OFFSET = (- loc3) / 2;
+      GAME_Y_OFFSET = loc2;
+      GAME_SCALE = (SCREEN_WIDTH + loc3) / GAME_WIDTH;
+      var loc4 = loc1 - loc2;
       letterbox_top.gotoAndStop(2);
       letterbox_top._x = -5;
-      letterbox_top._y = _loc2_ - 200;
+      letterbox_top._y = loc2 - 200;
       letterbox_bot.gotoAndStop(2);
       letterbox_bot._x = -5;
-      letterbox_bot._y = SCREEN_HEIGHT - (_loc4_ - 200);
+      letterbox_bot._y = SCREEN_HEIGHT - (loc4 - 200);
       loader._x = GAME_X_OFFSET;
       loader._y = GAME_Y_OFFSET;
       loader._xscale = GAME_SCALE * 100;
@@ -383,23 +383,23 @@ function f_CreateFX(total_fx, extra_fx)
    _root.total_fx = total_fx;
    _root.extra_fx = extra_fx;
    extra_fx_current = total_fx + 1;
-   var _loc3_ = 1;
-   while(_loc3_ <= total_fx + extra_fx)
+   var loc3 = 1;
+   while(loc3 <= total_fx + extra_fx)
    {
-      var _loc4_ = f_GetDepthModAssignment();
-      var _loc2_ = p_game.attachMovie("invisObject","fx" + int(_loc3_),_loc4_);
-      loadMovie("../fx/fx.swf",_loc2_);
-      _loc2_.depth_mod = _loc4_;
-      _loc3_ = _loc3_ + 1;
+      var loc4 = f_GetDepthModAssignment();
+      var loc2 = p_game.attachMovie("invisObject","fx" + int(loc3),loc4);
+      loadMovie("../fx/fx.swf",loc2);
+      loc2.depth_mod = loc4;
+      loc3 = loc3 + 1;
    }
 }
 function f_RemoveFX()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_fx + extra_fx)
+   var loc1 = 1;
+   while(loc1 <= total_fx + extra_fx)
    {
-      removeMovieClip(p_game["fx" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["fx" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_fx = 0;
    extra_fx = 0;
@@ -408,13 +408,13 @@ function f_CreateShadows(u_num)
 {
    total_shadows = u_num;
    total_shadows = 60;
-   var _loc1_ = 1;
-   while(_loc1_ <= total_shadows)
+   var loc1 = 1;
+   while(loc1 <= total_shadows)
    {
-      var _loc2_ = loader.game.game.attachMovie("shadow","s" + int(_loc1_),_loc1_);
-      _loc2_.gotoAndStop("off");
-      _loc2_.active = false;
-      _loc1_ = _loc1_ + 1;
+      var loc2 = loader.game.game.attachMovie("shadow","s" + int(loc1),loc1);
+      loc2.gotoAndStop("off");
+      loc2.active = false;
+      loc1 = loc1 + 1;
    }
 }
 function f_initLoadedPlayerClip(zone)
@@ -425,324 +425,332 @@ function f_initLoadedPlayerClip(zone)
    zone.active = false;
    zone.warp_timer = 0;
    zone.bsp_timer = 0;
-   var _loc2_ = zone.getDepth();
-   zone.depth_mod = _loc2_ % 1000;
+   var loc2 = zone.getDepth();
+   zone.depth_mod = loc2 % 1000;
    zone.gotoAndStop("blank");
 }
 function f_initLoadedFxClip(zone)
 {
-   var _loc1_ = zone.getDepth();
-   zone.depth_mod = _loc1_ % 1000;
+   var loc1 = zone.getDepth();
+   zone.depth_mod = loc1 % 1000;
 }
 function f_initLoadedHorseClip(zone)
 {
    zone.active = false;
-   var _loc1_ = zone.getDepth();
-   zone.depth_mod = _loc1_ % 1000;
+   var loc1 = zone.getDepth();
+   zone.depth_mod = loc1 % 1000;
 }
 
-// Loading pbarboss.swf
+// Loading boss swfs
 function f_CreatePlayers()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 10)
+   var loc2 = 1;
+   while(loc2 <= players) // 11th player is reserved for undead groom NPC
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","p" + int(_loc2_),_loc3_);
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","p" + int(loc2),loc3);
       var filepath = "../player/player.swf";
-      var hud = _root["hud" + int(_loc2_)];
-      if(hud.p_type == 32) {
-         filepath = "../pbarboss/pbarboss.swf";
+      if(loc2 < 5) {
+         var hud = _root["hud" + int(loc2)];
+         if(hud.p_type == 32) {
+            filepath = "../pbarboss/pbarboss.swf";
+         }
+         else if(hud.p_type == 33) {
+            filepath = "../pcyclops/pcyclops.swf";
+         }
+         else if(hud.p_type == 34) {
+            filepath = "../pbeetle/pbeetle.swf";
+         }
       }
-      loadMovie(filepath, _loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_++;
+      loadMovie(filepath, loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2++;
    }
 }
 function f_RemovePlayers()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= 10)
+   var loc1 = 1;
+   while(loc1 <= players)
    {
-      p_temp = p_game["p" + int(_loc1_)];
+      p_temp = p_game["p" + int(loc1)];
       if(p_temp)
       {
          removeMovieClip(p_temp);
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_CreateTowers(u_num)
 {
    total_towers = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_towers)
+   var loc2 = 1;
+   while(loc2 <= total_towers)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","e_tower" + int(_loc2_),_loc3_);
-      loadMovie("../etower/etower.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","e_tower" + int(loc2),loc3);
+      loadMovie("../etower/etower.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_RemoveTowers()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_towers)
+   var loc1 = 1;
+   while(loc1 <= total_towers)
    {
-      removeMovieClip(p_game["e_tower" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["e_tower" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_towers = 0;
 }
 function f_CreateAnimals(u_num)
 {
    total_animals = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_animals)
+   var loc2 = 1;
+   while(loc2 <= total_animals)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","animal" + int(_loc2_),_loc3_);
-      loadMovie("../animals/animals.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","animal" + int(loc2),loc3);
+      loadMovie("../animals/animals.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_RemoveAnimals()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_animals)
+   var loc1 = 1;
+   while(loc1 <= total_animals)
    {
-      removeMovieClip(p_game["animal" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["animal" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_animals = 0;
 }
 function f_CreateSlimes(u_num)
 {
    total_slimes = u_num;
-   var _loc3_ = 1;
-   while(_loc3_ <= total_slimes)
+   var loc3 = 1;
+   while(loc3 <= total_slimes)
    {
-      var _loc4_ = _root.f_GetDepthModAssignment();
-      var _loc2_ = p_game.attachMovie("invisObject","e_slime" + int(_loc3_),_loc4_);
-      loadMovie("../eslime/eslime.swf",_loc2_);
-      _loc2_.depth_mod = _loc4_;
-      _loc2_.active = false;
-      _loc3_ = _loc3_ + 1;
+      var loc4 = _root.f_GetDepthModAssignment();
+      var loc2 = p_game.attachMovie("invisObject","e_slime" + int(loc3),loc4);
+      loadMovie("../eslime/eslime.swf",loc2);
+      loc2.depth_mod = loc4;
+      loc2.active = false;
+      loc3 = loc3 + 1;
    }
 }
 function f_CreateImps(u_num)
 {
    total_imps = u_num;
-   var _loc3_ = 1;
-   while(_loc3_ <= total_imps)
+   var loc3 = 1;
+   while(loc3 <= total_imps)
    {
-      var _loc4_ = _root.f_GetDepthModAssignment();
-      var _loc2_ = p_game.attachMovie("invisObject","e_imp" + int(_loc3_),_loc4_);
-      loadMovie("../eimp/eimp.swf",_loc2_);
-      _loc2_.depth_mod = _loc4_;
-      _loc2_.active = false;
-      _loc3_ = _loc3_ + 1;
+      var loc4 = _root.f_GetDepthModAssignment();
+      var loc2 = p_game.attachMovie("invisObject","e_imp" + int(loc3),loc4);
+      loadMovie("../eimp/eimp.swf",loc2);
+      loc2.depth_mod = loc4;
+      loc2.active = false;
+      loc3 = loc3 + 1;
    }
 }
 function f_CreateHorses(u_num)
 {
    total_horses = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_horses)
+   var loc2 = 1;
+   while(loc2 <= total_horses)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","horse" + int(_loc2_),_loc3_);
-      loadMovie("../horse/horse.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","horse" + int(loc2),loc3);
+      loadMovie("../horse/horse.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_CreateMount2(u_num)
 {
    total_mount2 = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_mount2)
+   var loc2 = 1;
+   while(loc2 <= total_mount2)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","mount2" + int(_loc2_),_loc3_);
-      loadMovie("../mount2/mount2.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","mount2" + int(loc2),loc3);
+      loadMovie("../mount2/mount2.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_CreateMount3(u_num)
 {
    total_mount3 = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_mount3)
+   var loc2 = 1;
+   while(loc2 <= total_mount3)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","mount3" + int(_loc2_),_loc3_);
-      loadMovie("../mount3/mount3.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","mount3" + int(loc2),loc3);
+      loadMovie("../mount3/mount3.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_CreateMount4(u_num)
 {
    total_mount4 = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_mount4)
+   var loc2 = 1;
+   while(loc2 <= total_mount4)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","mount4" + int(_loc2_),_loc3_);
-      loadMovie("../mount4/mount4.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","mount4" + int(loc2),loc3);
+      loadMovie("../mount4/mount4.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_RemoveMount2()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_mount2)
+   var loc1 = 1;
+   while(loc1 <= total_mount2)
    {
-      removeMovieClip(p_game["mount2" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["mount2" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_mount2 = 0;
 }
 function f_DestroyMount3()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_mount3)
+   var loc1 = 1;
+   while(loc1 <= total_mount3)
    {
-      unloadMovie(p_game["mount3" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      unloadMovie(p_game["mount3" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
 }
 function f_RemoveMount3()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_mount3)
+   var loc1 = 1;
+   while(loc1 <= total_mount3)
    {
-      removeMovieClip(p_game["mount3" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["mount3" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_mount3 = 0;
 }
 function f_DestroyMount4()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_mount4)
+   var loc1 = 1;
+   while(loc1 <= total_mount4)
    {
-      unloadMovie(p_game["mount4" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      unloadMovie(p_game["mount4" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
 }
 function f_RemoveMount4()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_mount4)
+   var loc1 = 1;
+   while(loc1 <= total_mount4)
    {
-      removeMovieClip(p_game["mount4" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["mount4" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_mount4 = 0;
 }
 function f_RemoveHorses()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_horses)
+   var loc1 = 1;
+   while(loc1 <= total_horses)
    {
-      removeMovieClip(p_game["horse" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["horse" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_horses = 0;
 }
 function f_CreateCorpses(u_num)
 {
    total_corpses = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_corpses)
+   var loc2 = 1;
+   while(loc2 <= total_corpses)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","corpse" + int(_loc2_),_loc3_);
-      loadMovie("../player/player.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","corpse" + int(loc2),loc3);
+      loadMovie("../player/player.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_RemoveCorpses()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_corpses)
+   var loc1 = 1;
+   while(loc1 <= total_corpses)
    {
-      removeMovieClip(p_game["corpse" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["corpse" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_corpses = 0;
 }
 function f_CreateChickens(u_num)
 {
    total_chickens = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_chickens)
+   var loc2 = 1;
+   while(loc2 <= total_chickens)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","chicken" + int(_loc2_),_loc3_);
-      loadMovie("../chicken/chicken.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","chicken" + int(loc2),loc3);
+      loadMovie("../chicken/chicken.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_RemoveChickens()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_chickens)
+   var loc1 = 1;
+   while(loc1 <= total_chickens)
    {
-      removeMovieClip(p_game["chicken" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["chicken" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_chickens = 0;
 }
 function f_CreateEnemies(u_num)
 {
    total_enemies = u_num;
-   var _loc1_ = 1;
-   while(_loc1_ <= total_enemies)
+   var loc1 = 1;
+   while(loc1 <= total_enemies)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc2_ = p_game.attachMovie("invisObject","e_human" + int(_loc1_),_loc3_);
-      loadMovie("../player/player.swf",_loc2_);
-      _loc2_.depth_mod = _loc3_;
-      _loc2_.active = false;
-      _loc1_ = _loc1_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc2 = p_game.attachMovie("invisObject","e_human" + int(loc1),loc3);
+      loadMovie("../player/player.swf",loc2);
+      loc2.depth_mod = loc3;
+      loc2.active = false;
+      loc1 = loc1 + 1;
    }
-   _loc1_ = 1;
-   while(_loc1_ <= total_enemies)
+   loc1 = 1;
+   while(loc1 <= total_enemies)
    {
-      _loc3_ = f_GetDepthModAssignment();
-      _loc2_ = p_game.attachMovie("invisObject","e_bodyparts" + int(_loc1_),_loc3_);
-      loadMovie("../player/player.swf",_loc2_);
-      _loc2_.depth_mod = _loc3_;
-      _loc2_.active = false;
-      _loc1_ = _loc1_ + 1;
+      loc3 = f_GetDepthModAssignment();
+      loc2 = p_game.attachMovie("invisObject","e_bodyparts" + int(loc1),loc3);
+      loadMovie("../player/player.swf",loc2);
+      loc2.depth_mod = loc3;
+      loc2.active = false;
+      loc1 = loc1 + 1;
    }
 }
 function f_RemoveEnemies()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_enemies)
+   var loc1 = 1;
+   while(loc1 <= total_enemies)
    {
-      removeMovieClip(p_game["e_human" + int(_loc1_)]);
-      removeMovieClip(p_game["e_bodyparts" + int(_loc1_)]);
-      _loc1_ = _loc1_ + 1;
+      removeMovieClip(p_game["e_human" + int(loc1)]);
+      removeMovieClip(p_game["e_bodyparts" + int(loc1)]);
+      loc1 = loc1 + 1;
    }
    total_enemies = 0;
 }
@@ -752,12 +760,12 @@ function f_AddStatic(zone)
    loader.game.game["static" + int(static_index)] = zone;
    zone.x = zone._x;
    zone.y = zone._y;
-   var _loc3_ = Math.abs(u_object._xscale) / 100;
-   var _loc2_ = Math.abs(u_object._yscale) / 100;
+   var loc3 = Math.abs(u_object._xscale) / 100;
+   var loc2 = Math.abs(u_object._yscale) / 100;
    zone.zone.x = zone.x + zone.zone._x;
    zone.zone.y = zone.y + zone.zone._y + 2;
-   zone.zone.h = zone.zone._height * _loc2_;
-   zone.zone.w = zone.zone._width / 2 * _loc3_;
+   zone.zone.h = zone.zone._height * loc2;
+   zone.zone.w = zone.zone._width / 2 * loc3;
    zone.zone.top = zone.zone.y - zone.zone.h;
    zone.zone.left = zone.zone.x - zone.zone.w;
    zone.zone.right = zone.zone.x + zone.zone.w;
@@ -767,25 +775,25 @@ function f_UpdateObject(zone)
    zone.x = zone._x;
    zone.y = zone._y;
    zone.body_y = 0;
-   var _loc2_ = Math.abs(zone._xscale) / 100;
-   var _loc3_ = Math.abs(zone._yscale) / 100;
-   zone.w = zone._width / 2 * _loc2_;
-   zone.h = zone._height * _loc3_;
+   var loc2 = Math.abs(zone._xscale) / 100;
+   var loc3 = Math.abs(zone._yscale) / 100;
+   zone.w = zone._width / 2 * loc2;
+   zone.h = zone._height * loc3;
    if(zone._xscale > 0)
    {
-      zone.zone.x = zone.x + zone.zone._x * _loc2_;
+      zone.zone.x = zone.x + zone.zone._x * loc2;
    }
    else
    {
-      zone.zone.x = zone.x - zone.zone._x * _loc2_;
+      zone.zone.x = zone.x - zone.zone._x * loc2;
    }
-   zone.zone.y = zone.y + zone.zone._y * _loc3_ + 2;
-   zone.zone.h = zone.zone._height / 2 * _loc3_;
+   zone.zone.y = zone.y + zone.zone._y * loc3 + 2;
+   zone.zone.h = zone.zone._height / 2 * loc3;
    if(zone.zone.h < 5)
    {
       zone.zone.h = 5;
    }
-   zone.zone.w = zone.zone._width / 2 * _loc2_;
+   zone.zone.w = zone.zone._width / 2 * loc2;
    zone.zone.top = zone.zone.y - zone.zone.h;
    if(zone.n_height)
    {
@@ -794,10 +802,10 @@ function f_UpdateObject(zone)
    zone.zone.left = zone.zone.x - zone.zone.w;
    zone.zone.right = zone.zone.x + zone.zone.w;
    zone.zone.bottom = zone.zone.y + zone.zone.h;
-   zone.hitzone.x = zone.x + zone.hitzone._x * _loc2_;
-   zone.hitzone.y = zone.y + zone.hitzone._y * _loc3_;
-   zone.hitzone.w = zone.hitzone._width / 2 * _loc2_;
-   zone.hitzone.h = zone.hitzone._height / 2 * _loc3_;
+   zone.hitzone.x = zone.x + zone.hitzone._x * loc2;
+   zone.hitzone.y = zone.y + zone.hitzone._y * loc3;
+   zone.hitzone.w = zone.hitzone._width / 2 * loc2;
+   zone.hitzone.h = zone.hitzone._height / 2 * loc3;
    zone.hitzone.left = zone.hitzone.x - zone.hitzone.w;
    zone.hitzone.right = zone.hitzone.x + zone.hitzone.w;
 }
@@ -830,22 +838,22 @@ function f_AddNeutral(zone)
 }
 function f_SetDiagonal(zone)
 {
-   var _loc3_ = Math.abs(zone._xscale) / 100;
-   var _loc2_ = Math.abs(zone._yscale) / 100;
-   var _loc4_ = zone._x + zone.zone._x;
-   var _loc5_ = zone._y + zone.zone._y;
-   var _loc6_ = zone.zone._height * _loc2_;
-   var _loc7_ = zone.zone._width / 2 * _loc3_;
+   var loc3 = Math.abs(zone._xscale) / 100;
+   var loc2 = Math.abs(zone._yscale) / 100;
+   var loc4 = zone._x + zone.zone._x;
+   var loc5 = zone._y + zone.zone._y;
+   var loc6 = zone.zone._height * loc2;
+   var loc7 = zone.zone._width / 2 * loc3;
    zone.diagonal = true;
-   zone.left_x = zone.left._x * _loc3_;
-   zone.right_x = zone.right._x * _loc3_;
-   zone.left_y = zone.left._y * _loc2_;
-   zone.right_y = zone.right._y * _loc2_;
+   zone.left_x = zone.left._x * loc3;
+   zone.right_x = zone.right._x * loc3;
+   zone.left_y = zone.left._y * loc2;
+   zone.right_y = zone.right._y * loc2;
    zone.h = Math.abs(zone.left_y - zone.right_y);
    zone.h2 = zone.zone2._height;
    zone.w2 = zone.zone2._width;
-   zone.x1 = _loc4_ + zone.left_x;
-   zone.x2 = _loc4_ + zone.right_x;
+   zone.x1 = loc4 + zone.left_x;
+   zone.x2 = loc4 + zone.right_x;
    zone.w = Math.abs(zone.x1 - zone.x2);
 }
 function f_RegisterGrass(zone)
@@ -952,7 +960,7 @@ function f_UnloadLevelClips()
    f_UnloadClips("mount2",total_mount2);
    f_UnloadClips("mount3",total_mount3);
    f_UnloadClips("mount4",total_mount4);
-   f_UnloadClips("p",10);
+   f_UnloadClips("p",players);
    f_UnloadClips("e_human",total_enemies);
    f_UnloadClips("e_bodyparts",total_enemies);
    f_UnloadClips("corpse",total_corpses);
@@ -971,16 +979,16 @@ function f_UnloadLevelClips()
 }
 function f_UnloadClips(clipname, total)
 {
-   var _loc2_ = undefined;
-   var _loc1_ = 1;
-   while(_loc1_ <= total)
+   var loc2 = undefined;
+   var loc1 = 1;
+   while(loc1 <= total)
    {
-      _loc2_ = p_game[clipname + int(_loc1_)];
-      if(_loc2_)
+      loc2 = p_game[clipname + int(loc1)];
+      if(loc2)
       {
-         unloadMovie(_loc2_);
+         unloadMovie(loc2);
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_RemoveLevelClips()
@@ -1029,8 +1037,8 @@ function f_InitCamera(zone)
    zone.left = - HALF_GAME_WIDTH;
    zone.right = HALF_GAME_WIDTH;
    zone.safe_screen_size = EDGE_MARGIN;
-   var _loc2_ = 0;
-   zone.safe_screen_size += _loc2_;
+   var loc2 = 0;
+   zone.safe_screen_size += loc2;
    zone.forced_zoom = false;
    zone.p_cinema_clip = undefined;
    zone.waypoint = 0;
@@ -1122,57 +1130,57 @@ function f_ResetCamera(zone)
    zone.bottom = - compensated_camera_y;
    zone.right = - (zone.camera_x - HALF_GAME_WIDTH * zone.scale_mod);
    zone.left = - (zone.camera_x + HALF_GAME_WIDTH * zone.scale_mod);
-   var _loc3_ = p_game.edge1;
-   var _loc2_ = 0;
-   if(_loc3_.active)
+   var loc3 = p_game.edge1;
+   var loc2 = 0;
+   if(loc3.active)
    {
-      _loc2_ = _loc3_._y - zone.bottom;
-      if(_loc2_ < 0)
+      loc2 = loc3._y - zone.bottom;
+      if(loc2 < 0)
       {
-         zone.camera_y -= _loc2_;
+         zone.camera_y -= loc2;
          zone.camera_oldy = zone.camera_y;
-         zone.camera_y_goal -= _loc2_;
-         compensated_camera_y -= _loc2_;
+         zone.camera_y_goal -= loc2;
+         compensated_camera_y -= loc2;
          zone.top = - (compensated_camera_y + GAME_HEIGHT * zone.scale_mod);
          zone.bottom = - compensated_camera_y;
       }
    }
-   _loc3_ = p_game.edge2;
-   if(_loc3_.active)
+   loc3 = p_game.edge2;
+   if(loc3.active)
    {
-      _loc2_ = zone.left - _loc3_._x;
-      if(_loc2_ < 0)
+      loc2 = zone.left - loc3._x;
+      if(loc2 < 0)
       {
-         zone.camera_x += _loc2_;
+         zone.camera_x += loc2;
          zone.camera_oldx = zone.camera_x;
-         zone.camera_x_goal += _loc2_;
+         zone.camera_x_goal += loc2;
          zone.right = - (zone.camera_x - HALF_GAME_WIDTH * zone.scale_mod);
          zone.left = - (zone.camera_x + HALF_GAME_WIDTH * zone.scale_mod);
       }
    }
-   _loc3_ = p_game.edge3;
-   if(_loc3_.active)
+   loc3 = p_game.edge3;
+   if(loc3.active)
    {
-      _loc2_ = _loc3_._x - zone.right;
-      if(_loc2_ < 0)
+      loc2 = loc3._x - zone.right;
+      if(loc2 < 0)
       {
-         zone.camera_x -= _loc2_;
+         zone.camera_x -= loc2;
          zone.camera_oldx = zone.camera_x;
-         zone.camera_x_goal -= _loc2_;
+         zone.camera_x_goal -= loc2;
          zone.right = - (zone.camera_x - HALF_GAME_WIDTH * zone.scale_mod);
          zone.left = - (zone.camera_x + HALF_GAME_WIDTH * zone.scale_mod);
       }
    }
-   var _loc5_ = 100 / MAX_ZOOM;
-   var _loc4_ = compensated_camera_y - (zone.scale - MAX_ZOOM) / 100 * HALF_GAME_HEIGHT;
-   if(_loc4_ < zone.bumpup)
+   var loc5 = 100 / MAX_ZOOM;
+   var loc4 = compensated_camera_y - (zone.scale - MAX_ZOOM) / 100 * HALF_GAME_HEIGHT;
+   if(loc4 < zone.bumpup)
    {
-      _loc4_ = zone.bumpup;
+      loc4 = zone.bumpup;
    }
-   zone.max_top = - (_loc4_ + GAME_HEIGHT * _loc5_);
-   zone.max_bottom = - _loc4_;
-   zone.max_right = - (zone.camera_x - HALF_GAME_WIDTH * _loc5_);
-   zone.max_left = - (zone.camera_x + HALF_GAME_WIDTH * _loc5_);
+   zone.max_top = - (loc4 + GAME_HEIGHT * loc5);
+   zone.max_bottom = - loc4;
+   zone.max_right = - (zone.camera_x - HALF_GAME_WIDTH * loc5);
+   zone.max_left = - (zone.camera_x + HALF_GAME_WIDTH * loc5);
    if(level != 40)
    {
       loader.bg0_c._xscale = zone.scale * 1.5 - 50;
@@ -1296,30 +1304,30 @@ function f_SZ_PlayerYDiffMax(zone, speed)
 {
    if(speed > 0)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(main.n_bottomplayer)];
-      if(zone == _loc1_)
+      var loc1 = playerArrayOb["p_pt" + int(main.n_bottomplayer)];
+      if(zone == loc1)
       {
-         var _loc2_ = playerArrayOb["p_pt" + int(main.n_topplayer)];
-         if(_loc1_ != _loc2_)
+         var loc2 = playerArrayOb["p_pt" + int(main.n_topplayer)];
+         if(loc1 != loc2)
          {
-            var _loc4_ = _loc2_.y;
-            var _loc3_ = _loc1_.y;
-            if(!_loc2_.onscreen)
+            var loc4 = loc2.y;
+            var loc3 = loc1.y;
+            if(!loc2.onscreen)
             {
-               if(_loc2_.onscreenbody)
+               if(loc2.onscreenbody)
                {
-                  _loc4_ += _loc2_.body_y;
+                  loc4 += loc2.body_y;
                }
             }
-            if(!_loc1_.onscreen)
+            if(!loc1.onscreen)
             {
-               if(_loc1_.onscreenbody)
+               if(loc1.onscreenbody)
                {
-                  _loc3_ += _loc1_.body_y;
+                  loc3 += loc1.body_y;
                }
             }
-            var _loc5_ = _loc3_ - _loc4_;
-            if(_loc5_ > 390)
+            var loc5 = loc3 - loc4;
+            if(loc5 > 390)
             {
                return false;
             }
@@ -1348,34 +1356,34 @@ function f_ScreenShake(intensity, timer, zone)
    }
    if(intensity < 0.2)
    {
-      var _loc5_ = 1;
+      var loc5 = 1;
    }
    else if(intensity < 0.3)
    {
-      _loc5_ = 2;
+      loc5 = 2;
    }
    else
    {
-      _loc5_ = 3;
+      loc5 = 3;
    }
    if(zone)
    {
       if(zone.port)
       {
-         VibrateController(zone.port - 1,_loc5_,timer / 30);
+         VibrateController(zone.port - 1,loc5,timer / 30);
       }
    }
    else
    {
-      var _loc2_ = 1;
-      while(_loc2_ <= active_players)
+      var loc2 = 1;
+      while(loc2 <= active_players)
       {
-         var _loc3_ = playerArrayOb["p_pt" + int(_loc2_)];
-         if(_loc3_.alive)
+         var loc3 = playerArrayOb["p_pt" + int(loc2)];
+         if(loc3.alive)
          {
-            VibrateController(_loc3_.hud_pt.port - 1,_loc5_,timer / 30);
+            VibrateController(loc3.hud_pt.port - 1,loc5,timer / 30);
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
 }
@@ -1391,6 +1399,10 @@ function f_UpdateCamera(zone)
    {
       zone.shake = zone.shake - 1;
       zone.rot = zone.a_shake[zone.shake] * (zone.scale / 100) * zone.shake_intensity;
+      if(zone.resetShakeAfterDone && zone.shake == 0) {
+         zone.resetShakeAfterDone = false;
+         f_StopScreenShake();
+      }
    }
 }
 function f_SetCinematicCamera(zone, letterbox)
@@ -1432,12 +1444,12 @@ function f_SetLeash(x1, y1, x2, y2)
    {
       if(x1 < x2)
       {
-         var _loc4_ = x1;
+         var loc4 = x1;
          x1 = x2;
-         x2 = _loc4_;
-         _loc4_ = y1;
+         x2 = loc4;
+         loc4 = y1;
          y1 = y2;
-         y2 = _loc4_;
+         y2 = loc4;
       }
       if(x1 - x2 < GAME_WIDTH)
       {
@@ -1459,39 +1471,39 @@ function f_SetLeash(x1, y1, x2, y2)
 }
 function f_StuckEnemyCheck()
 {
-   var _loc5_ = 0;
+   var loc5 = 0;
    if(_root.main.leash_left_x != 0 and _root.main.leash_left_x != undefined)
    {
-      var _loc4_ = true;
-      var _loc3_ = 1;
-      while(_loc3_ <= active_enemies)
+      var loc4 = true;
+      var loc3 = 1;
+      while(loc3 <= active_enemies)
       {
-         var _loc2_ = enemyArrayOb["e" + int(_loc3_)];
-         if(_loc2_.alive)
+         var loc2 = enemyArrayOb["e" + int(loc3)];
+         if(loc2.alive)
          {
-            if(!(_loc2_.x < _root.main.leash_left_x or _loc2_.x > _root.main.leash_right_x))
+            if(!(loc2.x < _root.main.leash_left_x or loc2.x > _root.main.leash_right_x))
             {
-               _loc4_ = false;
+               loc4 = false;
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      if(active_enemies >= 1 && _loc4_ == true)
+      if(active_enemies >= 1 && loc4 == true)
       {
          _root.stuck_timer = _root.stuck_timer + 1;
          if(_root.stuck_timer >= STUCK_THRESHOLD)
          {
-            _loc3_ = 1;
-            while(_loc3_ <= active_enemies)
+            loc3 = 1;
+            while(loc3 <= active_enemies)
             {
-               _loc2_ = enemyArrayOb["e" + int(_loc3_)];
-               if(_loc2_.alive)
+               loc2 = enemyArrayOb["e" + int(loc3)];
+               if(loc2.alive)
                {
-                  _loc2_.health = 0;
-                  _loc2_.gotoAndStop("hitground1");
+                  loc2.health = 0;
+                  loc2.gotoAndStop("hitground1");
                   _root.kills = _root.kills + 1;
                }
-               _loc3_ = _loc3_ + 1;
+               loc3 = loc3 + 1;
             }
             _root.stuck_timer = 0;
          }
@@ -1508,21 +1520,21 @@ function f_StuckEnemyCheck()
 }
 function f_UpdateScrollZoom(zone)
 {
-   var _loc15_ = Math.abs(zone.rot * 0.01745316666666667);
-   var _loc12_ = zone.camera_x_goal;
+   var loc15 = Math.abs(zone.rot * 0.01745316666666667);
+   var loc12 = zone.camera_x_goal;
    f_GetCameraCoords(zone);
-   var _loc6_ = (zone.scale_goal - zone.scale) / 5;
-   if(_loc6_ > 2)
+   var loc6 = (zone.scale_goal - zone.scale) / 5;
+   if(loc6 > 2)
    {
-      _loc6_ = 2;
+      loc6 = 2;
    }
-   else if(_loc6_ < -3)
+   else if(loc6 < -3)
    {
-      _loc6_ = -3;
+      loc6 = -3;
    }
-   if(Math.abs(_loc6_) > 0.01)
+   if(Math.abs(loc6) > 0.01)
    {
-      zone.scale += _loc6_;
+      zone.scale += loc6;
    }
    else
    {
@@ -1530,41 +1542,41 @@ function f_UpdateScrollZoom(zone)
    }
    zone.scale_mod = 100 / zone.scale;
    scaled_screen_width = GAME_WIDTH * zone.scale_mod;
-   var _loc14_ = 20;
+   var loc14 = 20;
    if(p_game.edge1.active)
    {
-      _loc14_ = p_game.edge1._y;
+      loc14 = p_game.edge1._y;
    }
    zone.bumpup = 0;
-   var _loc11_ = (GAME_WIDTH - scaled_screen_width) / 2;
-   var _loc10_ = - (zone.leash_left_x - _loc11_ + HALF_GAME_WIDTH);
-   var _loc8_ = - (zone.leash_right_x + _loc11_ - HALF_GAME_WIDTH);
+   var loc11 = (GAME_WIDTH - scaled_screen_width) / 2;
+   var loc10 = - (zone.leash_left_x - loc11 + HALF_GAME_WIDTH);
+   var loc8 = - (zone.leash_right_x + loc11 - HALF_GAME_WIDTH);
    if(zone.leash_left_x)
    {
       if(!zone.leash_left_locked)
       {
-         if(zone.camera_x <= _loc10_)
+         if(zone.camera_x <= loc10)
          {
             zone.leash_left_locked = true;
          }
       }
-      if(zone.leash_left_locked && zone.camera_x_goal > _loc10_)
+      if(zone.leash_left_locked && zone.camera_x_goal > loc10)
       {
-         zone.camera_x_goal = _loc10_;
+         zone.camera_x_goal = loc10;
       }
    }
    if(zone.leash_right_x)
    {
       if(!zone.leash_right_locked)
       {
-         if(zone.camera_x >= _loc8_)
+         if(zone.camera_x >= loc8)
          {
             zone.leash_right_locked = true;
          }
       }
-      if(zone.leash_right_locked && zone.camera_x_goal < _loc8_)
+      if(zone.leash_right_locked && zone.camera_x_goal < loc8)
       {
-         zone.camera_x_goal = _loc8_;
+         zone.camera_x_goal = loc8;
       }
    }
    if(!zone.p_cinema_clip)
@@ -1581,8 +1593,8 @@ function f_UpdateScrollZoom(zone)
       {
          zone.camera_y_goal = 100 - p_game.edge1._y;
       }
-      var _loc3_ = zone.camera_x_goal - zone.camera_x;
-      var _loc2_ = zone.camera_y_goal - zone.camera_y;
+      var loc3 = zone.camera_x_goal - zone.camera_x;
+      var loc2 = zone.camera_y_goal - zone.camera_y;
       if(zone.cam_catchup)
       {
          if(Math.abs(zone.camera_x_goal - zone.camera_x) < 5)
@@ -1597,40 +1609,40 @@ function f_UpdateScrollZoom(zone)
          {
             if(zone.player_move * (zone.camera_x_goal - zone.camera_x) < 0)
             {
-               zone.camera_x_goal = zone.camera_x + _loc3_ * zone.cam_catchup_speed;
-               zone.camera_y_goal = zone.camera_y + _loc2_ * zone.cam_catchup_speed;
+               zone.camera_x_goal = zone.camera_x + loc3 * zone.cam_catchup_speed;
+               zone.camera_y_goal = zone.camera_y + loc2 * zone.cam_catchup_speed;
                zone.cam_catchup_speed += 0.02;
             }
             else
             {
-               zone.camera_x_goal = _loc12_;
+               zone.camera_x_goal = loc12;
             }
          }
          else
          {
-            zone.camera_x_goal = _loc12_;
+            zone.camera_x_goal = loc12;
          }
-         _loc3_ = zone.camera_x_goal - zone.camera_x;
-         _loc2_ = zone.camera_y_goal - zone.camera_y;
+         loc3 = zone.camera_x_goal - zone.camera_x;
+         loc2 = zone.camera_y_goal - zone.camera_y;
       }
-      var _loc5_ = Math.sqrt(_loc3_ * _loc3_ + _loc2_ * _loc2_);
-      if(_loc5_ < 20)
+      var loc5 = Math.sqrt(loc3 * loc3 + loc2 * loc2);
+      if(loc5 < 20)
       {
-         _loc5_ = 20;
+         loc5 = 20;
       }
-      if(_loc5_ < 32)
+      if(loc5 < 32)
       {
-         _loc3_ *= 0.5;
-         _loc2_ *= 0.5;
-         zone.speed = _loc5_ * 0.75;
+         loc3 *= 0.5;
+         loc2 *= 0.5;
+         zone.speed = loc5 * 0.75;
       }
       else
       {
-         _loc3_ /= _loc5_;
-         _loc2_ /= _loc5_;
-         _loc3_ *= zone.speed;
-         _loc2_ *= zone.speed;
-         if(zone.speed < _loc5_ * 0.35)
+         loc3 /= loc5;
+         loc2 /= loc5;
+         loc3 *= zone.speed;
+         loc2 *= zone.speed;
+         if(zone.speed < loc5 * 0.35)
          {
             zone.speed *= 1.1;
          }
@@ -1639,8 +1651,8 @@ function f_UpdateScrollZoom(zone)
             zone.speed *= 0.9;
          }
       }
-      zone.camera_x += _loc3_;
-      zone.camera_y += _loc2_;
+      zone.camera_x += loc3;
+      zone.camera_y += loc2;
       if(!nowaypoints)
       {
          zone.newwaypoint = f_GetClosestWaypoint(- zone.camera_x);
@@ -1651,50 +1663,50 @@ function f_UpdateScrollZoom(zone)
    zone.bottom = - compensated_camera_y;
    zone.right = - (zone.camera_x - HALF_GAME_WIDTH * zone.scale_mod);
    zone.left = - (zone.camera_x + HALF_GAME_WIDTH * zone.scale_mod);
-   var _loc4_ = p_game.edge1;
-   if(_loc4_.active)
+   var loc4 = p_game.edge1;
+   if(loc4.active)
    {
-      var _loc13_ = _loc4_._y - zone.bottom;
-      if(_loc13_ < 0)
+      var loc13 = loc4._y - zone.bottom;
+      if(loc13 < 0)
       {
-         zone.camera_y -= _loc13_;
-         compensated_camera_y -= _loc13_;
+         zone.camera_y -= loc13;
+         compensated_camera_y -= loc13;
          zone.top = - (compensated_camera_y + GAME_HEIGHT * zone.scale_mod);
          zone.bottom = - compensated_camera_y;
       }
    }
-   _loc4_ = p_game.edge2;
-   if(_loc4_.active)
+   loc4 = p_game.edge2;
+   if(loc4.active)
    {
-      _loc13_ = zone.left - _loc4_._x;
-      if(_loc13_ < 0)
+      loc13 = zone.left - loc4._x;
+      if(loc13 < 0)
       {
-         zone.camera_x += _loc13_;
+         zone.camera_x += loc13;
          zone.right = - (zone.camera_x - HALF_GAME_WIDTH * zone.scale_mod);
          zone.left = - (zone.camera_x + HALF_GAME_WIDTH * zone.scale_mod);
       }
    }
-   _loc4_ = p_game.edge3;
-   if(_loc4_.active)
+   loc4 = p_game.edge3;
+   if(loc4.active)
    {
-      _loc13_ = _loc4_._x - zone.right;
-      if(_loc13_ < 0)
+      loc13 = loc4._x - zone.right;
+      if(loc13 < 0)
       {
-         zone.camera_x -= _loc13_;
+         zone.camera_x -= loc13;
          zone.right = - (zone.camera_x - HALF_GAME_WIDTH * zone.scale_mod);
          zone.left = - (zone.camera_x + HALF_GAME_WIDTH * zone.scale_mod);
       }
    }
-   var _loc9_ = 100 / MAX_ZOOM;
-   var _loc7_ = compensated_camera_y - (zone.scale - MAX_ZOOM) / 100 * HALF_GAME_HEIGHT;
-   if(_loc7_ < zone.bumpup)
+   var loc9 = 100 / MAX_ZOOM;
+   var loc7 = compensated_camera_y - (zone.scale - MAX_ZOOM) / 100 * HALF_GAME_HEIGHT;
+   if(loc7 < zone.bumpup)
    {
-      _loc7_ = zone.bumpup;
+      loc7 = zone.bumpup;
    }
-   zone.max_top = - (_loc7_ + GAME_HEIGHT * _loc9_);
-   zone.max_bottom = - _loc7_;
-   zone.max_right = - (zone.camera_x - HALF_GAME_WIDTH * _loc9_);
-   zone.max_left = - (zone.camera_x + HALF_GAME_WIDTH * _loc9_);
+   zone.max_top = - (loc7 + GAME_HEIGHT * loc9);
+   zone.max_bottom = - loc7;
+   zone.max_right = - (zone.camera_x - HALF_GAME_WIDTH * loc9);
+   zone.max_left = - (zone.camera_x + HALF_GAME_WIDTH * loc9);
    if(zone.leash_left_x)
    {
       zone.max_left = Math.max(zone.leash_left_x + zone.safe_screen_size,zone.max_left);
@@ -1764,20 +1776,20 @@ function f_HiFps_CameraReset()
          HiFps_Reset(loader.game.game);
       }
    }
-   var _loc2_ = 0;
-   while(_loc2_ < 4)
+   var loc2 = 0;
+   while(loc2 < 4)
    {
-      var _loc1_ = loader["bg" + _loc2_ + "_c"];
-      if(_loc1_)
+      var loc1 = loader["bg" + loc2 + "_c"];
+      if(loc1)
       {
-         HiFps_Reset(_loc1_);
-         _loc1_ = _loc1_["bg" + _loc2_];
-         if(_loc1_)
+         HiFps_Reset(loc1);
+         loc1 = loc1["bg" + loc2];
+         if(loc1)
          {
-            HiFps_Reset(_loc1_);
+            HiFps_Reset(loc1);
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_GetCameraCoords(zone)
@@ -1796,95 +1808,95 @@ function f_GetCameraCoords(zone)
    {
       if(zone.camera_x == undefined)
       {
-         var _loc8_ = loader.game.game["door" + int(_root.spawn_portal_num)];
-         zone.camera_x = - _loc8_._x;
-         zone.camera_y = - _loc8_._y;
+         var loc8 = loader.game.game["door" + int(_root.spawn_portal_num)];
+         zone.camera_x = - loc8._x;
+         zone.camera_y = - loc8._y;
          zone.camera_x_goal = zone.camera_x;
          zone.camera_y_goal = zone.camera_y;
          zone.last_good_player_x = zone.camera_x;
          zone.last_good_player_y = zone.camera_y;
          zone.scale_goal = 100;
       }
-      var _loc15_ = 9999999;
-      var _loc16_ = -9999999;
-      var _loc10_ = _loc15_;
-      var _loc11_ = _loc16_;
-      var _loc12_ = zone.camera_x;
-      var _loc7_ = _loc16_;
+      var loc15 = 9999999;
+      var loc16 = -9999999;
+      var loc10 = loc15;
+      var loc11 = loc16;
+      var loc12 = zone.camera_x;
+      var loc7 = loc16;
       zone.n_bottomplayer = 0;
       zone.n_topplayer = 0;
-      var _loc14_ = _loc15_;
-      var _loc4_ = undefined;
-      var _loc3_ = undefined;
-      var _loc9_ = 1;
-      while(_loc9_ <= active_players)
+      var loc14 = loc15;
+      var loc4 = undefined;
+      var loc3 = undefined;
+      var loc9 = 1;
+      while(loc9 <= active_players)
       {
-         _loc8_ = playerArrayOb["p_pt" + int(_loc9_)];
-         if(_loc8_.alive and !_loc8_.npc)
+         loc8 = playerArrayOb["p_pt" + int(loc9)];
+         if(loc8.alive and !loc8.npc)
          {
-            _loc4_ = _loc8_.x;
-            _loc3_ = _loc8_.y;
-            if(!_loc8_.onscreen)
+            loc4 = loc8.x;
+            loc3 = loc8.y;
+            if(!loc8.onscreen)
             {
-               if(_loc8_.onscreenbody)
+               if(loc8.onscreenbody)
                {
-                  if(_loc8_.body_y_mod)
+                  if(loc8.body_y_mod)
                   {
-                     _loc3_ += _loc8_.body_y_mod;
+                     loc3 += loc8.body_y_mod;
                   }
                   else
                   {
-                     _loc3_ += _loc8_.body_y;
+                     loc3 += loc8.body_y;
                   }
                }
                else
                {
-                  _loc3_ += _loc8_.body_y;
+                  loc3 += loc8.body_y;
                }
             }
-            zone.last_good_player_x = _loc4_;
-            zone.last_good_player_y = _loc3_;
-            zone.last_good_groundtype = _loc8_.n_groundtype;
-            _loc10_ = Math.min(_loc10_,_loc4_);
-            _loc11_ = Math.max(_loc11_,_loc4_);
-            if(_loc3_ < _loc14_)
+            zone.last_good_player_x = loc4;
+            zone.last_good_player_y = loc3;
+            zone.last_good_groundtype = loc8.n_groundtype;
+            loc10 = Math.min(loc10,loc4);
+            loc11 = Math.max(loc11,loc4);
+            if(loc3 < loc14)
             {
-               zone.n_topplayer = _loc9_;
-               _loc14_ = _loc3_;
+               zone.n_topplayer = loc9;
+               loc14 = loc3;
             }
-            if(_loc3_ > _loc7_)
+            if(loc3 > loc7)
             {
-               _loc7_ = _loc3_;
-               zone.n_bottomplayer = _loc9_;
+               loc7 = loc3;
+               zone.n_bottomplayer = loc9;
             }
          }
-         _loc9_ = _loc9_ + 1;
+         loc9 = loc9 + 1;
       }
-      var _loc13_ = zone.focus_things.length;
-      _loc9_ = 0;
-      while(_loc9_ < _loc13_)
+      var loc13 = zone.focus_things.length;
+      loc9 = 0;
+      while(loc9 < loc13)
       {
-         _loc8_ = zone.focus_things[_loc9_];
-         if(_loc8_ == undefined or !_loc8_.alive)
+         loc8 = zone.focus_things[loc9];
+         if(loc8 == undefined or !loc8.alive)
          {
-            _loc9_;
-            zone.focus_things.splice(_loc9_--,1);
-            _loc13_ = _loc13_ - 1;
+            loc9;
+            zone.focus_things.splice(loc9--,1);
+            loc13 = loc13 - 1;
          }
-         else if(_loc8_.x)
+         else if(loc8.x)
          {
-            _loc10_ = Math.min(_loc10_,_loc8_.x);
-            _loc11_ = Math.min(_loc11_,_loc8_.x);
+            loc10 = Math.min(loc10,loc8.x);
+            loc11 = Math.min(loc11,loc8.x);
          }
-         _loc9_ = _loc9_ + 1;
+         loc9 = loc9 + 1;
       }
-      if(_loc7_ == _loc16_)
+      if(loc7 == loc16)
       {
          if(zone.n_bottomplayer)
          {
-            _loc8_ = playerArrayOb["p_pt" + int(zone.n_bottomplayer)];
-            zone.camera_x_goal = - _loc8_.x;
-            zone.camera_y_goal = - (_loc8_.y + _loc8_.body_y / 2);
+            loc8 = playerArrayOb["p_pt" + int(zone.n_bottomplayer)];
+            zone.camera_x_goal = - loc8.x;
+            zone.camera_y_goal = - (loc8.y + loc8.body_y / 2);
          }
          else
          {
@@ -1893,65 +1905,65 @@ function f_GetCameraCoords(zone)
             zone.scale_goal = 100;
          }
       }
-      if(_loc10_ == _loc15_)
+      if(loc10 == loc15)
       {
          if(zone.n_bottomplayer)
          {
-            _loc8_ = playerArrayOb["p_pt" + int(zone.n_bottomplayer)];
-            zone.camera_x_goal = - _loc8_.x;
-            zone.camera_y_goal = - (_loc8_.y + _loc8_.body_y / 2);
+            loc8 = playerArrayOb["p_pt" + int(zone.n_bottomplayer)];
+            zone.camera_x_goal = - loc8.x;
+            zone.camera_y_goal = - (loc8.y + loc8.body_y / 2);
          }
       }
       else
       {
-         _loc12_ = (_loc10_ + _loc11_) / 2;
-         zone.camera_x_goal = - _loc12_;
-         zone.camera_y_goal = - _loc7_;
+         loc12 = (loc10 + loc11) / 2;
+         zone.camera_x_goal = - loc12;
+         zone.camera_y_goal = - loc7;
       }
       if(!zone.forced_zoom)
       {
-         var _loc6_ = 1;
-         var _loc5_ = 1;
-         _loc9_ = 1;
-         while(_loc9_ <= total_players)
+         var loc6 = 1;
+         var loc5 = 1;
+         loc9 = 1;
+         while(loc9 <= total_players)
          {
-            _loc8_ = playerArrayOb["p_pt" + int(_loc9_)];
-            if(_loc8_.alive and !_loc8_.npc)
+            loc8 = playerArrayOb["p_pt" + int(loc9)];
+            if(loc8.alive and !loc8.npc)
             {
-               _loc4_ = _loc8_.x;
-               if(_loc8_.onscreen)
+               loc4 = loc8.x;
+               if(loc8.onscreen)
                {
-                  _loc3_ = _loc8_.y;
-                  _loc6_ = Math.max(_loc6_,Math.abs(_loc4_ - _loc12_));
-                  _loc5_ = Math.max(_loc5_,Math.abs(_loc3_ - _loc7_));
+                  loc3 = loc8.y;
+                  loc6 = Math.max(loc6,Math.abs(loc4 - loc12));
+                  loc5 = Math.max(loc5,Math.abs(loc3 - loc7));
                }
-               else if(_loc8_.onscreenbody)
+               else if(loc8.onscreenbody)
                {
-                  _loc3_ = _loc8_.y + _loc8_.body_y;
-                  _loc6_ = Math.max(_loc6_,Math.abs(_loc4_ - _loc12_));
-                  _loc5_ = Math.max(_loc5_,Math.abs(_loc3_ - _loc7_));
+                  loc3 = loc8.y + loc8.body_y;
+                  loc6 = Math.max(loc6,Math.abs(loc4 - loc12));
+                  loc5 = Math.max(loc5,Math.abs(loc3 - loc7));
                }
             }
-            _loc9_ = _loc9_ + 1;
+            loc9 = loc9 + 1;
          }
-         _loc9_ = 0;
-         while(_loc9_ < _loc13_)
+         loc9 = 0;
+         while(loc9 < loc13)
          {
-            _loc8_ = zone.focus_things[_loc9_];
-            if(_loc8_.x)
+            loc8 = zone.focus_things[loc9];
+            if(loc8.x)
             {
-               _loc6_ = Math.max(_loc6_,Math.abs(_loc8_.x - _loc12_));
-               _loc5_ = Math.max(_loc5_,Math.abs(_loc8_.y - _loc7_));
+               loc6 = Math.max(loc6,Math.abs(loc8.x - loc12));
+               loc5 = Math.max(loc5,Math.abs(loc8.y - loc7));
             }
-            _loc9_ = _loc9_ + 1;
+            loc9 = loc9 + 1;
          }
-         if(_loc5_ * GAME_ASPECT_RATIO > _loc6_)
+         if(loc5 * GAME_ASPECT_RATIO > loc6)
          {
-            zone.scale_goal = 100 * (GAME_HEIGHT / GAME_ASPECT_RATIO / _loc5_) / 2;
+            zone.scale_goal = 100 * (GAME_HEIGHT / GAME_ASPECT_RATIO / loc5) / 2;
          }
          else
          {
-            zone.scale_goal = 100 * (GAME_WIDTH / GAME_ASPECT_RATIO / _loc6_) / 2;
+            zone.scale_goal = 100 * (GAME_WIDTH / GAME_ASPECT_RATIO / loc6) / 2;
          }
          m_zoom = MAX_ZOOM;
          zone.scale_goal = Math.max(Math.min(zone.scale_goal,100),m_zoom);
@@ -1964,11 +1976,11 @@ function f_GetCameraCoords(zone)
       {
          zone.player_move = 1;
       }
-      else if(_loc12_ < zone.player_x_old)
+      else if(loc12 < zone.player_x_old)
       {
          zone.player_move = -1;
       }
-      else if(_loc12_ > zone.player_x_old)
+      else if(loc12 > zone.player_x_old)
       {
          zone.player_move = 1;
       }
@@ -1976,17 +1988,17 @@ function f_GetCameraCoords(zone)
       {
          zone.player_move = 0;
       }
-      zone.player_x_old = _loc12_;
+      zone.player_x_old = loc12;
    }
 }
 function f_SetEdges()
 {
-   var _loc1_ = p_game.edge1;
-   _loc1_.active = false;
-   _loc1_ = p_game.edge2;
-   _loc1_.active = false;
-   _loc1_ = p_game.edge3;
-   _loc1_.active = false;
+   var loc1 = p_game.edge1;
+   loc1.active = false;
+   loc1 = p_game.edge2;
+   loc1.active = false;
+   loc1 = p_game.edge3;
+   loc1.active = false;
 }
 function f_SetBottomEdge(active)
 {
@@ -2041,20 +2053,20 @@ function f_SZ_PlayerXOnScreen(x)
 }
 function f_SZ_OnScreenBody(x, y, w, body_y, body_y_mod)
 {
-   var _loc1_ = undefined;
+   var loc1 = undefined;
    if(body_y_mod)
    {
-      _loc1_ = y + body_y_mod;
+      loc1 = y + body_y_mod;
    }
    else
    {
-      _loc1_ = y + body_y;
+      loc1 = y + body_y;
    }
-   if(_loc1_ > main.bottom)
+   if(loc1 > main.bottom)
    {
       return false;
    }
-   if(_loc1_ - 100 < main.top)
+   if(loc1 - 100 < main.top)
    {
       return false;
    }
@@ -2079,69 +2091,69 @@ function f_CenterCinemaCam(zone)
 }
 function f_PlayersCenterX()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= active_players)
+   var loc2 = 1;
+   while(loc2 <= active_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc2_ == 1)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc2 == 1)
       {
-         var _loc3_ = _loc1_.x;
-         var _loc4_ = _loc1_.x;
+         var loc3 = loc1.x;
+         var loc4 = loc1.x;
       }
-      else if(_loc1_.x > _loc4_)
+      else if(loc1.x > loc4)
       {
-         _loc4_ = _loc1_.x;
+         loc4 = loc1.x;
       }
-      else if(_loc1_.x < _loc3_)
+      else if(loc1.x < loc3)
       {
-         _loc3_ = _loc1_.x;
+         loc3 = loc1.x;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   return _loc3_ + (_loc4_ - _loc3_) / 2;
+   return loc3 + (loc4 - loc3) / 2;
 }
 function f_XBPortalThing(zone)
 {
-   var _loc11_ = 999999999999;
-   var _loc14_ = undefined;
-   var _loc12_ = undefined;
+   var loc11 = 999999999999;
+   var loc14 = undefined;
+   var loc12 = undefined;
    if(!_root.main.portals_active)
    {
       return false;
    }
-   var _loc2_ = 1;
-   while(_loc2_ <= num_portals)
+   var loc2 = 1;
+   while(loc2 <= num_portals)
    {
-      var _loc3_ = loader.game.game["door" + int(_loc2_)];
-      var _loc10_ = _root["portal" + int(_loc2_)];
-      var _loc9_ = _loc3_._x;
-      var _loc6_ = _loc3_._y;
-      var _loc7_ = zone._x;
-      var _loc5_ = zone._y;
-      var _loc8_ = (_loc9_ - _loc7_) * (_loc9_ - _loc7_) + (_loc6_ - _loc5_) * (_loc6_ - _loc5_);
-      if(_loc8_ < _loc11_)
+      var loc3 = loader.game.game["door" + int(loc2)];
+      var loc10 = _root["portal" + int(loc2)];
+      var loc9 = loc3._x;
+      var loc6 = loc3._y;
+      var loc7 = zone._x;
+      var loc5 = zone._y;
+      var loc8 = (loc9 - loc7) * (loc9 - loc7) + (loc6 - loc5) * (loc6 - loc5);
+      if(loc8 < loc11)
       {
-         _loc11_ = _loc8_;
-         _loc14_ = _loc3_;
-         _loc12_ = _loc10_;
+         loc11 = loc8;
+         loc14 = loc3;
+         loc12 = loc10;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   if(_loc12_.open)
+   if(loc12.open)
    {
-      var _loc4_ = 1;
-      while(_loc4_ < 10)
+      var loc4 = 1;
+      while(loc4 < 10)
       {
-         _root["portal" + int(_loc4_)].open = false;
-         _loc4_ = _loc4_ + 1;
+         _root["portal" + int(loc4)].open = false;
+         loc4 = loc4 + 1;
       }
-      f_func = _loc12_.fp_activate;
+      f_func = loc12.fp_activate;
       f_func(zone);
-      if(_loc12_.target_level != undefined and _loc12_.target_level != "")
+      if(loc12.target_level != undefined and loc12.target_level != "")
       {
          fader.f_FadeOut();
-         _root.spawn_portal_num = _loc12_.spawn_portal_num;
-         f_ChangeLevel(_loc12_.target_level);
+         _root.spawn_portal_num = loc12.spawn_portal_num;
+         f_ChangeLevel(loc12.target_level);
       }
       return true;
    }
@@ -2159,25 +2171,25 @@ function f_SetXY(zone, x, y)
 }
 function f_DeathBoxMCH(zone, speed)
 {
-   var _loc2_ = 0;
+   var loc2 = 0;
    if(zone.body._y < 0)
    {
-      var _loc3_ = zone.x;
-      var _loc5_ = zone.y;
-      var _loc7_ = 0;
-      var _loc4_ = f_BSPHitTest(_loc3_,_loc5_,_loc3_ + speed,_loc5_);
-      if(!_loc4_)
+      var loc3 = zone.x;
+      var loc5 = zone.y;
+      var loc7 = 0;
+      var loc4 = f_BSPHitTest(loc3,loc5,loc3 + speed,loc5);
+      if(!loc4)
       {
          zone.x += speed;
       }
       else
       {
-         _loc2_ = 0.9 - _loc4_;
-         if(_loc2_ < 0)
+         loc2 = 0.9 - loc4;
+         if(loc2 < 0)
          {
-            _loc2_ = 0;
+            loc2 = 0;
          }
-         zone.x = _loc3_ + (_loc4_ + 0.001) * speed;
+         zone.x = loc3 + (loc4 + 0.001) * speed;
          zone.n_groundtype = 0;
       }
    }
@@ -2189,59 +2201,59 @@ function f_DeathBoxMCH(zone, speed)
       f_FX(zone.x,zone.body._y + zone.y,int(zone.y) + 7,"impact1",100,100);
       f_CallJuggle1(zone);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_StairsMCH(zone, speed)
 {
-   var _loc3_ = zone.x;
-   var _loc4_ = zone.y;
-   var _loc6_ = 0;
-   var _loc2_ = 0;
-   var _loc5_ = f_BSPHitTest(_loc3_,_loc4_,_loc3_ + speed,_loc4_);
-   if(!_loc5_)
+   var loc3 = zone.x;
+   var loc4 = zone.y;
+   var loc6 = 0;
+   var loc2 = 0;
+   var loc5 = f_BSPHitTest(loc3,loc4,loc3 + speed,loc4);
+   if(!loc5)
    {
-      var _loc9_ = f_BSPHitTest(_loc3_,_loc4_,_loc3_,_loc4_ + 800) * 800;
-      var _loc10_ = f_BSPCheckLastHitType();
-      if(_loc9_ and _loc10_ == 100)
+      var loc9 = f_BSPHitTest(loc3,loc4,loc3,loc4 + 800) * 800;
+      var loc10 = f_BSPCheckLastHitType();
+      if(loc9 and loc10 == 100)
       {
-         var _loc8_ = f_BSPCheckLastHitSlope() * speed;
-         _loc6_ = _loc8_;
+         var loc8 = f_BSPCheckLastHitSlope() * speed;
+         loc6 = loc8;
          if(zone.body_y < 0)
          {
-            zone.body_y -= _loc8_;
+            zone.body_y -= loc8;
          }
       }
       zone.x += speed;
    }
    else
    {
-      _loc2_ = 0.9 - _loc5_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc5;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.x = _loc3_ + (_loc5_ + 0.001) * speed;
+      zone.x = loc3 + (loc5 + 0.001) * speed;
       zone.n_groundtype = 0;
    }
-   if(_loc6_ and _loc2_ == 0)
+   if(loc6 and loc2 == 0)
    {
-      f_MoveCharV(zone,_loc6_,0);
+      f_MoveCharV(zone,loc6,0);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_LadderMCH(zone, speed)
 {
-   var _loc3_ = zone.x;
-   var _loc2_ = zone.y;
-   var _loc6_ = f_BSPHitTest(_loc3_,_loc2_,_loc3_ + speed,_loc2_);
-   if(_loc6_)
+   var loc3 = zone.x;
+   var loc2 = zone.y;
+   var loc6 = f_BSPHitTest(loc3,loc2,loc3 + speed,loc2);
+   if(loc6)
    {
-      var _loc4_ = _loc3_ + (_loc6_ + 0.05) * speed;
-      var _loc5_ = f_BSPHitTest(_loc4_,_loc2_,_loc4_,_loc2_ + 3990);
-      var _loc8_ = f_BSPCheckLastHitType();
-      if(_loc5_ and Math.floor(_loc8_ / 100) == 0)
+      var loc4 = loc3 + (loc6 + 0.05) * speed;
+      var loc5 = f_BSPHitTest(loc4,loc2,loc4,loc2 + 3990);
+      var loc8 = f_BSPCheckLastHitType();
+      if(loc5 and Math.floor(loc8 / 100) == 0)
       {
-         var _loc7_ = _loc2_ + (_loc5_ + 0.001) * 3990;
+         var loc7 = loc2 + (loc5 + 0.001) * 3990;
          zone.jumped = true;
          zone.jumping = true;
          zone.blocking = false;
@@ -2252,10 +2264,10 @@ function f_LadderMCH(zone, speed)
          zone.body_y = 0;
          zone.speed_jump = zone.speed_launch * 0.25;
          zone.n_groundtype = 0;
-         zone.body_y -= _loc7_ - zone.y;
-         zone.y = _loc7_;
+         zone.body_y -= loc7 - zone.y;
+         zone.y = loc7;
          f_ShadowSize(zone);
-         zone.x = _loc4_;
+         zone.x = loc4;
          zone.gotoAndStop("jump");
          done = true;
       }
@@ -2267,23 +2279,23 @@ function f_LadderMCH(zone, speed)
 }
 function f_TableMCH(zone, speed)
 {
-   var _loc3_ = zone.x;
-   var _loc5_ = zone.y;
-   var _loc2_ = 0;
-   var _loc4_ = f_BSPHitTest(_loc3_,_loc5_,_loc3_ + speed,_loc5_);
-   var _loc6_ = f_BSPCheckLastHitType();
-   if(!_loc4_)
+   var loc3 = zone.x;
+   var loc5 = zone.y;
+   var loc2 = 0;
+   var loc4 = f_BSPHitTest(loc3,loc5,loc3 + speed,loc5);
+   var loc6 = f_BSPCheckLastHitType();
+   if(!loc4)
    {
       zone.x += speed;
    }
-   else if(_loc6_ == 1000)
+   else if(loc6 == 1000)
    {
-      _loc2_ = 0.9 - _loc4_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc4;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.x = _loc3_ + (_loc4_ + 0.001) * speed;
+      zone.x = loc3 + (loc4 + 0.001) * speed;
       if(!zone.jumping)
       {
          zone.jumped = true;
@@ -2302,28 +2314,28 @@ function f_TableMCH(zone, speed)
       f_ShadowSize(zone);
       zone.shadow.gotoAndStop("off");
    }
-   return _loc2_;
+   return loc2;
 }
 function f_Water1MCH(zone, speed)
 {
-   var _loc4_ = zone.x;
-   var _loc6_ = zone.y;
-   var _loc2_ = 0;
-   var _loc3_ = f_BSPHitTest(_loc4_,_loc6_,_loc4_ + speed,_loc6_);
-   var _loc7_ = f_BSPCheckLastHitType();
-   if(!_loc3_)
+   var loc4 = zone.x;
+   var loc6 = zone.y;
+   var loc2 = 0;
+   var loc3 = f_BSPHitTest(loc4,loc6,loc4 + speed,loc6);
+   var loc7 = f_BSPCheckLastHitType();
+   if(!loc3)
    {
       f_Ripple(zone,speed);
       zone.x += speed;
    }
-   else if(_loc7_ == 301)
+   else if(loc7 == 301)
    {
-      _loc2_ = 0.9 - _loc3_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc3;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.x = _loc4_ + (_loc3_ + 0.001) * speed;
+      zone.x = loc4 + (loc3 + 0.001) * speed;
       zone.body_table_y = 15;
       if(zone.n_groundtype == 301)
       {
@@ -2337,95 +2349,95 @@ function f_Water1MCH(zone, speed)
       f_ShadowSize(zone);
       zone.waterbox.gotoAndStop(2);
    }
-   else if(_loc7_ == 300)
+   else if(loc7 == 300)
    {
-      _loc2_ = 0.9 - _loc3_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc3;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.x = _loc4_ + (_loc3_ + 0.001) * speed;
+      zone.x = loc4 + (loc3 + 0.001) * speed;
       zone.n_groundtype = 0;
       f_ShadowSize(zone);
       zone.waterbox.gotoAndStop(1);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_Water2MCH(zone, speed)
 {
-   var _loc3_ = zone.x;
-   var _loc5_ = zone.y;
-   var _loc2_ = 0;
-   var _loc4_ = f_BSPHitTest(_loc3_,_loc5_,_loc3_ + speed,_loc5_);
-   var _loc6_ = f_BSPCheckLastHitType();
-   if(!_loc4_)
+   var loc3 = zone.x;
+   var loc5 = zone.y;
+   var loc2 = 0;
+   var loc4 = f_BSPHitTest(loc3,loc5,loc3 + speed,loc5);
+   var loc6 = f_BSPCheckLastHitType();
+   if(!loc4)
    {
       f_Ripple(zone,speed);
       zone.x += speed;
    }
-   else if(_loc6_ == 302)
+   else if(loc6 == 302)
    {
       //trace("f_Water2MCH");
       //Error("No Deep Water");
    }
-   else if(_loc6_ == 301)
+   else if(loc6 == 301)
    {
-      _loc2_ = 0.9 - _loc4_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc4;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.x = _loc3_ + (_loc4_ + 0.001) * speed;
+      zone.x = loc3 + (loc4 + 0.001) * speed;
       zone.body_table_y = 0;
       zone.n_groundtype = 300;
       f_ShadowSize(zone);
       zone.waterbox.gotoAndStop(1);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_InsideMCH(zone, speed)
 {
-   var _loc2_ = zone.x;
-   var _loc5_ = zone.y;
-   var _loc1_ = 0;
-   var _loc3_ = f_BSPHitTest(_loc2_,_loc5_,_loc2_ + speed,_loc5_);
-   if(!_loc3_)
+   var loc2 = zone.x;
+   var loc5 = zone.y;
+   var loc1 = 0;
+   var loc3 = f_BSPHitTest(loc2,loc5,loc2 + speed,loc5);
+   if(!loc3)
    {
       zone.x += speed;
    }
    else
    {
-      _loc1_ = 0.9 - _loc3_;
-      if(_loc1_ < 0)
+      loc1 = 0.9 - loc3;
+      if(loc1 < 0)
       {
-         _loc1_ = 0;
+         loc1 = 0;
       }
-      zone.x = _loc2_ + (_loc3_ + 0.001) * speed;
+      zone.x = loc2 + (loc3 + 0.001) * speed;
       zone.n_groundtype = 0;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_PlainMCV(zone, speed)
 {
-   var _loc5_ = zone.x;
-   var _loc7_ = zone.y;
-   var _loc6_ = 0;
-   var _loc9_ = f_BSPHitTest(_loc5_,_loc7_,_loc5_,_loc7_ + speed);
-   if(!_loc9_)
+   var loc5 = zone.x;
+   var loc7 = zone.y;
+   var loc6 = 0;
+   var loc9 = f_BSPHitTest(loc5,loc7,loc5,loc7 + speed);
+   if(!loc9)
    {
       zone.y += speed;
    }
    else
    {
-      _loc6_ = 0.9 - _loc9_;
-      if(_loc6_ < 0)
+      loc6 = 0.9 - loc9;
+      if(loc6 < 0)
       {
-         _loc6_ = 0;
+         loc6 = 0;
       }
-      var _loc2_ = f_BSPCheckLastHitType();
-      var _loc15_ = f_BSPCheckLastHitIndex();
-      var _loc3_ = _loc7_ + (_loc9_ + 0.0001) * speed;
-      switch(_loc2_)
+      var loc2 = f_BSPCheckLastHitType();
+      var loc15 = f_BSPCheckLastHitIndex();
+      var loc3 = loc7 + (loc9 + 0.0001) * speed;
+      switch(loc2)
       {
          case 1:
          case 2:
@@ -2437,19 +2449,19 @@ function f_PlainMCV(zone, speed)
             HiFps_ResetRecursive(zone);
             if(speed > 0)
             {
-               var _loc12_ = f_BSPHitTest(_loc5_,_loc3_,_loc5_,_loc3_ + 800);
-               if(_loc12_)
+               var loc12 = f_BSPHitTest(loc5,loc3,loc5,loc3 + 800);
+               if(loc12)
                {
-                  if(_loc15_ != f_BSPCheckLastHitIndex())
+                  if(loc15 != f_BSPCheckLastHitIndex())
                   {
-                     var _loc4_ = _loc3_ + (_loc12_ + 0.00001) * 800;
-                     _loc2_ = f_BSPCheckLastHitType();
-                     if(_loc2_ == 500 and _loc12_ * 800 < 15)
+                     var loc4 = loc3 + (loc12 + 0.00001) * 800;
+                     loc2 = f_BSPCheckLastHitType();
+                     if(loc2 == 500 and loc12 * 800 < 15)
                      {
                         if(zone.body_y == 0)
                         {
-                           zone.n_groundtype = _loc2_;
-                           zone.y = _loc4_;
+                           zone.n_groundtype = loc2;
+                           zone.y = loc4;
                            zone.body_y = 0;
                            f_ShadowSize(zone);
                            zone.busy = true;
@@ -2460,7 +2472,7 @@ function f_PlainMCV(zone, speed)
                      }
                      else if(!zone.horse and !zone.hanging)
                      {
-                        if(_loc2_ == 4 or _loc2_ == 5 or _loc2_ == 6)
+                        if(loc2 == 4 or loc2 == 5 or loc2 == 6)
                         {
                            if(!zone.jumping)
                            {
@@ -2478,8 +2490,8 @@ function f_PlainMCV(zone, speed)
                               }
                               zone.speed_jump = 0;
                            }
-                           zone.body_y -= _loc4_ - zone.y;
-                           zone.y = _loc4_;
+                           zone.body_y -= loc4 - zone.y;
+                           zone.y = loc4;
                            zone.gotoAndStop("jump");
                         }
                         else
@@ -2492,45 +2504,45 @@ function f_PlainMCV(zone, speed)
             }
             else
             {
-               _loc12_ = f_BSPHitTest(_loc5_,_loc3_,_loc5_,_loc3_ - 800);
-               if(_loc12_)
+               loc12 = f_BSPHitTest(loc5,loc3,loc5,loc3 - 800);
+               if(loc12)
                {
-                  var _loc10_ = (_loc12_ + 0.0001) * 800;
-                  _loc4_ = _loc3_ - _loc10_;
-                  _loc2_ = f_BSPCheckLastHitType();
-                  if(_loc2_ == 500)
+                  var loc10 = (loc12 + 0.0001) * 800;
+                  loc4 = loc3 - loc10;
+                  loc2 = f_BSPCheckLastHitType();
+                  if(loc2 == 500)
                   {
                      if(zone.body_y == 0)
                      {
-                        if(_loc10_ < 25)
+                        if(loc10 < 25)
                         {
                            zone.pre_ladder_x = zone.x;
                            zone.pre_ladder_y = zone.y;
-                           var _loc17_ = zone.y;
-                           zone.y = _loc4_;
+                           var loc17 = zone.y;
+                           zone.y = loc4;
                            zone.gotoAndStop("climb");
-                           zone.n_groundtype = _loc2_;
+                           zone.n_groundtype = loc2;
                            f_Depth(zone,zone.y);
                            zone.shadow_pt.gotoAndStop("off");
                            zone.busy = true;
                            zone.ladder = true;
                         }
                      }
-                     else if(_loc10_ < 25)
+                     else if(loc10 < 25)
                      {
-                        var _loc11_ = f_BSPHitTest(_loc5_,_loc4_,_loc5_,_loc4_ - 800);
-                        if(_loc11_)
+                        var loc11 = f_BSPHitTest(loc5,loc4,loc5,loc4 - 800);
+                        if(loc11)
                         {
-                           var _loc13_ = (_loc11_ + 0.0001) * 800;
-                           var _loc14_ = _loc4_ - _loc13_;
-                           if(_loc14_ < _loc4_ + zone.body_y)
+                           var loc13 = (loc11 + 0.0001) * 800;
+                           var loc14 = loc4 - loc13;
+                           if(loc14 < loc4 + zone.body_y)
                            {
                               zone.pre_ladder_x = zone.x;
                               zone.pre_ladder_y = zone.y;
-                              _loc17_ = zone.y;
-                              zone.y = _loc4_ + zone.body_y;
+                              loc17 = zone.y;
+                              zone.y = loc4 + zone.body_y;
                               zone.gotoAndStop("climb");
-                              zone.n_groundtype = _loc2_;
+                              zone.n_groundtype = loc2;
                               f_Depth(zone,zone.y);
                               zone.body_y = 0;
                               f_ShadowSize(zone);
@@ -2541,12 +2553,12 @@ function f_PlainMCV(zone, speed)
                         }
                      }
                   }
-                  else if(_loc2_ == 4 or _loc2_ == 5 or _loc2_ == 6)
+                  else if(loc2 == 4 or loc2 == 5 or loc2 == 6)
                   {
-                     if(_loc7_ + zone.body_y < _loc4_)
+                     if(loc7 + zone.body_y < loc4)
                      {
-                        zone.body_y -= _loc4_ - zone.y;
-                        zone.y = _loc4_;
+                        zone.body_y -= loc4 - zone.y;
+                        zone.y = loc4;
                         f_Depth(zone,zone.y);
                      }
                   }
@@ -2556,15 +2568,15 @@ function f_PlainMCV(zone, speed)
          case 100:
          case 101:
             zone.n_groundtype = 100;
-            zone.y = _loc3_;
+            zone.y = loc3;
             break;
          case 200:
             zone.n_groundtype = 200;
-            zone.y = _loc3_;
+            zone.y = loc3;
             break;
          case 300:
             zone.n_groundtype = 300;
-            zone.y = _loc3_;
+            zone.y = loc3;
             break;
          case 400:
             if(zone.human and !zone.npc and !main.leash_right_x)
@@ -2573,7 +2585,7 @@ function f_PlainMCV(zone, speed)
             }
             else
             {
-               zone.y = _loc3_;
+               zone.y = loc3;
             }
             break;
          case 700:
@@ -2587,11 +2599,11 @@ function f_PlainMCV(zone, speed)
                {
                   zone.upright = true;
                }
-               var _loc16_ = zone.y;
-               zone.y = _loc3_;
+               var loc16 = zone.y;
+               zone.y = loc3;
                if(!fp_FunctionLine(zone))
                {
-                  zone.y = _loc16_;
+                  zone.y = loc16;
                }
             }
             break;
@@ -2599,7 +2611,7 @@ function f_PlainMCV(zone, speed)
             if(zone.body._y < -20)
             {
                zone.n_groundtype = 1000;
-               zone.y = _loc3_;
+               zone.y = loc3;
                zone.body_y += 20;
                zone.body_table_y = -20;
                zone.shadow.gotoAndStop("on");
@@ -2610,32 +2622,32 @@ function f_PlainMCV(zone, speed)
             break;
          default:
             trace("f_PlainMCV");
-            //Error(_loc2_);
+            //Error(loc2);
       }
    }
-   return _loc6_;
+   return loc6;
 }
 function f_DeathBoxMCV(zone, speed)
 {
-   var _loc2_ = 0;
+   var loc2 = 0;
    if(zone.body._y < 0)
    {
-      var _loc5_ = zone.x;
-      var _loc3_ = zone.y;
-      var _loc7_ = 0;
-      var _loc4_ = f_BSPHitTest(_loc5_,_loc3_,_loc5_,_loc3_ + speed);
-      if(!_loc4_)
+      var loc5 = zone.x;
+      var loc3 = zone.y;
+      var loc7 = 0;
+      var loc4 = f_BSPHitTest(loc5,loc3,loc5,loc3 + speed);
+      if(!loc4)
       {
          zone.y += speed;
       }
       else
       {
-         _loc2_ = 0.9 - _loc4_;
-         if(_loc2_ < 0)
+         loc2 = 0.9 - loc4;
+         if(loc2 < 0)
          {
-            _loc2_ = 0;
+            loc2 = 0;
          }
-         zone.y = _loc3_ + (_loc4_ + 0.001) * speed;
+         zone.y = loc3 + (loc4 + 0.001) * speed;
          zone.n_groundtype = 0;
       }
    }
@@ -2647,27 +2659,27 @@ function f_DeathBoxMCV(zone, speed)
       f_FX(zone.x,zone.body._y + zone.y,int(zone.y) + 7,"impact1",100,100);
       f_CallJuggle1(zone);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_TableMCV(zone, speed)
 {
-   var _loc5_ = zone.x;
-   var _loc3_ = zone.y;
-   var _loc2_ = 0;
-   var _loc4_ = f_BSPHitTest(_loc5_,_loc3_,_loc5_,_loc3_ + speed);
-   var _loc6_ = f_BSPCheckLastHitType();
-   if(!_loc4_)
+   var loc5 = zone.x;
+   var loc3 = zone.y;
+   var loc2 = 0;
+   var loc4 = f_BSPHitTest(loc5,loc3,loc5,loc3 + speed);
+   var loc6 = f_BSPCheckLastHitType();
+   if(!loc4)
    {
       zone.y += speed;
    }
-   else if(_loc6_ == 1000)
+   else if(loc6 == 1000)
    {
-      _loc2_ = 0.9 - _loc4_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc4;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.y = _loc3_ + (_loc4_ + 0.001) * speed;
+      zone.y = loc3 + (loc4 + 0.001) * speed;
       if(!zone.jumping)
       {
          zone.jumped = true;
@@ -2686,119 +2698,119 @@ function f_TableMCV(zone, speed)
       f_ShadowSize(zone);
       zone.shadow.gotoAndStop("off");
    }
-   return _loc2_;
+   return loc2;
 }
 function f_Water1MCV(zone, speed)
 {
-   var _loc6_ = zone.x;
-   var _loc4_ = zone.y;
-   var _loc2_ = 0;
-   var _loc3_ = f_BSPHitTest(_loc6_,_loc4_,_loc6_,_loc4_ + speed);
-   var _loc7_ = f_BSPCheckLastHitType();
-   if(!_loc3_)
+   var loc6 = zone.x;
+   var loc4 = zone.y;
+   var loc2 = 0;
+   var loc3 = f_BSPHitTest(loc6,loc4,loc6,loc4 + speed);
+   var loc7 = f_BSPCheckLastHitType();
+   if(!loc3)
    {
       f_Ripple(zone,speed);
       zone.y += speed;
    }
-   else if(_loc7_ == 301)
+   else if(loc7 == 301)
    {
-      _loc2_ = 0.9 - _loc3_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc3;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.y = _loc4_ + (_loc3_ + 0.001) * speed;
+      zone.y = loc4 + (loc3 + 0.001) * speed;
       zone.body_table_y = 15;
       zone.n_groundtype = 301;
       f_ShadowSize(zone);
       zone.waterbox.gotoAndStop(2);
    }
-   else if(_loc7_ == 300)
+   else if(loc7 == 300)
    {
-      _loc2_ = 0.9 - _loc3_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc3;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.y = _loc4_ + (_loc3_ + 0.001) * speed;
+      zone.y = loc4 + (loc3 + 0.001) * speed;
       zone.n_groundtype = 0;
       f_ShadowSize(zone);
       zone.waterbox.gotoAndStop(1);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_Water2MCV(zone, speed)
 {
-   var _loc5_ = zone.x;
-   var _loc3_ = zone.y;
-   var _loc2_ = 0;
-   var _loc4_ = f_BSPHitTest(_loc5_,_loc3_,_loc5_,_loc3_ + speed);
-   var _loc6_ = f_BSPCheckLastHitType();
-   if(!_loc4_)
+   var loc5 = zone.x;
+   var loc3 = zone.y;
+   var loc2 = 0;
+   var loc4 = f_BSPHitTest(loc5,loc3,loc5,loc3 + speed);
+   var loc6 = f_BSPCheckLastHitType();
+   if(!loc4)
    {
       f_Ripple(zone,speed);
       zone.y += speed;
    }
-   else if(_loc6_ == 302)
+   else if(loc6 == 302)
    {
       //trace("f_Water2MCV");
       //Error("No Deep Water");
    }
-   else if(_loc6_ == 301)
+   else if(loc6 == 301)
    {
-      _loc2_ = 0.9 - _loc4_;
-      if(_loc2_ < 0)
+      loc2 = 0.9 - loc4;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      zone.y = _loc3_ + (_loc4_ + 0.001) * speed;
+      zone.y = loc3 + (loc4 + 0.001) * speed;
       zone.body_table_y = 0;
       zone.n_groundtype = 300;
       f_ShadowSize(zone);
       zone.waterbox.gotoAndStop(1);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_InsideMCV(zone, speed)
 {
-   var _loc5_ = zone.x;
-   var _loc2_ = zone.y;
-   var _loc1_ = 0;
-   var _loc3_ = f_BSPHitTest(_loc5_,_loc2_,_loc5_,_loc2_ + speed);
-   if(!_loc3_)
+   var loc5 = zone.x;
+   var loc2 = zone.y;
+   var loc1 = 0;
+   var loc3 = f_BSPHitTest(loc5,loc2,loc5,loc2 + speed);
+   if(!loc3)
    {
       zone.y += speed;
    }
    else
    {
-      _loc1_ = 0.9 - _loc3_;
-      if(_loc1_ < 0)
+      loc1 = 0.9 - loc3;
+      if(loc1 < 0)
       {
-         _loc1_ = 0;
+         loc1 = 0;
       }
-      zone.y = _loc2_ + (_loc3_ + 0.001) * speed;
+      zone.y = loc2 + (loc3 + 0.001) * speed;
       zone.n_groundtype = 0;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_LadderMCV(zone, speed)
 {
-   var _loc2_ = zone.x;
-   var _loc4_ = zone.y;
-   var _loc7_ = f_BSPHitTest(_loc2_,_loc4_,_loc2_,_loc4_ + speed);
-   if(!_loc7_)
+   var loc2 = zone.x;
+   var loc4 = zone.y;
+   var loc7 = f_BSPHitTest(loc2,loc4,loc2,loc4 + speed);
+   if(!loc7)
    {
       zone.y += speed;
    }
    else
    {
-      var _loc3_ = zone.y + (_loc7_ + 0.001) * speed;
+      var loc3 = zone.y + (loc7 + 0.001) * speed;
       if(speed > 0)
       {
-         var _loc6_ = f_BSPHitTest(_loc2_,_loc3_,_loc2_,_loc3_ + 3990);
-         if(_loc6_)
+         var loc6 = f_BSPHitTest(loc2,loc3,loc2,loc3 + 3990);
+         if(loc6)
          {
-            var _loc8_ = _loc3_ + (_loc6_ + 0.0001) * 3990;
+            var loc8 = loc3 + (loc6 + 0.0001) * 3990;
             zone.jumped = true;
             zone.jumping = true;
             zone.blocking = false;
@@ -2809,8 +2821,8 @@ function f_LadderMCV(zone, speed)
             zone.body_y = 0;
             zone.speed_jump = 0;
             zone.n_groundtype = 0;
-            zone.body_y -= _loc8_ - zone.y;
-            zone.y = _loc8_;
+            zone.body_y -= loc8 - zone.y;
+            zone.y = loc8;
             f_ShadowSize(zone);
             zone.shadow.gotoAndStop("on");
             zone.gotoAndStop("jump");
@@ -2818,10 +2830,10 @@ function f_LadderMCV(zone, speed)
       }
       else
       {
-         _loc6_ = f_BSPHitTest(_loc2_,_loc3_,_loc2_,_loc3_ - 3990);
-         if(_loc6_)
+         loc6 = f_BSPHitTest(loc2,loc3,loc2,loc3 - 3990);
+         if(loc6)
          {
-            _loc8_ = _loc3_ - (_loc6_ + 0.0001) * 3990;
+            loc8 = loc3 - (loc6 + 0.0001) * 3990;
             zone.jumped = true;
             zone.jumping = true;
             zone.blocking = false;
@@ -2832,7 +2844,7 @@ function f_LadderMCV(zone, speed)
             zone.body_y = 0;
             zone.speed_jump = -5;
             zone.n_groundtype = 0;
-            zone.y = _loc8_;
+            zone.y = loc8;
             f_Depth(zone,zone.y);
             zone.shadow.gotoAndStop("on");
             f_ShadowSize(zone);
@@ -2845,23 +2857,23 @@ function f_SideLadderMCV(zone, speed)
 {
    zone.y += speed;
    zone.x += zone.ladder_slope * speed;
-   var _loc2_ = 0;
-   var _loc3_ = undefined;
-   _loc3_ = Math.pow(zone.x - zone.ladder_endpt_top._x,2) + Math.pow(zone.y - zone.ladder_endpt_top._y,2);
-   if(speed < 0 and _loc3_ < 625)
+   var loc2 = 0;
+   var loc3 = undefined;
+   loc3 = Math.pow(zone.x - zone.ladder_endpt_top._x,2) + Math.pow(zone.y - zone.ladder_endpt_top._y,2);
+   if(speed < 0 and loc3 < 625)
    {
-      _loc2_ = 1;
+      loc2 = 1;
       zone.x = zone.ladder_endpt_top._x;
       zone.y = zone.ladder_endpt_top._y;
    }
-   _loc3_ = Math.pow(zone.x - zone.ladder_endpt_bot._x,2) + Math.pow(zone.y - zone.ladder_endpt_bot._y,2);
-   if(speed > 0 and _loc3_ < 625)
+   loc3 = Math.pow(zone.x - zone.ladder_endpt_bot._x,2) + Math.pow(zone.y - zone.ladder_endpt_bot._y,2);
+   if(speed > 0 and loc3 < 625)
    {
-      _loc2_ = 2;
+      loc2 = 2;
       zone.x = zone.ladder_endpt_bot._x;
       zone.y = zone.ladder_endpt_bot._y;
    }
-   if(_loc2_)
+   if(loc2)
    {
       zone.body_y = 0;
       zone.body._y = zone.body_y;
@@ -2875,7 +2887,7 @@ function f_SideLadderMCV(zone, speed)
       zone.busy = false;
       zone.jump_attack = true;
       zone.n_groundtype = 0;
-      if(_loc2_ == 1)
+      if(loc2 == 1)
       {
          f_DashReset(zone);
          zone.hanging = true;
@@ -2915,11 +2927,11 @@ function f_ClimbSettings(zone)
 }
 function f_CharClimb(zone)
 {
-   var _loc2_ = zone.cframe;
-   var _loc3_ = false;
+   var loc2 = zone.cframe;
+   var loc3 = false;
    if(Key.isDown(zone.button_left))
    {
-      _loc3_ = true;
+      loc3 = true;
       zone.left_timer = zone.left_timer + 1;
    }
    else
@@ -2928,7 +2940,7 @@ function f_CharClimb(zone)
    }
    if(Key.isDown(zone.button_right))
    {
-      _loc3_ = true;
+      loc3 = true;
       zone.right_timer = zone.right_timer + 1;
    }
    else
@@ -2937,7 +2949,7 @@ function f_CharClimb(zone)
    }
    if(Key.isDown(zone.button_up))
    {
-      _loc3_ = true;
+      loc3 = true;
       zone.up_timer = zone.up_timer + 1;
    }
    else
@@ -2946,28 +2958,28 @@ function f_CharClimb(zone)
    }
    if(Key.isDown(zone.button_down))
    {
-      _loc3_ = true;
+      loc3 = true;
       zone.down_timer = zone.down_timer + 1;
    }
    else
    {
       zone.down_timer = 0;
    }
-   if(!_loc3_)
+   if(!loc3)
    {
       if(Key.isDown(zone.button_jump))
       {
-         var _loc4_ = zone.x;
-         var _loc6_ = zone.y;
-         var _loc8_ = f_BSPHitTest(_loc4_,_loc6_,_loc4_,_loc6_ + 3990);
-         if(_loc8_)
+         var loc4 = zone.x;
+         var loc6 = zone.y;
+         var loc8 = f_BSPHitTest(loc4,loc6,loc4,loc6 + 3990);
+         if(loc8)
          {
-            var _loc5_ = zone.y + (_loc8_ + 0.001) * 3990;
-            var _loc7_ = f_BSPHitTest(_loc4_,_loc5_,_loc4_,_loc5_ + 200);
-            var _loc10_ = f_BSPCheckLastHitType();
-            if(_loc7_ and _loc10_ < 100)
+            var loc5 = zone.y + (loc8 + 0.001) * 3990;
+            var loc7 = f_BSPHitTest(loc4,loc5,loc4,loc5 + 200);
+            var loc10 = f_BSPCheckLastHitType();
+            if(loc7 and loc10 < 100)
             {
-               var _loc9_ = _loc5_ + (_loc7_ + 0.001) * 200;
+               var loc9 = loc5 + (loc7 + 0.001) * 200;
                zone.jumped = true;
                zone.jumping = true;
                zone.blocking = false;
@@ -2978,8 +2990,8 @@ function f_CharClimb(zone)
                zone.body_y = 0;
                zone.speed_jump = zone.speed_launch * 0.25;
                zone.n_groundtype = 0;
-               zone.body_y -= _loc9_ - zone.y;
-               zone.y = _loc9_;
+               zone.body_y -= loc9 - zone.y;
+               zone.y = loc9;
                f_ShadowSize(zone);
                zone.gotoAndStop("jump");
                zone._x = zone.x;
@@ -2995,45 +3007,45 @@ function f_CharClimb(zone)
       if(zone.left_timer > 0 and zone.left_timer > zone.right_timer)
       {
          f_MoveCharH(zone,(- zone.speed_x) * 0.25,1);
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
       else if(zone.right_timer > 0 and zone.right_timer > zone.left_timer)
       {
          f_MoveCharH(zone,zone.speed_x * 0.25,1);
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
       else if(zone.up_timer > 0 and zone.up_timer > zone.down_timer)
       {
          f_MoveCharV(zone,(- zone.speed_x) * 0.65,1);
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
       else if(zone.down_timer > 0 and zone.down_timer > zone.up_timer)
       {
          f_MoveCharV(zone,zone.speed_x * 0.65,1);
-         _loc2_ = _loc2_ - 1;
+         loc2 = loc2 - 1;
       }
       if(zone.ladder)
       {
-         if(_loc2_ > zone.max_cframe)
+         if(loc2 > zone.max_cframe)
          {
-            _loc2_ = 1;
+            loc2 = 1;
          }
-         else if(_loc2_ < 1)
+         else if(loc2 < 1)
          {
-            _loc2_ = zone.max_cframe;
+            loc2 = zone.max_cframe;
          }
-         zone.cframe = _loc2_;
-         zone.body.body.gotoAndStop(_loc2_);
+         zone.cframe = loc2;
+         zone.body.body.gotoAndStop(loc2);
       }
    }
 }
 function f_CharSideClimb(zone)
 {
-   var _loc2_ = zone.cframe;
-   var _loc3_ = false;
+   var loc2 = zone.cframe;
+   var loc3 = false;
    if(Key.isDown(zone.button_left))
    {
-      _loc3_ = true;
+      loc3 = true;
       zone.left_timer = zone.left_timer + 1;
    }
    else
@@ -3042,7 +3054,7 @@ function f_CharSideClimb(zone)
    }
    if(Key.isDown(zone.button_right))
    {
-      _loc3_ = true;
+      loc3 = true;
       zone.right_timer = zone.right_timer + 1;
    }
    else
@@ -3051,7 +3063,7 @@ function f_CharSideClimb(zone)
    }
    if(zone.npc or Key.isDown(zone.button_up))
    {
-      _loc3_ = true;
+      loc3 = true;
       zone.up_timer = zone.up_timer + 1;
    }
    else
@@ -3060,37 +3072,37 @@ function f_CharSideClimb(zone)
    }
    if(Key.isDown(zone.button_down))
    {
-      _loc3_ = true;
+      loc3 = true;
       zone.down_timer = zone.down_timer + 1;
    }
    else
    {
       zone.down_timer = 0;
    }
-   if(_loc3_)
+   if(loc3)
    {
       if(zone.left_timer > 0 and zone.left_timer > zone.right_timer or zone.down_timer > 0 and zone.down_timer > zone.up_timer)
       {
-         f_MoveCharV(zone,zone.speed_x * Math.abs(Math.cos(3.141592653589793 * _loc2_ / 18)),1);
-         _loc2_ = _loc2_ - 1;
+         f_MoveCharV(zone,zone.speed_x * Math.abs(Math.cos(3.141592653589793 * loc2 / 18)),1);
+         loc2 = loc2 - 1;
       }
       else if(zone.right_timer > 0 and zone.right_timer > zone.left_timer or zone.up_timer > 0 and zone.up_timer > zone.down_timer)
       {
-         f_MoveCharV(zone,(- zone.speed_x) * Math.abs(Math.cos(3.141592653589793 * _loc2_ / 18)),1);
-         _loc2_ = _loc2_ + 1;
+         f_MoveCharV(zone,(- zone.speed_x) * Math.abs(Math.cos(3.141592653589793 * loc2 / 18)),1);
+         loc2 = loc2 + 1;
       }
       if(zone.ladder)
       {
-         if(_loc2_ > zone.max_cframe)
+         if(loc2 > zone.max_cframe)
          {
-            _loc2_ = 1;
+            loc2 = 1;
          }
-         else if(_loc2_ < 1)
+         else if(loc2 < 1)
          {
-            _loc2_ = zone.max_cframe;
+            loc2 = zone.max_cframe;
          }
-         zone.cframe = _loc2_;
-         zone.body.body.gotoAndStop(_loc2_);
+         zone.cframe = loc2;
+         zone.body.body.gotoAndStop(loc2);
       }
    }
 }
@@ -3098,12 +3110,12 @@ function f_Ripple(zone, speed)
 {
    if(zone.body_y >= -5)
    {
-      var _loc2_ = false;
+      var loc2 = false;
       if(speed)
       {
          if(!zone.ripple)
          {
-            _loc2_ = true;
+            loc2 = true;
             zone.ripple = 1;
          }
          else
@@ -3115,7 +3127,7 @@ function f_Ripple(zone, speed)
             }
          }
       }
-      if(_loc2_)
+      if(loc2)
       {
          if(level == 32)
          {
@@ -3123,32 +3135,32 @@ function f_Ripple(zone, speed)
          }
          else
          {
-            var _loc3_ = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
-            f_ColorSwap(_loc3_,water_default);
+            var loc3 = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
+            f_ColorSwap(loc3,water_default);
          }
       }
    }
 }
 function f_ProjectileMove(zone, speed)
 {
-   var _loc3_ = 0;
-   var _loc5_ = zone.n_groundtype;
-   var _loc2_ = 0;
+   var loc3 = 0;
+   var loc5 = zone.n_groundtype;
+   var loc2 = 0;
    if(f_ProjectileHitWallH(zone,zone.speed_x))
    {
-      _loc3_ = 1;
+      loc3 = 1;
    }
    else
    {
-      switch(_loc5_)
+      switch(loc5)
       {
          case 0:
          case 0:
-            _loc2_ = f_PlainProjectileMove(zone,speed);
+            loc2 = f_PlainProjectileMove(zone,speed);
             break;
          case 100:
          case 101:
-            _loc2_ = f_StairsProjectileMove(zone,speed);
+            loc2 = f_StairsProjectileMove(zone,speed);
             break;
          case 200:
          case 300:
@@ -3157,15 +3169,15 @@ function f_ProjectileMove(zone, speed)
          case 400:
          case 500:
          case 600:
-            _loc2_ = f_InsideProjectileMove(zone,speed);
+            loc2 = f_InsideProjectileMove(zone,speed);
             break;
          case 1000:
          case 1001:
-            _loc2_ = f_TableProjectileMove(zone,speed);
+            loc2 = f_TableProjectileMove(zone,speed);
             break;
          default:
-            //Error(_loc5_);
-            _loc2_ = f_InsideProjectileMove(zone,speed);
+            //Error(loc5);
+            loc2 = f_InsideProjectileMove(zone,speed);
       }
    }
    zone._x = zone.x;
@@ -3187,115 +3199,115 @@ function f_ProjectileMove(zone, speed)
       else
       {
          zone.body._y = 0;
-         _loc3_ = 1;
+         loc3 = 1;
       }
    }
    zone._y = zone.y;
    zone.shadow_pt._y = zone._y;
    f_ShadowSize(zone);
-   if(_loc2_ < 0)
+   if(loc2 < 0)
    {
-      _loc3_ = 1;
+      loc3 = 1;
    }
-   else if(_loc2_ > 0.1 and !_loc3_)
+   else if(loc2 > 0.1 and !loc3)
    {
-      _loc3_ = f_ProjectileMove(zone,speed * _loc2_);
+      loc3 = f_ProjectileMove(zone,speed * loc2);
    }
-   return _loc3_;
+   return loc3;
 }
 function f_PlainProjectileMove(zone, speed)
 {
-   var _loc6_ = zone.x;
-   var _loc4_ = zone.y;
-   var _loc8_ = 0;
-   var _loc2_ = 0;
-   var _loc7_ = f_BSPHitTest(_loc6_,_loc4_,_loc6_ + speed,_loc4_);
-   if(!_loc7_)
+   var loc6 = zone.x;
+   var loc4 = zone.y;
+   var loc8 = 0;
+   var loc2 = 0;
+   var loc7 = f_BSPHitTest(loc6,loc4,loc6 + speed,loc4);
+   if(!loc7)
    {
       zone.x += speed;
-      var _loc15_ = true;
-      var _loc5_ = 0;
-      var _loc16_ = f_BSPHitTest(_loc6_,_loc4_,_loc6_,_loc4_ + 400) * 400;
-      if(_loc16_)
+      var loc15 = true;
+      var loc5 = 0;
+      var loc16 = f_BSPHitTest(loc6,loc4,loc6,loc4 + 400) * 400;
+      if(loc16)
       {
-         _loc5_ = f_BSPCheckLastHitType();
-         if(_loc5_ == 3 or _loc5_ == 6)
+         loc5 = f_BSPCheckLastHitType();
+         if(loc5 == 3 or loc5 == 6)
          {
-            var _loc14_ = f_BSPCheckLastHitSlope();
-            var _loc17_ = _loc14_ * speed;
-            if(_loc17_ < 0)
+            var loc14 = f_BSPCheckLastHitSlope();
+            var loc17 = loc14 * speed;
+            if(loc17 < 0)
             {
-               _loc8_ = _loc17_;
-               _loc15_ = false;
-               zone.body._y -= _loc17_;
+               loc8 = loc17;
+               loc15 = false;
+               zone.body._y -= loc17;
             }
          }
       }
    }
    else
    {
-      _loc5_ = f_BSPCheckLastHitType();
-      var _loc13_ = f_BSPCheckLastHitIndex();
-      _loc2_ = 0.9 - _loc7_;
-      if(_loc2_ < 0)
+      loc5 = f_BSPCheckLastHitType();
+      var loc13 = f_BSPCheckLastHitIndex();
+      loc2 = 0.9 - loc7;
+      if(loc2 < 0)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
-      var _loc3_ = _loc6_ + (_loc7_ + 0.01) * speed;
-      switch(_loc5_)
+      var loc3 = loc6 + (loc7 + 0.01) * speed;
+      switch(loc5)
       {
          case 1:
          case 2:
          case 3:
-            zone.x = _loc3_;
+            zone.x = loc3;
             if(Math.abs(f_BSPCheckLastHitSlope()) > 0.1)
             {
-               _loc2_ = -1;
+               loc2 = -1;
             }
             break;
          case 4:
          case 5:
          case 6:
-            var _loc11_ = false;
-            var _loc10_ = f_BSPHitTest(_loc3_,_loc4_,_loc3_,_loc4_ - 3990);
-            _loc2_ = -1;
-            if(_loc10_)
+            var loc11 = false;
+            var loc10 = f_BSPHitTest(loc3,loc4,loc3,loc4 - 3990);
+            loc2 = -1;
+            if(loc10)
             {
-               if(_loc13_ != f_BSPCheckLastHitIndex())
+               if(loc13 != f_BSPCheckLastHitIndex())
                {
-                  var _loc12_ = _loc4_ - (_loc10_ + 0.0001) * 3990;
-                  _loc5_ = f_BSPCheckLastHitType();
-                  if(_loc5_ != 500 and _loc5_ != 600)
+                  var loc12 = loc4 - (loc10 + 0.0001) * 3990;
+                  loc5 = f_BSPCheckLastHitType();
+                  if(loc5 != 500 and loc5 != 600)
                   {
-                     _loc17_ = _loc4_ + zone.body._y - _loc12_;
-                     if(_loc17_ < 0)
+                     loc17 = loc4 + zone.body._y - loc12;
+                     if(loc17 < 0)
                      {
-                        zone.x = _loc3_;
-                        zone.body._y -= _loc12_ - zone.y;
-                        zone.y = _loc12_;
+                        zone.x = loc3;
+                        zone.body._y -= loc12 - zone.y;
+                        zone.y = loc12;
                         f_Depth(zone,zone.y);
-                        _loc2_ = 0;
+                        loc2 = 0;
                      }
-                     _loc11_ = true;
+                     loc11 = true;
                   }
                }
             }
-            if(!_loc11_)
+            if(!loc11)
             {
-               _loc10_ = f_BSPHitTest(_loc3_,_loc4_,_loc3_,_loc4_ + 3990);
-               if(_loc10_)
+               loc10 = f_BSPHitTest(loc3,loc4,loc3,loc4 + 3990);
+               if(loc10)
                {
-                  if(_loc13_ != f_BSPCheckLastHitIndex())
+                  if(loc13 != f_BSPCheckLastHitIndex())
                   {
-                     _loc12_ = _loc4_ + (_loc10_ + 0.0001) * 3990;
-                     _loc5_ = f_BSPCheckLastHitType();
-                     if(_loc5_ != 500 and _loc5_ != 600)
+                     loc12 = loc4 + (loc10 + 0.0001) * 3990;
+                     loc5 = f_BSPCheckLastHitType();
+                     if(loc5 != 500 and loc5 != 600)
                      {
-                        zone.x = _loc3_;
-                        zone.body._y -= _loc12_ - zone.y;
-                        zone.y = _loc12_;
+                        zone.x = loc3;
+                        zone.body._y -= loc12 - zone.y;
+                        zone.y = loc12;
                         f_Depth(zone,zone.y);
-                        _loc2_ = 0;
+                        loc2 = 0;
                      }
                   }
                }
@@ -3305,160 +3317,160 @@ function f_PlainProjectileMove(zone, speed)
          case 100:
          case 101:
             zone.n_groundtype = 100;
-            zone.x = _loc3_;
+            zone.x = loc3;
             break;
          case 200:
             zone.n_groundtype = 200;
-            zone.x = _loc3_;
+            zone.x = loc3;
             break;
          case 300:
             zone.n_groundtype = 300;
-            zone.x = _loc3_;
+            zone.x = loc3;
             break;
          case 400:
             zone.n_groundtype = 400;
-            zone.x = _loc3_;
+            zone.x = loc3;
             break;
          case 500:
          case 600:
-            //Error(_loc5_);
-            _loc2_ = -1;
+            //Error(loc5);
+            loc2 = -1;
             break;
          case 700:
             if(fp_FunctionLineProjectile)
             {
-               zone.x = _loc3_;
+               zone.x = loc3;
                if(!fp_FunctionLineProjectile(zone))
                {
-                  _loc2_ = -1;
+                  loc2 = -1;
                }
             }
             else
             {
-               _loc2_ = -1;
+               loc2 = -1;
             }
             break;
          case 1000:
             if(zone.body._y < -20)
             {
                zone.n_groundtype = 1000;
-               zone.x = _loc3_;
+               zone.x = loc3;
             }
             else
             {
-               _loc2_ = -1;
+               loc2 = -1;
             }
             break;
          case 1001:
-            _loc2_ = -1;
+            loc2 = -1;
             break;
          default:
-            //Error(_loc5_);
-            _loc2_ = -1;
+            //Error(loc5);
+            loc2 = -1;
       }
    }
-   if(_loc8_ and _loc2_ == 0)
+   if(loc8 and loc2 == 0)
    {
-      f_ProjectileMoveY(zone,_loc8_);
+      f_ProjectileMoveY(zone,loc8);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_StairsProjectileMove(zone, speed)
 {
-   var _loc2_ = zone.x;
-   var _loc4_ = zone.y;
-   var _loc7_ = 0;
-   var _loc1_ = 0;
-   var _loc10_ = 0;
-   var _loc6_ = 0;
-   var _loc5_ = f_BSPHitTest(_loc2_,_loc4_,_loc2_ + speed,_loc4_);
-   if(!_loc5_)
+   var loc2 = zone.x;
+   var loc4 = zone.y;
+   var loc7 = 0;
+   var loc1 = 0;
+   var loc10 = 0;
+   var loc6 = 0;
+   var loc5 = f_BSPHitTest(loc2,loc4,loc2 + speed,loc4);
+   if(!loc5)
    {
-      var _loc9_ = f_BSPHitTest(_loc2_,_loc4_,_loc2_,_loc4_ + 400) * 400;
-      if(_loc9_ and f_BSPCheckLastHitType() == 100)
+      var loc9 = f_BSPHitTest(loc2,loc4,loc2,loc4 + 400) * 400;
+      if(loc9 and f_BSPCheckLastHitType() == 100)
       {
          n_slope = f_BSPCheckLastHitSlope();
-         _loc6_ = n_slope * speed;
-         _loc7_ = _loc6_;
-         zone.body._y -= _loc6_;
+         loc6 = n_slope * speed;
+         loc7 = loc6;
+         zone.body._y -= loc6;
       }
       zone.x += speed;
    }
    else
    {
-      _loc1_ = 0.9 - _loc5_;
-      if(_loc1_ < 0)
+      loc1 = 0.9 - loc5;
+      if(loc1 < 0)
       {
-         _loc1_ = 0;
+         loc1 = 0;
       }
-      zone.x = _loc2_ + (_loc5_ + 0.001) * speed;
+      zone.x = loc2 + (loc5 + 0.001) * speed;
       zone.n_groundtype = 0;
    }
-   if(_loc7_ and _loc1_ == 0)
+   if(loc7 and loc1 == 0)
    {
-      f_ProjectileMoveY(zone,_loc7_);
+      f_ProjectileMoveY(zone,loc7);
    }
-   return _loc1_;
+   return loc1;
 }
 function f_InsideProjectileMove(zone, speed)
 {
-   var _loc2_ = zone.x;
-   var _loc5_ = zone.y;
-   var _loc1_ = 0;
-   var _loc3_ = f_BSPHitTest(_loc2_,_loc5_,_loc2_ + speed,_loc5_);
-   if(!_loc3_)
+   var loc2 = zone.x;
+   var loc5 = zone.y;
+   var loc1 = 0;
+   var loc3 = f_BSPHitTest(loc2,loc5,loc2 + speed,loc5);
+   if(!loc3)
    {
       zone.x += speed;
    }
    else
    {
-      _loc1_ = 0.9 - _loc3_;
-      if(_loc1_ < 0)
+      loc1 = 0.9 - loc3;
+      if(loc1 < 0)
       {
-         _loc1_ = 0;
+         loc1 = 0;
       }
-      zone.x = _loc2_ + (_loc3_ + 0.001) * speed;
+      zone.x = loc2 + (loc3 + 0.001) * speed;
       zone.n_groundtype = 0;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_TableProjectileMove(zone, speed)
 {
-   var _loc3_ = zone.x;
-   var _loc5_ = zone.y;
-   var _loc1_ = 0;
-   var _loc4_ = f_BSPHitTest(_loc3_,_loc5_,_loc3_ + speed,_loc5_);
-   var _loc6_ = f_BSPCheckLastHitType();
-   if(!_loc4_)
+   var loc3 = zone.x;
+   var loc5 = zone.y;
+   var loc1 = 0;
+   var loc4 = f_BSPHitTest(loc3,loc5,loc3 + speed,loc5);
+   var loc6 = f_BSPCheckLastHitType();
+   if(!loc4)
    {
       zone.x += speed;
       if(zone.body._y > -20)
       {
-         _loc1_ = -1;
+         loc1 = -1;
       }
    }
-   else if(_loc6_ == 1000 or _loc6_ == 1001)
+   else if(loc6 == 1000 or loc6 == 1001)
    {
-      _loc1_ = 0.9 - _loc4_;
-      if(_loc1_ < 0)
+      loc1 = 0.9 - loc4;
+      if(loc1 < 0)
       {
-         _loc1_ = 0;
+         loc1 = 0;
       }
-      zone.x = _loc3_ + (_loc4_ + 0.001) * speed;
+      zone.x = loc3 + (loc4 + 0.001) * speed;
       zone.n_groundtype = 0;
    }
    else
    {
-      _loc1_ = -1;
+      loc1 = -1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_ProjectileMoveY(zone, speed)
 {
-   var _loc3_ = zone.x;
-   var _loc2_ = zone.y;
-   var _loc5_ = f_BSPHitTest(_loc3_,_loc2_,_loc3_,_loc2_ + speed);
-   if(!_loc5_)
+   var loc3 = zone.x;
+   var loc2 = zone.y;
+   var loc5 = f_BSPHitTest(loc3,loc2,loc3,loc2 + speed);
+   if(!loc5)
    {
       zone.y += speed;
       f_Depth(zone,zone.y);
@@ -3474,15 +3486,15 @@ function f_MoveCharH(zone, speed, recurse)
    {
       speed = f_Quantize(speed);
    }
-   var _loc6_ = 0;
+   var loc6 = 0;
    zone.bounds = false;
-   var _loc7_ = zone.n_groundtype;
-   if(_loc7_ == undefined)
+   var loc7 = zone.n_groundtype;
+   if(loc7 == undefined)
    {
       //trace("f_MoveCharH");
       //Error("Undefined Ground type!");
       zone.n_groundtype = 0;
-      _loc7_ = 0;
+      loc7 = 0;
    }
    if(zone.human and !zone.npc)
    {
@@ -3523,24 +3535,24 @@ function f_MoveCharH(zone, speed, recurse)
       {
          return false;
       }
-      switch(_loc7_)
+      switch(loc7)
       {
          case 0:
          case 0:
-            _loc6_ = f_PlainMCH(zone,speed);
+            loc6 = f_PlainMCH(zone,speed);
             break;
          case 100:
          case 101:
-            _loc6_ = f_StairsMCH(zone,speed);
+            loc6 = f_StairsMCH(zone,speed);
             break;
          case 200:
-            _loc6_ = f_DeathBoxMCH(zone,speed);
+            loc6 = f_DeathBoxMCH(zone,speed);
             break;
          case 300:
-            _loc6_ = f_Water1MCH(zone,speed);
+            loc6 = f_Water1MCH(zone,speed);
             break;
          case 301:
-            _loc6_ = f_Water2MCH(zone,speed);
+            loc6 = f_Water2MCH(zone,speed);
             break;
          case 302:
             //trace("f_MoveCharH");
@@ -3549,7 +3561,7 @@ function f_MoveCharH(zone, speed, recurse)
          case 400:
             if(!f_XBPortalThing(zone))
             {
-               _loc6_ = f_InsideMCH(zone,speed);
+               loc6 = f_InsideMCH(zone,speed);
             }
             break;
          case 500:
@@ -3558,12 +3570,12 @@ function f_MoveCharH(zone, speed, recurse)
             break;
          case 1000:
          case 1001:
-            _loc6_ = f_TableMCH(zone,speed);
+            loc6 = f_TableMCH(zone,speed);
             break;
          default:
             //trace("f_MoveCharH");
-            //Error(_loc7_);
-            _loc6_ = f_InsideMCH(zone,speed);
+            //Error(loc7);
+            loc6 = f_InsideMCH(zone,speed);
       }
       zone._x = zone.x;
       zone._y = zone.y;
@@ -3575,9 +3587,9 @@ function f_MoveCharH(zone, speed, recurse)
       {
          f_SetXY(zone.horse,zone.x,zone.y - 1);
       }
-      if(_loc6_ and !recurse)
+      if(loc6 and !recurse)
       {
-         f_MoveCharH(zone,speed * _loc6_,recurse + 1);
+         f_MoveCharH(zone,speed * loc6,recurse + 1);
       }
       else
       {
@@ -3599,10 +3611,10 @@ function f_MoveCharH(zone, speed, recurse)
       {
          if(exits_total > 0)
          {
-            var _loc4_ = 1;
-            while(_loc4_ <= exits_total)
+            var loc4 = 1;
+            while(loc4 <= exits_total)
             {
-               u_temp = exits["s" + int(_loc4_)];
+               u_temp = exits["s" + int(loc4)];
                if(!u_temp.dug)
                {
                   if(Math.abs(u_temp.x - zone._x) <= u_temp.w)
@@ -3610,11 +3622,11 @@ function f_MoveCharH(zone, speed, recurse)
                      if(Math.abs(u_temp.y - zone._y) <= u_temp.h)
                      {
                         u_temp.dug = true;
-                        var _loc3_ = 1;
-                        while(_loc3_ < 10)
+                        var loc3 = 1;
+                        while(loc3 < 10)
                         {
-                           _root["portal" + int(_loc3_)].open = false;
-                           _loc3_ = _loc3_ + 1;
+                           _root["portal" + int(loc3)].open = false;
+                           loc3 = loc3 + 1;
                         }
                         fader.f_FadeOut();
                         spawn_portal_num = u_temp.spawn_portal_num;
@@ -3624,7 +3636,7 @@ function f_MoveCharH(zone, speed, recurse)
                      }
                   }
                }
-               _loc4_ = _loc4_ + 1;
+               loc4 = loc4 + 1;
             }
          }
       }
@@ -3634,123 +3646,123 @@ function f_MoveCharH(zone, speed, recurse)
 }
 function f_PlainMCH(zone, speed)
 {
-   var _loc6_ = zone.x;
-   var _loc2_ = zone.y;
-   var _loc3_ = 0;
-   var _loc5_ = 0;
-   var _loc11_ = f_BSPHitTest(_loc6_,_loc2_,_loc6_ + speed,_loc2_);
-   if(!_loc11_)
+   var loc6 = zone.x;
+   var loc2 = zone.y;
+   var loc3 = 0;
+   var loc5 = 0;
+   var loc11 = f_BSPHitTest(loc6,loc2,loc6 + speed,loc2);
+   if(!loc11)
    {
       zone.x += speed;
-      var _loc13_ = f_BSPHitTest(_loc6_,_loc2_,_loc6_,_loc2_ + 400) * 400;
-      if(_loc13_)
+      var loc13 = f_BSPHitTest(loc6,loc2,loc6,loc2 + 400) * 400;
+      if(loc13)
       {
-         var _loc7_ = f_BSPCheckLastHitType();
-         if(_loc7_ == 3 or _loc7_ == 6 or (_loc7_ == 2 or _loc7_ == 5) and _loc13_ < 10)
+         var loc7 = f_BSPCheckLastHitType();
+         if(loc7 == 3 or loc7 == 6 or (loc7 == 2 or loc7 == 5) and loc13 < 10)
          {
             n_slope = f_BSPCheckLastHitSlope();
             if(Math.abs(n_slope) > 0.1)
             {
-               _loc3_ = n_slope * speed;
+               loc3 = n_slope * speed;
             }
          }
       }
    }
    else
    {
-      _loc7_ = f_BSPCheckLastHitType();
-      var _loc9_ = f_BSPCheckLastHitIndex();
-      _loc5_ = 0.9 - _loc11_;
-      if(_loc5_ < 0)
+      loc7 = f_BSPCheckLastHitType();
+      var loc9 = f_BSPCheckLastHitIndex();
+      loc5 = 0.9 - loc11;
+      if(loc5 < 0)
       {
-         _loc5_ = 0;
+         loc5 = 0;
       }
-      var _loc4_ = _loc6_ + (_loc11_ + 0.0001) * speed;
-      switch(_loc7_)
+      var loc4 = loc6 + (loc11 + 0.0001) * speed;
+      switch(loc7)
       {
          case 1:
             break;
          case 3:
             zone.hitwall_h = true;
          case 2:
-            var _loc16_ = false;
-            var _loc14_ = f_BSPHitTest(_loc6_,_loc2_,_loc6_,_loc2_ - 400);
-            if(_loc14_)
+            var loc16 = false;
+            var loc14 = f_BSPHitTest(loc6,loc2,loc6,loc2 - 400);
+            if(loc14)
             {
-               if(_loc9_ == f_BSPCheckLastHitIndex())
+               if(loc9 == f_BSPCheckLastHitIndex())
                {
-                  _loc3_ = _loc14_ * 400;
-                  if(_loc3_ < 3)
+                  loc3 = loc14 * 400;
+                  if(loc3 < 3)
                   {
-                     _loc3_ = 3;
+                     loc3 = 3;
                   }
-                  _loc5_ = 0;
-                  _loc16_ = true;
+                  loc5 = 0;
+                  loc16 = true;
                }
             }
-            if(!_loc16_)
+            if(!loc16)
             {
-               r = f_BSPHitTest(_loc6_,_loc2_,_loc6_,_loc2_ + 400);
+               r = f_BSPHitTest(loc6,loc2,loc6,loc2 + 400);
                if(r)
                {
-                  if(_loc9_ == f_BSPCheckLastHitIndex())
+                  if(loc9 == f_BSPCheckLastHitIndex())
                   {
-                     _loc3_ = - r * 400;
-                     if(_loc3_ > -3)
+                     loc3 = - r * 400;
+                     if(loc3 > -3)
                      {
-                        _loc3_ = -3;
+                        loc3 = -3;
                      }
-                     _loc5_ = 0;
-                     _loc16_ = true;
+                     loc5 = 0;
+                     loc16 = true;
                   }
                }
             }
-            if(!_loc16_)
+            if(!loc16)
             {
-               if(_loc14_ > r)
+               if(loc14 > r)
                {
-                  _loc3_ = -3;
-                  _loc5_ = 0;
+                  loc3 = -3;
+                  loc5 = 0;
                }
                else
                {
-                  _loc3_ = 3;
-                  _loc5_ = 0;
+                  loc3 = 3;
+                  loc5 = 0;
                }
             }
             break;
          case 4:
          case 5:
          case 6:
-            _loc16_ = false;
-            var _loc12_ = 90;
+            loc16 = false;
+            var loc12 = 90;
             HiFps_ResetRecursive(zone);
             if(Math.abs(f_BSPCheckLastHitSlope()) <= 0.1)
             {
-               _loc12_ = 0;
+               loc12 = 0;
             }
-            _loc14_ = f_BSPHitTest(_loc4_,_loc2_,_loc4_,_loc2_ - 800);
-            if(_loc14_)
+            loc14 = f_BSPHitTest(loc4,loc2,loc4,loc2 - 800);
+            if(loc14)
             {
-               if(_loc9_ != f_BSPCheckLastHitIndex())
+               if(loc9 != f_BSPCheckLastHitIndex())
                {
-                  var _loc8_ = _loc2_ - (_loc14_ + 0.00001) * 800;
-                  _loc7_ = f_BSPCheckLastHitType();
+                  var loc8 = loc2 - (loc14 + 0.00001) * 800;
+                  loc7 = f_BSPCheckLastHitType();
                   if(Math.abs(f_BSPCheckLastHitSlope()) <= 0.1)
                   {
-                     _loc12_ = 0;
+                     loc12 = 0;
                   }
-                  if(_loc7_ == 4 or _loc7_ == 5 or _loc7_ == 6)
+                  if(loc7 == 4 or loc7 == 5 or loc7 == 6)
                   {
-                     var _loc17_ = _loc2_ + zone.body_y - _loc8_;
-                     if(_loc17_ < _loc12_)
+                     var loc17 = loc2 + zone.body_y - loc8;
+                     if(loc17 < loc12)
                      {
-                        zone.x = _loc4_;
-                        zone.body_y -= _loc8_ - zone.y;
-                        zone.y = _loc8_;
+                        zone.x = loc4;
+                        zone.body_y -= loc8 - zone.y;
+                        zone.y = loc8;
                         f_Depth(zone,zone.y);
-                        _loc16_ = true;
-                        if(_loc17_ > 0)
+                        loc16 = true;
+                        if(loc17 > 0)
                         {
                            zone.body_y = 0;
                            zone.body._y = zone.body_y;
@@ -3768,22 +3780,22 @@ function f_PlainMCH(zone, speed)
                   }
                }
             }
-            if(!_loc16_)
+            if(!loc16)
             {
-               _loc14_ = f_BSPHitTest(_loc4_,_loc2_,_loc4_,_loc2_ + 800);
-               if(_loc14_)
+               loc14 = f_BSPHitTest(loc4,loc2,loc4,loc2 + 800);
+               if(loc14)
                {
-                  if(_loc9_ != f_BSPCheckLastHitIndex())
+                  if(loc9 != f_BSPCheckLastHitIndex())
                   {
-                     _loc8_ = _loc2_ + (_loc14_ + 0.00001) * 800;
-                     _loc7_ = f_BSPCheckLastHitType();
-                     if(_loc7_ == 4 or _loc7_ == 5 or _loc7_ == 6)
+                     loc8 = loc2 + (loc14 + 0.00001) * 800;
+                     loc7 = f_BSPCheckLastHitType();
+                     if(loc7 == 4 or loc7 == 5 or loc7 == 6)
                      {
                         if(!zone.horse and !zone.hanging)
                         {
-                           var _loc15_ = - (_loc8_ - zone.y);
-                           var _loc18_ = _loc8_ - zone.y;
-                           if(f_SZ_OnScreenBody(_loc4_,_loc8_,zone.n_width,zone.body_y - _loc18_,_loc15_))
+                           var loc15 = - (loc8 - zone.y);
+                           var loc18 = loc8 - zone.y;
+                           if(f_SZ_OnScreenBody(loc4,loc8,zone.n_width,zone.body_y - loc18,loc15))
                            {
                               if(!zone.jumping)
                               {
@@ -3802,10 +3814,10 @@ function f_PlainMCH(zone, speed)
                                  zone.speed_jump = 0;
                                  zone.gotoAndStop("jump");
                               }
-                              zone.x = _loc4_;
-                              zone.body_y_mod = _loc15_;
-                              zone.body_y -= _loc18_;
-                              zone.y = _loc8_;
+                              zone.x = loc4;
+                              zone.body_y_mod = loc15;
+                              zone.body_y -= loc18;
+                              zone.y = loc8;
                               f_Depth(zone,zone.y);
                            }
                         }
@@ -3818,15 +3830,15 @@ function f_PlainMCH(zone, speed)
          case 100:
          case 101:
             zone.n_groundtype = 100;
-            zone.x = _loc4_;
+            zone.x = loc4;
             break;
          case 200:
             zone.n_groundtype = 200;
-            zone.x = _loc4_;
+            zone.x = loc4;
             break;
          case 300:
             zone.n_groundtype = 300;
-            zone.x = _loc4_;
+            zone.x = loc4;
             break;
          case 400:
             if(zone.human and !zone.npc and !main.leash_right_x)
@@ -3835,7 +3847,7 @@ function f_PlainMCH(zone, speed)
             }
             else
             {
-               zone.x = _loc4_;
+               zone.x = loc4;
             }
             break;
          case 700:
@@ -3849,12 +3861,12 @@ function f_PlainMCH(zone, speed)
                {
                   zone.upright = false;
                }
-               _loc3_ = 0;
-               var _loc19_ = zone.x;
-               zone.x = _loc4_;
+               loc3 = 0;
+               var loc19 = zone.x;
+               zone.x = loc4;
                if(!fp_FunctionLine(zone))
                {
-                  zone.x = _loc19_;
+                  zone.x = loc19;
                }
             }
             break;
@@ -3862,10 +3874,10 @@ function f_PlainMCH(zone, speed)
             if(zone.body._y < -20)
             {
                zone.n_groundtype = 1000;
-               zone.x = _loc4_;
+               zone.x = loc4;
                zone.body_y += 20;
                zone.body_table_y = -20;
-               _loc3_ = 0;
+               loc3 = 0;
                zone.shadow_pt.gotoAndStop("on");
                zone.shadow_pt._y = zone.body_table_y;
             }
@@ -3876,11 +3888,11 @@ function f_PlainMCH(zone, speed)
             //Error("f_PlainMCH");
       }
    }
-   if(_loc3_ and _loc5_ == 0)
+   if(loc3 and loc5 == 0)
    {
-      f_MoveCharV(zone,_loc3_,0);
+      f_MoveCharV(zone,loc3,0);
    }
-   return _loc5_;
+   return loc5;
 }
 function f_MoveCharV(zone, speed, recurse)
 {
@@ -3888,70 +3900,70 @@ function f_MoveCharV(zone, speed, recurse)
    {
       speed = f_Quantize(speed);
    }
-   var _loc6_ = 0;
-   var _loc7_ = zone.n_groundtype;
-   if(_loc7_ == undefined)
+   var loc6 = 0;
+   var loc7 = zone.n_groundtype;
+   if(loc7 == undefined)
    {
       //trace("f_MoveCharV");
       //Error("Undefined Ground type!");
       zone.n_groundtype = 0;
-      _loc7_ = 0;
+      loc7 = 0;
    }
    if(zone.human)
    {
       if(!zone.npc)
       {
          f_PlayerCheckPickups(zone);
-         var _loc8_ = false;
+         var loc8 = false;
          if(zone.onscreen)
          {
             if(f_SZ_PlayerYOnScreen(zone.y + speed))
             {
-               _loc8_ = true;
+               loc8 = true;
             }
          }
          else
          {
-            _loc8_ = true;
+            loc8 = true;
          }
          if(!f_SZ_PlayerYDiffMax(zone,speed))
          {
-            _loc8_ = false;
+            loc8 = false;
          }
       }
       else
       {
-         _loc8_ = true;
+         loc8 = true;
       }
    }
    else
    {
-      _loc8_ = true;
+      loc8 = true;
    }
-   if(_loc8_)
+   if(loc8)
    {
       if(f_HitWallV(zone,speed))
       {
          return false;
       }
-      switch(_loc7_)
+      switch(loc7)
       {
          case 0:
          case 0:
-            _loc6_ = f_PlainMCV(zone,speed);
+            loc6 = f_PlainMCV(zone,speed);
             break;
          case 100:
          case 101:
-            _loc6_ = f_InsideMCV(zone,speed);
+            loc6 = f_InsideMCV(zone,speed);
             break;
          case 200:
-            _loc6_ = f_DeathBoxMCV(zone,speed);
+            loc6 = f_DeathBoxMCV(zone,speed);
             break;
          case 300:
-            _loc6_ = f_Water1MCV(zone,speed);
+            loc6 = f_Water1MCV(zone,speed);
             break;
          case 301:
-            _loc6_ = f_Water2MCV(zone,speed);
+            loc6 = f_Water2MCV(zone,speed);
             break;
          case 302:
             //trace("f_MoveCharV");
@@ -3960,7 +3972,7 @@ function f_MoveCharV(zone, speed, recurse)
          case 400:
             if(!f_XBPortalThing(zone))
             {
-               _loc6_ = f_InsideMCV(zone,speed);
+               loc6 = f_InsideMCV(zone,speed);
             }
             break;
          case 500:
@@ -3971,12 +3983,12 @@ function f_MoveCharV(zone, speed, recurse)
             break;
          case 1000:
          case 1001:
-            _loc6_ = f_TableMCV(zone,speed);
+            loc6 = f_TableMCV(zone,speed);
             break;
          default:
             //trace("f_MoveCharV");
-            //Error(_loc7_);
-            _loc6_ = f_InsideMCV(zone,speed);
+            //Error(loc7);
+            loc6 = f_InsideMCV(zone,speed);
       }
       zone._x = zone.x;
       zone._y = zone.y;
@@ -3988,9 +4000,9 @@ function f_MoveCharV(zone, speed, recurse)
       {
          f_SetXY(zone.horse,zone.x,zone.y - 1);
       }
-      if(_loc6_ and !recurse)
+      if(loc6 and !recurse)
       {
-         f_MoveCharV(zone,speed * _loc6_,recurse + 1);
+         f_MoveCharV(zone,speed * loc6,recurse + 1);
       }
       else
       {
@@ -4012,10 +4024,10 @@ function f_MoveCharV(zone, speed, recurse)
       {
          if(exits_total > 0)
          {
-            var _loc4_ = 1;
-            while(_loc4_ <= exits_total)
+            var loc4 = 1;
+            while(loc4 <= exits_total)
             {
-               u_temp = exits["s" + int(_loc4_)];
+               u_temp = exits["s" + int(loc4)];
                if(!u_temp.dug)
                {
                   if(Math.abs(u_temp.x - zone._x) <= u_temp.w)
@@ -4023,11 +4035,11 @@ function f_MoveCharV(zone, speed, recurse)
                      if(Math.abs(u_temp.y - zone._y) <= u_temp.h)
                      {
                         u_temp.dug = true;
-                        var _loc3_ = 1;
-                        while(_loc3_ < 10)
+                        var loc3 = 1;
+                        while(loc3 < 10)
                         {
-                           _root["portal" + int(_loc3_)].open = false;
-                           _loc3_ = _loc3_ + 1;
+                           _root["portal" + int(loc3)].open = false;
+                           loc3 = loc3 + 1;
                         }
                         fader.f_FadeOut();
                         spawn_portal_num = u_temp.spawn_portal_num;
@@ -4037,7 +4049,7 @@ function f_MoveCharV(zone, speed, recurse)
                      }
                   }
                }
-               _loc4_ = _loc4_ + 1;
+               loc4 = loc4 + 1;
             }
          }
       }
@@ -4055,67 +4067,67 @@ function f_SideLadder(zone)
    {
       return false;
    }
-   var _loc7_ = undefined;
-   var _loc6_ = 999999999;
-   var _loc9_ = false;
-   var _loc8_ = 0;
-   var _loc5_ = 0;
-   var _loc3_ = _root.p_game["sl_top" + _loc5_];
-   if(_loc3_ == undefined)
+   var loc7 = undefined;
+   var loc6 = 999999999;
+   var loc9 = false;
+   var loc8 = 0;
+   var loc5 = 0;
+   var loc3 = _root.p_game["sl_top" + loc5];
+   if(loc3 == undefined)
    {
       return false;
    }
-   var _loc4_ = undefined;
-   while(_loc3_ != undefined)
+   var loc4 = undefined;
+   while(loc3 != undefined)
    {
-      _loc4_ = Math.sqrt(Math.pow(zone.x - _loc3_._x,2) + Math.pow(zone.y - _loc3_._y,2));
-      if(_loc4_ < 100 and _loc4_ < _loc6_)
+      loc4 = Math.sqrt(Math.pow(zone.x - loc3._x,2) + Math.pow(zone.y - loc3._y,2));
+      if(loc4 < 100 and loc4 < loc6)
       {
-         _loc6_ = _loc4_;
-         _loc7_ = _loc3_;
-         _loc8_ = _loc5_;
-         _loc9_ = true;
+         loc6 = loc4;
+         loc7 = loc3;
+         loc8 = loc5;
+         loc9 = true;
       }
-      _loc5_ = _loc5_ + 1;
-      _loc3_ = _root.p_game["sl_top" + _loc5_];
+      loc5 = loc5 + 1;
+      loc3 = _root.p_game["sl_top" + loc5];
    }
-   _loc5_ = 0;
-   _loc3_ = _root.p_game["sl_bot" + _loc5_];
-   if(_loc3_ == undefined)
+   loc5 = 0;
+   loc3 = _root.p_game["sl_bot" + loc5];
+   if(loc3 == undefined)
    {
       return false;
    }
-   while(_loc3_ != undefined)
+   while(loc3 != undefined)
    {
-      _loc4_ = Math.sqrt(Math.pow(zone.x - _loc3_._x,2) + Math.pow(zone.y - _loc3_._y,2));
-      if(_loc4_ < 100 and _loc4_ < _loc6_)
+      loc4 = Math.sqrt(Math.pow(zone.x - loc3._x,2) + Math.pow(zone.y - loc3._y,2));
+      if(loc4 < 100 and loc4 < loc6)
       {
-         _loc6_ = _loc4_;
-         _loc7_ = _loc3_;
-         _loc8_ = _loc5_;
-         _loc9_ = false;
+         loc6 = loc4;
+         loc7 = loc3;
+         loc8 = loc5;
+         loc9 = false;
       }
-      _loc5_ = _loc5_ + 1;
-      _loc3_ = _root.p_game["sl_bot" + _loc5_];
+      loc5 = loc5 + 1;
+      loc3 = _root.p_game["sl_bot" + loc5];
    }
-   if(_loc7_ == undefined)
+   if(loc7 == undefined)
    {
       return false;
    }
-   if(_loc9_)
+   if(loc9)
    {
-      var _loc11_ = zone.y + 10;
-      q = f_BSPHitTest(zone.x,_loc11_,zone.x,_loc11_ + 1000);
+      var loc11 = zone.y + 10;
+      q = f_BSPHitTest(zone.x,loc11,zone.x,loc11 + 1000);
       n_type = f_BSPCheckLastHitType();
       if(!q)
       {
          return false;
       }
-      _loc11_ += (q + 0.0001) * 1000;
+      loc11 += (q + 0.0001) * 1000;
       if(!zone.horse)
       {
-         var _loc13_ = - (_loc11_ - zone.y);
-         var _loc14_ = _loc11_ - zone.y;
+         var loc13 = - (loc11 - zone.y);
+         var loc14 = loc11 - zone.y;
          if(!zone.jumping)
          {
             zone.jumped = true;
@@ -4133,16 +4145,16 @@ function f_SideLadder(zone)
             zone.speed_jump = 0;
             zone.gotoAndStop("jump");
          }
-         zone.body_y_mod = _loc13_;
-         zone.body_y -= _loc14_;
-         zone.y = _loc11_;
+         zone.body_y_mod = loc13;
+         zone.body_y -= loc14;
+         zone.y = loc11;
          f_Depth(zone,zone.y);
       }
       return true;
    }
-   var _loc12_ = p_game["sl_top" + _loc8_];
-   var _loc10_ = _loc7_;
-   if(zone.body_y < _loc12_._y - _loc10_._y + 40)
+   var loc12 = p_game["sl_top" + loc8];
+   var loc10 = loc7;
+   if(zone.body_y < loc12._y - loc10._y + 40)
    {
       return false;
    }
@@ -4150,11 +4162,11 @@ function f_SideLadder(zone)
    {
       return false;
    }
-   zone.ladder_endpt_top = _loc12_;
-   zone.ladder_endpt_bot = _loc10_;
-   zone.ladder_slope = (_loc12_._x - _loc10_._x) / (_loc12_._y - _loc10_._y);
-   zone.y = _loc10_._y - 30 + zone.body_y;
-   zone.x = _loc10_._x + (-30 + zone.body_y) * zone.ladder_slope;
+   zone.ladder_endpt_top = loc12;
+   zone.ladder_endpt_bot = loc10;
+   zone.ladder_slope = (loc12._x - loc10._x) / (loc12._y - loc10._y);
+   zone.y = loc10._y - 30 + zone.body_y;
+   zone.x = loc10._x + (-30 + zone.body_y) * zone.ladder_slope;
    zone.body_y = 0;
    zone.gotoAndStop("sideclimb_up");
    zone.n_groundtype = 600;
@@ -4173,86 +4185,86 @@ function f_SideLadder(zone)
 }
 function f_SideLadderProjectile(zone)
 {
-   var _loc7_ = undefined;
-   var _loc6_ = 999999999;
-   var _loc9_ = false;
-   var _loc8_ = 0;
-   var _loc5_ = 0;
-   var _loc2_ = _root.p_game["sl_top" + _loc5_];
-   if(_loc2_ == undefined)
+   var loc7 = undefined;
+   var loc6 = 999999999;
+   var loc9 = false;
+   var loc8 = 0;
+   var loc5 = 0;
+   var loc2 = _root.p_game["sl_top" + loc5];
+   if(loc2 == undefined)
    {
       return false;
    }
-   var _loc3_ = undefined;
-   while(_loc2_ != undefined)
+   var loc3 = undefined;
+   while(loc2 != undefined)
    {
-      _loc3_ = Math.sqrt(Math.pow(zone.x - _loc2_._x,2) + Math.pow(zone.y - _loc2_._y,2));
-      if(_loc3_ < 100 and _loc3_ < _loc6_)
+      loc3 = Math.sqrt(Math.pow(zone.x - loc2._x,2) + Math.pow(zone.y - loc2._y,2));
+      if(loc3 < 100 and loc3 < loc6)
       {
-         _loc6_ = _loc3_;
-         _loc7_ = _loc2_;
-         _loc8_ = _loc5_;
-         _loc9_ = true;
+         loc6 = loc3;
+         loc7 = loc2;
+         loc8 = loc5;
+         loc9 = true;
       }
-      _loc5_ = _loc5_ + 1;
-      _loc2_ = _root.p_game["sl_top" + _loc5_];
+      loc5 = loc5 + 1;
+      loc2 = _root.p_game["sl_top" + loc5];
    }
-   _loc5_ = 0;
-   _loc2_ = _root.p_game["sl_bot" + _loc5_];
-   if(_loc2_ == undefined)
+   loc5 = 0;
+   loc2 = _root.p_game["sl_bot" + loc5];
+   if(loc2 == undefined)
    {
       return false;
    }
-   while(_loc2_ != undefined)
+   while(loc2 != undefined)
    {
-      _loc3_ = Math.sqrt(Math.pow(zone.x - _loc2_._x,2) + Math.pow(zone.y - _loc2_._y,2));
-      if(_loc3_ < 100 and _loc3_ < _loc6_)
+      loc3 = Math.sqrt(Math.pow(zone.x - loc2._x,2) + Math.pow(zone.y - loc2._y,2));
+      if(loc3 < 100 and loc3 < loc6)
       {
-         _loc6_ = _loc3_;
-         _loc7_ = _loc2_;
-         _loc8_ = _loc5_;
-         _loc9_ = false;
+         loc6 = loc3;
+         loc7 = loc2;
+         loc8 = loc5;
+         loc9 = false;
       }
-      _loc5_ = _loc5_ + 1;
-      _loc2_ = _root.p_game["sl_bot" + _loc5_];
+      loc5 = loc5 + 1;
+      loc2 = _root.p_game["sl_bot" + loc5];
    }
-   if(_loc7_ == undefined)
+   if(loc7 == undefined)
    {
       return f_LedgeProjectile(zone);
    }
-   if(_loc9_)
+   if(loc9)
    {
-      var _loc10_ = zone.y + 10;
-      q = f_BSPHitTest(zone.x,_loc10_,zone.x,_loc10_ + 1000);
+      var loc10 = zone.y + 10;
+      q = f_BSPHitTest(zone.x,loc10,zone.x,loc10 + 1000);
       n_type = f_BSPCheckLastHitType();
       if(!q)
       {
          return false;
       }
-      _loc10_ += (q + 0.0001) * 1000;
-      var _loc12_ = _loc10_ - zone.y;
-      zone.body._y -= _loc12_;
-      zone.y = _loc10_;
+      loc10 += (q + 0.0001) * 1000;
+      var loc12 = loc10 - zone.y;
+      zone.body._y -= loc12;
+      zone.y = loc10;
       f_Depth(zone,zone.y);
       return true;
    }
-   var _loc13_ = p_game["sl_top" + _loc8_];
-   var _loc11_ = _loc7_;
-   if(zone.body._y > _loc13_._y - _loc11_._y - 20)
+   var loc13 = p_game["sl_top" + loc8];
+   var loc11 = loc7;
+   if(zone.body._y > loc13._y - loc11._y - 20)
    {
       return false;
    }
-   _loc10_ = zone.y - 10;
-   q = f_BSPHitTest(zone.x,_loc10_,zone.x,_loc10_ - 1000);
+   loc10 = zone.y - 10;
+   q = f_BSPHitTest(zone.x,loc10,zone.x,loc10 - 1000);
    n_type = f_BSPCheckLastHitType();
    if(!q)
    {
       return false;
    }
-   _loc10_ += (q + 0.0001) * -1000;
-   _loc12_ = _loc10_ - zone.y;
-   zone.body._y -= _loc12_;
-   zone.y = _loc10_;
+   loc10 += (q + 0.0001) * -1000;
+   loc12 = loc10 - zone.y;
+   zone.body._y -= loc12;
+   zone.y = loc10;
    f_Depth(zone,zone.y);
    return true;
 }
@@ -4265,15 +4277,15 @@ function f_CheckInsideBSP(zone)
 {
    if(!cinema and !zone.ladder)
    {
-      var _loc2_ = f_BSPHitTest(zone.x,zone.y,zone.x,zone.y - 1000);
-      if(!_loc2_)
+      var loc2 = f_BSPHitTest(zone.x,zone.y,zone.x,zone.y - 1000);
+      if(!loc2)
       {
          f_WarpIn(zone);
          zone.warp_timer = -30;
          return undefined;
       }
-      _loc2_ = f_BSPHitTest(zone.x,zone.y,zone.x,zone.y + 1000);
-      if(!_loc2_)
+      loc2 = f_BSPHitTest(zone.x,zone.y,zone.x,zone.y + 1000);
+      if(!loc2)
       {
          f_WarpIn(zone);
          zone.warp_timer = -30;
@@ -4289,16 +4301,16 @@ function f_HudSetProfile(zone, u_num, last_up)
    zone.profile.gotoAndStop(u_num);
    zone.available = true;
    zone.last_up = last_up;
-   var _loc2_ = undefined;
-   var _loc1_ = 1;
-   while(_loc1_ <= players)
+   var loc2 = undefined;
+   var loc1 = 1;
+   while(loc1 <= players)
    {
-      _loc2_ = loader.game.game["p" + int(_loc1_)];
-      if(_loc2_.p_type == u_num and _loc2_.alive)
+      loc2 = loader.game.game["p" + int(loc1)];
+      if(loc2.p_type == u_num and loc2.alive)
       {
          zone.available = false;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
    if(!zone.available)
    {
@@ -4342,17 +4354,17 @@ function f_HudCheckStart(zone)
    {
       if(Key.isDown(49))
       {
-         var _loc4_ = true;
-         var _loc3_ = 1;
-         while(_loc3_ <= 4)
+         var loc4 = true;
+         var loc3 = 1;
+         while(loc3 <= 4)
          {
-            if(_root["hud" + int(_loc3_)].port == 1)
+            if(_root["hud" + int(loc3)].port == 1)
             {
-               _loc4_ = false;
+               loc4 = false;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc4_ == true)
+         if(loc4 == true)
          {
             zone.port = 1;
             zone.active = true;
@@ -4363,17 +4375,17 @@ function f_HudCheckStart(zone)
       }
       if(Key.isDown(50))
       {
-         _loc4_ = true;
-         _loc3_ = 1;
-         while(_loc3_ <= 4)
+         loc4 = true;
+         loc3 = 1;
+         while(loc3 <= 4)
          {
-            if(_root["hud" + int(_loc3_)].port == 2)
+            if(_root["hud" + int(loc3)].port == 2)
             {
-               _loc4_ = false;
+               loc4 = false;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc4_ == true)
+         if(loc4 == true)
          {
             zone.port = 2;
             zone.active = true;
@@ -4384,17 +4396,17 @@ function f_HudCheckStart(zone)
       }
       if(Key.isDown(51))
       {
-         _loc4_ = true;
-         _loc3_ = 1;
-         while(_loc3_ <= 4)
+         loc4 = true;
+         loc3 = 1;
+         while(loc3 <= 4)
          {
-            if(_root["hud" + int(_loc3_)].port == 3)
+            if(_root["hud" + int(loc3)].port == 3)
             {
-               _loc4_ = false;
+               loc4 = false;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc4_ == true)
+         if(loc4 == true)
          {
             zone.port = 3;
             zone.active = true;
@@ -4405,17 +4417,17 @@ function f_HudCheckStart(zone)
       }
       if(Key.isDown(52))
       {
-         _loc4_ = true;
-         _loc3_ = 1;
-         while(_loc3_ <= 4)
+         loc4 = true;
+         loc3 = 1;
+         while(loc3 <= 4)
          {
-            if(_root["hud" + int(_loc3_)].port == 4)
+            if(_root["hud" + int(loc3)].port == 4)
             {
-               _loc4_ = false;
+               loc4 = false;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc4_ == true)
+         if(loc4 == true)
          {
             zone.port = 4;
             zone.active = true;
@@ -4426,17 +4438,17 @@ function f_HudCheckStart(zone)
       }
       if(Key.isDown(133))
       {
-         _loc4_ = true;
-         _loc3_ = 1;
-         while(_loc3_ <= 4)
+         loc4 = true;
+         loc3 = 1;
+         while(loc3 <= 4)
          {
-            if(_root["hud" + int(_loc3_)].port == 5)
+            if(_root["hud" + int(loc3)].port == 5)
             {
-               _loc4_ = false;
+               loc4 = false;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc4_ == true)
+         if(loc4 == true)
          {
             zone.port = 5;
             zone.active = true;
@@ -4447,17 +4459,17 @@ function f_HudCheckStart(zone)
       }
       if(Key.isDown(155))
       {
-         _loc4_ = true;
-         _loc3_ = 1;
-         while(_loc3_ <= 4)
+         loc4 = true;
+         loc3 = 1;
+         while(loc3 <= 4)
          {
-            if(_root["hud" + int(_loc3_)].port == 6)
+            if(_root["hud" + int(loc3)].port == 6)
             {
-               _loc4_ = false;
+               loc4 = false;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc4_ == true)
+         if(loc4 == true)
          {
             zone.port = 6;
             zone.active = true;
@@ -4468,17 +4480,17 @@ function f_HudCheckStart(zone)
       }
       if(Key.isDown(177))
       {
-         _loc4_ = true;
-         _loc3_ = 1;
-         while(_loc3_ <= 4)
+         loc4 = true;
+         loc3 = 1;
+         while(loc3 <= 4)
          {
-            if(_root["hud" + int(_loc3_)].port == 7)
+            if(_root["hud" + int(loc3)].port == 7)
             {
-               _loc4_ = false;
+               loc4 = false;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc4_ == true)
+         if(loc4 == true)
          {
             zone.port = 7;
             zone.active = true;
@@ -4489,17 +4501,17 @@ function f_HudCheckStart(zone)
       }
       if(Key.isDown(199))
       {
-         _loc4_ = true;
-         _loc3_ = 1;
-         while(_loc3_ <= 4)
+         loc4 = true;
+         loc3 = 1;
+         while(loc3 <= 4)
          {
-            if(_root["hud" + int(_loc3_)].port == 8)
+            if(_root["hud" + int(loc3)].port == 8)
             {
-               _loc4_ = false;
+               loc4 = false;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc4_ == true)
+         if(loc4 == true)
          {
             zone.port = 8;
             zone.active = true;
@@ -4544,45 +4556,45 @@ function f_HudPressedSelect(zone)
       {
          zone.charcolor = _root.char_colors[zone.p_type];
       }
-      var _loc7_ = undefined;
-      var _loc3_ = undefined;
-      var _loc5_ = undefined;
+      var loc7 = undefined;
+      var loc3 = undefined;
+      var loc5 = undefined;
       if(main.n_bottomplayer)
       {
-         var _loc10_ = playerArrayOb["p_pt" + int(main.n_bottomplayer)];
-         _loc3_ = _loc10_.x;
-         _loc5_ = _loc10_.y;
-         _loc7_ = _loc10_.n_groundtype;
+         var loc10 = playerArrayOb["p_pt" + int(main.n_bottomplayer)];
+         loc3 = loc10.x;
+         loc5 = loc10.y;
+         loc7 = loc10.n_groundtype;
       }
       else
       {
-         _loc3_ = _root.main.last_good_player_x;
-         _loc5_ = _root.main.last_good_player_y;
-         _loc7_ = _root.main.last_good_groundtype;
+         loc3 = _root.main.last_good_player_x;
+         loc5 = _root.main.last_good_player_y;
+         loc7 = _root.main.last_good_groundtype;
       }
-      var _loc8_ = _loc3_ + 50;
+      var loc8 = loc3 + 50;
       if(random(2))
       {
-         _loc8_ = _loc3_ - 50;
+         loc8 = loc3 - 50;
       }
-      var _loc11_ = _loc8_ - _loc3_;
-      var _loc9_ = _root.f_BSPHitTest(_loc3_,_loc5_,_loc8_,_loc5_) * 0.8;
-      if(!_loc9_)
+      var loc11 = loc8 - loc3;
+      var loc9 = _root.f_BSPHitTest(loc3,loc5,loc8,loc5) * 0.8;
+      if(!loc9)
       {
-         _loc9_ = 1;
+         loc9 = 1;
       }
-      var _loc6_ = _loc3_ + _loc9_ * _loc11_;
-      var _loc4_ = _loc5_;
-      if(main.n_bottomplayer and (!f_SZ_PlayerXOnScreenMax(_loc6_) or !f_SZ_PlayerYOnScreen(_loc4_)))
+      var loc6 = loc3 + loc9 * loc11;
+      var loc4 = loc5;
+      if(main.n_bottomplayer and (!f_SZ_PlayerXOnScreenMax(loc6) or !f_SZ_PlayerYOnScreen(loc4)))
       {
-         _loc6_ = _loc3_;
-         _loc4_ = _loc5_;
+         loc6 = loc3;
+         loc4 = loc5;
       }
       f_ResetPlayerInfoAndStats(zone);
-      if(_loc7_ == 50)
+      if(loc7 == 50)
       {
-         f_FX(_loc6_ - 110,_loc4_ + 10,_loc4_ + 15,"ground_slam",100,100);
-         zone.player_pt = f_SpawnPlayer(zone.player_num,zone.p_type,_loc6_,_loc4_);
+         f_FX(loc6 - 110,loc4 + 10,loc4 + 15,"ground_slam",100,100);
+         zone.player_pt = f_SpawnPlayer(zone.player_num,zone.p_type,loc6,loc4);
          zone.player_pt._y = zone.player_pt.y;
          zone.player_pt.shadow_pt._y = zone.player_pt._y;
          zone.player_pt.body_y = 0;
@@ -4593,14 +4605,14 @@ function f_HudPressedSelect(zone)
          f_ShadowSize(zone.player_pt);
          zone.player_pt.busy = true;
          zone.player_pt.ladder = true;
-         zone.player_pt.n_groundtype = _loc7_;
+         zone.player_pt.n_groundtype = loc7;
          zone.player_pt.gotoAndStop("climb");
          zone.player_pt.body.body.stop();
          f_PlayerArray();
       }
       else
       {
-         zone.player_pt = f_SpawnPlayer(zone.player_num,zone.p_type,_loc6_,_loc4_);
+         zone.player_pt = f_SpawnPlayer(zone.player_num,zone.p_type,loc6,loc4);
          zone.player_pt._y = zone.player_pt.y;
          zone.player_pt.shadow_pt._y = zone.player_pt._y;
          zone.player_pt.body_y = 0;
@@ -4612,11 +4624,15 @@ function f_HudPressedSelect(zone)
          zone.player_pt.ladder = false;
          zone.player_pt.busy = false;
          zone.player_pt.speed_jump = 10;
-         zone.player_pt.n_groundtype = _loc7_;
+         zone.player_pt.n_groundtype = loc7;
          if(level == 23)
          {
             zone.player_pt.fp_StandAnim = f_SwimStand;
             zone.player_pt.fp_WalkAnim = f_SwimWalk;
+            if(zone.player_pt.p_type == 33 && zone.player_pt.undead) { // Fixing cyclops dual stand anim causing flicker with standard f_SwimStand
+               zone.player_pt.fp_StandAnim = f_StandTypeUndead;
+               zone.player_pt.fp_WalkAnim = f_WalkTypeUndead;
+            }
             zone.player_pt.body_y = -500;
             zone.player_pt.body._y = -500;
             zone.player_pt.jump_speed_y;
@@ -4709,8 +4725,8 @@ function f_HudSlide(zone)
    zone._visible = !GetFlashGlobal("g_bHudHidden") && zone.active;
    if(zone.active)
    {
-      var _loc4_ = GetFlashGlobal("g_nPort" + int(zone.port) + "State");
-      if(_loc4_ == 2)
+      var loc4 = GetFlashGlobal("g_nPort" + int(zone.port) + "State");
+      if(loc4 == 2)
       {
          zone.was_paused = true;
          f_ClearButtons(zone);
@@ -4721,14 +4737,14 @@ function f_HudSlide(zone)
       }
       else
       {
-         if(_loc4_ == 0)
+         if(loc4 == 0)
          {
             zone.dropped = true;
             zone.active = false;
             zone.player_pt.health = 0;
             f_CheckHealth(zone.player_pt);
          }
-         else if(_loc4_ == 3)
+         else if(loc4 == 3)
          {
             _root.f_ChangeLevel("../map/map.swf");
             SetPortState(int(zone.port),1);
@@ -4780,20 +4796,20 @@ function f_HudSlide(zone)
    }
    if(zone.player_pt)
    {
-      var _loc3_ = zone.player_pt.gold;
+      var loc3 = zone.player_pt.gold;
    }
    else
    {
-      _loc3_ = zone.goldcounter_targ;
+      loc3 = zone.goldcounter_targ;
    }
-   if(zone.goldcounter_targ != _loc3_)
+   if(zone.goldcounter_targ != loc3)
    {
       if(zone.goldchangetimer == 0 and zone.goldcounter == zone.goldcounter_targ)
       {
          zone.goldchangetimer = 30;
       }
       zone.goldshowtimer = 35;
-      zone.goldcounter_targ = _loc3_;
+      zone.goldcounter_targ = loc3;
       zone.stats.goldstats._visible = true;
    }
    if(zone.goldchangetimer)
@@ -4846,19 +4862,19 @@ function f_HudSlide(zone)
 }
 function f_ResetHudGoldCounters()
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root["hud" + int(_loc3_)];
-      if(_loc2_.active)
+      var loc2 = _root["hud" + int(loc3)];
+      if(loc2.active)
       {
-         _loc2_.goldcounter = _loc2_.gold;
-         _loc2_.goldchangetimer = 0;
-         _loc2_.goldshowtimer = 0;
-         _loc2_.goldcounter_targ = _loc2_.gold;
-         _loc2_.stats.goldstats._visible = false;
+         loc2.goldcounter = loc2.gold;
+         loc2.goldchangetimer = 0;
+         loc2.goldshowtimer = 0;
+         loc2.goldcounter_targ = loc2.gold;
+         loc2.stats.goldstats._visible = false;
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_HideHud(zone)
@@ -4878,17 +4894,17 @@ function f_HudInit(zone)
 }
 function f_PositionHud()
 {
-   var _loc3_ = SCREEN_WIDTH / 6;
-   var _loc4_ = (SCREEN_WIDTH - _loc3_ * 2) / 3;
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc3 = SCREEN_WIDTH / 6;
+   var loc4 = (SCREEN_WIDTH - loc3 * 2) / 3;
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      _root["hud" + int(_loc2_)]._x = Math.round(_loc3_ + _loc4_ * (_loc2_ - 1));
-      _root["hud" + int(_loc2_)]._y = -200;
-      _root["hud" + int(_loc2_)].vy = 0;
-      _root["hud" + int(_loc2_)].fp_HudTick = f_HudSlide;
-      _root["hud" + int(_loc2_)].slideWait = 60;
-      _loc2_ = _loc2_ + 1;
+      _root["hud" + int(loc2)]._x = Math.round(loc3 + loc4 * (loc2 - 1));
+      _root["hud" + int(loc2)]._y = -200;
+      _root["hud" + int(loc2)].vy = 0;
+      _root["hud" + int(loc2)].fp_HudTick = f_HudSlide;
+      _root["hud" + int(loc2)].slideWait = 60;
+      loc2 = loc2 + 1;
    }
    _root.healthmeter._x = Math.round(SCREEN_WIDTH / 2);
    _root.go_arrow._x = SCREEN_WIDTH - 200;
@@ -4909,91 +4925,91 @@ function f_PositionHud()
 }
 function f_InactiveHudOff()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = this["hud" + _loc2_];
-      if(!_loc3_.player_pt)
+      var loc3 = this["hud" + loc2];
+      if(!loc3.player_pt)
       {
-         _loc3_.gotoAndStop("wait");
+         loc3.gotoAndStop("wait");
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_HudWait()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = this["hud" + _loc2_];
-      _loc3_.vy = -1;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = this["hud" + loc2];
+      loc3.vy = -1;
+      loc2 = loc2 + 1;
    }
 }
 function f_HudWaitNow()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = this["hud" + _loc2_];
-      _loc3_.vy = -1;
-      _loc3_._y = -200;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = this["hud" + loc2];
+      loc3.vy = -1;
+      loc3._y = -200;
+      loc2 = loc2 + 1;
    }
 }
 function f_HudWaitAll()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = this["hud" + _loc2_];
-      _loc3_.vy = -1;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = this["hud" + loc2];
+      loc3.vy = -1;
+      loc2 = loc2 + 1;
    }
 }
 function f_HudWaitEnd(skip)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = this["hud" + _loc3_];
-      if(_loc2_.player_pt and _loc2_.player_pt.alive)
+      var loc2 = this["hud" + loc3];
+      if(loc2.player_pt and loc2.player_pt.alive)
       {
-         _loc2_.gotoAndStop("stats");
+         loc2.gotoAndStop("stats");
          if(!skip)
          {
-            _loc2_.player_pt.overlay.gotoAndStop("name");
-            _loc2_.player_pt.overlay.nameoverlay.gotoAndPlay(2);
+            loc2.player_pt.overlay.gotoAndStop("name");
+            loc2.player_pt.overlay.nameoverlay.gotoAndPlay(2);
          }
       }
-      else if(_loc2_._currentframe == 1 or _loc2_._currentframe == 6)
+      else if(loc2._currentframe == 1 or loc2._currentframe == 6)
       {
          if(console_version)
          {
-            _loc2_.gotoAndStop("wait");
+            loc2.gotoAndStop("wait");
          }
          else
          {
-            _loc2_.gotoAndStop("press_start");
+            loc2.gotoAndStop("press_start");
          }
       }
-      _loc2_.vy = 1;
-      _loc3_ = _loc3_ + 1;
+      loc2.vy = 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_UnlockAnimalAchievement(zone)
 {
-   var _loc3_ = 0;
-   var _loc2_ = 1;
-   while(_loc2_ <= 28)
+   var loc3 = 0;
+   var loc2 = 1;
+   while(loc2 <= 28)
    {
-      if(zone.hud_pt.animal_unlocks[_loc2_] == true)
+      if(zone.hud_pt.animal_unlocks[loc2] == true)
       {
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   if(_loc3_ == 28)
+   if(loc3 == 28)
    {
       _root.f_UpdateAchievement("AnimalHandler",zone.hud_pt.port,1);
    }
@@ -5018,93 +5034,93 @@ function f_UnlockAnimal(zone, item)
 }
 function f_UnlockCharacter(zone, item)
 {
-   var _loc2_ = 2;
+   var loc2 = 2;
    switch(item)
    {
       case 5:
-         _loc2_ = 2;
+         loc2 = 2;
          break;
       case 6:
-         _loc2_ = 19;
+         loc2 = 19;
          break;
       case 7:
-         _loc2_ = 10;
+         loc2 = 10;
          break;
       case 8:
-         _loc2_ = 18;
+         loc2 = 18;
          break;
       case 9:
-         _loc2_ = 34;
+         loc2 = 34;
          break;
       case 10:
-         _loc2_ = 27;
+         loc2 = 27;
          break;
       case 11:
-         _loc2_ = 47;
+         loc2 = 47;
          break;
       case 12:
-         _loc2_ = 36;
+         loc2 = 36;
          break;
       case 13:
-         _loc2_ = 12;
+         loc2 = 12;
          break;
       case 14:
-         _loc2_ = 33;
+         loc2 = 33;
          break;
       case 15:
-         _loc2_ = 15;
+         loc2 = 15;
          break;
       case 16:
-         _loc2_ = 15;
+         loc2 = 15;
          break;
       case 17:
-         _loc2_ = 6;
+         loc2 = 6;
          break;
       case 18:
-         _loc2_ = 45;
+         loc2 = 45;
          break;
       case 19:
-         _loc2_ = 26;
+         loc2 = 26;
          break;
       case 20:
-         _loc2_ = 57;
+         loc2 = 57;
          break;
       case 21:
-         _loc2_ = 43;
+         loc2 = 43;
          break;
       case 22:
-         _loc2_ = 20;
+         loc2 = 20;
          break;
       case 23:
-         _loc2_ = 2;
+         loc2 = 2;
          break;
       case 24:
-         _loc2_ = 35;
+         loc2 = 35;
          break;
       case 25:
-         _loc2_ = 31;
+         loc2 = 31;
          break;
       case 26:
-         _loc2_ = 48;
+         loc2 = 48;
          break;
       case 27:
-         _loc2_ = 50;
+         loc2 = 50;
          break;
       case 28:
-         _loc2_ = 68;
+         loc2 = 68;
          break;
       case 29:
-         _loc2_ = 63;
+         loc2 = 63;
          break;
       case 30:
-         _loc2_ = 85;
+         loc2 = 85;
          break;
       case 31:
-         _loc2_ = 84;
+         loc2 = 84;
    }
-   _root.f_SetWeaponUnlocked(zone,int(weapon_offset + _loc2_),true);
-   var _loc3_ = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(item));
-   WriteStorage(zone.hud_pt.port - 1,_loc3_,128);
+   _root.f_SetWeaponUnlocked(zone,int(weapon_offset + loc2),true);
+   var loc3 = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(item));
+   WriteStorage(zone.hud_pt.port - 1,loc3,128);
    zone.hud_pt.characterunlock = item;
 }
 function f_UnlockItem(zone, item)
@@ -5142,32 +5158,32 @@ function f_UnlockCombo(zone, level)
       f_PushUnlockDisplay(f_UnlockCombo,zone,level);
       return undefined;
    }
-   var _loc1_ = 0;
+   var loc1 = 0;
    switch(level)
    {
       case 2:
-         _loc1_ = 1;
+         loc1 = 1;
          break;
       case 4:
-         _loc1_ = 2;
+         loc1 = 2;
          break;
       case 8:
-         _loc1_ = 3;
+         loc1 = 3;
          break;
       case 16:
-         _loc1_ = 4;
+         loc1 = 4;
          break;
       case 32:
-         _loc1_ = 5;
+         loc1 = 5;
          break;
       case 50:
-         _loc1_ = 6;
+         loc1 = 6;
    }
-   if(_loc1_ > 0)
+   if(loc1 > 0)
    {
-      unlock_display.frame = _loc1_;
-      var _loc2_ = GetLocalGamerTag(zone.hud_pt.port - 1) + " (" + zone.hud_pt.player_num + ")";
-      unlock_display.gamertag = _loc2_;
+      unlock_display.frame = loc1;
+      var loc2 = GetLocalGamerTag(zone.hud_pt.port - 1) + " (" + zone.hud_pt.player_num + ")";
+      unlock_display.gamertag = loc2;
       unlock_display.gotoAndPlay(2);
       unlock_display.king.gotoAndPlay(2);
    }
@@ -5180,52 +5196,52 @@ function f_DisplayUnlockMagic(zone, magic_frame)
       return undefined;
    }
    unlock_display.frame = magic_frame;
-   var _loc1_ = GetLocalGamerTag(zone.port - 1) + " (" + zone.player_num + ")";
-   unlock_display.gamertag = _loc1_;
+   var loc1 = GetLocalGamerTag(zone.port - 1) + " (" + zone.player_num + ")";
+   unlock_display.gamertag = loc1;
    unlock_display.gotoAndPlay(2);
    unlock_display.king.gotoAndPlay(2);
 }
 function f_PushUnlockDisplay(fp_Unlock, zone, item)
 {
-   var _loc1_ = 0;
-   while(_loc1_ < 10)
+   var loc1 = 0;
+   while(loc1 < 10)
    {
-      if(!unlock_display.unlockfunc[_loc1_])
+      if(!unlock_display.unlockfunc[loc1])
       {
-         unlock_display.unlockfunc[_loc1_] = fp_Unlock;
-         unlock_display.unlockzone[_loc1_] = zone;
-         unlock_display.unlockitem[_loc1_] = item;
+         unlock_display.unlockfunc[loc1] = fp_Unlock;
+         unlock_display.unlockzone[loc1] = zone;
+         unlock_display.unlockitem[loc1] = item;
          return undefined;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_PopUnlockDisplay()
 {
-   var _loc1_ = 0;
-   while(_loc1_ < 10)
+   var loc1 = 0;
+   while(loc1 < 10)
    {
-      if(unlock_display.unlockfunc[_loc1_])
+      if(unlock_display.unlockfunc[loc1])
       {
-         var _loc2_ = unlock_display.unlockfunc[_loc1_];
-         _loc2_(unlock_display.unlockzone[_loc1_],unlock_display.unlockitem[_loc1_]);
-         unlock_display.unlockfunc[_loc1_] = undefined;
-         unlock_display.unlockitem[_loc1_] = undefined;
-         unlock_display.unlockzone[_loc1_] = undefined;
+         var loc2 = unlock_display.unlockfunc[loc1];
+         loc2(unlock_display.unlockzone[loc1],unlock_display.unlockitem[loc1]);
+         unlock_display.unlockfunc[loc1] = undefined;
+         unlock_display.unlockitem[loc1] = undefined;
+         unlock_display.unlockzone[loc1] = undefined;
          return undefined;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_ClearUnlockDisplay()
 {
-   var _loc1_ = 0;
-   while(_loc1_ < 10)
+   var loc1 = 0;
+   while(loc1 < 10)
    {
-      unlock_display.unlockfunc[_loc1_] = undefined;
-      unlock_display.unlockitem[_loc1_] = undefined;
-      unlock_display.unlockzone[_loc1_] = undefined;
-      _loc1_ = _loc1_ + 1;
+      unlock_display.unlockfunc[loc1] = undefined;
+      unlock_display.unlockitem[loc1] = undefined;
+      unlock_display.unlockzone[loc1] = undefined;
+      loc1 = loc1 + 1;
    }
    unlock_display.gotoAndStop(1);
    unlock_display.king.gotoAndStop(1);
@@ -5253,12 +5269,12 @@ function f_NewColor(u_color)
 function f_InitCharColors()
 {
    char_colors = new Array(save_data_info.num_characters + 1);
-   var _loc1_ = 0;
-   while(_loc1_ <= save_data_info.num_characters)
+   var loc1 = 0;
+   while(loc1 <= save_data_info.num_characters)
    {
-      char_colors[_loc1_] = new Object();
-      f_NewColor(char_colors[_loc1_]);
-      _loc1_ = _loc1_ + 1;
+      char_colors[loc1] = new Object();
+      f_NewColor(char_colors[loc1]);
+      loc1 = loc1 + 1;
    }
    char_colors[0] = color_dark;
    char_colors[1].ra = 23.529411764705884;
@@ -5354,9 +5370,23 @@ function f_InitCharColors()
    char_colors[31].ra = 57.254901960784316;
    char_colors[31].ga = 2.7450980392156863;
    char_colors[31].ba = 7.058823529411765;
+
+   // barboss
    char_colors[32].ra = 77.64705882352942;
    char_colors[32].ga = 63.92156862745099;
    char_colors[32].ba = 32.54901960784314;
+
+   // cyclops
+   char_colors[33].ra = 41.1764705882353;
+   char_colors[33].ga = 23.92156862745098;
+   char_colors[33].ba = 38.82352941176471;
+
+   // beetle
+   /*
+   char_colors[34].ra = 44.70588235294118;
+   char_colors[34].ga = 32.54901960784314;
+   char_colors[34].ba = 15.294117647058824;
+   */
 }
 function f_SoundSwing(power)
 {
@@ -5397,11 +5427,11 @@ function f_SoundPan(u_temp, x, range)
    {
       if(x < main.right + range)
       {
-         var _loc3_ = 100 * (1 - (x - main.right) / range);
+         var loc3 = 100 * (1 - (x - main.right) / range);
       }
       else
       {
-         _loc3_ = 0;
+         loc3 = 0;
       }
       u_pan = 100;
    }
@@ -5409,28 +5439,28 @@ function f_SoundPan(u_temp, x, range)
    {
       if(x > main.left - range)
       {
-         _loc3_ = 100 * ((x - (main.left - range)) / range);
+         loc3 = 100 * ((x - (main.left - range)) / range);
       }
       else
       {
-         _loc3_ = 0;
+         loc3 = 0;
       }
       u_pan = -100;
    }
    else
    {
-      _loc3_ = 100;
+      loc3 = 100;
    }
    u_temp.setPan(u_pan);
-   u_temp.setVolume(_loc3_);
+   u_temp.setVolume(loc3);
 }
 function f_Skew(zone, x, y, scale, rot)
 {
    zone._rotation = (x + y) / 2 + 45 + rot;
-   var _loc2_ = x * g_rad;
-   var _loc1_ = y * g_rad;
-   zone._xscale = scale * (Math.cos(_loc2_) + Math.sin(_loc1_)) / Math.sin(((x + y) / 2 + 45) * g_rad) * g_sin45;
-   zone._yscale = scale * (Math.sin(_loc2_) + Math.cos(_loc1_)) / Math.sin(((x + y) / 2 + 45) * g_rad) * g_sin45;
+   var loc2 = x * g_rad;
+   var loc1 = y * g_rad;
+   zone._xscale = scale * (Math.cos(loc2) + Math.sin(loc1)) / Math.sin(((x + y) / 2 + 45) * g_rad) * g_sin45;
+   zone._yscale = scale * (Math.sin(loc2) + Math.cos(loc1)) / Math.sin(((x + y) / 2 + 45) * g_rad) * g_sin45;
 }
 function f_lerp(points, t)
 {
@@ -5442,18 +5472,18 @@ function f_lerp(points, t)
    {
       t = 1;
    }
-   var _loc8_ = points.x1 + (points.x2 - points.x1) * t;
-   var _loc6_ = points.y1 + (points.y2 - points.y1) * t;
-   var _loc4_ = points.x2 + (points.x3 - points.x2) * t;
-   var _loc3_ = points.y2 + (points.y3 - points.y2) * t;
-   var _loc10_ = points.x3 + (points.x4 - points.x3) * t;
-   var _loc9_ = points.y3 + (points.y4 - points.y3) * t;
-   var _loc7_ = _loc8_ + (_loc4_ - _loc8_) * t;
-   var _loc5_ = _loc6_ + (_loc3_ - _loc6_) * t;
-   var _loc12_ = _loc4_ + (_loc10_ - _loc4_) * t;
-   var _loc11_ = _loc3_ + (_loc9_ - _loc3_) * t;
-   points.lerp_x = _loc7_ + (_loc12_ - _loc7_) * t;
-   points.lerp_y = _loc5_ + (_loc11_ - _loc5_) * t;
+   var loc8 = points.x1 + (points.x2 - points.x1) * t;
+   var loc6 = points.y1 + (points.y2 - points.y1) * t;
+   var loc4 = points.x2 + (points.x3 - points.x2) * t;
+   var loc3 = points.y2 + (points.y3 - points.y2) * t;
+   var loc10 = points.x3 + (points.x4 - points.x3) * t;
+   var loc9 = points.y3 + (points.y4 - points.y3) * t;
+   var loc7 = loc8 + (loc4 - loc8) * t;
+   var loc5 = loc6 + (loc3 - loc6) * t;
+   var loc12 = loc4 + (loc10 - loc4) * t;
+   var loc11 = loc3 + (loc9 - loc3) * t;
+   points.lerp_x = loc7 + (loc12 - loc7) * t;
+   points.lerp_y = loc5 + (loc11 - loc5) * t;
 }
 function f_utilNormalizeScale(begin, end, val)
 {
@@ -5469,8 +5499,8 @@ function f_utilNormalizeScale(begin, end, val)
    {
       return 0;
    }
-   var _loc3_ = (val - begin) / (end - begin);
-   return _loc3_;
+   var loc3 = (val - begin) / (end - begin);
+   return loc3;
 }
 function f_utilLerp(begin, end, t)
 {
@@ -5482,60 +5512,60 @@ function f_rad2deg(radian)
 }
 function f_SquaredDist(zone, zone2)
 {
-   var _loc2_ = zone._x - zone2._x;
-   var _loc1_ = zone._y - zone2._y;
-   return _loc2_ * _loc2_ + _loc1_ * _loc1_;
+   var loc2 = zone._x - zone2._x;
+   var loc1 = zone._y - zone2._y;
+   return loc2 * loc2 + loc1 * loc1;
 }
 function f_GetEnemySpawnX()
 {
-   var _loc1_ = f_GetEnemySpawnWP();
-   var _loc2_ = -1;
-   if(_loc1_ > 0)
+   var loc1 = f_GetEnemySpawnWP();
+   var loc2 = -1;
+   if(loc1 > 0)
    {
-      _loc2_ = f_GetWPX(_loc1_);
+      loc2 = f_GetWPX(loc1);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_GetEnemySpawnY()
 {
-   var _loc1_ = f_GetEnemySpawnWP();
-   var _loc2_ = -1;
-   if(_loc1_ > 0)
+   var loc1 = f_GetEnemySpawnWP();
+   var loc2 = -1;
+   if(loc1 > 0)
    {
-      _loc2_ = f_GetWPY(_loc1_);
+      loc2 = f_GetWPY(loc1);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_GetEnemySpawnWP()
 {
-   var _loc2_ = _root.main.waypoint + 1;
-   while(_loc2_ < 100)
+   var loc2 = _root.main.waypoint + 1;
+   while(loc2 < 100)
    {
-      if(f_GetWPX(_loc2_) > _root.main.right)
+      if(f_GetWPX(loc2) > _root.main.right)
       {
-         return _loc2_;
+         return loc2;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    return -1;
 }
 function f_IsAPlayerClose(zone, dist)
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= 4)
+   var loc1 = 1;
+   while(loc1 <= 4)
    {
-      var _loc2_ = playerArrayOb["p_pt" + int(_loc1_)];
-      if(_loc2_.alive)
+      var loc2 = playerArrayOb["p_pt" + int(loc1)];
+      if(loc2.alive)
       {
-         var _loc4_ = zone._x - _loc2_._x;
-         var _loc3_ = zone._y - _loc2_._y;
-         if(Math.sqrt(_loc4_ * _loc4_ + _loc3_ * _loc3_) < dist)
+         var loc4 = zone._x - loc2._x;
+         var loc3 = zone._y - loc2._y;
+         if(Math.sqrt(loc4 * loc4 + loc3 * loc3) < dist)
          {
-            _loc1_ = 5;
+            loc1 = 5;
             return true;
          }
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
    return false;
 }
@@ -5545,214 +5575,214 @@ function Error(u_temp)
 }
 function f_NewFriendNum()
 {
-   var _loc1_ = 5;
-   while(_loc1_ <= 10)
+   var loc1 = 5;
+   while(loc1 <= players)
    {
-      var _loc2_ = loader.game.game["p" + _loc1_];
-      if(!_loc2_.active)
+      var loc2 = loader.game.game["p" + loc1];
+      if(!loc2.active && loc1 != 11) // 11 is reserved for undead groom
       {
-         return _loc1_;
+         return loc1;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_MakeFriend(p_type, x, y)
 {
-   var _loc2_ = f_NewFriendNum();
-   var _loc1_ = f_SpawnPlayer(_loc2_,p_type,x,y);
-   _loc1_.gotoAndStop("stand");
+   var loc2 = f_NewFriendNum();
+   var loc1 = f_SpawnPlayer(loc2,p_type,x,y);
+   loc1.gotoAndStop("stand");
    if(insane_mode == true)
    {
-      _loc1_.health_max *= 10;
-      _loc1_.health = _loc1_.health_max;
-      _loc1_.attack_pow *= 3;
-      _loc1_.punch_pow_low *= 3;
-      _loc1_.punch_pow_medium *= 3;
-      _loc1_.punch_pow_high *= 3;
-      _loc1_.punch_pow_max *= 3;
-      _loc1_.arrow_pow *= 3;
-      _loc1_.magic_pow *= 3;
+      loc1.health_max *= 10;
+      loc1.health = loc1.health_max;
+      loc1.attack_pow *= 3;
+      loc1.punch_pow_low *= 3;
+      loc1.punch_pow_medium *= 3;
+      loc1.punch_pow_high *= 3;
+      loc1.punch_pow_max *= 3;
+      loc1.arrow_pow *= 3;
+      loc1.magic_pow *= 3;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_InsertFriend(zone)
 {
-   var _loc1_ = 5;
-   while(_loc1_ <= 10)
+   var loc1 = 5;
+   while(loc1 <= players)
    {
-      var _loc2_ = loader.game.game["p" + int(_loc1_)];
-      if(!_loc2_.active)
+      var loc2 = loader.game.game["p" + int(loc1)];
+      if(!loc2.active)
       {
-         loader.game.game["p" + int(_loc1_)] = zone;
+         loader.game.game["p" + int(loc1)] = zone;
          return undefined;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_KillTossEnemies()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_enemies)
+   var loc1 = 1;
+   while(loc1 <= total_enemies)
    {
-      var _loc2_ = loader.game.game["e" + int(_loc1_)];
-      if(_loc2_.active)
+      var loc2 = loader.game.game["e" + int(loc1)];
+      if(loc2.active)
       {
-         f_Damage(_loc2_,100000,DMG_MELEE,DMGFLAG_JUGGLE,random(5),- (random(5) + 6));
+         f_Damage(loc2,100000,DMG_MELEE,DMGFLAG_JUGGLE,random(5),- (random(5) + 6));
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_NewEnemy(name, total_val)
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= total_val)
+   var loc2 = 1;
+   while(loc2 <= total_val)
    {
-      var _loc1_ = loader.game.game[name + _loc2_];
-      if(!_loc1_.active)
+      var loc1 = loader.game.game[name + loc2];
+      if(!loc1.active)
       {
-         _loc1_.active = true;
-         HiFps_ResetRecursive(_loc1_);
-         return _loc1_;
+         loc1.active = true;
+         HiFps_ResetRecursive(loc1);
+         return loc1;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    return 0;
 }
 function f_InsertEnemy(zone)
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_enemies)
+   var loc1 = 1;
+   while(loc1 <= total_enemies)
    {
-      var _loc2_ = loader.game.game["e" + int(_loc1_)];
-      if(!_loc2_.active)
+      var loc2 = loader.game.game["e" + int(loc1)];
+      if(!loc2.active)
       {
-         loader.game.game["e" + int(_loc1_)] = zone;
-         zone.e_pt = _loc1_;
+         loader.game.game["e" + int(loc1)] = zone;
+         zone.e_pt = loc1;
          return undefined;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_SpawnEnemy(name, x, y, u_estats, total_val)
 {
-   var _loc2_ = f_NewEnemy(name,total_val);
-   if(_loc2_)
+   var loc2 = f_NewEnemy(name,total_val);
+   if(loc2)
    {
-      _loc2_.active = true;
-      _loc2_.x = x;
-      _loc2_.y = y;
-      _loc2_._x = x;
-      _loc2_._y = y;
-      if(_loc2_._xscale < 0)
+      loc2.active = true;
+      loc2.x = x;
+      loc2.y = y;
+      loc2._x = x;
+      loc2._y = y;
+      if(loc2._xscale < 0)
       {
-         _loc2_._xscale *= -1;
+         loc2._xscale *= -1;
       }
-      _loc2_.combo_unlocks = _root.all_combos_unlocked;
-      _loc2_.shadow_pt = f_NewShadow();
-      _loc2_.shadow_pt._x = x;
-      _loc2_.shadow_pt._y = y;
-      f_Depth(_loc2_,y);
-      _loc2_.alive = true;
-      _loc2_.tossable = true;
-      _loc2_.body_y = 0;
-      _loc2_.body_table_y = 0;
-      _loc2_.n_groundtype = 0;
-      _loc2_.zapping = false;
-      _loc2_.helmet = 1;
-      _loc2_.face_hit1 = 2;
-      _loc2_.face_hit2 = 2;
-      _loc2_.speed = u_estats.speed;
-      _loc2_.health_max = u_estats.health_max;
+      loc2.combo_unlocks = _root.all_combos_unlocked;
+      loc2.shadow_pt = f_NewShadow();
+      loc2.shadow_pt._x = x;
+      loc2.shadow_pt._y = y;
+      f_Depth(loc2,y);
+      loc2.alive = true;
+      loc2.tossable = true;
+      loc2.body_y = 0;
+      loc2.body_table_y = 0;
+      loc2.n_groundtype = 0;
+      loc2.zapping = false;
+      loc2.helmet = 1;
+      loc2.face_hit1 = 2;
+      loc2.face_hit2 = 2;
+      loc2.speed = u_estats.speed;
+      loc2.health_max = u_estats.health_max;
       if(ez_enemies)
       {
-         _loc2_.health = 1;
+         loc2.health = 1;
       }
       else
       {
-         _loc2_.health = _loc2_.health_max;
+         loc2.health = loc2.health_max;
       }
-      _loc2_.arrow_pow = 2;
-      _loc2_.arrow_speed_y = 0;
-      _loc2_.arrow_speed_x = 20;
-      _loc2_.arrow_gravity = 0;
-      _loc2_.shot_timer_default = 120;
-      _loc2_.name = 2;
-      _loc2_.weight = 0;
-      _loc2_.grab = true;
-      _loc2_.lifebar = true;
-      _loc2_.punch_clock = 0;
-      _loc2_.punch_count = 0;
-      _loc2_.poison_timer = 0;
-      _loc2_.fire_timer = 0;
-      _loc2_.beefy = false;
-      _loc2_.rolling = false;
-      _loc2_.magician = false;
-      _loc2_.magic_delay = 90;
-      _loc2_.magic_wait = _loc2_.magic_delay;
-      _loc2_.magic_chain = 3;
-      _loc2_.magic_air = 9999;
-      _loc2_.magic_splash = 9999;
-      _loc2_.magic_bullet = 9999;
-      _loc2_.magic_pow = 5;
-      _loc2_.magic_timer = 0;
-      _loc2_.hitby = undefined;
-      _loc2_.weapon_type = undefined;
-      _loc2_.item_type = undefined;
-      _loc2_.fp_DeathAction = undefined;
-      _loc2_.arrowplink = false;
-      _loc2_.punch_pow_low = 4;
-      _loc2_.punch_pow_medium = 6;
-      _loc2_.punch_pow_high = 8;
-      _loc2_.punch_pow_max = 10;
-      _loc2_.aggressiveness = 10;
-      _loc2_.grapple_aggression = 0.2;
-      _loc2_.recovery = 12;
-      _loc2_.resists = new Array(5);
-      _loc2_.resists[DMG_MELEE] = 50;
-      _loc2_.resists[DMG_POISON] = 50;
-      _loc2_.resists[DMG_FIRE] = 50;
-      _loc2_.resists[DMG_ELEC] = 50;
-      _loc2_.resists[DMG_ICE] = 50;
-      _loc2_.attack_type = DMG_MELEE;
-      _loc2_.frozen = false;
-      _loc2_.fp_PunchHit = f_EnemyAttack;
-      _loc2_.fp_CharClock = f_EnemyClock;
-      _loc2_.fp_Blocking = f_EnemyBlocking;
-      _loc2_.fp_MidAttack = f_EnemyMelee;
-      _loc2_.fp_WalkAnim = f_WalkType1;
-      _loc2_.fp_StandAnim = f_StandType1;
-      _loc2_.fp_Jab = f_PunchSet100;
-      _loc2_.fp_DieAction = f_Null;
-      _loc2_.fp_hitreaction = undefined;
-      f_HumanoidDefaults(_loc2_);
-      f_ClearTimers(_loc2_);
-      _loc2_.retreater = false;
-      _loc2_.roller = false;
-      _loc2_.tossable = true;
-      _loc2_.anti_air = false;
-      _loc2_.blocks = false;
-      _loc2_.block_odds = 10;
-      _loc2_.full_block_odds = 0;
-      _loc2_.air_block_odds = 0;
-      _loc2_.chases = true;
-      f_ColorSwap(_loc2_,color_default);
-      _loc2_.e_type = undefined;
-      _loc2_.h = 90;
-      _loc2_.w = 40;
-      if(_loc2_.zone)
+      loc2.arrow_pow = 2;
+      loc2.arrow_speed_y = 0;
+      loc2.arrow_speed_x = 20;
+      loc2.arrow_gravity = 0;
+      loc2.shot_timer_default = 120;
+      loc2.name = 2;
+      loc2.weight = 0;
+      loc2.grab = true;
+      loc2.lifebar = true;
+      loc2.punch_clock = 0;
+      loc2.punch_count = 0;
+      loc2.poison_timer = 0;
+      loc2.fire_timer = 0;
+      loc2.beefy = false;
+      loc2.rolling = false;
+      loc2.magician = false;
+      loc2.magic_delay = 90;
+      loc2.magic_wait = loc2.magic_delay;
+      loc2.magic_chain = 3;
+      loc2.magic_air = 9999;
+      loc2.magic_splash = 9999;
+      loc2.magic_bullet = 9999;
+      loc2.magic_pow = 5;
+      loc2.magic_timer = 0;
+      loc2.hitby = undefined;
+      loc2.weapon_type = undefined;
+      loc2.item_type = undefined;
+      loc2.fp_DeathAction = undefined;
+      loc2.arrowplink = false;
+      loc2.punch_pow_low = 4;
+      loc2.punch_pow_medium = 6;
+      loc2.punch_pow_high = 8;
+      loc2.punch_pow_max = 10;
+      loc2.aggressiveness = 10;
+      loc2.grapple_aggression = 0.2;
+      loc2.recovery = 12;
+      loc2.resists = new Array(5);
+      loc2.resists[DMG_MELEE] = 50;
+      loc2.resists[DMG_POISON] = 50;
+      loc2.resists[DMG_FIRE] = 50;
+      loc2.resists[DMG_ELEC] = 50;
+      loc2.resists[DMG_ICE] = 50;
+      loc2.attack_type = DMG_MELEE;
+      loc2.frozen = false;
+      loc2.fp_PunchHit = f_EnemyAttack;
+      loc2.fp_CharClock = f_EnemyClock;
+      loc2.fp_Blocking = f_EnemyBlocking;
+      loc2.fp_MidAttack = f_EnemyMelee;
+      loc2.fp_WalkAnim = f_WalkType1;
+      loc2.fp_StandAnim = f_StandType1;
+      loc2.fp_Jab = f_PunchSet100;
+      loc2.fp_DieAction = f_Null;
+      loc2.fp_hitreaction = undefined;
+      f_HumanoidDefaults(loc2);
+      f_ClearTimers(loc2);
+      loc2.retreater = false;
+      loc2.roller = false;
+      loc2.tossable = true;
+      loc2.anti_air = false;
+      loc2.blocks = false;
+      loc2.block_odds = 10;
+      loc2.full_block_odds = 0;
+      loc2.air_block_odds = 0;
+      loc2.chases = true;
+      f_ColorSwap(loc2,color_default);
+      loc2.e_type = undefined;
+      loc2.h = 90;
+      loc2.w = 40;
+      if(loc2.zone)
       {
-         _loc2_.zone.x = _loc2_.x;
-         _loc2_.zone.w = _loc2_.w;
+         loc2.zone.x = loc2.x;
+         loc2.zone.w = loc2.w;
       }
-      _loc2_.fp_BlockFunction = f_Null;
-      _loc2_.fp_Ranged = f_Null;
-      _loc2_.npc = false;
-      f_FlipChar(_loc2_);
-      f_KidSettings(_loc2_);
-      _loc2_.gotoAndStop("stand");
-      f_InsertEnemy(_loc2_);
+      loc2.fp_BlockFunction = f_Null;
+      loc2.fp_Ranged = f_Null;
+      loc2.npc = false;
+      f_FlipChar(loc2);
+      f_KidSettings(loc2);
+      loc2.gotoAndStop("stand");
+      f_InsertEnemy(loc2);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_BadDude(u_temp)
 {
@@ -5781,25 +5811,25 @@ function f_SetEnemyHealth(u_temp)
    switch(active_players)
    {
       case 1:
-         var _loc2_ = u_temp;
+         var loc2 = u_temp;
          break;
       case 2:
-         _loc2_ = u_temp * 1.2;
+         loc2 = u_temp * 1.2;
          break;
       case 3:
-         _loc2_ = u_temp * 1.4;
+         loc2 = u_temp * 1.4;
          break;
       case 4:
-         _loc2_ = u_temp * 1.6;
+         loc2 = u_temp * 1.6;
          break;
       default:
-         _loc2_ = u_temp;
+         loc2 = u_temp;
    }
    if(insane_mode == true)
    {
-      _loc2_ *= 10;
+      loc2 *= 10;
    }
-   return _loc2_;
+   return loc2;
 }
 function f_SetEnemyPow(u_temp)
 {
@@ -5876,1699 +5906,1699 @@ function f_SetBossHealth(u_temp)
 }
 function f_SpawnBarbarian(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(50);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(50);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 10;
+            loc1.weapon = 10;
             break;
          case 1:
-            _loc1_.weapon = 35;
+            loc1.weapon = 35;
             break;
          case 2:
-            _loc1_.weapon = 26;
+            loc1.weapon = 26;
             break;
          default:
-            _loc1_.weapon = 19;
+            loc1.weapon = 19;
       }
-      _loc1_.helmet = 7;
-      _loc1_.emblem = 7;
-      _loc1_.shield = 7;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 12;
-      _loc1_.aggressiveness = 12;
-      _loc1_.hop_timer = random(200);
-      _loc1_.punch_pow_low = 4;
-      _loc1_.punch_pow_medium = 6;
-      _loc1_.punch_pow_high = 8;
-      _loc1_.punch_pow_max = 10;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 2;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.shot_timer_default = 120;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_FIRE] = 40;
-      _loc1_.resists[DMG_ELEC] = 40;
-      _loc1_.resists[DMG_POISON] = 40;
-      _loc1_.resists[DMG_ICE] = 40;
+      loc1.helmet = 7;
+      loc1.emblem = 7;
+      loc1.shield = 7;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 12;
+      loc1.aggressiveness = 12;
+      loc1.hop_timer = random(200);
+      loc1.punch_pow_low = 4;
+      loc1.punch_pow_medium = 6;
+      loc1.punch_pow_high = 8;
+      loc1.punch_pow_max = 10;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 2;
+      loc1.arrow_gravity = 2;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_speed_y = -10;
+      loc1.shot_timer_default = 120;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_FIRE] = 40;
+      loc1.resists[DMG_ELEC] = 40;
+      loc1.resists[DMG_POISON] = 40;
+      loc1.resists[DMG_ICE] = 40;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnThief(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 4 + random(10) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(50);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 4 + random(10) / 10;
+   loc2.health_max = f_SetEnemyHealth(50);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      _loc1_.weapon = 10;
-      _loc1_.helmet = 8;
-      _loc1_.emblem = 8;
-      _loc1_.shield = 8;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_Character = f_ThiefWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 12;
-      _loc1_.aggressiveness = 12;
-      _loc1_.punch_pow_low = 4;
-      _loc1_.punch_pow_medium = 6;
-      _loc1_.punch_pow_high = 8;
-      _loc1_.punch_pow_max = 10;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.archer = true;
-      _loc1_.arrow_pow = 6;
-      _loc1_.shot_timer_default = 45;
-      _loc1_.arrow_speed_y = 0;
-      _loc1_.arrow_speed_x = 25;
-      _loc1_.arrow_gravity = 0;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_FIRE] = 50;
-      _loc1_.resists[DMG_ELEC] = 50;
-      _loc1_.resists[DMG_POISON] = 50;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1.weapon = 10;
+      loc1.helmet = 8;
+      loc1.emblem = 8;
+      loc1.shield = 8;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_Character = f_ThiefWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 12;
+      loc1.aggressiveness = 12;
+      loc1.punch_pow_low = 4;
+      loc1.punch_pow_medium = 6;
+      loc1.punch_pow_high = 8;
+      loc1.punch_pow_max = 10;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.archer = true;
+      loc1.arrow_pow = 6;
+      loc1.shot_timer_default = 45;
+      loc1.arrow_speed_y = 0;
+      loc1.arrow_speed_x = 25;
+      loc1.arrow_gravity = 0;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_FIRE] = 50;
+      loc1.resists[DMG_ELEC] = 50;
+      loc1.resists[DMG_POISON] = 50;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.arrow_pow *= 3;
-         _loc1_.punch_pow_low *= 2;
-         _loc1_.punch_pow_medium *= 2;
-         _loc1_.punch_pow_high *= 2;
-         _loc1_.punch_pow_max *= 2;
-         _loc1_.aggressiveness = 7;
-         _loc1_.shot_timer_default = 40;
+         loc1.arrow_pow *= 3;
+         loc1.punch_pow_low *= 2;
+         loc1.punch_pow_medium *= 2;
+         loc1.punch_pow_high *= 2;
+         loc1.punch_pow_max *= 2;
+         loc1.aggressiveness = 7;
+         loc1.shot_timer_default = 40;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = random(60);
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = random(60);
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnTroll(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(50);
-   var _loc1_ = f_SpawnEnemy("e_troll",x,y,_loc2_,total_trolls);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(50);
+   var loc1 = f_SpawnEnemy("e_troll",x,y,loc2,total_trolls);
+   if(loc1)
    {
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_GeneralWalk;
-      _loc1_.fp_Ranged = f_Taunt1;
-      _loc1_.fp_Jab = f_PunchSet300;
-      _loc1_.fp_Fierce = f_PunchSet300;
-      _loc1_.fp_ExtremeDeath1 = undefined;
-      _loc1_.blocks = false;
-      _loc1_.aggressiveness = 4;
-      _loc1_.hop_timer = random(200);
-      _loc1_.punch_pow_low = 8;
-      _loc1_.punch_pow_medium = 10;
-      _loc1_.punch_pow_high = 13;
-      _loc1_.punch_pow_max = 15;
-      _loc1_.arrow_pow = 2;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 120;
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_FIRE] = 30;
-      _loc1_.resists[DMG_ELEC] = 30;
-      _loc1_.resists[DMG_POISON] = 70;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_GeneralWalk;
+      loc1.fp_Ranged = f_Taunt1;
+      loc1.fp_Jab = f_PunchSet300;
+      loc1.fp_Fierce = f_PunchSet300;
+      loc1.fp_ExtremeDeath1 = undefined;
+      loc1.blocks = false;
+      loc1.aggressiveness = 4;
+      loc1.hop_timer = random(200);
+      loc1.punch_pow_low = 8;
+      loc1.punch_pow_medium = 10;
+      loc1.punch_pow_high = 13;
+      loc1.punch_pow_max = 15;
+      loc1.arrow_pow = 2;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 120;
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_FIRE] = 30;
+      loc1.resists[DMG_ELEC] = 30;
+      loc1.resists[DMG_POISON] = 70;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.dash_timer = random(200);
+      f_SetEnemyPow(loc1);
+      loc1.dash_timer = random(200);
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnBear(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(100);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(100);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(2));
-      switch(_loc4_)
+      var loc4 = int(random(2));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 29;
+            loc1.weapon = 29;
             break;
          case 1:
-            _loc1_.weapon = 26;
+            loc1.weapon = 26;
             break;
          default:
-            _loc1_.weapon = 29;
+            loc1.weapon = 29;
       }
-      _loc1_.helmet = 20;
-      _loc1_.emblem = 20;
-      _loc1_.shield = 20;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.aggressiveness = 7;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 11;
-      _loc1_.hop_timer = random(200);
-      _loc1_.punch_pow_low = 10;
-      _loc1_.punch_pow_medium = 12;
-      _loc1_.punch_pow_high = 14;
-      _loc1_.punch_pow_max = 17;
-      _loc1_.arrow_pow = 8;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 100;
-      _loc1_.magic_pow = 8;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 60;
-      _loc1_.resists[DMG_FIRE] = 40;
-      _loc1_.resists[DMG_ELEC] = 40;
-      _loc1_.resists[DMG_POISON] = 60;
-      _loc1_.resists[DMG_ICE] = 70;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
+      loc1.helmet = 20;
+      loc1.emblem = 20;
+      loc1.shield = 20;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.aggressiveness = 7;
+      loc1.blocks = true;
+      loc1.block_odds = 11;
+      loc1.hop_timer = random(200);
+      loc1.punch_pow_low = 10;
+      loc1.punch_pow_medium = 12;
+      loc1.punch_pow_high = 14;
+      loc1.punch_pow_max = 17;
+      loc1.arrow_pow = 8;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 100;
+      loc1.magic_pow = 8;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 60;
+      loc1.resists[DMG_FIRE] = 40;
+      loc1.resists[DMG_ELEC] = 40;
+      loc1.resists[DMG_POISON] = 60;
+      loc1.resists[DMG_ICE] = 70;
+      f_WeaponStats(loc1,loc1.weapon);
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 90;
-         _loc1_.magic_wait = 60 + random(60);
-         _loc1_.magic_air = 2;
-         _loc1_.aggressiveness = 8;
-         _loc1_.speed = _loc1_.speed + 1;
+         loc1.magician = true;
+         loc1.magic_delay = 90;
+         loc1.magic_wait = 60 + random(60);
+         loc1.magic_air = 2;
+         loc1.aggressiveness = 8;
+         loc1.speed = loc1.speed + 1;
       }
       if(enemy_level > 2)
       {
-         _loc1_.aggressiveness = 6;
-         _loc1_.magic_splash = 2;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += f_SetEnemyHealth(20);
+         loc1.aggressiveness = 6;
+         loc1.magic_splash = 2;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += f_SetEnemyHealth(20);
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnSlime(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(75);
-   var _loc1_ = f_SpawnEnemy("e_slime",x,y,_loc2_,total_slimes);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(75);
+   var loc1 = f_SpawnEnemy("e_slime",x,y,loc2,total_slimes);
+   if(loc1)
    {
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_Hit1 = f_HitSlime;
-      _loc1_.fp_Hit2 = f_HitSlime;
-      _loc1_.fp_Hit3 = f_HitSlime;
-      _loc1_.fp_Juggle = f_HitSlime;
-      _loc1_.fp_ExtremeDeath1 = undefined;
-      _loc1_.dash_timer = random(90);
-      _loc1_.hop_timer = random(90);
-      _loc1_.intro_timer = 0;
-      _loc1_.humanoid = false;
-      _loc1_.dropstuff = false;
-      _loc1_.gravity = 2;
-      _loc1_.nohit = true;
-      _loc1_.gotoAndStop("spawn");
-      _loc1_.resists[DMG_MELEE] = 60;
-      _loc1_.resists[DMG_FIRE] = 60;
-      _loc1_.resists[DMG_ELEC] = 40;
-      _loc1_.resists[DMG_POISON] = 40;
-      _loc1_.resists[DMG_ICE] = 40;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_Hit1 = f_HitSlime;
+      loc1.fp_Hit2 = f_HitSlime;
+      loc1.fp_Hit3 = f_HitSlime;
+      loc1.fp_Juggle = f_HitSlime;
+      loc1.fp_ExtremeDeath1 = undefined;
+      loc1.dash_timer = random(90);
+      loc1.hop_timer = random(90);
+      loc1.intro_timer = 0;
+      loc1.humanoid = false;
+      loc1.dropstuff = false;
+      loc1.gravity = 2;
+      loc1.nohit = true;
+      loc1.gotoAndStop("spawn");
+      loc1.resists[DMG_MELEE] = 60;
+      loc1.resists[DMG_FIRE] = 60;
+      loc1.resists[DMG_ELEC] = 40;
+      loc1.resists[DMG_POISON] = 40;
+      loc1.resists[DMG_ICE] = 40;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.resists[DMG_MELEE] = 70;
-         _loc1_.health_max = f_SetEnemyHealth(125);
-         _loc1_.health = _loc1_.health_max;
-         _loc1_.dash_timer = random(70);
-         _loc1_.hop_timer = random(70);
+         loc1.resists[DMG_MELEE] = 70;
+         loc1.health_max = f_SetEnemyHealth(125);
+         loc1.health = loc1.health_max;
+         loc1.dash_timer = random(70);
+         loc1.hop_timer = random(70);
       }
-      if(_loc1_._xscale > 0)
+      if(loc1._xscale > 0)
       {
-         _loc1_.zone.x = _loc1_.x + _loc1_.zone._x;
+         loc1.zone.x = loc1.x + loc1.zone._x;
       }
       else
       {
-         _loc1_.zone.x = _loc1_.x - _loc1_.zone._x;
+         loc1.zone.x = loc1.x - loc1.zone._x;
       }
-      _loc1_.zone.y = _loc1_.y + _loc1_.zone._y;
+      loc1.zone.y = loc1.y + loc1.zone._y;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnBee(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(50);
-   var _loc1_ = f_SpawnEnemy("e_bee",x,y,_loc2_,total_bees);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(50);
+   var loc1 = f_SpawnEnemy("e_bee",x,y,loc2,total_bees);
+   if(loc1)
    {
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_Character = f_BeeWalk;
-      _loc1_.fp_Ranged = f_Taunt1;
-      _loc1_.fp_Jab = f_PunchSet300;
-      _loc1_.fp_Fierce = f_PunchSet300;
-      _loc1_.fp_ExtremeDeath1 = undefined;
-      _loc1_.blocks = false;
-      _loc1_.hop_timer = random(200);
-      _loc1_.punch_pow_low = 50;
-      _loc1_.punch_pow_medium = 50;
-      _loc1_.punch_pow_high = 50;
-      _loc1_.punch_pow_max = 50;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 120;
-      _loc1_.dash_timer = random(200);
-      _loc1_.speed_x = 0;
-      _loc1_.speed_y = 0;
-      _loc1_.body_y = -600;
-      _loc1_.fly_timer = random(60);
-      _loc1_.flying = true;
-      _loc1_.grab = false;
-      _loc1_.gotoAndStop("fly");
-      _loc1_.body._y = _loc1_.body_y;
-      f_ShadowSize(_loc1_);
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_Character = f_BeeWalk;
+      loc1.fp_Ranged = f_Taunt1;
+      loc1.fp_Jab = f_PunchSet300;
+      loc1.fp_Fierce = f_PunchSet300;
+      loc1.fp_ExtremeDeath1 = undefined;
+      loc1.blocks = false;
+      loc1.hop_timer = random(200);
+      loc1.punch_pow_low = 50;
+      loc1.punch_pow_medium = 50;
+      loc1.punch_pow_high = 50;
+      loc1.punch_pow_max = 50;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 120;
+      loc1.dash_timer = random(200);
+      loc1.speed_x = 0;
+      loc1.speed_y = 0;
+      loc1.body_y = -600;
+      loc1.fly_timer = random(60);
+      loc1.flying = true;
+      loc1.grab = false;
+      loc1.gotoAndStop("fly");
+      loc1.body._y = loc1.body_y;
+      f_ShadowSize(loc1);
       if(!enemy_level)
       {
          enemy_level = 1;
       }
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnBeekeeper(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(150);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(150);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 34;
+            loc1.weapon = 34;
             break;
          case 1:
-            _loc1_.weapon = 5;
+            loc1.weapon = 5;
             break;
          case 2:
-            _loc1_.weapon = 45;
+            loc1.weapon = 45;
             break;
          default:
-            _loc1_.weapon = 5;
+            loc1.weapon = 5;
       }
-      _loc1_.helmet = 10;
-      _loc1_.emblem = 10;
-      _loc1_.shield = 10;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_EnemyQuickBomb;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 5;
-      _loc1_.aggressiveness = 4;
-      _loc1_.hop_timer = random(200);
-      _loc1_.punch_pow_low = 16;
-      _loc1_.punch_pow_medium = 20;
-      _loc1_.punch_pow_high = 24;
-      _loc1_.punch_pow_max = 28;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 9;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      _loc1_.magic_pow = 9;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_FIRE] = 40;
-      _loc1_.resists[DMG_ELEC] = 60;
-      _loc1_.resists[DMG_POISON] = 60;
-      _loc1_.resists[DMG_ICE] = 40;
+      loc1.helmet = 10;
+      loc1.emblem = 10;
+      loc1.shield = 10;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_EnemyQuickBomb;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 5;
+      loc1.aggressiveness = 4;
+      loc1.hop_timer = random(200);
+      loc1.punch_pow_low = 16;
+      loc1.punch_pow_medium = 20;
+      loc1.punch_pow_high = 24;
+      loc1.punch_pow_max = 28;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 9;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      loc1.magic_pow = 9;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_FIRE] = 40;
+      loc1.resists[DMG_ELEC] = 60;
+      loc1.resists[DMG_POISON] = 60;
+      loc1.resists[DMG_ICE] = 40;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnConehead(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(170);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(170);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 43;
+            loc1.weapon = 43;
             break;
          case 1:
-            _loc1_.weapon = 43;
+            loc1.weapon = 43;
             break;
          case 2:
-            _loc1_.weapon = 43;
+            loc1.weapon = 43;
             break;
          default:
-            _loc1_.weapon = 43;
+            loc1.weapon = 43;
       }
-      _loc1_.helmet = 22;
-      _loc1_.emblem = 21;
-      _loc1_.shield = 21;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_EnemyQuickBomb;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 5;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 7;
-      _loc1_.punch_pow_low = 13;
-      _loc1_.punch_pow_medium = 17;
-      _loc1_.punch_pow_high = 22;
-      _loc1_.punch_pow_max = 26;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 15;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      _loc1_.magic_pow = 11;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 60;
-      _loc1_.resists[DMG_FIRE] = 50;
-      _loc1_.resists[DMG_ELEC] = 40;
-      _loc1_.resists[DMG_POISON] = 40;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1.helmet = 22;
+      loc1.emblem = 21;
+      loc1.shield = 21;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_EnemyQuickBomb;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 5;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 7;
+      loc1.punch_pow_low = 13;
+      loc1.punch_pow_medium = 17;
+      loc1.punch_pow_high = 22;
+      loc1.punch_pow_max = 26;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 15;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      loc1.magic_pow = 11;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 60;
+      loc1.resists[DMG_FIRE] = 50;
+      loc1.resists[DMG_ELEC] = 40;
+      loc1.resists[DMG_POISON] = 40;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.resists[DMG_MELEE] = 65;
-         _loc1_.resists[DMG_FIRE] = 55;
-         _loc1_.resists[DMG_ELEC] = 45;
-         _loc1_.resists[DMG_POISON] = 45;
-         _loc1_.resists[DMG_ICE] = 55;
-         _loc1_.punch_pow_low *= 1.25;
-         _loc1_.punch_pow_medium *= 1.25;
-         _loc1_.punch_pow_high *= 1.25;
-         _loc1_.punch_pow_max *= 1.25;
-         _loc1_.arrow_pow *= 1.25;
-         _loc1_.magic_pow *= 1.25;
-         _loc1_.aggressiveness = 5;
+         loc1.resists[DMG_MELEE] = 65;
+         loc1.resists[DMG_FIRE] = 55;
+         loc1.resists[DMG_ELEC] = 45;
+         loc1.resists[DMG_POISON] = 45;
+         loc1.resists[DMG_ICE] = 55;
+         loc1.punch_pow_low *= 1.25;
+         loc1.punch_pow_medium *= 1.25;
+         loc1.punch_pow_high *= 1.25;
+         loc1.punch_pow_max *= 1.25;
+         loc1.arrow_pow *= 1.25;
+         loc1.magic_pow *= 1.25;
+         loc1.aggressiveness = 5;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnFireDemon(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(200);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(200);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 35;
+            loc1.weapon = 35;
             break;
          case 1:
-            _loc1_.weapon = 35;
+            loc1.weapon = 35;
             break;
          case 2:
-            _loc1_.weapon = 20;
+            loc1.weapon = 20;
             break;
          default:
-            _loc1_.weapon = 20;
+            loc1.weapon = 20;
       }
-      _loc1_.helmet = 25;
-      _loc1_.emblem = 25;
-      _loc1_.shield = 25;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootFire;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.weightplus = 1;
-      _loc1_.hop_timer = random(90);
-      _loc1_.aggressiveness = 6;
-      _loc1_.punch_pow_low = 20;
-      _loc1_.punch_pow_medium = 23;
-      _loc1_.punch_pow_high = 27;
-      _loc1_.punch_pow_max = 30;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 30;
-      _loc1_.magic_pow = 50;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 55;
-      _loc1_.resists[DMG_FIRE] = 89;
-      _loc1_.resists[DMG_ELEC] = 55;
-      _loc1_.resists[DMG_POISON] = 55;
-      _loc1_.resists[DMG_ICE] = 30;
+      loc1.helmet = 25;
+      loc1.emblem = 25;
+      loc1.shield = 25;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootFire;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.weightplus = 1;
+      loc1.hop_timer = random(90);
+      loc1.aggressiveness = 6;
+      loc1.punch_pow_low = 20;
+      loc1.punch_pow_medium = 23;
+      loc1.punch_pow_high = 27;
+      loc1.punch_pow_max = 30;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 30;
+      loc1.magic_pow = 50;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 55;
+      loc1.resists[DMG_FIRE] = 89;
+      loc1.resists[DMG_ELEC] = 55;
+      loc1.resists[DMG_POISON] = 55;
+      loc1.resists[DMG_ICE] = 30;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 30;
-         _loc1_.magic_wait = 40 + random(40);
-         _loc1_.magic_splash = 1;
-         _loc1_.aggressiveness = 6;
-         _loc1_.speed = _loc1_.speed + 1;
+         loc1.magician = true;
+         loc1.magic_delay = 30;
+         loc1.magic_wait = 40 + random(40);
+         loc1.magic_splash = 1;
+         loc1.aggressiveness = 6;
+         loc1.speed = loc1.speed + 1;
       }
       if(enemy_level > 2)
       {
-         _loc1_.magic_air = 2;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += f_SetEnemyHealth(40);
+         loc1.magic_air = 2;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += f_SetEnemyHealth(40);
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
+      f_SetEnemyPow(loc1);
       if(insane_mode == true)
       {
-         _loc1_.magic_pow *= 0.3;
+         loc1.magic_pow *= 0.3;
       }
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnSkeleton(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(170);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(170);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 10;
+            loc1.weapon = 10;
             break;
          case 1:
-            _loc1_.weapon = 11;
+            loc1.weapon = 11;
             break;
          case 2:
-            _loc1_.weapon = 10;
+            loc1.weapon = 10;
             break;
          default:
-            _loc1_.weapon = 31;
+            loc1.weapon = 31;
       }
-      _loc1_.helmet = 26;
-      _loc1_.emblem = 26;
-      _loc1_.shield = 26;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 6;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 7;
-      _loc1_.punch_pow_low = 30;
-      _loc1_.punch_pow_medium = 36;
-      _loc1_.punch_pow_high = 42;
-      _loc1_.punch_pow_max = 48;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 15;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.magic_pow = 20;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_FIRE] = 60;
-      _loc1_.resists[DMG_ELEC] = 60;
-      _loc1_.resists[DMG_POISON] = 90;
-      _loc1_.resists[DMG_ICE] = 60;
+      loc1.helmet = 26;
+      loc1.emblem = 26;
+      loc1.shield = 26;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 6;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 7;
+      loc1.punch_pow_low = 30;
+      loc1.punch_pow_medium = 36;
+      loc1.punch_pow_high = 42;
+      loc1.punch_pow_max = 48;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 15;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.magic_pow = 20;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_FIRE] = 60;
+      loc1.resists[DMG_ELEC] = 60;
+      loc1.resists[DMG_POISON] = 90;
+      loc1.resists[DMG_ICE] = 60;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.resists[DMG_MELEE] = 55;
-         _loc1_.resists[DMG_FIRE] = 65;
-         _loc1_.resists[DMG_ELEC] = 65;
-         _loc1_.resists[DMG_POISON] = 95;
-         _loc1_.resists[DMG_ICE] = 65;
-         _loc1_.punch_pow_low *= 1.75;
-         _loc1_.punch_pow_medium *= 1.75;
-         _loc1_.punch_pow_high *= 1.75;
-         _loc1_.punch_pow_max *= 1.75;
-         _loc1_.arrow_pow *= 2;
-         _loc1_.magic_pow *= 1.75;
-         _loc1_.aggressiveness = 7;
+         loc1.resists[DMG_MELEE] = 55;
+         loc1.resists[DMG_FIRE] = 65;
+         loc1.resists[DMG_ELEC] = 65;
+         loc1.resists[DMG_POISON] = 95;
+         loc1.resists[DMG_ICE] = 65;
+         loc1.punch_pow_low *= 1.75;
+         loc1.punch_pow_medium *= 1.75;
+         loc1.punch_pow_high *= 1.75;
+         loc1.punch_pow_max *= 1.75;
+         loc1.arrow_pow *= 2;
+         loc1.magic_pow *= 1.75;
+         loc1.aggressiveness = 7;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnFencer(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(190);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(190);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 18;
+            loc1.weapon = 18;
             break;
          case 1:
-            _loc1_.weapon = 18;
+            loc1.weapon = 18;
             break;
          case 2:
-            _loc1_.weapon = 6;
+            loc1.weapon = 6;
             break;
          default:
-            _loc1_.weapon = 5;
+            loc1.weapon = 5;
       }
-      _loc1_.helmet = 9;
-      _loc1_.emblem = 9;
-      _loc1_.shield = 9;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_EnemyQuickBomb;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 10;
-      _loc1_.hop_timer = random(100);
-      _loc1_.aggressiveness = 4;
-      _loc1_.punch_pow_low = 32;
-      _loc1_.punch_pow_medium = 35;
-      _loc1_.punch_pow_high = 38;
-      _loc1_.punch_pow_max = 41;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 35;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      _loc1_.magic_pow = 35;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_FIRE] = 50;
-      _loc1_.resists[DMG_ELEC] = 70;
-      _loc1_.resists[DMG_POISON] = 50;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1.helmet = 9;
+      loc1.emblem = 9;
+      loc1.shield = 9;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_EnemyQuickBomb;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 10;
+      loc1.hop_timer = random(100);
+      loc1.aggressiveness = 4;
+      loc1.punch_pow_low = 32;
+      loc1.punch_pow_medium = 35;
+      loc1.punch_pow_high = 38;
+      loc1.punch_pow_max = 41;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 35;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      loc1.magic_pow = 35;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_FIRE] = 50;
+      loc1.resists[DMG_ELEC] = 70;
+      loc1.resists[DMG_POISON] = 50;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 30;
-         _loc1_.magic_wait = 40 + random(40);
-         _loc1_.magic_splash = 4;
-         _loc1_.magic_air = 4;
-         _loc1_.aggressiveness = 5;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += f_SetEnemyHealth(40);
+         loc1.magician = true;
+         loc1.magic_delay = 30;
+         loc1.magic_wait = 40 + random(40);
+         loc1.magic_splash = 4;
+         loc1.magic_air = 4;
+         loc1.aggressiveness = 5;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += f_SetEnemyHealth(40);
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnIndustrialist(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(220);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(220);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 27;
+            loc1.weapon = 27;
             break;
          case 1:
-            _loc1_.weapon = 27;
+            loc1.weapon = 27;
             break;
          case 2:
-            _loc1_.weapon = 62;
+            loc1.weapon = 62;
             break;
          default:
-            _loc1_.weapon = 27;
+            loc1.weapon = 27;
       }
-      _loc1_.helmet = 11;
-      _loc1_.emblem = 11;
-      _loc1_.shield = 11;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_EnemyQuickBomb;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 6;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 8;
-      _loc1_.punch_pow_low = 40;
-      _loc1_.punch_pow_medium = 45;
-      _loc1_.punch_pow_high = 50;
-      _loc1_.punch_pow_max = 55;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 25;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      _loc1_.magic_pow = 40;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 60;
-      _loc1_.resists[DMG_FIRE] = 60;
-      _loc1_.resists[DMG_ELEC] = 60;
-      _loc1_.resists[DMG_POISON] = 40;
-      _loc1_.resists[DMG_ICE] = 40;
+      loc1.helmet = 11;
+      loc1.emblem = 11;
+      loc1.shield = 11;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_EnemyQuickBomb;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 6;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 8;
+      loc1.punch_pow_low = 40;
+      loc1.punch_pow_medium = 45;
+      loc1.punch_pow_high = 50;
+      loc1.punch_pow_max = 55;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 25;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      loc1.magic_pow = 40;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 60;
+      loc1.resists[DMG_FIRE] = 60;
+      loc1.resists[DMG_ELEC] = 60;
+      loc1.resists[DMG_POISON] = 40;
+      loc1.resists[DMG_ICE] = 40;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 30;
-         _loc1_.magic_wait = 40 + random(40);
-         _loc1_.magic_splash = 4;
-         _loc1_.magic_air = 4;
-         _loc1_.aggressiveness = 5;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += f_SetEnemyHealth(40);
+         loc1.magician = true;
+         loc1.magic_delay = 30;
+         loc1.magic_wait = 40 + random(40);
+         loc1.magic_splash = 4;
+         loc1.magic_air = 4;
+         loc1.aggressiveness = 5;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += f_SetEnemyHealth(40);
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnBrute(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(250);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(250);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 12;
+            loc1.weapon = 12;
             break;
          case 1:
-            _loc1_.weapon = 12;
+            loc1.weapon = 12;
             break;
          case 2:
-            _loc1_.weapon = 13;
+            loc1.weapon = 13;
             break;
          default:
-            _loc1_.weapon = 13;
+            loc1.weapon = 13;
       }
-      _loc1_.helmet = 14;
-      _loc1_.emblem = 14;
-      _loc1_.shield = 14;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_EnemyQuickBomb;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 4;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 7;
-      _loc1_.punch_pow_low = 40;
-      _loc1_.punch_pow_medium = 45;
-      _loc1_.punch_pow_high = 50;
-      _loc1_.punch_pow_max = 55;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 30;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      _loc1_.magic_pow = 20;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 80;
-      _loc1_.resists[DMG_FIRE] = 50;
-      _loc1_.resists[DMG_ELEC] = 50;
-      _loc1_.resists[DMG_POISON] = 50;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1.helmet = 14;
+      loc1.emblem = 14;
+      loc1.shield = 14;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_EnemyQuickBomb;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 4;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 7;
+      loc1.punch_pow_low = 40;
+      loc1.punch_pow_medium = 45;
+      loc1.punch_pow_high = 50;
+      loc1.punch_pow_max = 55;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 30;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      loc1.magic_pow = 20;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 80;
+      loc1.resists[DMG_FIRE] = 50;
+      loc1.resists[DMG_ELEC] = 50;
+      loc1.resists[DMG_POISON] = 50;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnNinja(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(150);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(150);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      _loc1_.weapon = 50;
-      _loc1_.helmet = 28;
-      _loc1_.emblem = 28;
-      _loc1_.shield = 28;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_JumpKickInit;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_hitreaction = f_NinjaWarp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 4;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 10;
-      _loc1_.punch_pow_low = 12;
-      _loc1_.punch_pow_medium = 18;
-      _loc1_.punch_pow_high = 24;
-      _loc1_.punch_pow_max = 30;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 25;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.magic_pow = 25;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_FIRE] = 55;
-      _loc1_.resists[DMG_ELEC] = 55;
-      _loc1_.resists[DMG_POISON] = 55;
-      _loc1_.resists[DMG_ICE] = 55;
+      loc1.weapon = 50;
+      loc1.helmet = 28;
+      loc1.emblem = 28;
+      loc1.shield = 28;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_JumpKickInit;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_hitreaction = f_NinjaWarp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 4;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 10;
+      loc1.punch_pow_low = 12;
+      loc1.punch_pow_medium = 18;
+      loc1.punch_pow_high = 24;
+      loc1.punch_pow_max = 30;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 25;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.magic_pow = 25;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_FIRE] = 55;
+      loc1.resists[DMG_ELEC] = 55;
+      loc1.resists[DMG_POISON] = 55;
+      loc1.resists[DMG_ICE] = 55;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnBeetle(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(230);
-   var _loc1_ = f_SpawnEnemy("e_beetle",x,y,_loc2_,total_beetles);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(230);
+   var loc1 = f_SpawnEnemy("e_beetle",x,y,loc2,total_beetles);
+   if(loc1)
    {
-      _loc1_._xscale = random(20) + 90;
-      _loc1_._yscale = random(20) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_Character = f_Beetle;
-      _loc1_.fp_Ranged = undefined;
-      _loc1_.fp_Jab = f_BeetleAttack;
-      _loc1_.fp_Fierce = f_BeetleAttack;
-      _loc1_.fp_ExtremeDeath1 = undefined;
-      _loc1_.fp_PunchHit = f_EnemyAttack;
-      _loc1_.fp_Hit1 = f_HitBeetle;
-      _loc1_.fp_Hit2 = f_HitBeetle;
-      _loc1_.fp_Hit3 = f_HitBeetle;
-      _loc1_.fp_Juggle = f_HitBeetle;
-      _loc1_.arrowhit_function = f_HitBeetle;
-      _loc1_.blocks = false;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 4;
-      _loc1_.punch_pow_low = 18;
-      _loc1_.punch_pow_medium = 24;
-      _loc1_.punch_pow_high = 30;
-      _loc1_.punch_pow_max = 36;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 120;
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_POISON] = 50;
-      _loc1_.resists[DMG_FIRE] = 70;
-      _loc1_.resists[DMG_ELEC] = 70;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1._xscale = random(20) + 90;
+      loc1._yscale = random(20) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_Character = f_Beetle;
+      loc1.fp_Ranged = undefined;
+      loc1.fp_Jab = f_BeetleAttack;
+      loc1.fp_Fierce = f_BeetleAttack;
+      loc1.fp_ExtremeDeath1 = undefined;
+      loc1.fp_PunchHit = f_EnemyAttack;
+      loc1.fp_Hit1 = f_HitBeetle;
+      loc1.fp_Hit2 = f_HitBeetle;
+      loc1.fp_Hit3 = f_HitBeetle;
+      loc1.fp_Juggle = f_HitBeetle;
+      loc1.arrowhit_function = f_HitBeetle;
+      loc1.blocks = false;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 4;
+      loc1.punch_pow_low = 18;
+      loc1.punch_pow_medium = 24;
+      loc1.punch_pow_high = 30;
+      loc1.punch_pow_max = 36;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 120;
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_POISON] = 50;
+      loc1.resists[DMG_FIRE] = 70;
+      loc1.resists[DMG_ELEC] = 70;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.mode = 1;
-      _loc1_.mode_timer = 90 + random(60);
-      _loc1_.h = 100;
-      _loc1_.w = 100;
-      _loc1_.humanoid = false;
-      _loc1_.hit_number = 0;
-      _loc1_.grab = false;
-      _loc1_.dash_timer = random(200);
+      f_SetEnemyPow(loc1);
+      loc1.mode = 1;
+      loc1.mode_timer = 90 + random(60);
+      loc1.h = 100;
+      loc1.w = 100;
+      loc1.humanoid = false;
+      loc1.hit_number = 0;
+      loc1.grab = false;
+      loc1.dash_timer = random(200);
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnChainmail(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(220);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(220);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      _loc1_.weapon = 15;
-      _loc1_.helmet = 17;
-      _loc1_.emblem = 17;
-      _loc1_.shield = 17;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_EnemyQuickBomb;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 6;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 7;
-      _loc1_.punch_pow_low = 30;
-      _loc1_.punch_pow_medium = 35;
-      _loc1_.punch_pow_high = 41;
-      _loc1_.punch_pow_max = 45;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      _loc1_.magic_pow = 40;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 70;
-      _loc1_.resists[DMG_POISON] = 40;
-      _loc1_.resists[DMG_FIRE] = 40;
-      _loc1_.resists[DMG_ELEC] = 40;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1.weapon = 15;
+      loc1.helmet = 17;
+      loc1.emblem = 17;
+      loc1.shield = 17;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_EnemyQuickBomb;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 6;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 7;
+      loc1.punch_pow_low = 30;
+      loc1.punch_pow_medium = 35;
+      loc1.punch_pow_high = 41;
+      loc1.punch_pow_max = 45;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      loc1.magic_pow = 40;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 70;
+      loc1.resists[DMG_POISON] = 40;
+      loc1.resists[DMG_FIRE] = 40;
+      loc1.resists[DMG_ELEC] = 40;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 90;
-         _loc1_.magic_wait = 60 + random(60);
-         _loc1_.magic_splash = 1;
-         _loc1_.speed = _loc1_.speed + 1;
+         loc1.magician = true;
+         loc1.magic_delay = 90;
+         loc1.magic_wait = 60 + random(60);
+         loc1.magic_splash = 1;
+         loc1.speed = loc1.speed + 1;
       }
       if(enemy_level > 2)
       {
-         _loc1_.aggressiveness = 6;
-         _loc1_.magic_air = 2;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += f_SetEnemyHealth(20);
+         loc1.aggressiveness = 6;
+         loc1.magic_air = 2;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += f_SetEnemyHealth(20);
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnAlien(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = 1;
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = 1;
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      _loc1_.weapon = 47;
-      _loc1_.helmet = 12;
-      _loc1_.emblem = 12;
-      _loc1_.shield = 12;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_AlienWalk;
-      _loc1_.fp_Ranged = f_ShootAlienGun;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.hop_timer = random(120);
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 8;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 30;
-      _loc1_.magic_pow = 8;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 50;
-      _loc1_.resists[DMG_POISON] = 50;
-      _loc1_.resists[DMG_FIRE] = 50;
-      _loc1_.resists[DMG_ELEC] = 50;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1.weapon = 47;
+      loc1.helmet = 12;
+      loc1.emblem = 12;
+      loc1.shield = 12;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_AlienWalk;
+      loc1.fp_Ranged = f_ShootAlienGun;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.hop_timer = random(120);
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 8;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 30;
+      loc1.magic_pow = 8;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 50;
+      loc1.resists[DMG_POISON] = 50;
+      loc1.resists[DMG_FIRE] = 50;
+      loc1.resists[DMG_ELEC] = 50;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnSaracen(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(190);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(190);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      _loc1_.weapon = 15;
-      _loc1_.helmet = 16;
-      _loc1_.emblem = 16;
-      _loc1_.shield = 16;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 7;
-      _loc1_.hop_timer = random(150);
-      _loc1_.aggressiveness = 5;
-      _loc1_.punch_pow_low = 35;
-      _loc1_.punch_pow_medium = 37;
-      _loc1_.punch_pow_high = 41;
-      _loc1_.punch_pow_max = 45;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 45;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 70;
-      _loc1_.magic_pow = 50;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 60;
-      _loc1_.resists[DMG_POISON] = 60;
-      _loc1_.resists[DMG_FIRE] = 60;
-      _loc1_.resists[DMG_ELEC] = 50;
-      _loc1_.resists[DMG_ICE] = 40;
+      loc1.weapon = 15;
+      loc1.helmet = 16;
+      loc1.emblem = 16;
+      loc1.shield = 16;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 7;
+      loc1.hop_timer = random(150);
+      loc1.aggressiveness = 5;
+      loc1.punch_pow_low = 35;
+      loc1.punch_pow_medium = 37;
+      loc1.punch_pow_high = 41;
+      loc1.punch_pow_max = 45;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 45;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 70;
+      loc1.magic_pow = 50;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 60;
+      loc1.resists[DMG_POISON] = 60;
+      loc1.resists[DMG_FIRE] = 60;
+      loc1.resists[DMG_ELEC] = 50;
+      loc1.resists[DMG_ICE] = 40;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 90;
-         _loc1_.magic_wait = 60 + random(60);
-         _loc1_.magic_splash = 1;
-         _loc1_.aggressiveness = 8;
-         _loc1_.speed = _loc1_.speed + 1;
+         loc1.magician = true;
+         loc1.magic_delay = 90;
+         loc1.magic_wait = 60 + random(60);
+         loc1.magic_splash = 1;
+         loc1.aggressiveness = 8;
+         loc1.speed = loc1.speed + 1;
       }
       if(enemy_level > 2)
       {
-         _loc1_.aggressiveness = 5;
-         _loc1_.magic_air = 2;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += f_SetEnemyHealth(20);
+         loc1.aggressiveness = 5;
+         loc1.magic_air = 2;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += f_SetEnemyHealth(20);
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnSnakey(x, y, enemy_level)
 {
-   var _loc3_ = new Object();
-   _loc3_.speed = 2 + random(30) / 10;
-   _loc3_.health_max = f_SetEnemyHealth(250);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc3_,total_enemies);
-   if(_loc1_)
+   var loc3 = new Object();
+   loc3.speed = 2 + random(30) / 10;
+   loc3.health_max = f_SetEnemyHealth(250);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc3,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 33;
+            loc1.weapon = 33;
             break;
          case 1:
-            _loc1_.weapon = 14;
+            loc1.weapon = 14;
             break;
          case 2:
-            _loc1_.weapon = 8;
+            loc1.weapon = 8;
             break;
          default:
-            _loc1_.weapon = 33;
+            loc1.weapon = 33;
       }
-      _loc1_.helmet = 15;
-      _loc1_.emblem = 15;
-      _loc1_.shield = 15;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 8;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 7;
-      _loc1_.punch_pow_low = 36;
-      _loc1_.punch_pow_medium = 39;
-      _loc1_.punch_pow_high = 43;
-      _loc1_.punch_pow_max = 47;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 35;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 80;
-      _loc1_.magic_pow = 50;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 55;
-      _loc1_.resists[DMG_POISON] = 70;
-      _loc1_.resists[DMG_FIRE] = 40;
-      _loc1_.resists[DMG_ELEC] = 60;
-      _loc1_.resists[DMG_ICE] = 50;
+      loc1.helmet = 15;
+      loc1.emblem = 15;
+      loc1.shield = 15;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 8;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 7;
+      loc1.punch_pow_low = 36;
+      loc1.punch_pow_medium = 39;
+      loc1.punch_pow_high = 43;
+      loc1.punch_pow_max = 47;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 35;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 80;
+      loc1.magic_pow = 50;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 55;
+      loc1.resists[DMG_POISON] = 70;
+      loc1.resists[DMG_FIRE] = 40;
+      loc1.resists[DMG_ELEC] = 60;
+      loc1.resists[DMG_ICE] = 50;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 90;
-         _loc1_.magic_wait = 60 + random(60);
-         _loc1_.magic_splash = 1;
-         _loc1_.aggressiveness = 7;
-         _loc1_.magic_chain = 4;
-         _loc1_.speed = _loc1_.speed + 1;
+         loc1.magician = true;
+         loc1.magic_delay = 90;
+         loc1.magic_wait = 60 + random(60);
+         loc1.magic_splash = 1;
+         loc1.aggressiveness = 7;
+         loc1.magic_chain = 4;
+         loc1.speed = loc1.speed + 1;
       }
       if(enemy_level > 2)
       {
-         _loc1_.aggressiveness = 6;
-         _loc1_.magic_air = 2;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += 20;
+         loc1.aggressiveness = 6;
+         loc1.magic_air = 2;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += 20;
       }
       if(enemy_level > 3)
       {
-         _loc1_.resists[DMG_POISON] = 75;
-         _loc1_.resists[DMG_FIRE] = 50;
-         _loc1_.resists[DMG_ELEC] = 70;
-         _loc1_.resists[DMG_ICE] = 60;
+         loc1.resists[DMG_POISON] = 75;
+         loc1.resists[DMG_FIRE] = 50;
+         loc1.resists[DMG_ELEC] = 70;
+         loc1.resists[DMG_ICE] = 60;
       }
       if(enemy_level > 4)
       {
-         _loc1_.aggressiveness = 5;
-         _loc1_.magic_pow = 60;
+         loc1.aggressiveness = 5;
+         loc1.magic_pow = 60;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
-      _loc1_.weightplus = 1;
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      f_SetEnemyPow(loc1);
+      loc1.weightplus = 1;
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnFish(x, y, enemy_level)
 {
-   var _loc3_ = new Object();
-   _loc3_.speed = 2 + random(30) / 10;
-   _loc3_.health_max = f_SetEnemyHealth(300);
-   var _loc2_ = f_SpawnEnemy("e_fish",x,y,_loc3_,total_fish);
-   if(_loc2_)
+   var loc3 = new Object();
+   loc3.speed = 2 + random(30) / 10;
+   loc3.health_max = f_SetEnemyHealth(300);
+   var loc2 = f_SpawnEnemy("e_fish",x,y,loc3,total_fish);
+   if(loc2)
    {
-      _loc2_._xscale = random(15) + 90;
-      _loc2_._yscale = random(15) + 90;
-      _loc2_.fp_StandSettings = f_KidSettings;
-      _loc2_.fp_Character = f_Fish;
-      _loc2_.fp_Ranged = f_FishDive;
-      _loc2_.dash_timer = random(200);
-      _loc2_.fp_PunchHit = f_EnemyAttack;
-      _loc2_.fp_Jab = f_FishAttack;
-      _loc2_.fp_Fierce = f_FishAttack;
-      _loc2_.fp_ExtremeDeath1 = undefined;
-      _loc2_.fp_Hit1 = f_HitFish;
-      _loc2_.fp_Hit2 = f_HitFish;
-      _loc2_.fp_Hit3 = f_HitFish;
-      _loc2_.fp_Juggle = f_HitFish;
-      _loc2_.arrowhit_function = f_HitFish;
-      _loc2_.blocks = false;
-      _loc2_.hop_timer = random(200);
-      _loc2_.punch_pow_low = 45;
-      _loc2_.punch_pow_medium = 45;
-      _loc2_.punch_pow_high = 45;
-      _loc2_.punch_pow_max = 45;
-      _loc2_.arrow_speed_y = -10;
-      _loc2_.arrow_speed_x = 20;
-      _loc2_.arrow_gravity = 2;
-      _loc2_.shot_timer_default = 120;
-      _loc2_.resists[DMG_MELEE] = 60;
-      _loc2_.resists[DMG_POISON] = 50;
-      _loc2_.resists[DMG_FIRE] = 30;
-      _loc2_.resists[DMG_ELEC] = 40;
-      _loc2_.resists[DMG_ICE] = 40;
+      loc2._xscale = random(15) + 90;
+      loc2._yscale = random(15) + 90;
+      loc2.fp_StandSettings = f_KidSettings;
+      loc2.fp_Character = f_Fish;
+      loc2.fp_Ranged = f_FishDive;
+      loc2.dash_timer = random(200);
+      loc2.fp_PunchHit = f_EnemyAttack;
+      loc2.fp_Jab = f_FishAttack;
+      loc2.fp_Fierce = f_FishAttack;
+      loc2.fp_ExtremeDeath1 = undefined;
+      loc2.fp_Hit1 = f_HitFish;
+      loc2.fp_Hit2 = f_HitFish;
+      loc2.fp_Hit3 = f_HitFish;
+      loc2.fp_Juggle = f_HitFish;
+      loc2.arrowhit_function = f_HitFish;
+      loc2.blocks = false;
+      loc2.hop_timer = random(200);
+      loc2.punch_pow_low = 45;
+      loc2.punch_pow_medium = 45;
+      loc2.punch_pow_high = 45;
+      loc2.punch_pow_max = 45;
+      loc2.arrow_speed_y = -10;
+      loc2.arrow_speed_x = 20;
+      loc2.arrow_gravity = 2;
+      loc2.shot_timer_default = 120;
+      loc2.resists[DMG_MELEE] = 60;
+      loc2.resists[DMG_POISON] = 50;
+      loc2.resists[DMG_FIRE] = 30;
+      loc2.resists[DMG_ELEC] = 40;
+      loc2.resists[DMG_ICE] = 40;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
-      _loc2_.h = 100;
-      _loc2_.w = 100;
-      _loc2_.damage_all = false;
-      _loc2_.tossable = false;
-      _loc2_.humanoid = false;
-      _loc2_.hit_number = 0;
-      _loc2_.haswall = false;
-      _loc2_.grab = false;
+      loc2.h = 100;
+      loc2.w = 100;
+      loc2.damage_all = false;
+      loc2.tossable = false;
+      loc2.humanoid = false;
+      loc2.hit_number = 0;
+      loc2.haswall = false;
+      loc2.grab = false;
       if(level == 3)
       {
-         _loc2_.speed = 7 + random(2);
+         loc2.speed = 7 + random(2);
       }
       else if(level == 32)
       {
-         _root.loader.f_SetInWater(_loc2_);
+         _root.loader.f_SetInWater(loc2);
       }
       if(_root.insane_mode == true)
       {
-         _loc2_.attack_pow *= 5;
-         _loc2_.punch_pow_low *= 5;
-         _loc2_.punch_pow_medium *= 5;
-         _loc2_.punch_pow_high *= 5;
-         _loc2_.punch_pow_max *= 5;
-         _loc2_.arrow_pow *= 5;
-         _loc2_.magic_pow *= 5;
-         if(_loc2_.aggressiveness > 3)
+         loc2.attack_pow *= 5;
+         loc2.punch_pow_low *= 5;
+         loc2.punch_pow_medium *= 5;
+         loc2.punch_pow_high *= 5;
+         loc2.punch_pow_max *= 5;
+         loc2.arrow_pow *= 5;
+         loc2.magic_pow *= 5;
+         if(loc2.aggressiveness > 3)
          {
-            _loc2_.aggressiveness -= 2;
+            loc2.aggressiveness -= 2;
          }
-         _loc2_.speed *= 1.25;
-         if(_loc2_.speed > 12)
+         loc2.speed *= 1.25;
+         if(loc2.speed > 12)
          {
-            _loc2_.speed = 12;
+            loc2.speed = 12;
          }
       }
    }
-   return _loc2_;
+   return loc2;
 }
 function f_SpawnStoveFace(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(330);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(330);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
+      var loc4 = int(random(4));
       var _loc0_ = null;
-      if((_loc0_ = _loc4_) !== 0)
+      if((_loc0_ = loc4) !== 0)
       {
-         _loc1_.weapon = 6;
+         loc1.weapon = 6;
       }
       else
       {
-         _loc1_.weapon = 7;
+         loc1.weapon = 7;
       }
-      _loc1_.helmet = 18;
-      _loc1_.emblem = 23;
-      _loc1_.shield = 21;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.block_odds = 4;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 7;
-      _loc1_.punch_pow_low = 50;
-      _loc1_.punch_pow_medium = 56;
-      _loc1_.punch_pow_high = 62;
-      _loc1_.punch_pow_max = 70;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 55;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 80;
-      _loc1_.magic_pow = 40;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 65;
-      _loc1_.resists[DMG_POISON] = 50;
-      _loc1_.resists[DMG_FIRE] = 60;
-      _loc1_.resists[DMG_ELEC] = 50;
-      _loc1_.resists[DMG_ICE] = 60;
+      loc1.helmet = 18;
+      loc1.emblem = 23;
+      loc1.shield = 21;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.block_odds = 4;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 7;
+      loc1.punch_pow_low = 50;
+      loc1.punch_pow_medium = 56;
+      loc1.punch_pow_high = 62;
+      loc1.punch_pow_max = 70;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 55;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 80;
+      loc1.magic_pow = 40;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 65;
+      loc1.resists[DMG_POISON] = 50;
+      loc1.resists[DMG_FIRE] = 60;
+      loc1.resists[DMG_ELEC] = 50;
+      loc1.resists[DMG_ICE] = 60;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 90;
-         _loc1_.magic_wait = 60 + random(60);
-         _loc1_.magic_splash = 1;
-         _loc1_.magic_chain = 4;
-         _loc1_.speed = _loc1_.speed + 1;
+         loc1.magician = true;
+         loc1.magic_delay = 90;
+         loc1.magic_wait = 60 + random(60);
+         loc1.magic_splash = 1;
+         loc1.magic_chain = 4;
+         loc1.speed = loc1.speed + 1;
       }
       if(enemy_level > 2)
       {
-         _loc1_.aggressiveness = 6;
-         _loc1_.magic_air = 2;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += 20;
+         loc1.aggressiveness = 6;
+         loc1.magic_air = 2;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += 20;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
+      f_SetEnemyPow(loc1);
       if(insane_mode == true)
       {
-         _loc1_.attack_pow *= 0.5;
-         _loc1_.punch_pow_low *= 0.5;
-         _loc1_.punch_pow_medium *= 0.5;
-         _loc1_.punch_pow_high *= 0.5;
-         _loc1_.punch_pow_max *= 0.5;
-         _loc1_.arrow_pow *= 0.5;
-         _loc1_.magic_pow *= 0.5;
+         loc1.attack_pow *= 0.5;
+         loc1.punch_pow_low *= 0.5;
+         loc1.punch_pow_medium *= 0.5;
+         loc1.punch_pow_high *= 0.5;
+         loc1.punch_pow_max *= 0.5;
+         loc1.arrow_pow *= 0.5;
+         loc1.magic_pow *= 0.5;
       }
-      _loc1_.weightplus = 1;
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      loc1.weightplus = 1;
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnEskimo(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(330);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(330);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
+      var loc4 = int(random(4));
       var _loc0_ = null;
-      if((_loc0_ = _loc4_) !== 0)
+      if((_loc0_ = loc4) !== 0)
       {
-         _loc1_.weapon = 26;
+         loc1.weapon = 26;
       }
       else
       {
-         _loc1_.weapon = 48;
+         loc1.weapon = 48;
       }
-      _loc1_.helmet = 27;
-      _loc1_.emblem = 27;
-      _loc1_.shield = 27;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootArrow;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 5;
-      _loc1_.punch_pow_low = 30;
-      _loc1_.punch_pow_medium = 35;
-      _loc1_.punch_pow_high = 40;
-      _loc1_.punch_pow_max = 45;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 40;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      _loc1_.magic_pow = 30;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 60;
-      _loc1_.resists[DMG_POISON] = 50;
-      _loc1_.resists[DMG_FIRE] = 50;
-      _loc1_.resists[DMG_ELEC] = 50;
-      _loc1_.resists[DMG_ICE] = 70;
+      loc1.helmet = 27;
+      loc1.emblem = 27;
+      loc1.shield = 27;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootArrow;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 5;
+      loc1.punch_pow_low = 30;
+      loc1.punch_pow_medium = 35;
+      loc1.punch_pow_high = 40;
+      loc1.punch_pow_max = 45;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 40;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      loc1.magic_pow = 30;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 60;
+      loc1.resists[DMG_POISON] = 50;
+      loc1.resists[DMG_FIRE] = 50;
+      loc1.resists[DMG_ELEC] = 50;
+      loc1.resists[DMG_ICE] = 70;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 30;
-         _loc1_.magic_wait = 60 + random(60);
-         _loc1_.magic_bullet = 1;
-         _loc1_.aggressiveness = 6;
-         _loc1_.speed = _loc1_.speed + 1;
+         loc1.magician = true;
+         loc1.magic_delay = 30;
+         loc1.magic_wait = 60 + random(60);
+         loc1.magic_bullet = 1;
+         loc1.aggressiveness = 6;
+         loc1.speed = loc1.speed + 1;
       }
       if(enemy_level > 2)
       {
-         _loc1_.aggressiveness = 5;
-         _loc1_.magic_air = 4;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += 50;
+         loc1.aggressiveness = 5;
+         loc1.magic_air = 4;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += 50;
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
+      f_SetEnemyPow(loc1);
       if(insane_mode == true)
       {
-         _loc1_.attack_pow *= 0.5;
-         _loc1_.punch_pow_low *= 0.5;
-         _loc1_.punch_pow_medium *= 0.5;
-         _loc1_.punch_pow_high *= 0.5;
-         _loc1_.punch_pow_max *= 0.5;
-         _loc1_.arrow_pow *= 0.5;
-         _loc1_.magic_pow *= 0.5;
+         loc1.attack_pow *= 0.5;
+         loc1.punch_pow_low *= 0.5;
+         loc1.punch_pow_medium *= 0.5;
+         loc1.punch_pow_high *= 0.5;
+         loc1.punch_pow_max *= 0.5;
+         loc1.arrow_pow *= 0.5;
+         loc1.magic_pow *= 0.5;
       }
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnCultist(x, y, enemy_level)
 {
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(190);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(190);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 68;
+            loc1.weapon = 68;
             break;
          case 1:
-            _loc1_.weapon = 21;
+            loc1.weapon = 21;
             break;
          case 2:
-            _loc1_.weapon = 13;
+            loc1.weapon = 13;
             break;
          default:
-            _loc1_.weapon = 68;
+            loc1.weapon = 68;
       }
-      _loc1_.helmet = 29;
-      _loc1_.emblem = 29;
-      _loc1_.shield = 29;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_ShootFire;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.blocks = true;
-      _loc1_.hop_timer = random(200);
-      _loc1_.aggressiveness = 6;
-      _loc1_.punch_pow_low = 20;
-      _loc1_.punch_pow_medium = 30;
-      _loc1_.punch_pow_high = 40;
-      _loc1_.punch_pow_max = 50;
-      f_WeaponStats(_loc1_,_loc1_.weapon);
-      _loc1_.arrow_pow = 30;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      _loc1_.magic_pow = 50;
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      _loc1_.resists[DMG_MELEE] = 60;
-      _loc1_.resists[DMG_FIRE] = 100;
-      _loc1_.resists[DMG_ELEC] = 100;
-      _loc1_.resists[DMG_POISON] = 100;
-      _loc1_.resists[DMG_ICE] = 100;
+      loc1.helmet = 29;
+      loc1.emblem = 29;
+      loc1.shield = 29;
+      loc1.e_type = loc1.helmet;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_ShootFire;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.blocks = true;
+      loc1.hop_timer = random(200);
+      loc1.aggressiveness = 6;
+      loc1.punch_pow_low = 20;
+      loc1.punch_pow_medium = 30;
+      loc1.punch_pow_high = 40;
+      loc1.punch_pow_max = 50;
+      f_WeaponStats(loc1,loc1.weapon);
+      loc1.arrow_pow = 30;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      loc1.magic_pow = 50;
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      loc1.resists[DMG_MELEE] = 60;
+      loc1.resists[DMG_FIRE] = 100;
+      loc1.resists[DMG_ELEC] = 100;
+      loc1.resists[DMG_POISON] = 100;
+      loc1.resists[DMG_ICE] = 100;
       if(!enemy_level)
       {
          enemy_level = 1;
       }
       if(enemy_level > 1)
       {
-         _loc1_.magician = true;
-         _loc1_.magic_delay = 90;
-         _loc1_.magic_wait = 60 + random(60);
-         _loc1_.magic_splash = 1;
-         _loc1_.aggressiveness = 5;
-         _loc1_.speed = _loc1_.speed + 1;
+         loc1.magician = true;
+         loc1.magic_delay = 90;
+         loc1.magic_wait = 60 + random(60);
+         loc1.magic_splash = 1;
+         loc1.aggressiveness = 5;
+         loc1.speed = loc1.speed + 1;
       }
       if(enemy_level > 2)
       {
-         _loc1_.aggressiveness = 3;
-         _loc1_.magic_air = 2;
-         _loc1_.speed = _loc1_.speed + 1;
-         _loc1_.health += f_SetEnemyHealth(20);
+         loc1.aggressiveness = 3;
+         loc1.magic_air = 2;
+         loc1.speed = loc1.speed + 1;
+         loc1.health += f_SetEnemyHealth(20);
       }
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      f_SetEnemyPow(_loc1_);
+      f_SetEnemyPow(loc1);
       if(insane_mode == true)
       {
-         _loc1_.attack_pow *= 0.5;
-         _loc1_.punch_pow_low *= 0.5;
-         _loc1_.punch_pow_medium *= 0.5;
-         _loc1_.punch_pow_high *= 0.5;
-         _loc1_.punch_pow_max *= 0.5;
-         _loc1_.arrow_pow *= 0.5;
-         _loc1_.magic_pow *= 0.5;
+         loc1.attack_pow *= 0.5;
+         loc1.punch_pow_low *= 0.5;
+         loc1.punch_pow_medium *= 0.5;
+         loc1.punch_pow_high *= 0.5;
+         loc1.punch_pow_max *= 0.5;
+         loc1.arrow_pow *= 0.5;
+         loc1.magic_pow *= 0.5;
       }
-      _loc1_.arrowplink = true;
-      _loc1_.weightplus = 1;
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
+      loc1.arrowplink = true;
+      loc1.weightplus = 1;
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnEvilKnight(x, y, enemy_level)
 {
@@ -7576,69 +7606,69 @@ function f_SpawnEvilKnight(x, y, enemy_level)
    {
       enemy_level = 1;
    }
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(50);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(50);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_EnemyQuickBomb;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.blocks = true;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.arrowplink = true;
-      _loc1_.shot_timer_default = 60;
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_EnemyQuickBomb;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.blocks = true;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.arrowplink = true;
+      loc1.shot_timer_default = 60;
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 57;
+            loc1.weapon = 57;
             break;
          case 1:
-            _loc1_.weapon = 31;
+            loc1.weapon = 31;
             break;
          case 2:
-            _loc1_.weapon = 35;
+            loc1.weapon = 35;
             break;
          default:
-            _loc1_.weapon = 57;
+            loc1.weapon = 57;
       }
-      _loc1_.helmet = 21;
-      _loc1_.emblem = 21;
-      _loc1_.shield = 21;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_.hop_timer = random(200);
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      f_WeaponStats(_loc1_,_loc1_.weapon);
+      loc1.helmet = 21;
+      loc1.emblem = 21;
+      loc1.shield = 21;
+      loc1.e_type = loc1.helmet;
+      loc1.hop_timer = random(200);
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      f_WeaponStats(loc1,loc1.weapon);
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      _loc1_.weight = 6;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
-      f_SetEnemyPow(_loc1_);
+      loc1.weight = 6;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
+      f_SetEnemyPow(loc1);
       if(insane_mode == true)
       {
-         _loc1_.attack_pow *= 0.5;
-         _loc1_.punch_pow_low *= 0.5;
-         _loc1_.punch_pow_medium *= 0.5;
-         _loc1_.punch_pow_high *= 0.5;
-         _loc1_.punch_pow_max *= 0.5;
-         _loc1_.arrow_pow *= 0.5;
-         _loc1_.magic_pow *= 0.5;
+         loc1.attack_pow *= 0.5;
+         loc1.punch_pow_low *= 0.5;
+         loc1.punch_pow_medium *= 0.5;
+         loc1.punch_pow_high *= 0.5;
+         loc1.punch_pow_max *= 0.5;
+         loc1.arrow_pow *= 0.5;
+         loc1.magic_pow *= 0.5;
       }
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnWizard(x, y, enemy_level)
 {
@@ -7646,57 +7676,57 @@ function f_SpawnWizard(x, y, enemy_level)
    {
       enemy_level = 1;
    }
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(50);
-   var _loc1_ = f_SpawnEnemy("e_human",x,y,_loc2_,total_enemies);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(50);
+   var loc1 = f_SpawnEnemy("e_human",x,y,loc2,total_enemies);
+   if(loc1)
    {
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_MidAttack = f_NPCMidJump;
-      _loc1_.fp_Character = f_DasherWalk;
-      _loc1_.fp_Ranged = f_EnemyQuickBomb;
-      _loc1_.fp_GetUpAction = f_EnemyGetUp;
-      _loc1_.blocks = true;
-      _loc1_.fp_BlockFunction = f_EnemyCheckBlock;
-      _loc1_.arrow_speed_y = -10;
-      _loc1_.arrow_speed_x = 20;
-      _loc1_.arrow_gravity = 2;
-      _loc1_.shot_timer_default = 60;
-      var _loc4_ = int(random(4));
-      switch(_loc4_)
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_MidAttack = f_NPCMidJump;
+      loc1.fp_Character = f_DasherWalk;
+      loc1.fp_Ranged = f_EnemyQuickBomb;
+      loc1.fp_GetUpAction = f_EnemyGetUp;
+      loc1.blocks = true;
+      loc1.fp_BlockFunction = f_EnemyCheckBlock;
+      loc1.arrow_speed_y = -10;
+      loc1.arrow_speed_x = 20;
+      loc1.arrow_gravity = 2;
+      loc1.shot_timer_default = 60;
+      var loc4 = int(random(4));
+      switch(loc4)
       {
          case 0:
-            _loc1_.weapon = 43;
+            loc1.weapon = 43;
             break;
          case 1:
-            _loc1_.weapon = 43;
+            loc1.weapon = 43;
             break;
          case 2:
-            _loc1_.weapon = 43;
+            loc1.weapon = 43;
             break;
          default:
-            _loc1_.weapon = 43;
+            loc1.weapon = 43;
       }
-      _loc1_.helmet = 22;
-      _loc1_.emblem = 21;
-      _loc1_.shield = 21;
-      _loc1_.e_type = _loc1_.helmet;
-      _loc1_.hop_timer = random(200);
-      f_SetPlayerMagic(_loc1_,_loc1_.helmet);
-      f_WeaponStats(_loc1_,_loc1_.weapon);
+      loc1.helmet = 22;
+      loc1.emblem = 21;
+      loc1.shield = 21;
+      loc1.e_type = loc1.helmet;
+      loc1.hop_timer = random(200);
+      f_SetPlayerMagic(loc1,loc1.helmet);
+      f_WeaponStats(loc1,loc1.weapon);
       if(enemy_level == 10)
       {
-         f_BadDude(_loc1_);
+         f_BadDude(loc1);
       }
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.random_dash_jump = 5;
-      _loc1_.random_dash_roll = 6;
-      _loc1_.dash_timer = 1;
-      f_SetEnemyPow(_loc1_);
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.random_dash_jump = 5;
+      loc1.random_dash_roll = 6;
+      loc1.dash_timer = 1;
+      f_SetEnemyPow(loc1);
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnTower(x, y, enemy_level)
 {
@@ -7704,54 +7734,54 @@ function f_SpawnTower(x, y, enemy_level)
    {
       enemy_level = 1;
    }
-   var _loc2_ = 1;
-   while(_loc2_ <= total_towers)
+   var loc2 = 1;
+   while(loc2 <= total_towers)
    {
-      var _loc1_ = loader.game.game["e_tower" + _loc2_];
-      if(!_loc1_.active)
+      var loc1 = loader.game.game["e_tower" + loc2];
+      if(!loc1.active)
       {
-         _loc2_ = total_towers + 1;
+         loc2 = total_towers + 1;
       }
       else
       {
-         _loc1_ = undefined;
+         loc1 = undefined;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   _loc1_.x = x;
-   _loc1_.y = y;
-   _loc1_._x = x;
-   _loc1_._y = y;
-   f_Depth(_loc1_,y);
-   _loc1_.haswall = true;
-   _loc1_.active = true;
-   _loc1_.alive = true;
-   _loc1_.h = 100;
-   _loc1_.w = 60;
-   _loc1_.health_max = 50;
-   _loc1_.health = _loc1_.health_max;
-   _loc1_.current_speed = 0;
-   f_UnresponsiveDefaults(_loc1_);
-   _loc1_.fp_Hit1 = f_HitSiegeTower;
-   _loc1_.fp_Hit2 = f_HitSiegeTower;
-   _loc1_.fp_Hit3 = f_HitSiegeTower;
-   _loc1_.fp_Juggle = f_HitSiegeTower;
-   _loc1_.riders = 0;
-   _loc1_.gotoAndStop("walk");
-   f_LargeObjectRanges(_loc1_);
-   f_FlipChar(_loc1_);
-   f_InsertEnemy(_loc1_);
-   var _loc3_ = f_SpawnBarbarian(x - 30,y - 1);
-   if(_loc3_)
+   loc1.x = x;
+   loc1.y = y;
+   loc1._x = x;
+   loc1._y = y;
+   f_Depth(loc1,y);
+   loc1.haswall = true;
+   loc1.active = true;
+   loc1.alive = true;
+   loc1.h = 100;
+   loc1.w = 60;
+   loc1.health_max = 50;
+   loc1.health = loc1.health_max;
+   loc1.current_speed = 0;
+   f_UnresponsiveDefaults(loc1);
+   loc1.fp_Hit1 = f_HitSiegeTower;
+   loc1.fp_Hit2 = f_HitSiegeTower;
+   loc1.fp_Hit3 = f_HitSiegeTower;
+   loc1.fp_Juggle = f_HitSiegeTower;
+   loc1.riders = 0;
+   loc1.gotoAndStop("walk");
+   f_LargeObjectRanges(loc1);
+   f_FlipChar(loc1);
+   f_InsertEnemy(loc1);
+   var loc3 = f_SpawnBarbarian(x - 30,y - 1);
+   if(loc3)
    {
-      _loc3_.gotoAndStop("enemy_archer");
-      _loc3_.body_y = -120;
-      _loc3_.body._y = _loc3_.body_y;
-      _loc3_.vehicle = _loc1_;
-      _loc1_.rider1 = _loc3_;
-      _loc1_.riders = _loc1_.riders + 1;
+      loc3.gotoAndStop("enemy_archer");
+      loc3.body_y = -120;
+      loc3.body._y = loc3.body_y;
+      loc3.vehicle = loc1;
+      loc1.rider1 = loc3;
+      loc1.riders = loc1.riders + 1;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_SpawnBigTroll(x, y, enemy_level)
 {
@@ -7759,38 +7789,38 @@ function f_SpawnBigTroll(x, y, enemy_level)
    {
       enemy_level = 1;
    }
-   var _loc3_ = new Object();
-   _loc3_.speed = 2 + random(30) / 10;
-   _loc3_.health_max = f_SetEnemyHealth(350);
-   var _loc2_ = f_SpawnEnemy("e_trollx",x,y,_loc3_,total_bigtrolls);
-   if(_loc2_)
+   var loc3 = new Object();
+   loc3.speed = 2 + random(30) / 10;
+   loc3.health_max = f_SetEnemyHealth(350);
+   var loc2 = f_SpawnEnemy("e_trollx",x,y,loc3,total_bigtrolls);
+   if(loc2)
    {
-      _loc2_.fp_StandSettings = f_KidSettings;
-      _loc2_.fp_Character = f_BigTrollWalk;
-      _loc2_.fp_Ranged = undefined;
-      _loc2_.dash_timer = random(200);
-      _loc2_.random_dash_jump = undefined;
-      _loc2_.fp_Jab = undefined;
-      _loc2_.fp_Fierce = undefined;
-      _loc2_.fp_ExtremeDeath1 = undefined;
-      _loc2_.prey = f_PickRandomPlayer();
-      _loc2_.blocks = false;
-      _loc2_.grab = false;
-      _loc2_.fp_Juggle = _root.f_Hit1Reaction;
-      _loc2_.tossable = false;
-      _loc2_.chases = false;
-      _loc2_.skiptarget = true;
-      _loc2_.n_width = 70;
-      _loc2_.n_height = 130;
-      _loc2_.w = 70;
-      _loc2_.h = 130;
-      _loc2_.weight = 15;
-      _loc2_.health_cp = _loc2_.health_max - 20;
-      _loc2_.birth_timer = 60;
-      _loc2_._xscale = random(15) + 90;
-      _loc2_._yscale = random(15) + 90;
+      loc2.fp_StandSettings = f_KidSettings;
+      loc2.fp_Character = f_BigTrollWalk;
+      loc2.fp_Ranged = undefined;
+      loc2.dash_timer = random(200);
+      loc2.random_dash_jump = undefined;
+      loc2.fp_Jab = undefined;
+      loc2.fp_Fierce = undefined;
+      loc2.fp_ExtremeDeath1 = undefined;
+      loc2.prey = f_PickRandomPlayer();
+      loc2.blocks = false;
+      loc2.grab = false;
+      loc2.fp_Juggle = _root.f_Hit1Reaction;
+      loc2.tossable = false;
+      loc2.chases = false;
+      loc2.skiptarget = true;
+      loc2.n_width = 70;
+      loc2.n_height = 130;
+      loc2.w = 70;
+      loc2.h = 130;
+      loc2.weight = 15;
+      loc2.health_cp = loc2.health_max - 20;
+      loc2.birth_timer = 60;
+      loc2._xscale = random(15) + 90;
+      loc2._yscale = random(15) + 90;
    }
-   return _loc2_;
+   return loc2;
 }
 function f_Slime(zone)
 {
@@ -7848,18 +7878,18 @@ function f_HitSlime(zone)
       zone.captor.fp_StandAnim(zone.captor);
       zone.captor = undefined;
    }
-   var _loc4_ = 1;
-   while(_loc4_ <= 2)
+   var loc4 = 1;
+   while(loc4 <= 2)
    {
-      var _loc2_ = f_FX(zone.x + random(25) - 50,zone.y,int(zone.y) + 1,"slime_glob",100,100);
-      _loc2_.speed_x = random(8) - 2;
-      _loc2_.speed_y = - (random(4) + 9);
-      _loc2_.gravity = random(2) + 1;
-      _loc2_.bounces = 0;
-      _loc2_.bounces_max = 1;
-      _loc2_.body._y = zone.body_y - 30;
-      _loc2_.hit_function = f_ShrapnelBounce;
-      _loc4_ = _loc4_ + 1;
+      var loc2 = f_FX(zone.x + random(25) - 50,zone.y,int(zone.y) + 1,"slime_glob",100,100);
+      loc2.speed_x = random(8) - 2;
+      loc2.speed_y = - (random(4) + 9);
+      loc2.gravity = random(2) + 1;
+      loc2.bounces = 0;
+      loc2.bounces_max = 1;
+      loc2.body._y = zone.body_y - 30;
+      loc2.hit_function = f_ShrapnelBounce;
+      loc4 = loc4 + 1;
    }
    if(zone._xscale > 0)
    {
@@ -7889,46 +7919,46 @@ function f_HitSlime(zone)
 }
 function f_SlimeAttack(zone)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= active_players)
+   var loc3 = 1;
+   while(loc3 <= active_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc3_)];
-      if(_loc1_.alive)
+      var loc1 = playerArrayOb["p_pt" + int(loc3)];
+      if(loc1.alive)
       {
-         if(!_loc1_.nohit)
+         if(!loc1.nohit)
          {
-            if(_loc1_.invincible_timer <= 0)
+            if(loc1.invincible_timer <= 0)
             {
-               if(_loc1_.body_y > -40)
+               if(loc1.body_y > -40)
                {
-                  if(Math.abs(zone.x - _loc1_.x) < 50)
+                  if(Math.abs(zone.x - loc1.x) < 50)
                   {
-                     if(Math.abs(zone.y - _loc1_.y) < 10)
+                     if(Math.abs(zone.y - loc1.y) < 10)
                      {
-                        if(_loc1_.hostage)
+                        if(loc1.hostage)
                         {
-                           f_FX(_loc1_.x,_loc1_.body_y + _loc1_.y - 50,int(_loc1_.y) + 7,"impact1",100,100);
-                           f_CallJuggle1(_loc1_);
+                           f_FX(loc1.x,loc1.body_y + loc1.y - 50,int(loc1.y) + 7,"impact1",100,100);
+                           f_CallJuggle1(loc1);
                            s_Punch3.start(0,0);
-                           f_Damage(_loc1_,zone.punch_pow_medium,DMG_MELEE,DMGFLAG_JUGGLE,5 + random(3),- (5 + random(3)));
+                           f_Damage(loc1,zone.punch_pow_medium,DMG_MELEE,DMGFLAG_JUGGLE,5 + random(3),- (5 + random(3)));
                         }
                         else
                         {
                            zone.body_y = -50;
-                           zone.captor = _loc1_;
-                           _loc1_.hostage = zone;
-                           _loc1_.prev_StandAnim = _loc1_.fp_StandAnim;
-                           _loc1_.prev_WalkAnim = _loc1_.fp_WalkAnim;
-                           _loc1_.prev_Character = _loc1_.fp_Character;
-                           _loc1_.body_y = 0;
-                           _loc1_.magicmode = false;
-                           if(_loc1_.beefy)
+                           zone.captor = loc1;
+                           loc1.hostage = zone;
+                           loc1.prev_StandAnim = loc1.fp_StandAnim;
+                           loc1.prev_WalkAnim = loc1.fp_WalkAnim;
+                           loc1.prev_Character = loc1.fp_Character;
+                           loc1.body_y = 0;
+                           loc1.magicmode = false;
+                           if(loc1.beefy)
                            {
-                              _loc1_.gotoAndStop("beefy_blobbed");
+                              loc1.gotoAndStop("beefy_blobbed");
                            }
                            else
                            {
-                              _loc1_.gotoAndStop("blobbed");
+                              loc1.gotoAndStop("blobbed");
                            }
                            zone.shadow_pt.gotoAndStop("off");
                            zone.gotoAndStop("blobbed");
@@ -7939,7 +7969,7 @@ function f_SlimeAttack(zone)
             }
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_SlimeHop(zone)
@@ -7973,9 +8003,9 @@ function f_Imp(zone)
       zone.gotoAndStop("bagrun");
       if(zone._xscale > 0)
       {
-         var _loc7_ = zone.x;
+         var loc7 = zone.x;
          f_MoveCharH(zone,zone.speed,0);
-         if(Math.abs(_loc7_ - zone.x) < 1)
+         if(Math.abs(loc7 - zone.x) < 1)
          {
             zone.x += 5;
             zone._x = zone.x;
@@ -7989,9 +8019,9 @@ function f_Imp(zone)
       }
       else
       {
-         _loc7_ = zone.x;
+         loc7 = zone.x;
          f_MoveCharH(zone,- zone.speed,0);
-         if(Math.abs(_loc7_ - zone.x) < 1)
+         if(Math.abs(loc7 - zone.x) < 1)
          {
             zone.x -= 5;
             zone._x = zone.x;
@@ -8017,19 +8047,19 @@ function f_Imp(zone)
    }
    if(!zone.loot)
    {
-      var _loc3_ = 1;
-      while(_loc3_ <= total_pickups)
+      var loc3 = 1;
+      while(loc3 <= total_pickups)
       {
-         var _loc4_ = pickupArrayOb["pickup" + int(_loc3_)];
-         if(f_OnScreen(_loc4_))
+         var loc4 = pickupArrayOb["pickup" + int(loc3)];
+         if(f_OnScreen(loc4))
          {
-            if(_loc4_.item_type == 8)
+            if(loc4.item_type == 8)
             {
-               zone.loot = _loc4_;
-               _loc3_ = total_pickups + 1;
+               zone.loot = loc4;
+               loc3 = total_pickups + 1;
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
    }
    if(!zone.loot)
@@ -8038,9 +8068,9 @@ function f_Imp(zone)
       {
          zone._xscale *= -1;
       }
-      _loc7_ = zone.x;
+      loc7 = zone.x;
       f_MoveCharH(zone,- zone.speed,0);
-      if(Math.abs(_loc7_ - zone.x) < 1)
+      if(Math.abs(loc7 - zone.x) < 1)
       {
          zone.x -= 5;
          zone._x = zone.x;
@@ -8054,19 +8084,19 @@ function f_Imp(zone)
    }
    else
    {
-      var _loc6_ = Math.abs(zone.x - zone.loot.x);
-      var _loc5_ = Math.abs(zone.y - zone.loot.y);
-      if(_loc6_ > _loc5_)
+      var loc6 = Math.abs(zone.x - zone.loot.x);
+      var loc5 = Math.abs(zone.y - zone.loot.y);
+      if(loc6 > loc5)
       {
          zone.speed_x = zone.speed;
-         zone.speed_y = zone.speed * (_loc5_ / _loc6_);
-         var _loc8_ = _loc6_;
+         zone.speed_y = zone.speed * (loc5 / loc6);
+         var loc8 = loc6;
       }
       else
       {
-         zone.speed_x = zone.speed * (_loc6_ / _loc5_);
+         zone.speed_x = zone.speed * (loc6 / loc5);
          zone.speed_y = zone.speed;
-         _loc8_ = _loc5_;
+         loc8 = loc5;
       }
       if(zone.x < zone.loot.x)
       {
@@ -8104,7 +8134,7 @@ function f_Imp(zone)
             return undefined;
          }
       }
-      if(_loc8_ < zone.speed * 10)
+      if(loc8 < zone.speed * 10)
       {
          zone.nohit = true;
          zone.gotoAndStop("dodge");
@@ -8117,33 +8147,33 @@ function f_SpawnImp(x, y, enemy_level)
    {
       enemy_level = 1;
    }
-   var _loc2_ = new Object();
-   _loc2_.speed = 2 + random(30) / 10;
-   _loc2_.health_max = f_SetEnemyHealth(50);
-   var _loc1_ = f_SpawnEnemy("e_imp",x,y,_loc2_,total_imps);
-   if(_loc1_)
+   var loc2 = new Object();
+   loc2.speed = 2 + random(30) / 10;
+   loc2.health_max = f_SetEnemyHealth(50);
+   var loc1 = f_SpawnEnemy("e_imp",x,y,loc2,total_imps);
+   if(loc1)
    {
-      _loc1_.fp_StandSettings = f_KidSettings;
-      _loc1_.fp_Character = f_Imp;
-      _loc1_.fp_Ranged = undefined;
-      _loc1_.fp_Hit1 = f_Hit1Reaction;
-      _loc1_.fp_Hit2 = f_Hit2Reaction;
-      _loc1_.fp_Hit3 = f_Hit3Reaction;
-      _loc1_.fp_FlipHit = f_FlipHit;
-      _loc1_.fp_Juggle = f_Juggle1;
-      _loc1_.intro_timer = 0;
-      _loc1_.loot = undefined;
-      _loc1_.grab = false;
-      _loc1_.hasloot = false;
-      _loc1_.dropstuff = false;
-      _loc1_.fp_ExtremeDeath1 = undefined;
-      _loc1_.gravity = 2;
-      _loc1_.speed = 8;
-      _loc1_._xscale = random(15) + 90;
-      _loc1_._yscale = random(15) + 90;
-      _loc1_.gotoAndStop("walk");
+      loc1.fp_StandSettings = f_KidSettings;
+      loc1.fp_Character = f_Imp;
+      loc1.fp_Ranged = undefined;
+      loc1.fp_Hit1 = f_Hit1Reaction;
+      loc1.fp_Hit2 = f_Hit2Reaction;
+      loc1.fp_Hit3 = f_Hit3Reaction;
+      loc1.fp_FlipHit = f_FlipHit;
+      loc1.fp_Juggle = f_Juggle1;
+      loc1.intro_timer = 0;
+      loc1.loot = undefined;
+      loc1.grab = false;
+      loc1.hasloot = false;
+      loc1.dropstuff = false;
+      loc1.fp_ExtremeDeath1 = undefined;
+      loc1.gravity = 2;
+      loc1.speed = 8;
+      loc1._xscale = random(15) + 90;
+      loc1._yscale = random(15) + 90;
+      loc1.gotoAndStop("walk");
    }
-   return _loc1_;
+   return loc1;
 }
 function f_CloseBossHealth(zone)
 {
@@ -8154,8 +8184,8 @@ function f_EnemyDropWeapon(zone)
 {
    if(zone.e_type)
    {
-      var _loc1_ = int(zone.e_type - 2);
-      switch(_loc1_)
+      var loc1 = int(zone.e_type - 2);
+      switch(loc1)
       {
          case 5:
             return 19;
@@ -8217,8 +8247,8 @@ function f_EnemyDie(zone)
       {
          if(zone.weapon_type)
          {
-            var _loc9_ = f_ItemSpawn(zone.x,zone.y,10);
-            _loc9_.weapon_type = zone.weapon_type;
+            var loc9 = f_ItemSpawn(zone.x,zone.y,10);
+            loc9.weapon_type = zone.weapon_type;
             zone.weapon_type = undefined;
          }
          else if(zone.item_type)
@@ -8228,72 +8258,72 @@ function f_EnemyDie(zone)
          }
          else
          {
-            var _loc4_ = false;
+            var loc4 = false;
             if(zone.emblem == 8)
             {
                if(zone.dropstuff)
                {
                   if(f_OnScreen(zone))
                   {
-                     var _loc5_ = 1;
-                     while(_loc5_ <= active_players)
+                     var loc5 = 1;
+                     while(loc5 <= active_players)
                      {
-                        _loc9_ = playerArrayOb["p_pt" + int(_loc5_)];
-                        if(!_loc9_.hud_pt.item_unlocks[1])
+                        loc9 = playerArrayOb["p_pt" + int(loc5)];
+                        if(!loc9.hud_pt.item_unlocks[1])
                         {
-                           var _loc2_ = 1;
-                           while(_loc2_ <= total_pickups)
+                           var loc2 = 1;
+                           while(loc2 <= total_pickups)
                            {
-                              _loc9_ = pickupArrayOb["pickup" + int(_loc2_)];
-                              if(_loc9_.item_type == 11)
+                              loc9 = pickupArrayOb["pickup" + int(loc2)];
+                              if(loc9.item_type == 11)
                               {
-                                 _loc4_ = true;
-                                 _loc2_ = total_pickups + 1;
+                                 loc4 = true;
+                                 loc2 = total_pickups + 1;
                               }
-                              _loc2_ = _loc2_ + 1;
+                              loc2 = loc2 + 1;
                            }
-                           if(_loc4_)
+                           if(loc4)
                            {
-                              _loc4_ = false;
+                              loc4 = false;
                            }
                            else
                            {
                               f_ItemSpawn(zone.x,zone.y,11);
-                              _loc4_ = true;
+                              loc4 = true;
                            }
                         }
-                        _loc5_ = _loc5_ + 1;
+                        loc5 = loc5 + 1;
                      }
                   }
                }
             }
-            if(zone.dropstuff and !_loc4_)
+            if(zone.dropstuff and !loc4)
             {
                zone.dropstuff = false;
-               var _loc6_ = f_EnemyDropWeapon(zone);
+               var loc6 = f_EnemyDropWeapon(zone);
                if(zone.hitby.pet.animal_type == 5)
                {
-                  _loc9_ = 2;
-                  var _loc8_ = 80;
+                  loc9 = 2;
+                  var loc8 = 80;
                }
                else
                {
-                  _loc9_ = 6;
-                  _loc8_ = 120;
+                  loc9 = 6;
+                  loc8 = 120;
                }
-               if(_loc6_ and random(_loc8_) == 0)
+               if(loc6 and random(loc8) == 0)
                {
-                  var _loc7_ = f_ItemSpawn(zone.x,zone.y,10);
-                  _loc7_.weapon_type = _loc6_;
+                  var loc7 = f_ItemSpawn(zone.x,zone.y,10);
+                  loc7.weapon_type = loc6;
                }
-               else if(random(_loc9_) == 0)
+               else if(random(loc9) == 0)
                {
                   f_RandomItemSpawn(zone);
                }
                else if(random(10) > 0)
                {
-                  _loc9_ = f_ItemSpawn(zone._x,zone._y,9);
-                  _loc9_.gem_type = 12;
+                  loc9 = f_ItemSpawn(zone._x,zone._y,9);
+                  loc9.gem_type = 12;
                }
             }
          }
@@ -8477,12 +8507,12 @@ function f_UpdateEQ(u_temp)
 }
 function f_LaunchEnemies()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= EnemyMax)
+   var loc2 = 1;
+   while(loc2 <= EnemyMax)
    {
-      u_temp = this["EnemyQ" + _loc2_];
+      u_temp = this["EnemyQ" + loc2];
       u_temp();
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_CheckEQ()
@@ -8534,58 +8564,58 @@ function f_BarbBossHit(zone)
 }
 function f_SpawnBarbarianBoss(x, y)
 {
-   var _loc3_ = new Object();
-   _loc3_.speed = 2 + random(30) / 10;
-   _loc3_.health_max = 170 + 50 * active_players;
-   var _loc2_ = f_SpawnEnemy("e_human",x,y,_loc3_,total_enemies);
-   if(_loc2_)
+   var loc3 = new Object();
+   loc3.speed = 2 + random(30) / 10;
+   loc3.health_max = 170 + 50 * active_players;
+   var loc2 = f_SpawnEnemy("e_human",x,y,loc3,total_enemies);
+   if(loc2)
    {
-      _loc2_.fp_StandSettings = f_KidSettings;
-      _loc2_.fp_CharacterDefault = f_BarbarianBossWalk;
-      _loc2_.fp_Character = f_BarbarianBossWalk;
-      _loc2_.fp_WalkAnim = f_WalkType2;
-      _loc2_.fp_StandAnim = f_StandType2;
-      _loc2_.fp_Jab = f_PunchSet201;
-      _loc2_.fp_GetUpAction = f_GetUpPuch201_2;
-      _loc2_.fp_DieAction = f_Level7BossDie;
-      _loc2_.fp_Ranged = undefined;
-      _loc2_.fp_Hit1 = f_BarbBossHit;
-      _loc2_.fp_Hit2 = f_BarbBossHit;
-      _loc2_.fp_Hit3 = f_BarbBossHit;
-      _loc2_.beefy = true;
-      _loc2_.grab = false;
-      _loc2_.enemy_spawn_timer = 0;
-      _loc2_.blocks = false;
-      _loc2_.fp_BlockFunction = undefined;
-      _loc2_.arrow_speed_y = -10;
-      _loc2_.arrow_speed_x = 20;
-      _loc2_.arrow_gravity = 2;
-      _loc2_.weapon = 21;
-      _loc2_.helmet = 7;
-      _loc2_.emblem = 7;
-      _loc2_.shield = 7;
-      _loc2_.e_type = _loc2_.helmet;
-      _loc2_.hop_timer = random(200);
-      f_SetPlayerMagic(_loc2_,_loc2_.helmet);
-      f_WeaponStats(_loc2_,_loc2_.weapon);
-      _loc2_.resists = new Array(5);
-      _loc2_.resists[DMG_MELEE] = 70;
-      _loc2_.resists[DMG_FIRE] = 20;
-      _loc2_.resists[DMG_ELEC] = 60;
-      _loc2_.resists[DMG_POISON] = 70;
-      _loc2_.resists[DMG_ICE] = 95;
-      _loc2_.hit_chain = 0;
-      _loc2_.n_width = 70;
-      _loc2_.n_height = 100;
-      _loc2_.w = 70;
-      _loc2_.h = 100;
-      _loc2_.weight = 15;
+      loc2.fp_StandSettings = f_KidSettings;
+      loc2.fp_CharacterDefault = f_BarbarianBossWalk;
+      loc2.fp_Character = f_BarbarianBossWalk;
+      loc2.fp_WalkAnim = f_WalkType2;
+      loc2.fp_StandAnim = f_StandType2;
+      loc2.fp_Jab = f_PunchSet201;
+      loc2.fp_GetUpAction = f_GetUpPuch201_2;
+      loc2.fp_DieAction = f_Level7BossDie;
+      loc2.fp_Ranged = undefined;
+      loc2.fp_Hit1 = f_BarbBossHit;
+      loc2.fp_Hit2 = f_BarbBossHit;
+      loc2.fp_Hit3 = f_BarbBossHit;
+      loc2.beefy = true;
+      loc2.grab = false;
+      loc2.enemy_spawn_timer = 0;
+      loc2.blocks = false;
+      loc2.fp_BlockFunction = undefined;
+      loc2.arrow_speed_y = -10;
+      loc2.arrow_speed_x = 20;
+      loc2.arrow_gravity = 2;
+      loc2.weapon = 21;
+      loc2.helmet = 7;
+      loc2.emblem = 7;
+      loc2.shield = 7;
+      loc2.e_type = loc2.helmet;
+      loc2.hop_timer = random(200);
+      f_SetPlayerMagic(loc2,loc2.helmet);
+      f_WeaponStats(loc2,loc2.weapon);
+      loc2.resists = new Array(5);
+      loc2.resists[DMG_MELEE] = 70;
+      loc2.resists[DMG_FIRE] = 20;
+      loc2.resists[DMG_ELEC] = 60;
+      loc2.resists[DMG_POISON] = 70;
+      loc2.resists[DMG_ICE] = 95;
+      loc2.hit_chain = 0;
+      loc2.n_width = 70;
+      loc2.n_height = 100;
+      loc2.w = 70;
+      loc2.h = 100;
+      loc2.weight = 15;
       boss_fight = true;
       player_used_magic = false;
-      _root.healthmeter.u_boss = _loc2_;
+      _root.healthmeter.u_boss = loc2;
       _root.healthmeter.gotoAndStop(2);
    }
-   return _loc2_;
+   return loc2;
 }
 function f_BeeWalk(zone)
 {
@@ -8593,13 +8623,13 @@ function f_BeeWalk(zone)
    {
       if(zone.priority % 2 == 0)
       {
-         var _loc2_ = zone.prey.x - zone.priority * 50 + 50;
+         var loc2 = zone.prey.x - zone.priority * 50 + 50;
       }
       else
       {
-         _loc2_ = zone.prey.x + zone.priority * 50;
+         loc2 = zone.prey.x + zone.priority * 50;
       }
-      if(zone.x < _loc2_)
+      if(zone.x < loc2)
       {
          if(zone._xscale < 0)
          {
@@ -8611,7 +8641,7 @@ function f_BeeWalk(zone)
             zone.speed_x = 15;
          }
       }
-      else if(zone.x > _loc2_)
+      else if(zone.x > loc2)
       {
          if(zone._xscale > 0)
          {
@@ -8693,15 +8723,15 @@ function f_BeeWalk(zone)
 function f_CreateFish(u_num)
 {
    _root.total_fish = u_num;
-   var _loc3_ = 1;
-   while(_loc3_ <= _root.total_fish)
+   var loc3 = 1;
+   while(loc3 <= _root.total_fish)
    {
-      var _loc4_ = _root.f_GetDepthModAssignment();
-      var _loc2_ = p_game.attachMovie("invisObject","e_fish" + int(_loc3_),_loc4_);
-      loadMovie("../efish/efish.swf",_loc2_);
-      _loc2_.depth_mod = _loc4_;
-      _loc2_.active = false;
-      _loc3_ = _loc3_ + 1;
+      var loc4 = _root.f_GetDepthModAssignment();
+      var loc2 = p_game.attachMovie("invisObject","e_fish" + int(loc3),loc4);
+      loadMovie("../efish/efish.swf",loc2);
+      loc2.depth_mod = loc4;
+      loc2.active = false;
+      loc3 = loc3 + 1;
    }
 }
 function f_HitFish(zone)
@@ -8781,15 +8811,15 @@ function f_FishDive(zone)
 function f_CreateBeetles(u_num)
 {
    _root.total_beetles = u_num;
-   var _loc3_ = 1;
-   while(_loc3_ <= _root.total_beetles)
+   var loc3 = 1;
+   while(loc3 <= _root.total_beetles)
    {
-      var _loc4_ = _root.f_GetDepthModAssignment();
-      var _loc2_ = p_game.attachMovie("invisObject","e_beetle" + int(_loc3_),_loc4_);
-      loadMovie("../ebeetle/ebeetle.swf",_loc2_);
-      _loc2_.depth_mod = _loc4_;
-      _loc2_.active = false;
-      _loc3_ = _loc3_ + 1;
+      var loc4 = _root.f_GetDepthModAssignment();
+      var loc2 = p_game.attachMovie("invisObject","e_beetle" + int(loc3),loc4);
+      loadMovie("../ebeetle/ebeetle.swf",loc2);
+      loc2.depth_mod = loc4;
+      loc2.active = false;
+      loc3 = loc3 + 1;
    }
 }
 function f_HitBeetle(zone)
@@ -8802,8 +8832,8 @@ function f_HitBeetle(zone)
       {
          zone.hit_number = 1;
       }
-      var _loc3_ = int(zone.hit_number);
-      switch(_loc3_)
+      var loc3 = int(zone.hit_number);
+      switch(loc3)
       {
          case 1:
             zone.gotoAndStop("hit1");
@@ -8846,21 +8876,21 @@ function f_Beetle(zone)
          zone.mode_timer = zone.mode_timer - 1;
          if(zone.mode_timer <= 0)
          {
-            var _loc6_ = 0;
-            var _loc4_ = 1;
-            while(_loc4_ <= active_enemies)
+            var loc6 = 0;
+            var loc4 = 1;
+            while(loc4 <= active_enemies)
             {
-               var _loc2_ = enemyArrayOb["e" + int(_loc4_)];
-               if(_loc2_ != zone)
+               var loc2 = enemyArrayOb["e" + int(loc4)];
+               if(loc2 != zone)
                {
-                  if(_loc2_.mode == 2)
+                  if(loc2.mode == 2)
                   {
-                     _loc6_ = _loc6_ + 1;
+                     loc6 = loc6 + 1;
                   }
                }
-               _loc4_ = _loc4_ + 1;
+               loc4 = loc4 + 1;
             }
-            if(_loc6_ < 2)
+            if(loc6 < 2)
             {
                zone.mode_timer = 240;
                zone.mode = 2;
@@ -8889,7 +8919,7 @@ function f_Beetle(zone)
             zone.gotoAndStop("punch2_3");
             return undefined;
          }
-         var _loc7_ = 80 + random(20);
+         var loc7 = 80 + random(20);
          if(zone._xscale > 0)
          {
             f_MoveCharH(zone,zone.speed_x,0);
@@ -8904,7 +8934,7 @@ function f_Beetle(zone)
          }
          else
          {
-            _loc7_ *= -1;
+            loc7 *= -1;
             f_MoveCharH(zone,- zone.speed_x,0);
             if(zone.x < _root.main.left + 200)
             {
@@ -8939,47 +8969,47 @@ function f_Beetle(zone)
          }
          if(zone.mode_timer % 2 == 0)
          {
-            f_FX(zone.x,zone.y + random(8),int(zone.y) + 1,level_dust,_loc7_,Math.abs(_loc7_));
+            f_FX(zone.x,zone.y + random(8),int(zone.y) + 1,level_dust,loc7,Math.abs(loc7));
          }
          if(zone.body._yscale > 20)
          {
-            var _loc5_ = false;
-            _loc4_ = 1;
-            while(_loc4_ <= active_players)
+            var loc5 = false;
+            loc4 = 1;
+            while(loc4 <= active_players)
             {
-               _loc2_ = playerArrayOb["p_pt" + int(_loc4_)];
-               if(_loc2_.alive and _loc2_.invincible_timer <= 0)
+               loc2 = playerArrayOb["p_pt" + int(loc4)];
+               if(loc2.alive and loc2.invincible_timer <= 0)
                {
-                  if(Math.abs(_loc2_.y - zone.y) < 15)
+                  if(Math.abs(loc2.y - zone.y) < 15)
                   {
-                     if(Math.abs(_loc2_.x - zone.x) < 40)
+                     if(Math.abs(loc2.x - zone.x) < 40)
                      {
-                        if(_loc2_.body_y > -6)
+                        if(loc2.body_y > -6)
                         {
-                           if(_loc2_.toss_clock <= 0)
+                           if(loc2.toss_clock <= 0)
                            {
-                              if(_loc2_.blocking)
+                              if(loc2.blocking)
                               {
-                                 if(_loc2_._xscale > 0 and zone._xscale < 0 or _loc2_._xscale < 0 and zone._xscale > 0)
+                                 if(loc2._xscale > 0 and zone._xscale < 0 or loc2._xscale < 0 and zone._xscale > 0)
                                  {
                                     f_BlockSound();
-                                    _loc2_.gotoAndStop("block1");
-                                    _loc2_.body.body.gotoAndPlay(1);
+                                    loc2.gotoAndStop("block1");
+                                    loc2.body.body.gotoAndPlay(1);
                                     zone._xscale *= -1;
                                     return undefined;
                                  }
                               }
-                              _loc5_ = true;
-                              f_FX(_loc2_.x,_loc2_.y + _loc2_.body_y - 30,int(_loc2_.y + 1),"impact1",100,100);
-                              f_Damage(_loc2_,zone.punch_pow_low / 3,_root.DMG_MELEE,_root.DMGFLAG_JUGGLE,2,- (18 + random(6)));
+                              loc5 = true;
+                              f_FX(loc2.x,loc2.y + loc2.body_y - 30,int(loc2.y + 1),"impact1",100,100);
+                              f_Damage(loc2,zone.punch_pow_low / 3,_root.DMG_MELEE,_root.DMGFLAG_JUGGLE,2,- (18 + random(6)));
                            }
                         }
                      }
                   }
                }
-               _loc4_ = _loc4_ + 1;
+               loc4 = loc4 + 1;
             }
-            if(_loc5_)
+            if(loc5)
             {
                f_PunchSound();
             }
@@ -9056,7 +9086,7 @@ function f_HitAntlion(zone)
 }
 function f_Antlion(zone)
 {
-   var _loc8_ = zone._xscale;
+   var loc8 = zone._xscale;
    if(zone.health <= 0)
    {
       if(zone.hostage)
@@ -9079,12 +9109,12 @@ function f_Antlion(zone)
    {
       if(!zone.hostage)
       {
-         var _loc3_ = f_FaceClosestPlayer(zone);
-         var _loc6_ = Math.abs(zone.x - _loc3_.x);
-         var _loc5_ = Math.abs(zone.y - _loc3_.y);
-         if(_loc6_ < 10)
+         var loc3 = f_FaceClosestPlayer(zone);
+         var loc6 = Math.abs(zone.x - loc3.x);
+         var loc5 = Math.abs(zone.y - loc3.y);
+         if(loc6 < 10)
          {
-            if(_loc3_.y < zone.y)
+            if(loc3.y < zone.y)
             {
                zone.body.gotoAndStop(7);
             }
@@ -9093,9 +9123,9 @@ function f_Antlion(zone)
                zone.body.gotoAndStop(1);
             }
          }
-         else if(_loc6_ < 20)
+         else if(loc6 < 20)
          {
-            if(_loc3_.y < zone.y)
+            if(loc3.y < zone.y)
             {
                zone.body.gotoAndStop(6);
             }
@@ -9104,9 +9134,9 @@ function f_Antlion(zone)
                zone.body.gotoAndStop(2);
             }
          }
-         else if(_loc6_ < 50)
+         else if(loc6 < 50)
          {
-            if(_loc3_.y < zone.y)
+            if(loc3.y < zone.y)
             {
                zone.body.gotoAndStop(5);
             }
@@ -9115,9 +9145,9 @@ function f_Antlion(zone)
                zone.body.gotoAndStop(3);
             }
          }
-         else if(_loc3_.y < zone.y)
+         else if(loc3.y < zone.y)
          {
-            if(_loc5_ < 15 or _loc6_ > 400)
+            if(loc5 < 15 or loc6 > 400)
             {
                zone.body.gotoAndStop(4);
             }
@@ -9126,7 +9156,7 @@ function f_Antlion(zone)
                zone.body.gotoAndStop(5);
             }
          }
-         else if(_loc5_ < 15 or _loc6_ > 400)
+         else if(loc5 < 15 or loc6 > 400)
          {
             zone.body.gotoAndStop(4);
          }
@@ -9172,7 +9202,7 @@ function f_Antlion(zone)
          zone.body.head2._x = zone.head_x;
          zone.body.body._x = zone.head_x / 2;
       }
-      if(zone.body && _loc8_ * zone._xscale < 0)
+      if(zone.body && loc8 * zone._xscale < 0)
       {
          if(zone.body.head)
          {
@@ -9213,12 +9243,12 @@ function f_Antlion(zone)
          if(zone.shot_timer2 <= 0)
          {
             zone.shot_timer2 = 60;
-            var _loc7_ = 20;
+            var loc7 = 20;
             if(_root.insane_mode)
             {
-               _loc7_ *= 10;
+               loc7 *= 10;
             }
-            u_temp2 = f_Shoot(zone,"general_projectile",_loc7_,20,- (3 + random(4)),2);
+            u_temp2 = f_Shoot(zone,"general_projectile",loc7,20,- (3 + random(4)),2);
             u_temp2.projectile_type = 73;
             if(zone._xscale > 0)
             {
@@ -9241,49 +9271,49 @@ function f_Antlion(zone)
             f_Depth(u_temp2,u_temp2.y);
             u_temp2.shadow_pt._x = u_temp2.x;
             u_temp2.shadow_pt._y = u_temp2.y;
-            _loc6_ = Math.abs(u_temp2.x - _loc3_.x);
-            _loc5_ = Math.abs(u_temp2.y - _loc3_.y);
-            if(_loc6_ > _loc5_)
+            loc6 = Math.abs(u_temp2.x - loc3.x);
+            loc5 = Math.abs(u_temp2.y - loc3.y);
+            if(loc6 > loc5)
             {
                u_temp2.speed_x = 14;
-               u_temp2.speed_z = 14 * (_loc5_ / _loc6_);
+               u_temp2.speed_z = 14 * (loc5 / loc6);
             }
             else
             {
-               u_temp2.speed_x = 14 * (_loc6_ / _loc5_);
+               u_temp2.speed_x = 14 * (loc6 / loc5);
                u_temp2.speed_z = 14;
             }
-            if(u_temp2.x > _loc3_.x)
+            if(u_temp2.x > loc3.x)
             {
                u_temp2._xscale *= -1;
                u_temp2.speed_x *= -1;
             }
-            if(u_temp2.y > _loc3_.y)
+            if(u_temp2.y > loc3.y)
             {
                u_temp2.speed_z *= -1;
             }
          }
          if(zone.shot_timer <= 0)
          {
-            var _loc4_ = 1;
-            while(_loc4_ <= active_players)
+            var loc4 = 1;
+            while(loc4 <= active_players)
             {
-               _loc3_ = playerArrayOb["p_pt" + int(_loc4_)];
-               if(_loc3_.alive)
+               loc3 = playerArrayOb["p_pt" + int(loc4)];
+               if(loc3.alive)
                {
-                  if(Math.abs(_loc3_.x - (zone.x + zone.head_x)) < 50)
+                  if(Math.abs(loc3.x - (zone.x + zone.head_x)) < 50)
                   {
-                     if(Math.abs(_loc3_.y - zone.y) < 25)
+                     if(Math.abs(loc3.y - zone.y) < 25)
                      {
-                        if(!_loc3_.beefy && _loc3_.p_type != 32)
+                        if(!loc3.beefy && loc3.p_type != 32)
                         {
-                           zone.hostage = _loc3_;
-                           _loc3_.captor = zone;
-                           _loc3_.nohit = true;
-                           _loc3_.gotoAndStop("antlion");
-                           _root.f_SetXY(_loc3_,zone.x,zone.y + 1);
-                           _loc3_.body_y = zone.body.head._y + zone.body._y;
-                           _loc3_.body._y = zone.hostage.body_y;
+                           zone.hostage = loc3;
+                           loc3.captor = zone;
+                           loc3.nohit = true;
+                           loc3.gotoAndStop("antlion");
+                           _root.f_SetXY(loc3,zone.x,zone.y + 1);
+                           loc3.body_y = zone.body.head._y + zone.body._y;
+                           loc3.body._y = zone.hostage.body_y;
                            s_Chomp.start(0,0);
                            f_FX(zone.x + zone.head_x,zone.body.head._y + zone.body._y + zone.y,int(zone.y) + 1,"impact1",100,100);
                            zone.body.gotoAndStop("punch1_1");
@@ -9292,7 +9322,7 @@ function f_Antlion(zone)
                      }
                   }
                }
-               _loc4_ = _loc4_ + 1;
+               loc4 = loc4 + 1;
             }
          }
          else
@@ -9311,73 +9341,73 @@ function f_Antlion(zone)
 function f_CreateUFO(u_num)
 {
    total_ufo = u_num;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_ufo)
+   var loc2 = 1;
+   while(loc2 <= total_ufo)
    {
-      var _loc3_ = f_GetDepthModAssignment();
-      var _loc1_ = p_game.attachMovie("invisObject","ufo" + int(_loc2_),_loc3_);
-      loadMovie("../ufo/ufo.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc3_ = f_GetDepthModAssignment();
-      _loc1_ = p_game.attachMovie("invisObject","ufodust" + int(_loc2_),_loc3_);
-      loadMovie("../ufodust/ufodust.swf",_loc1_);
-      _loc1_.depth_mod = _loc3_;
-      _loc1_.active = false;
-      _loc2_ = _loc2_ + 1;
+      var loc3 = f_GetDepthModAssignment();
+      var loc1 = p_game.attachMovie("invisObject","ufo" + int(loc2),loc3);
+      loadMovie("../ufo/ufo.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc3 = f_GetDepthModAssignment();
+      loc1 = p_game.attachMovie("invisObject","ufodust" + int(loc2),loc3);
+      loadMovie("../ufodust/ufodust.swf",loc1);
+      loc1.depth_mod = loc3;
+      loc1.active = false;
+      loc2 = loc2 + 1;
    }
 }
 function f_MakeUFO(x, y)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= total_ufo)
+   var loc3 = 1;
+   while(loc3 <= total_ufo)
    {
-      var _loc2_ = p_game["ufo" + _loc3_];
-      if(!_loc2_.active)
+      var loc2 = p_game["ufo" + loc3];
+      if(!loc2.active)
       {
-         _loc2_.active = true;
-         _loc2_.alive = true;
-         _loc2_.shadow_pt = p_game["ufodust" + _loc3_];
-         _loc2_.shadow_pt.gotoAndStop("on");
-         f_SetXY(_loc2_,x,y);
-         _loc2_.gotoAndStop("fly");
-         _loc2_.body_y = -100;
-         _loc2_.body._y = _loc2_.body_y;
-         _loc2_.haswall = false;
-         _loc2_.h = 175;
-         _loc2_.w = 80;
-         _loc2_.health_max = 300 + 100 * active_players;
+         loc2.active = true;
+         loc2.alive = true;
+         loc2.shadow_pt = p_game["ufodust" + loc3];
+         loc2.shadow_pt.gotoAndStop("on");
+         f_SetXY(loc2,x,y);
+         loc2.gotoAndStop("fly");
+         loc2.body_y = -100;
+         loc2.body._y = loc2.body_y;
+         loc2.haswall = false;
+         loc2.h = 175;
+         loc2.w = 80;
+         loc2.health_max = 300 + 100 * active_players;
          if(_root.insane_mode)
          {
-            _loc2_.health_max *= 10;
+            loc2.health_max *= 10;
          }
-         _loc2_.health = _loc2_.health_max;
-         _loc2_.resists = new Array(5);
-         _loc2_.resists[DMG_MELEE] = 50;
-         _loc2_.resists[DMG_FIRE] = 50;
-         _loc2_.resists[DMG_ELEC] = 50;
-         _loc2_.resists[DMG_POISON] = 50;
-         _loc2_.resists[DMG_ICE] = 50;
-         _loc2_.onground = false;
-         _loc2_.nohit = false;
-         f_UnresponsiveDefaults(_loc2_);
-         f_LargeObjectRanges(_loc2_);
-         _loc2_.fp_CheckYSpace = f_ObjectCheckYSpace;
-         _loc2_.fp_Hit1 = f_HitUFO;
-         _loc2_.fp_Hit2 = f_HitUFO;
-         _loc2_.fp_Hit3 = f_HitUFO;
-         _loc2_.fp_Juggle = f_HitUFO;
-         _loc2_.speed_x = 0;
-         _loc2_.speed_y = 0;
-         _loc2_.alien_timer = 60;
-         _loc2_.mode = 1;
-         _loc2_.stones = 0;
-         _loc2_.s_Engine = f_SoundX(_loc2_,s_Engine,_loc2_.x,300,10000);
-         f_InsertEnemy(_loc2_);
+         loc2.health = loc2.health_max;
+         loc2.resists = new Array(5);
+         loc2.resists[DMG_MELEE] = 50;
+         loc2.resists[DMG_FIRE] = 50;
+         loc2.resists[DMG_ELEC] = 50;
+         loc2.resists[DMG_POISON] = 50;
+         loc2.resists[DMG_ICE] = 50;
+         loc2.onground = false;
+         loc2.nohit = false;
+         f_UnresponsiveDefaults(loc2);
+         f_LargeObjectRanges(loc2);
+         loc2.fp_CheckYSpace = f_ObjectCheckYSpace;
+         loc2.fp_Hit1 = f_HitUFO;
+         loc2.fp_Hit2 = f_HitUFO;
+         loc2.fp_Hit3 = f_HitUFO;
+         loc2.fp_Juggle = f_HitUFO;
+         loc2.speed_x = 0;
+         loc2.speed_y = 0;
+         loc2.alien_timer = 60;
+         loc2.mode = 1;
+         loc2.stones = 0;
+         loc2.s_Engine = f_SoundX(loc2,s_Engine,loc2.x,300,10000);
+         f_InsertEnemy(loc2);
          f_SetActiveEnemies();
-         return _loc2_;
+         return loc2;
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_UFOCheckDead(zone)
@@ -9436,7 +9466,7 @@ function f_UFOFly(zone)
       switch(zone.mode)
       {
          case 1:
-            var _loc6_ = zone.speed_x;
+            var loc6 = zone.speed_x;
             if(zone.x < zone.destin_x - zone.speed_x)
             {
                zone.speed_x = zone.speed_x + 1;
@@ -9466,19 +9496,19 @@ function f_UFOFly(zone)
                zone.body_y = zone.body_y + 1;
                zone.body._y = zone.body_y;
             }
-            var _loc5_ = 100 + zone.body_y / 3;
-            zone.shadow_pt.body._xscale = _loc5_;
-            zone.shadow_pt.body._yscale = _loc5_;
-            var _loc4_ = zone.body.body.body.body.thruster._rotation;
-            if(_loc4_ < zone.speed_x * 2)
+            var loc5 = 100 + zone.body_y / 3;
+            zone.shadow_pt.body._xscale = loc5;
+            zone.shadow_pt.body._yscale = loc5;
+            var loc4 = zone.body.body.body.body.thruster._rotation;
+            if(loc4 < zone.speed_x * 2)
             {
-               _loc4_ = _loc4_ + 1;
+               loc4 = loc4 + 1;
             }
-            else if(_loc4_ > zone.speed_x * 2)
+            else if(loc4 > zone.speed_x * 2)
             {
-               _loc4_ = _loc4_ - 1;
+               loc4 = loc4 - 1;
             }
-            zone.body.body.body.body.thruster._rotation = _loc4_;
+            zone.body.body.body.body.thruster._rotation = loc4;
             f_MoveCharH(zone,zone.speed_x,0);
             f_LargeObjectRanges(zone);
             if(zone.alien_timer > 0)
@@ -9487,16 +9517,16 @@ function f_UFOFly(zone)
             }
             else if(active_enemies < 30)
             {
-               var _loc3_ = f_SpawnAlien(zone.x,zone.y + 1);
-               if(_loc3_)
+               var loc3 = f_SpawnAlien(zone.x,zone.y + 1);
+               if(loc3)
                {
                   s_DarkMagic1.start(0,0);
                   f_FX(zone.x,zone.y + zone.body_y + 30,zone.y + 2,"impact4",60,60);
-                  _loc3_.body_y = zone.body_y + 30;
-                  _loc3_.speed_toss_x = 0;
-                  _loc3_.speed_toss_y = 10;
-                  f_Juggle1Setup(_loc3_);
-                  _loc3_.gotoAndStop("juggle1");
+                  loc3.body_y = zone.body_y + 30;
+                  loc3.speed_toss_x = 0;
+                  loc3.speed_toss_y = 10;
+                  f_Juggle1Setup(loc3);
+                  loc3.gotoAndStop("juggle1");
                   _root.kills_goal += 1;
                   _root.f_SetTargets();
                }
@@ -9518,14 +9548,14 @@ function f_UFOFly(zone)
             zone.alien_timer = 60;
             zone.body_y = -220;
             zone.body._y = zone.body_y;
-            _loc5_ = 100 + zone.body_y / 3;
-            zone.shadow_pt.body._xscale = _loc5_;
-            zone.shadow_pt.body._yscale = _loc5_;
-            _loc3_ = f_FX(zone.x,zone.y,zone.y + 1,"ufostone",100,100);
-            _loc3_.body_y = zone.body_y + 60;
-            _loc3_.body._y = _loc3_.body_y;
-            _loc3_.shadow_pt = f_NewShadow();
-            zone.ufostone = _loc3_;
+            loc5 = 100 + zone.body_y / 3;
+            zone.shadow_pt.body._xscale = loc5;
+            zone.shadow_pt.body._yscale = loc5;
+            loc3 = f_FX(zone.x,zone.y,zone.y + 1,"ufostone",100,100);
+            loc3.body_y = zone.body_y + 60;
+            loc3.body._y = loc3.body_y;
+            loc3.shadow_pt = f_NewShadow();
+            zone.ufostone = loc3;
             zone.mode = 4;
             zone.prey = f_PickRandomPlayer();
             zone.stone_timer = 900;
@@ -9557,16 +9587,16 @@ function f_UFOFly(zone)
             {
                zone.speed_x = -24;
             }
-            _loc4_ = zone.body.body.body.body.thruster._rotation;
-            if(_loc4_ < zone.speed_x * 2)
+            loc4 = zone.body.body.body.body.thruster._rotation;
+            if(loc4 < zone.speed_x * 2)
             {
-               _loc4_ = _loc4_ + 1;
+               loc4 = loc4 + 1;
             }
-            else if(_loc4_ > zone.speed_x * 2)
+            else if(loc4 > zone.speed_x * 2)
             {
-               _loc4_ = _loc4_ - 1;
+               loc4 = loc4 - 1;
             }
-            zone.body.body.body.body.thruster._rotation = _loc4_;
+            zone.body.body.body.body.thruster._rotation = loc4;
             f_MoveCharH(zone,zone.speed_x,0);
             if(zone.y < zone.prey.y - 1)
             {
@@ -9609,25 +9639,25 @@ function f_UFOFly(zone)
       }
       if(Math.abs(zone.speed_x) > 6)
       {
-         _loc3_ = _root.f_FX(zone.x - 50 + random(100),zone.y + zone.body_y + random(40),zone.y - 1,"smokefade2",100,100);
-         _loc3_.body1._rotation = random(50) - 25;
-         _loc3_.body1._x = random(40) - 20;
-         _loc3_.body1._y = random(20) - 10;
-         _loc5_ = random(30) + 70;
-         _loc3_.body1._xscale = _loc5_;
-         _loc3_.body1._yscale = _loc5_;
-         _loc3_.body2._rotation = random(50) - 25;
-         _loc3_.body2._x = random(40) - 20;
-         _loc3_.body2._y = random(20) - 10;
-         _loc5_ = random(30) + 70;
-         _loc3_.body2._xscale = _loc5_;
-         _loc3_.body2._yscale = _loc5_;
-         _loc3_.body3._rotation = random(50) - 25;
-         _loc3_.body3._x = random(40) - 20;
-         _loc3_.body3._y = random(20) - 10;
-         _loc5_ = random(30) + 70;
-         _loc3_.body3._xscale = _loc5_;
-         _loc3_.body3._yscale = _loc5_;
+         loc3 = _root.f_FX(zone.x - 50 + random(100),zone.y + zone.body_y + random(40),zone.y - 1,"smokefade2",100,100);
+         loc3.body1._rotation = random(50) - 25;
+         loc3.body1._x = random(40) - 20;
+         loc3.body1._y = random(20) - 10;
+         loc5 = random(30) + 70;
+         loc3.body1._xscale = loc5;
+         loc3.body1._yscale = loc5;
+         loc3.body2._rotation = random(50) - 25;
+         loc3.body2._x = random(40) - 20;
+         loc3.body2._y = random(20) - 10;
+         loc5 = random(30) + 70;
+         loc3.body2._xscale = loc5;
+         loc3.body2._yscale = loc5;
+         loc3.body3._rotation = random(50) - 25;
+         loc3.body3._x = random(40) - 20;
+         loc3.body3._y = random(20) - 10;
+         loc5 = random(30) + 70;
+         loc3.body3._xscale = loc5;
+         loc3.body3._yscale = loc5;
       }
    }
 }
@@ -9658,36 +9688,36 @@ function f_UFOStoneDrop(zone)
       s_SlamGround.start(0,0);
       f_ScreenShake(0.2,8,0);
       f_RemoveShadow(zone);
-      var _loc4_ = 1;
-      while(_loc4_ <= active_players)
+      var loc4 = 1;
+      while(loc4 <= active_players)
       {
-         var _loc3_ = playerArrayOb["p_pt" + int(_loc4_)];
-         if(_loc3_.alive)
+         var loc3 = playerArrayOb["p_pt" + int(loc4)];
+         if(loc3.alive)
          {
-            if(Math.abs(_loc3_.x - zone.x) < 50)
+            if(Math.abs(loc3.x - zone.x) < 50)
             {
-               if(Math.abs(_loc3_.y - zone.y) < 10)
+               if(Math.abs(loc3.y - zone.y) < 10)
                {
-                  if(_loc3_.y >= zone.y)
+                  if(loc3.y >= zone.y)
                   {
-                     f_MoveCharV(_loc3_,zone.y - _loc3_.y,0);
+                     f_MoveCharV(loc3,zone.y - loc3.y,0);
                   }
-                  f_FX(_loc3_.x,zone.y,int(zone.y) + 2,"impact1",100,100);
+                  f_FX(loc3.x,zone.y,int(zone.y) + 2,"impact1",100,100);
                   s_Punch3.start(0,0);
-                  _loc3_.burried = true;
-                  _loc3_.nohit = true;
-                  _loc3_.body_y = 0;
-                  _loc3_.gotoAndStop("burried");
-                  var _loc5_ = 10;
+                  loc3.burried = true;
+                  loc3.nohit = true;
+                  loc3.body_y = 0;
+                  loc3.gotoAndStop("burried");
+                  var loc5 = 10;
                   if(_root.insane_mode)
                   {
-                     _loc5_ = 50;
+                     loc5 = 50;
                   }
-                  f_Damage(_loc3_,_loc5_,DMG_MELEE);
+                  f_Damage(loc3,loc5,DMG_MELEE);
                }
             }
          }
-         _loc4_ = _loc4_ + 1;
+         loc4 = loc4 + 1;
       }
       zone.gotoAndStop("remove");
       return undefined;
@@ -9731,8 +9761,8 @@ function f_BeefyJuggle(zone)
    {
       zone.hit_number = 1;
    }
-   var _loc2_ = int(zone.hit_number);
-   switch(_loc2_)
+   var loc2 = int(zone.hit_number);
+   switch(loc2)
    {
       case 1:
          zone.gotoAndStop("hit1");
@@ -9755,15 +9785,15 @@ function f_BeefyChain(zone)
    {
       if(zone.hit_number > 0)
       {
-         var _loc3_ = 1;
-         while(_loc3_ <= active_players)
+         var loc3 = 1;
+         while(loc3 <= active_players)
          {
-            var _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-            if(_loc2_.alive and !_loc2_.nohit and !_loc2_.beefy && _loc2_.p_type != 32)
+            var loc2 = playerArrayOb["p_pt" + int(loc3)];
+            if(loc2.alive and !loc2.nohit and !loc2.beefy && !loc2.noBeefyGrabs)
             {
-               if(Math.abs(zone.x - _loc2_.x) < 100)
+               if(Math.abs(zone.x - loc2.x) < 100)
                {
-                  if(Math.abs(zone.y - _loc2_.y) < zone.speed)
+                  if(Math.abs(zone.y - loc2.y) < zone.speed)
                   {
                      zone.prev_Character = zone.fp_Character;
                      f_BeefyGrabEnemy(zone,zone.prey);
@@ -9772,7 +9802,7 @@ function f_BeefyChain(zone)
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
    }
@@ -9824,10 +9854,10 @@ function f_ImpStealDeath(zone)
 {
    zone.dropstuff = false;
    f_ItemSpawn(zone.x,zone.y,8);
-   var _loc2_ = f_SpawnImp(zone.x,zone.y);
-   if(_loc2_)
+   var loc2 = f_SpawnImp(zone.x,zone.y);
+   if(loc2)
    {
-      f_MoveCharH(_loc2_,main.right + 75 - zone.x,0);
+      f_MoveCharH(loc2,main.right + 75 - zone.x,0);
       kills_goal += 1;
       f_SetTargets();
    }
@@ -9846,296 +9876,296 @@ function f_InitSaveSystem()
    save_data_info.num_levels = 64;
    save_data_info.num_relics = 8;
    save_data_info.num_items_expansion = 64;
-   save_data_info.num_characters = 32;
+   save_data_info.num_characters = 33;
    relic_offset = 40;
    weapon_offset = 50;
 }
 function f_LoadCharacterData(playerNum)
 {
-   var _loc2_ = _root["hud" + int(playerNum)];
-   var _loc4_ = _loc2_.port - 1;
-   _loc2_.animal_unlocks = new Array(int(save_data_info.num_animals));
-   _loc2_.item_unlocks = new Array(int(save_data_info.num_items));
-   _loc2_.item_unlocks_expansion = new Array(int(save_data_info.num_items_expansion));
-   _loc2_.level_unlocks = new Array(int(save_data_info.num_levels));
-   _loc2_.relic_unlocks = new Array(int(save_data_info.num_relics));
-   _loc2_.normal_level_unlocks = new Array(4);
-   _loc2_.insane_level_unlocks = new Array(4);
+   var loc2 = _root["hud" + int(playerNum)];
+   var loc4 = loc2.port - 1;
+   loc2.animal_unlocks = new Array(int(save_data_info.num_animals));
+   loc2.item_unlocks = new Array(int(save_data_info.num_items));
+   loc2.item_unlocks_expansion = new Array(int(save_data_info.num_items_expansion));
+   loc2.level_unlocks = new Array(int(save_data_info.num_levels));
+   loc2.relic_unlocks = new Array(int(save_data_info.num_relics));
+   loc2.normal_level_unlocks = new Array(4);
+   loc2.insane_level_unlocks = new Array(4);
    if(console_version)
    {
-      var _loc13_ = 8;
-      var _loc3_ = 1;
-      while(_loc3_ < save_data_info.num_animals)
+      var loc13 = 8;
+      var loc3 = 1;
+      while(loc3 < save_data_info.num_animals)
       {
-         var _loc7_ = Math.floor(_loc3_ / 8);
-         var _loc5_ = _loc3_ % 8;
-         var _loc6_ = Math.pow(2,_loc5_);
-         var _loc8_ = ReadStorage(_loc4_,_loc13_ + _loc7_);
-         if(_loc8_ & _loc6_)
+         var loc7 = Math.floor(loc3 / 8);
+         var loc5 = loc3 % 8;
+         var loc6 = Math.pow(2,loc5);
+         var loc8 = ReadStorage(loc4,loc13 + loc7);
+         if(loc8 & loc6)
          {
-            _loc2_.animal_unlocks[_loc3_] = true;
+            loc2.animal_unlocks[loc3] = true;
          }
          else
          {
-            _loc2_.animal_unlocks[_loc3_] = false;
+            loc2.animal_unlocks[loc3] = false;
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      _loc13_ = 12;
-      _loc3_ = 1;
-      while(_loc3_ < save_data_info.num_items)
+      loc13 = 12;
+      loc3 = 1;
+      while(loc3 < save_data_info.num_items)
       {
-         _loc7_ = Math.floor(_loc3_ / 8);
-         _loc5_ = _loc3_ % 8;
-         _loc6_ = Math.pow(2,_loc5_);
-         _loc8_ = ReadStorage(_loc4_,_loc13_ + _loc7_);
-         if(_loc8_ & _loc6_)
+         loc7 = Math.floor(loc3 / 8);
+         loc5 = loc3 % 8;
+         loc6 = Math.pow(2,loc5);
+         loc8 = ReadStorage(loc4,loc13 + loc7);
+         if(loc8 & loc6)
          {
-            _loc2_.item_unlocks[_loc3_] = true;
+            loc2.item_unlocks[loc3] = true;
          }
          else
          {
-            _loc2_.item_unlocks[_loc3_] = false;
+            loc2.item_unlocks[loc3] = false;
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      _loc13_ = 28;
-      _loc3_ = 0;
-      while(_loc3_ < save_data_info.num_items_expansion)
+      loc13 = 28;
+      loc3 = 0;
+      while(loc3 < save_data_info.num_items_expansion)
       {
-         _loc7_ = Math.floor(_loc3_ / 8);
-         _loc5_ = _loc3_ % 8;
-         _loc6_ = Math.pow(2,_loc5_);
-         _loc8_ = ReadStorage(_loc4_,_loc13_ + _loc7_);
-         if(_loc8_ & _loc6_)
+         loc7 = Math.floor(loc3 / 8);
+         loc5 = loc3 % 8;
+         loc6 = Math.pow(2,loc5);
+         loc8 = ReadStorage(loc4,loc13 + loc7);
+         if(loc8 & loc6)
          {
-            _loc2_.item_unlocks_expansion[_loc3_] = true;
+            loc2.item_unlocks_expansion[loc3] = true;
          }
          else
          {
-            _loc2_.item_unlocks_expansion[_loc3_] = false;
+            loc2.item_unlocks_expansion[loc3] = false;
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      _loc2_.item_unlocks[6] = false;
-      _loc2_.item_unlocks[_root.weapon_offset + 3] = true;
-      _loc2_.item_unlocks[_root.weapon_offset + 25] = true;
-      _loc2_.item_unlocks[_root.weapon_offset + 39] = true;
-      _loc2_.item_unlocks[_root.weapon_offset + 56] = true;
+      loc2.item_unlocks[6] = false;
+      loc2.item_unlocks[_root.weapon_offset + 3] = true;
+      loc2.item_unlocks[_root.weapon_offset + 25] = true;
+      loc2.item_unlocks[_root.weapon_offset + 39] = true;
+      loc2.item_unlocks[_root.weapon_offset + 56] = true;
 
-      _loc13_ = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(_loc2_.p_type));
-      ReadStorage(_loc4_,_loc13_);
-      _loc2_.level = ReadStorage(_loc4_) + 1;
-      _loc2_.exp = ReadStorage(_loc4_) << 24 | ReadStorage(_loc4_) << 16 | ReadStorage(_loc4_) << 8 | ReadStorage(_loc4_);
-      _loc2_.exp_mod = 190 + 20 * (_loc2_.level - 1);
-      _loc2_.exp_next = 190 * _loc2_.level + 10 * (_loc2_.level * (_loc2_.level - 1));
-      _loc2_.exp_start = _loc2_.exp;
-      if(_loc2_.level > 1 and _loc2_.exp == 0)
+      loc13 = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(loc2.p_type));
+      ReadStorage(loc4,loc13);
+      loc2.level = ReadStorage(loc4) + 1;
+      loc2.exp = ReadStorage(loc4) << 24 | ReadStorage(loc4) << 16 | ReadStorage(loc4) << 8 | ReadStorage(loc4);
+      loc2.exp_mod = 190 + 20 * (loc2.level - 1);
+      loc2.exp_next = 190 * loc2.level + 10 * (loc2.level * (loc2.level - 1));
+      loc2.exp_start = loc2.exp;
+      if(loc2.level > 1 and loc2.exp == 0)
       {
-         _loc2_.exp = _loc2_.exp_next - _loc2_.exp_mod + 190;
+         loc2.exp = loc2.exp_next - loc2.exp_mod + 190;
       }
-      var _loc12_ = ReadStorage(_loc4_);
-      _loc2_.weapon = _loc12_;
-      _loc2_.default_weapon = f_GetDefaultWeapon(_loc2_);
-      var _loc11_ = ReadStorage(_loc4_);
-      if(_loc11_ > 0)
+      var loc12 = ReadStorage(loc4);
+      loc2.weapon = loc12;
+      loc2.default_weapon = f_GetDefaultWeapon(loc2);
+      var loc11 = ReadStorage(loc4);
+      if(loc11 > 0)
       {
-         _loc2_.animal_type = _loc11_;
+         loc2.animal_type = loc11;
       }
-      _loc2_.strength = ReadStorage(_loc4_);
-      _loc2_.defense = ReadStorage(_loc4_);
-      _loc2_.magic = ReadStorage(_loc4_);
-      _loc2_.agility = ReadStorage(_loc4_);
-      if(_loc2_.level > 20)
+      loc2.strength = ReadStorage(loc4);
+      loc2.defense = ReadStorage(loc4);
+      loc2.magic = ReadStorage(loc4);
+      loc2.agility = ReadStorage(loc4);
+      if(loc2.level > 20)
       {
-         var _loc9_ = 42 + (_loc2_.level - 20);
+         var loc9 = 42 + (loc2.level - 20);
       }
       else
       {
-         _loc9_ = _loc2_.level * 2 + 2;
+         loc9 = loc2.level * 2 + 2;
       }
-      var _loc10_ = _loc2_.strength + _loc2_.defense + _loc2_.magic + _loc2_.agility;
-      if(_loc10_ > 100)
+      var loc10 = loc2.strength + loc2.defense + loc2.magic + loc2.agility;
+      if(loc10 > 100)
       {
-         _loc10_ = 100;
+         loc10 = 100;
       }
-      if(_loc9_ > 100)
+      if(loc9 > 100)
       {
-         _loc9_ = 100;
+         loc9 = 100;
       }
-      _loc2_.xpgained = _loc9_ - _loc10_;
-      _loc2_.normal_level_unlocks[0] = ReadStorage(_loc4_);
-      _loc2_.normal_level_unlocks[1] = ReadStorage(_loc4_);
-      _loc2_.normal_level_unlocks[2] = ReadStorage(_loc4_);
-      _loc2_.healthpots = ReadStorage(_loc4_);
-      _loc2_.bombs = ReadStorage(_loc4_);
-      _loc2_.beefies = ReadStorage(_loc4_);
-      _loc8_ = ReadStorage(_loc4_);
-      _loc3_ = 0;
-      while(_loc3_ < save_data_info.num_relics)
+      loc2.xpgained = loc9 - loc10;
+      loc2.normal_level_unlocks[0] = ReadStorage(loc4);
+      loc2.normal_level_unlocks[1] = ReadStorage(loc4);
+      loc2.normal_level_unlocks[2] = ReadStorage(loc4);
+      loc2.healthpots = ReadStorage(loc4);
+      loc2.bombs = ReadStorage(loc4);
+      loc2.beefies = ReadStorage(loc4);
+      loc8 = ReadStorage(loc4);
+      loc3 = 0;
+      while(loc3 < save_data_info.num_relics)
       {
-         _loc7_ = Math.floor(_loc3_ / 8);
-         _loc5_ = _loc3_ % 8;
-         _loc6_ = Math.pow(2,_loc5_);
-         if(_loc8_ & _loc6_)
+         loc7 = Math.floor(loc3 / 8);
+         loc5 = loc3 % 8;
+         loc6 = Math.pow(2,loc5);
+         if(loc8 & loc6)
          {
-            _loc2_.relic_unlocks[int(_loc3_)] = true;
+            loc2.relic_unlocks[int(loc3)] = true;
          }
          else
          {
-            _loc2_.relic_unlocks[int(_loc3_)] = false;
+            loc2.relic_unlocks[int(loc3)] = false;
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      _loc2_.item_unlocks[6] = _loc2_.relic_unlocks[3];
-      _loc2_.gold = ReadStorage(_loc4_) << 24 | ReadStorage(_loc4_) << 16 | ReadStorage(_loc4_) << 8 | ReadStorage(_loc4_);
-      _loc2_.gold_start = _loc2_.gold;
-      _loc2_.insane_mode = ReadStorage(_loc4_);
-      if(_loc2_.insane_mode > 0)
+      loc2.item_unlocks[6] = loc2.relic_unlocks[3];
+      loc2.gold = ReadStorage(loc4) << 24 | ReadStorage(loc4) << 16 | ReadStorage(loc4) << 8 | ReadStorage(loc4);
+      loc2.gold_start = loc2.gold;
+      loc2.insane_mode = ReadStorage(loc4);
+      if(loc2.insane_mode > 0)
       {
-         _loc2_.insane_mode = 1;
+         loc2.insane_mode = 1;
       }
-      _loc2_.insane_level_unlocks[0] = ReadStorage(_loc4_);
-      _loc2_.insane_level_unlocks[1] = ReadStorage(_loc4_);
-      _loc2_.insane_level_unlocks[2] = ReadStorage(_loc4_);
-      f_LoadLevelUnlocks(_loc2_);
-      _loc2_.health_max = 1000000;
-      _loc2_.health = _loc2_.health_max;
-      _loc2_.achievement = 0;
-      _loc2_.exp_last = 0;
-      if(_loc2_.port == 1)
+      loc2.insane_level_unlocks[0] = ReadStorage(loc4);
+      loc2.insane_level_unlocks[1] = ReadStorage(loc4);
+      loc2.insane_level_unlocks[2] = ReadStorage(loc4);
+      f_LoadLevelUnlocks(loc2);
+      loc2.health_max = 1000000;
+      loc2.health = loc2.health_max;
+      loc2.achievement = 0;
+      loc2.exp_last = 0;
+      if(loc2.port == 1)
       {
-         _loc2_.achievement |= 16;
+         loc2.achievement |= 16;
       }
-      else if(_loc2_.port == 2)
+      else if(loc2.port == 2)
       {
-         _loc2_.achievement |= 32;
+         loc2.achievement |= 32;
       }
-      else if(_loc2_.port == 3)
+      else if(loc2.port == 3)
       {
-         _loc2_.achievement |= 64;
+         loc2.achievement |= 64;
       }
-      else if(_loc2_.port == 4)
+      else if(loc2.port == 4)
       {
-         _loc2_.achievement |= 128;
+         loc2.achievement |= 128;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 63] and _loc2_.weapon == 63)
+      if(!loc2.item_unlocks[_root.weapon_offset + 63] and loc2.weapon == 63)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 64] and _loc2_.weapon == 64)
+      if(!loc2.item_unlocks[_root.weapon_offset + 64] and loc2.weapon == 64)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 65] and _loc2_.weapon == 65)
+      if(!loc2.item_unlocks[_root.weapon_offset + 65] and loc2.weapon == 65)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 66] and _loc2_.weapon == 66)
+      if(!loc2.item_unlocks[_root.weapon_offset + 66] and loc2.weapon == 66)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 72] and _loc2_.weapon == 72)
+      if(!loc2.item_unlocks[_root.weapon_offset + 72] and loc2.weapon == 72)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks_expansion[0] and _loc2_.weapon == 78)
+      if(!loc2.item_unlocks_expansion[0] and loc2.weapon == 78)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks_expansion[1] and _loc2_.weapon == 79)
+      if(!loc2.item_unlocks_expansion[1] and loc2.weapon == 79)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks_expansion[7] and _loc2_.weapon == 85)
+      if(!loc2.item_unlocks_expansion[7] and loc2.weapon == 85)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 71] and _loc2_.weapon == 71)
+      if(!loc2.item_unlocks[_root.weapon_offset + 71] and loc2.weapon == 71)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 75] and _loc2_.weapon == 75)
+      if(!loc2.item_unlocks[_root.weapon_offset + 75] and loc2.weapon == 75)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 76] and _loc2_.weapon == 76)
+      if(!loc2.item_unlocks[_root.weapon_offset + 76] and loc2.weapon == 76)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks[_root.weapon_offset + 77] and _loc2_.weapon == 77)
+      if(!loc2.item_unlocks[_root.weapon_offset + 77] and loc2.weapon == 77)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
-      if(!_loc2_.item_unlocks_expansion[6] and _loc2_.weapon == 84)
+      if(!loc2.item_unlocks_expansion[6] and loc2.weapon == 84)
       {
-         _loc2_.weapon = 2;
+         loc2.weapon = 2;
       }
    }
    else
    {
-      _loc2_.level = 40;
-      _loc2_.magic = 20;
-      _loc2_.exp = 0;
-      _loc2_.gold = 0;
-      _loc2_.kills = 0;
-      _loc2_.healthpots = 5;
-      _loc2_.bombs = 9;
-      _loc2_.beefies = 9;
-      _loc2_.weapon = 0;
-      _loc2_.health_max = 1000000;
-      _loc2_.health = _loc2_.health_max;
-      _loc3_ = 0;
-      while(_loc3_ < save_data_info.num_levels)
+      loc2.level = 40;
+      loc2.magic = 20;
+      loc2.exp = 0;
+      loc2.gold = 0;
+      loc2.kills = 0;
+      loc2.healthpots = 5;
+      loc2.bombs = 9;
+      loc2.beefies = 9;
+      loc2.weapon = 0;
+      loc2.health_max = 1000000;
+      loc2.health = loc2.health_max;
+      loc3 = 0;
+      while(loc3 < save_data_info.num_levels)
       {
-         _loc2_.level_unlocks[_loc3_] = 0;
-         _loc3_ = _loc3_ + 1;
+         loc2.level_unlocks[loc3] = 0;
+         loc3 = loc3 + 1;
       }
-      _loc3_ = 0;
-      while(_loc3_ < save_data_info.num_items)
+      loc3 = 0;
+      while(loc3 < save_data_info.num_items)
       {
          if(GetCheat(4) or !console_version)
          {
-            _loc2_.item_unlocks[_loc3_] = true;
+            loc2.item_unlocks[loc3] = true;
          }
          else
          {
-            _loc2_.item_unlocks[_loc3_] = false;
+            loc2.item_unlocks[loc3] = false;
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      _loc3_ = 0;
-      while(_loc3_ < save_data_info.num_items_expansion)
+      loc3 = 0;
+      while(loc3 < save_data_info.num_items_expansion)
       {
          if(GetCheat(4) or !console_version)
          {
-            _loc2_.item_unlocks_expansion[_loc3_] = true;
+            loc2.item_unlocks_expansion[loc3] = true;
          }
          else
          {
-            _loc2_.item_unlocks_expansion[_loc3_] = false;
+            loc2.item_unlocks_expansion[loc3] = false;
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      _loc2_.item_unlocks[_root.weapon_offset + 3] = true;
-      _loc2_.item_unlocks[_root.weapon_offset + 4] = true;
-      _loc2_.item_unlocks[_root.weapon_offset + 25] = true;
-      _loc2_.item_unlocks[_root.weapon_offset + 39] = true;
-      _loc3_ = 0;
-      while(_loc3_ < save_data_info.num_animals)
+      loc2.item_unlocks[_root.weapon_offset + 3] = true;
+      loc2.item_unlocks[_root.weapon_offset + 4] = true;
+      loc2.item_unlocks[_root.weapon_offset + 25] = true;
+      loc2.item_unlocks[_root.weapon_offset + 39] = true;
+      loc3 = 0;
+      while(loc3 < save_data_info.num_animals)
       {
-         _loc2_.animal_unlocks[_loc3_] = false;
-         _loc3_ = _loc3_ + 1;
+         loc2.animal_unlocks[loc3] = false;
+         loc3 = loc3 + 1;
       }
       if(GetCheat(4))
       {
-         _loc2_.item_unlocks[1] = true;
-         _loc2_.item_unlocks[3] = true;
+         loc2.item_unlocks[1] = true;
+         loc2.item_unlocks[3] = true;
       }
-      _loc2_.achievement = 0;
-      _loc2_.exp_last = 0;
+      loc2.achievement = 0;
+      loc2.exp_last = 0;
    }
-   _loc2_.loaded = true;
+   loc2.loaded = true;
 }
 function f_FlushSaveData()
 {
@@ -10147,168 +10177,168 @@ function f_FlushSaveData()
    {
       return true;
    }
-   var _loc12_ = true;
-   var _loc9_ = 1;
-   while(_loc9_ <= 4)
+   var loc12 = true;
+   var loc9 = 1;
+   while(loc9 <= 4)
    {
-      var _loc2_ = _root["hud" + int(_loc9_)];
-      if(_loc2_.active and _loc2_.loaded == true)
+      var loc2 = _root["hud" + int(loc9)];
+      if(loc2.active and loc2.loaded == true)
       {
-         var _loc3_ = _loc2_.port - 1;
-         if(_loc3_ != -1)
+         var loc3 = loc2.port - 1;
+         if(loc3 != -1)
          {
-            if(IsLocalPlayerInSession(_loc2_.port - 1))
+            if(IsLocalPlayerInSession(loc2.port - 1))
             {
-               var _loc11_ = 7;
-               var _loc6_ = ReadStorage(_loc3_,_loc11_);
-               if(_loc2_.level_unlocks[46])
+               var loc11 = 7;
+               var loc6 = ReadStorage(loc3,loc11);
+               if(loc2.level_unlocks[46])
                {
-                  _loc6_ |= 1;
+                  loc6 |= 1;
                }
-               if(_loc2_.level_unlocks[47])
+               if(loc2.level_unlocks[47])
                {
-                  _loc6_ |= 2;
+                  loc6 |= 2;
                }
-               if(_loc2_.level_unlocks[48])
+               if(loc2.level_unlocks[48])
                {
-                  _loc6_ |= 4;
+                  loc6 |= 4;
                }
-               if(_loc2_.level_unlocks[49])
+               if(loc2.level_unlocks[49])
                {
-                  _loc6_ |= 8;
+                  loc6 |= 8;
                }
-               WriteStorage(_loc3_,_loc11_,_loc6_);
-               _loc11_ = 8;
-               var _loc5_ = 0;
-               var _loc4_ = 1;
-               while(_loc4_ < save_data_info.num_animals)
+               WriteStorage(loc3,loc11,loc6);
+               loc11 = 8;
+               var loc5 = 0;
+               var loc4 = 1;
+               while(loc4 < save_data_info.num_animals)
                {
-                  var _loc10_ = Math.floor(_loc4_ / 8);
-                  var _loc7_ = _loc4_ % 8;
-                  var _loc8_ = Math.pow(2,_loc7_);
-                  if(_loc2_.animal_unlocks[_loc4_] == true)
+                  var loc10 = Math.floor(loc4 / 8);
+                  var loc7 = loc4 % 8;
+                  var loc8 = Math.pow(2,loc7);
+                  if(loc2.animal_unlocks[loc4] == true)
                   {
-                     _loc5_ |= _loc8_;
+                     loc5 |= loc8;
                   }
-                  if(_loc7_ == 7)
+                  if(loc7 == 7)
                   {
-                     WriteStorage(_loc3_,_loc11_ + _loc10_,_loc5_);
-                     _loc5_ = 0;
+                     WriteStorage(loc3,loc11 + loc10,loc5);
+                     loc5 = 0;
                   }
-                  _loc4_ = _loc4_ + 1;
+                  loc4 = loc4 + 1;
                }
-               _loc11_ = 12;
-               _loc5_ = 0;
-               _loc4_ = 1;
-               while(_loc4_ < save_data_info.num_items)
+               loc11 = 12;
+               loc5 = 0;
+               loc4 = 1;
+               while(loc4 < save_data_info.num_items)
                {
-                  _loc10_ = Math.floor(_loc4_ / 8);
-                  _loc7_ = _loc4_ % 8;
-                  _loc8_ = Math.pow(2,_loc7_);
-                  if(_loc2_.item_unlocks[_loc4_] == true)
+                  loc10 = Math.floor(loc4 / 8);
+                  loc7 = loc4 % 8;
+                  loc8 = Math.pow(2,loc7);
+                  if(loc2.item_unlocks[loc4] == true)
                   {
-                     _loc5_ |= _loc8_;
+                     loc5 |= loc8;
                   }
-                  if(_loc7_ == 7)
+                  if(loc7 == 7)
                   {
-                     WriteStorage(_loc3_,_loc11_ + _loc10_,_loc5_);
-                     _loc5_ = 0;
+                     WriteStorage(loc3,loc11 + loc10,loc5);
+                     loc5 = 0;
                   }
-                  _loc4_ = _loc4_ + 1;
+                  loc4 = loc4 + 1;
                }
-               _loc11_ = 28;
-               _loc5_ = 0;
-               _loc4_ = 0;
-               while(_loc4_ < save_data_info.num_items_expansion)
+               loc11 = 28;
+               loc5 = 0;
+               loc4 = 0;
+               while(loc4 < save_data_info.num_items_expansion)
                {
-                  _loc10_ = Math.floor(_loc4_ / 8);
-                  _loc7_ = _loc4_ % 8;
-                  _loc8_ = Math.pow(2,_loc7_);
-                  if(_loc2_.item_unlocks_expansion[_loc4_] == true)
+                  loc10 = Math.floor(loc4 / 8);
+                  loc7 = loc4 % 8;
+                  loc8 = Math.pow(2,loc7);
+                  if(loc2.item_unlocks_expansion[loc4] == true)
                   {
-                     _loc5_ |= _loc8_;
+                     loc5 |= loc8;
                   }
-                  if(_loc7_ == 7)
+                  if(loc7 == 7)
                   {
-                     WriteStorage(_loc3_,_loc11_ + _loc10_,_loc5_);
-                     _loc5_ = 0;
+                     WriteStorage(loc3,loc11 + loc10,loc5);
+                     loc5 = 0;
                   }
-                  _loc4_ = _loc4_ + 1;
+                  loc4 = loc4 + 1;
                }
-               if(_loc2_.p_type)
+               if(loc2.p_type)
                {
-                  _loc11_ = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(_loc2_.p_type));
-                  WriteStorage(_loc3_,_loc11_,128);
-                  WriteStorage(_loc3_,_loc2_.level - 1);
-                  WriteStorage(_loc3_,_loc2_.exp >> 24);
-                  WriteStorage(_loc3_,_loc2_.exp >> 16);
-                  WriteStorage(_loc3_,_loc2_.exp >> 8);
-                  WriteStorage(_loc3_,_loc2_.exp & 255);
-                  WriteStorage(_loc3_,_loc2_.weapon);
-                  WriteStorage(_loc3_,_loc2_.animal_type);
-                  WriteStorage(_loc3_,_loc2_.strength);
-                  WriteStorage(_loc3_,_loc2_.defense);
-                  WriteStorage(_loc3_,_loc2_.magic);
-                  WriteStorage(_loc3_,_loc2_.agility);
-                  f_SaveLevelUnlocks(_loc2_);
-                  WriteStorage(_loc3_,_loc2_.normal_level_unlocks[0]);
-                  WriteStorage(_loc3_,_loc2_.normal_level_unlocks[1]);
-                  WriteStorage(_loc3_,_loc2_.normal_level_unlocks[2]);
-                  WriteStorage(_loc3_,_loc2_.healthpots);
-                  WriteStorage(_loc3_,_loc2_.bombs);
-                  WriteStorage(_loc3_,_loc2_.beefies);
-                  _loc5_ = 0;
-                  _loc4_ = 0;
-                  while(_loc4_ < save_data_info.num_relics)
+                  loc11 = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(loc2.p_type));
+                  WriteStorage(loc3, loc11, 128);
+                  WriteStorage(loc3,loc2.level - 1);
+                  WriteStorage(loc3,loc2.exp >> 24);
+                  WriteStorage(loc3,loc2.exp >> 16);
+                  WriteStorage(loc3,loc2.exp >> 8);
+                  WriteStorage(loc3,loc2.exp & 255);
+                  WriteStorage(loc3,loc2.weapon);
+                  WriteStorage(loc3,loc2.animal_type);
+                  WriteStorage(loc3,loc2.strength);
+                  WriteStorage(loc3,loc2.defense);
+                  WriteStorage(loc3,loc2.magic);
+                  WriteStorage(loc3,loc2.agility);
+                  f_SaveLevelUnlocks(loc2);
+                  WriteStorage(loc3,loc2.normal_level_unlocks[0]);
+                  WriteStorage(loc3,loc2.normal_level_unlocks[1]);
+                  WriteStorage(loc3,loc2.normal_level_unlocks[2]);
+                  WriteStorage(loc3,loc2.healthpots);
+                  WriteStorage(loc3,loc2.bombs);
+                  WriteStorage(loc3,loc2.beefies);
+                  loc5 = 0;
+                  loc4 = 0;
+                  while(loc4 < save_data_info.num_relics)
                   {
-                     _loc10_ = Math.floor(_loc4_ / 8);
-                     _loc7_ = _loc4_ % 8;
-                     _loc8_ = Math.pow(2,_loc7_);
-                     if(_loc2_.relic_unlocks[int(_loc4_)] == true)
+                     loc10 = Math.floor(loc4 / 8);
+                     loc7 = loc4 % 8;
+                     loc8 = Math.pow(2,loc7);
+                     if(loc2.relic_unlocks[int(loc4)] == true)
                      {
-                        _loc5_ |= _loc8_;
+                        loc5 |= loc8;
                      }
-                     if(_loc4_ == 7)
+                     if(loc4 == 7)
                      {
-                        WriteStorage(_loc3_,_loc5_);
-                        _loc5_ = 0;
+                        WriteStorage(loc3,loc5);
+                        loc5 = 0;
                      }
-                     _loc4_ = _loc4_ + 1;
+                     loc4 = loc4 + 1;
                   }
-                  WriteStorage(_loc3_,_loc2_.gold >> 24);
-                  WriteStorage(_loc3_,_loc2_.gold >> 16);
-                  WriteStorage(_loc3_,_loc2_.gold >> 8);
-                  WriteStorage(_loc3_,_loc2_.gold & 255);
-                  if(_loc2_.insane_mode > 0)
+                  WriteStorage(loc3,loc2.gold >> 24);
+                  WriteStorage(loc3,loc2.gold >> 16);
+                  WriteStorage(loc3,loc2.gold >> 8);
+                  WriteStorage(loc3,loc2.gold & 255);
+                  if(loc2.insane_mode > 0)
                   {
-                     WriteStorage(_loc3_,1);
+                     WriteStorage(loc3,1);
                   }
                   else
                   {
-                     WriteStorage(_loc3_,0);
+                     WriteStorage(loc3,0);
                   }
-                  WriteStorage(_loc3_,_loc2_.insane_level_unlocks[0]);
-                  WriteStorage(_loc3_,_loc2_.insane_level_unlocks[1]);
-                  WriteStorage(_loc3_,_loc2_.insane_level_unlocks[2]);
+                  WriteStorage(loc3,loc2.insane_level_unlocks[0]);
+                  WriteStorage(loc3,loc2.insane_level_unlocks[1]);
+                  WriteStorage(loc3,loc2.insane_level_unlocks[2]);
                }
-               if(!WriteSaveGame(_loc3_))
+               if(!WriteSaveGame(loc3))
                {
-                  _loc12_ = false;
+                  loc12 = false;
                }
             }
          }
       }
-      _loc9_ = _loc9_ + 1;
+      loc9 = loc9 + 1;
    }
-   return _loc12_;
+   return loc12;
 }
 function f_GetCharacterLevel(player, player_type)
 {
-   var _loc2_ = _root["hud" + player];
-   var _loc3_ = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(player_type));
-   ReadStorage(_loc2_.port - 1,_loc3_);
-   var _loc4_ = ReadStorage(_loc2_.port - 1) + 1;
-   return _loc4_;
+   var loc2 = _root["hud" + player];
+   var loc3 = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(player_type));
+   ReadStorage(loc2.port - 1,loc3);
+   var loc4 = ReadStorage(loc2.port - 1) + 1;
+   return loc4;
 }
 function f_IsCharacterUnlocked(zone, item)
 {
@@ -10316,16 +10346,16 @@ function f_IsCharacterUnlocked(zone, item)
    {
       return true;
    }
-   if(item >= 1 and item <= 4)
+   if((item >= 1 && item <= 4) || item > 31)
    {
       return true;
    }
-   var _loc1_ = zone;
-   if(_loc1_.active)
+   var loc1 = zone;
+   if(loc1.active)
    {
-      var _loc2_ = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(item));
-      var _loc3_ = ReadStorage(_loc1_.port - 1,_loc2_);
-      if(_loc3_ & 128)
+      var loc2 = save_data_info.char_offset + save_data_info.char_size * int(f_GetSaveDataOffset(item));
+      var loc3 = ReadStorage(loc1.port - 1,loc2);
+      if(loc3 & 128)
       {
          return true;
       }
@@ -10334,75 +10364,75 @@ function f_IsCharacterUnlocked(zone, item)
 }
 function f_SetLevelUnlocked(level)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root["hud" + int(_loc3_)];
-      if(_loc2_.active and _loc2_.level_unlocks[level] == 0)
+      var loc2 = _root["hud" + int(loc3)];
+      if(loc2.active and loc2.level_unlocks[level] == 0)
       {
-         _loc2_.level_unlocks[level] = 1;
+         loc2.level_unlocks[level] = 1;
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_GetLevelUnlocked(level)
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = _root["hud" + int(_loc2_)];
-      if(_loc3_.active and _loc3_.level_unlocks[level] > 0)
+      var loc3 = _root["hud" + int(loc2)];
+      if(loc3.active and loc3.level_unlocks[level] > 0)
       {
          return true;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    return false;
 }
 function f_SetLevelVisited(level)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root["hud" + int(_loc3_)];
-      if(_loc2_.active)
+      var loc2 = _root["hud" + int(loc3)];
+      if(loc2.active)
       {
-         if(_loc2_.level_unlocks[level] < 3)
+         if(loc2.level_unlocks[level] < 3)
          {
-            _loc2_.level_unlocks[level] = 2;
+            loc2.level_unlocks[level] = 2;
          }
-         else if(_loc2_.level_unlocks[level] < 4)
+         else if(loc2.level_unlocks[level] < 4)
          {
-            _loc2_.level_unlocks[level] = 4;
+            loc2.level_unlocks[level] = 4;
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_GetLevelVisited(level)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root["hud" + int(_loc3_)];
-      if(_loc2_.active)
+      var loc2 = _root["hud" + int(loc3)];
+      if(loc2.active)
       {
-         if(_loc2_.level_unlocks[level] == 2 or _loc2_.level_unlocks[level] == 4)
+         if(loc2.level_unlocks[level] == 2 or loc2.level_unlocks[level] == 4)
          {
             return true;
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
    return false;
 }
 function f_SetLevelCompleted(level)
 {
-   var _loc4_ = 1;
-   while(_loc4_ <= 4)
+   var loc4 = 1;
+   while(loc4 <= 4)
    {
-      var _loc2_ = _root["hud" + int(_loc4_)];
-      if(_loc2_.active and _loc2_.level_unlocks[level] < 3)
+      var loc2 = _root["hud" + int(loc4)];
+      if(loc2.active and loc2.level_unlocks[level] < 3)
       {
          switch(level)
          {
@@ -10410,27 +10440,27 @@ function f_SetLevelCompleted(level)
             case 47:
             case 48:
             case 49:
-               if(!f_IsArenaUnlocked(_loc2_.port - 1,level - 46))
+               if(!f_IsArenaUnlocked(loc2.port - 1,level - 46))
                {
-                  _loc2_.arenaunlock = level;
+                  loc2.arenaunlock = level;
                }
          }
-         _loc2_.level_unlocks[level] = 3;
+         loc2.level_unlocks[level] = 3;
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
 }
 function f_GetLevelCompleted(level)
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = _root["hud" + int(_loc2_)];
-      if(_loc3_.active and _loc3_.level_unlocks[level] > 2)
+      var loc3 = _root["hud" + int(loc2)];
+      if(loc3.active and loc3.level_unlocks[level] > 2)
       {
          return true;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    return false;
 }
@@ -10469,11 +10499,11 @@ function IsFullGame()
 }
 function f_LoadLevelUnlocks(c)
 {
-   var _loc2_ = 0;
-   while(_loc2_ < save_data_info.num_levels)
+   var loc2 = 0;
+   while(loc2 < save_data_info.num_levels)
    {
-      c.level_unlocks[_loc2_] = 0;
-      _loc2_ = _loc2_ + 1;
+      c.level_unlocks[loc2] = 0;
+      loc2 = loc2 + 1;
    }
    c.level_unlocks[2] = 1;
    c.level_unlocks[13] = 1;
@@ -10626,107 +10656,107 @@ function f_LoadLevelUnlocks(c)
 }
 function f_SaveLevelUnlocks(c)
 {
-   var _loc1_ = 0;
+   var loc1 = 0;
    if(c.level_unlocks[19] >= 3)
    {
-      _loc1_ |= 1;
+      loc1 |= 1;
    }
    if(c.level_unlocks[7] >= 3)
    {
-      _loc1_ |= 2;
+      loc1 |= 2;
    }
    if(c.level_unlocks[4] >= 3)
    {
-      _loc1_ |= 4;
+      loc1 |= 4;
    }
    if(c.level_unlocks[23] >= 3)
    {
-      _loc1_ |= 8;
+      loc1 |= 8;
    }
    if(c.level_unlocks[21] >= 3)
    {
-      _loc1_ |= 16;
+      loc1 |= 16;
    }
    if(c.level_unlocks[35] >= 3)
    {
-      _loc1_ |= 32;
+      loc1 |= 32;
    }
    if(c.level_unlocks[36] >= 3)
    {
-      _loc1_ |= 64;
+      loc1 |= 64;
    }
    if(c.level_unlocks[30] >= 3)
    {
-      _loc1_ |= 128;
+      loc1 |= 128;
    }
    if(c.insane_mode > 1)
    {
-      c.insane_level_unlocks[0] = int(_loc1_);
+      c.insane_level_unlocks[0] = int(loc1);
    }
    else
    {
-      c.normal_level_unlocks[0] = int(_loc1_);
+      c.normal_level_unlocks[0] = int(loc1);
    }
-   _loc1_ = 0;
+   loc1 = 0;
    if(c.level_unlocks[6] >= 3)
    {
-      _loc1_ |= 1;
+      loc1 |= 1;
    }
    if(c.level_unlocks[40] >= 3)
    {
-      _loc1_ |= 2;
+      loc1 |= 2;
    }
    if(c.level_unlocks[54] >= 3)
    {
-      _loc1_ |= 4;
+      loc1 |= 4;
    }
    if(c.level_unlocks[43] >= 3)
    {
-      _loc1_ |= 8;
+      loc1 |= 8;
    }
    if(c.level_unlocks[10] >= 3)
    {
-      _loc1_ |= 16;
+      loc1 |= 16;
    }
    if(c.level_unlocks[3] >= 3)
    {
-      _loc1_ |= 32;
+      loc1 |= 32;
    }
    if(c.level_unlocks[34] >= 3)
    {
-      _loc1_ |= 64;
+      loc1 |= 64;
    }
    if(c.level_unlocks[51] >= 3)
    {
-      _loc1_ |= 128;
+      loc1 |= 128;
    }
    if(c.insane_mode > 1)
    {
-      c.insane_level_unlocks[1] = int(_loc1_);
+      c.insane_level_unlocks[1] = int(loc1);
    }
    else
    {
-      c.normal_level_unlocks[1] = int(_loc1_);
+      c.normal_level_unlocks[1] = int(loc1);
    }
-   _loc1_ = 0;
+   loc1 = 0;
    if(c.level_unlocks[50] >= 3)
    {
-      _loc1_ |= 1;
+      loc1 |= 1;
    }
    if(c.insane_mode > 1)
    {
-      c.insane_level_unlocks[2] = int(_loc1_);
+      c.insane_level_unlocks[2] = int(loc1);
    }
    else
    {
-      c.normal_level_unlocks[2] = int(_loc1_);
+      c.normal_level_unlocks[2] = int(loc1);
    }
 }
 function f_IsArenaUnlocked(port, arena)
 {
-   var _loc2_ = 1 << arena;
-   var _loc1_ = ReadStorage(port,7);
-   if(_loc1_ & _loc2_)
+   var loc2 = 1 << arena;
+   var loc1 = ReadStorage(port,7);
+   if(loc1 & loc2)
    {
       return true;
    }
@@ -10746,11 +10776,11 @@ function f_FirstTimeInitPlayers()
       c.port = 0;
       c.active = false;
       f_ResetPlayerInfoAndStats(c);
-      var _loc2_ = int(GetFlashGlobal("g_nPlayer" + int(i) + "Port"));
-      if(_loc2_ > 0)
+      var loc2 = int(GetFlashGlobal("g_nPlayer" + int(i) + "Port"));
+      if(loc2 > 0)
       {
          c.active = true;
-         c.port = _loc2_;
+         c.port = loc2;
          f_GetButtons(c);
          next_hud++;
          select_players++;
@@ -10760,242 +10790,249 @@ function f_FirstTimeInitPlayers()
 }
 function f_SpawnPlayer(u_num, n_type, x, y)
 {
-   var _loc2_ = loader.game.game["p" + int(u_num)];
-   _loc2_.weapon = 0;
-   _loc2_.restore_anim = "";
-   HiFps_ResetRecursive(_loc2_);
+   var loc2 = loader.game.game["p" + int(u_num)];
+   loc2.weapon = 0;
+   loc2.restore_anim = "";
+   HiFps_ResetRecursive(loc2);
    if(u_num >= 5)
    {
       f_SetNPCDefaultInfo(u_num);
    }
    else
    {
-      _loc2_.hud_pt = _root["hud" + int(u_num)];
-      _loc2_.hud_pt.player_pt = _loc2_;
-      _loc2_.combo_pt = _root["combo" + int(u_num)];
-      _loc2_.combo_pt.player_pt = _loc2_;
-      var _loc3_ = _root["hud" + int(u_num)];
-      _loc2_.w = _loc3_.w;
-      _loc2_.h = _loc3_.h;
-      _loc2_.speed_x = _loc3_.speed_x;
-      _loc2_.speed_y = _loc3_.speed_y;
-      _loc2_.speed_jump = _loc3_.speed_jump;
-      _loc2_.speed_launch = _loc3_.speed_launch;
-      _loc2_.gravity = _loc3_.gravity;
-      _loc2_.pusher = _loc3_.pusher;
-      _loc2_.scroller = _loc3_.scroller;
-      _loc2_.human = _loc3_.human;
-      f_CopyButtons(_loc2_,_loc3_);
-      _loc2_.magic_max = _loc3_.magic_max;
-      _loc2_.magic_current = _loc3_.magic_current;
-      _loc2_.magic_regen = _loc3_.magic_regen;
-      _loc2_.magic_pow = _loc3_.magic_pow;
-      _loc2_.magic_sustain_pow = _loc3_.magic_sustain_pow;
-      _loc2_.magic_chain = _loc3_.magic_chain;
-      _loc2_.shield_pow = _loc3_.shield_pow;
-      _loc2_.combo_max = _loc3_.combo_max;
-      _loc2_.combo_current = _loc3_.combo_current;
-      _loc2_.weapon = _loc3_.weapon;
-      if(_loc3_.equippeditem)
+      loc2.hud_pt = _root["hud" + int(u_num)];
+      loc2.hud_pt.player_pt = loc2;
+      loc2.combo_pt = _root["combo" + int(u_num)];
+      loc2.combo_pt.player_pt = loc2;
+      var loc3 = _root["hud" + int(u_num)];
+      loc2.w = loc3.w;
+      loc2.h = loc3.h;
+      loc2.speed_x = loc3.speed_x;
+      loc2.speed_y = loc3.speed_y;
+      loc2.speed_jump = loc3.speed_jump;
+      loc2.speed_launch = loc3.speed_launch;
+      loc2.gravity = loc3.gravity;
+      loc2.pusher = loc3.pusher;
+      loc2.scroller = loc3.scroller;
+      loc2.human = loc3.human;
+      f_CopyButtons(loc2,loc3);
+      loc2.magic_max = loc3.magic_max;
+      loc2.magic_current = loc3.magic_current;
+      loc2.magic_regen = loc3.magic_regen;
+      loc2.magic_pow = loc3.magic_pow;
+      loc2.magic_sustain_pow = loc3.magic_sustain_pow;
+      loc2.magic_chain = loc3.magic_chain;
+      loc2.shield_pow = loc3.shield_pow;
+      loc2.combo_max = loc3.combo_max;
+      loc2.combo_current = loc3.combo_current;
+      loc2.weapon = loc3.weapon;
+      if(loc3.equippeditem)
       {
-         _loc2_.equippeditem = _loc3_.equippeditem;
+         loc2.equippeditem = loc3.equippeditem;
       }
       else
       {
-         _loc2_.equippeditem = 1;
+         loc2.equippeditem = 1;
       }
-      _loc2_.animal_type = _loc3_.animal_type;
+      loc2.animal_type = loc3.animal_type;
       if(!(arenabattle and arena_mode > 0))
       {
-         if(_loc2_.animal_type)
+         if(loc2.animal_type)
          {
-            f_AssignAnimal(_loc2_,_loc2_.animal_type);
+            f_AssignAnimal(loc2,loc2.animal_type);
          }
       }
-      _loc2_.healthpots = _loc3_.healthpots;
-      _loc2_.bombs = _loc3_.bombs;
-      _loc2_.beefies = _loc3_.beefies;
-      _loc2_.arrow_pow = _loc3_.arrow_pow;
-      _loc2_.arrow_speed_y = _loc3_.arrow_speed_y;
-      _loc2_.arrow_speed_x = _loc3_.arrow_speed_x;
-      _loc2_.arrow_gravity = _loc3_.arrow_gravity;
-      _loc2_.arrow_hit_function = _loc3_.arrow_hit_function;
-      _loc2_.punch_pow_low = _loc3_.punch_pow_low;
-      _loc2_.punch_pow_medium = _loc3_.punch_pow_medium;
-      _loc2_.punch_pow_high = _loc3_.punch_pow_high;
-      _loc2_.punch_pow_max = _loc3_.punch_pow_max;
-      _loc2_.weight = _loc3_.weight;
-      _loc2_.rage = _loc3_.rage;
-      _loc2_.rage_goal = _loc3_.rage_goal;
-      _loc2_.recovery = _loc3_.recovery;
-      _loc2_.health_max = _loc3_.health_max;
-      _loc2_.health = _loc3_.health;
-      _loc2_.poison_timer = 0;
-      _loc2_.fire_timer = 0;
-      _loc2_.resists = _loc3_.resists;
-      _loc2_.frozen = false;
-      _loc2_.exp = _loc3_.exp;
-      _loc2_.exp_mod = _loc3_.exp_mod;
-      _loc2_.exp_next = _loc3_.exp_next;
-      _loc2_.level = _loc3_.level;
-      _loc2_.gold = _loc3_.gold;
-      _loc2_.exp_start = _loc3_.exp_start;
-      _loc2_.gold_start = _loc3_.gold_start;
-      _loc2_.kills = _loc3_.kills;
-      _loc2_.xpgained = _loc3_.xpgained;
-      _loc2_.strength = _loc3_.strength;
-      _loc2_.defense = _loc3_.defense;
-      _loc2_.magic = _loc3_.magic;
-      _loc2_.agility = _loc3_.agility;
-      _loc2_.flag = _loc3_.flag;
-      _loc2_.inputCooldown = 0;
+      loc2.healthpots = loc3.healthpots;
+      loc2.bombs = loc3.bombs;
+      loc2.beefies = loc3.beefies;
+      loc2.arrow_pow = loc3.arrow_pow;
+      loc2.arrow_speed_y = loc3.arrow_speed_y;
+      loc2.arrow_speed_x = loc3.arrow_speed_x;
+      loc2.arrow_gravity = loc3.arrow_gravity;
+      loc2.arrow_hit_function = loc3.arrow_hit_function;
+      loc2.punch_pow_low = loc3.punch_pow_low;
+      loc2.punch_pow_medium = loc3.punch_pow_medium;
+      loc2.punch_pow_high = loc3.punch_pow_high;
+      loc2.punch_pow_max = loc3.punch_pow_max;
+      loc2.weight = loc3.weight;
+      loc2.rage = loc3.rage;
+      loc2.rage_goal = loc3.rage_goal;
+      loc2.recovery = loc3.recovery;
+      loc2.health_max = loc3.health_max;
+      loc2.health = loc3.health;
+      loc2.poison_timer = 0;
+      loc2.fire_timer = 0;
+      loc2.resists = loc3.resists;
+      loc2.frozen = false;
+      loc2.exp = loc3.exp;
+      loc2.exp_mod = loc3.exp_mod;
+      loc2.exp_next = loc3.exp_next;
+      loc2.level = loc3.level;
+      loc2.gold = loc3.gold;
+      loc2.exp_start = loc3.exp_start;
+      loc2.gold_start = loc3.gold_start;
+      loc2.kills = loc3.kills;
+      loc2.xpgained = loc3.xpgained;
+      loc2.strength = loc3.strength;
+      loc2.defense = loc3.defense;
+      loc2.magic = loc3.magic;
+      loc2.agility = loc3.agility;
+      loc2.flag = loc3.flag;
+      loc2.inputCooldown = 0;
+      loc2.damagesVolcano = false;
+      if(n_type == 33) {
+         loc2.undead = loc3.undead;
+      }
    }
-   _loc2_.active = true;
-   _loc2_.alive = true;
-   _loc2_.spawned = true;
-   _loc2_.player_num = u_num;
-   _loc2_.p_type = n_type;
-   _loc2_.grab = true;
-   _loc2_.body_y = 0;
-   _loc2_.body_y_mod = 0;
-   _loc2_.float_timer = 0;
-   _loc2_.n_groundtype = undefined;
-   _loc2_.hanging = false;
-   _loc2_.onscreen = true;
-   _loc2_.onscreenbody = true;
-   _loc2_.face_hit1 = 4;
-   _loc2_.face_hit2 = 17;
-   _loc2_.fp_StandSettings = f_StandSettings;
-   _loc2_.fp_Character = f_Character;
-   _loc2_.fp_StandAnim = f_StandType1;
-   _loc2_.fp_WalkAnim = f_WalkType1;
-   _loc2_.fp_DashAnim = f_DashType1;
-   _loc2_.fp_ThrowAction = f_ThrowEnemy;
-   _loc2_.fp_PunchHit = f_PunchHit;
-   _loc2_.fp_CharClock = f_PlayerClock;
-   _loc2_.fp_Blocking = f_Character;
-   _loc2_.fp_MidAttack = f_JumpAttack;
-   _loc2_.fp_Jab = f_PunchSet1;
-   _loc2_.fp_Fierce = f_PunchSet2;
-   _loc2_.fp_JabFierce = f_Uppercut;
-   _loc2_.fp_Wait = f_Null;
+   loc2.active = true;
+   loc2.alive = true;
+   loc2.spawned = true;
+   loc2.player_num = u_num;
+   loc2.p_type = n_type;
+   loc2.grab = true;
+   loc2.body_y = 0;
+   loc2.body_y_mod = 0;
+   loc2.float_timer = 0;
+
+   loc2.objectDamageMult = 1;
+
+   loc2.n_groundtype = undefined;
+   loc2.hanging = false;
+   loc2.onscreen = true;
+   loc2.onscreenbody = true;
+   loc2.face_hit1 = 4;
+   loc2.face_hit2 = 17;
+   loc2.fp_StandSettings = f_StandSettings;
+   loc2.fp_Character = f_Character;
+   loc2.fp_StandAnim = f_StandType1;
+   loc2.fp_WalkAnim = f_WalkType1;
+   loc2.fp_DashAnim = f_DashType1;
+   loc2.fp_ThrowAction = f_ThrowEnemy;
+   loc2.fp_PunchHit = f_PunchHit;
+   loc2.fp_CharClock = f_PlayerClock;
+   loc2.fp_Blocking = f_Character;
+   loc2.fp_MidAttack = f_JumpAttack;
+   loc2.fp_Jab = f_PunchSet1;
+   loc2.fp_Fierce = f_PunchSet2;
+   loc2.fp_JabFierce = f_Uppercut;
+   loc2.fp_Wait = f_Null;
    if(level == 23 or level == 102)
    {
-      _loc2_.fp_DashAnim = undefined;
+      loc2.fp_DashAnim = undefined;
    }
    else
    {
-      _loc2_.x = x;
-      _loc2_.y = y;
+      loc2.x = x;
+      loc2.y = y;
    }
-   f_HumanoidDefaults(_loc2_);
-   _loc2_.weightplus = 1;
-   _loc2_.magic_type = 0;
+   f_HumanoidDefaults(loc2);
+   loc2.weightplus = 1;
+   loc2.magic_type = 0;
    if(u_num >= 1 and u_num <= 4)
    {
       if(n_type == 1)
       {
-         _loc2_.magic_type = 1;
-         _loc2_.helmet = 2;
-         _loc2_.shield = 2;
-         _loc2_.arrow_type = 2;
-         _loc2_.charcolor = color_green;
-         _loc2_.u_punch2_2 = 2;
-         _loc2_.emblem = 2;
+         loc2.magic_type = 1;
+         loc2.helmet = 2;
+         loc2.shield = 2;
+         loc2.arrow_type = 2;
+         loc2.charcolor = color_green;
+         loc2.u_punch2_2 = 2;
+         loc2.emblem = 2;
       }
       else if(n_type == 2)
       {
-         _loc2_.magic_type = 2;
-         _loc2_.helmet = 4;
-         _loc2_.shield = 4;
-         _loc2_.arrow_type = 4;
-         _loc2_.charcolor = color_red;
-         _loc2_.emblem = 4;
+         loc2.magic_type = 2;
+         loc2.helmet = 4;
+         loc2.shield = 4;
+         loc2.arrow_type = 4;
+         loc2.charcolor = color_red;
+         loc2.emblem = 4;
       }
       else if(n_type == 3)
       {
-         _loc2_.magic_type = 3;
-         _loc2_.helmet = 3;
-         _loc2_.shield = 3;
-         _loc2_.arrow_type = 3;
-         _loc2_.charcolor = color_blue;
-         _loc2_.emblem = 3;
+         loc2.magic_type = 3;
+         loc2.helmet = 3;
+         loc2.shield = 3;
+         loc2.arrow_type = 3;
+         loc2.charcolor = color_blue;
+         loc2.emblem = 3;
       }
       else if(n_type == 4)
       {
-         _loc2_.magic_type = 4;
-         _loc2_.helmet = 5;
-         _loc2_.shield = 5;
-         _loc2_.arrow_type = 5;
-         _loc2_.charcolor = color_orange;
-         _loc2_.emblem = 5;
+         loc2.magic_type = 4;
+         loc2.helmet = 5;
+         loc2.shield = 5;
+         loc2.arrow_type = 5;
+         loc2.charcolor = color_orange;
+         loc2.emblem = 5;
       }
       else
       {
-         _loc2_.helmet = n_type + 1;
-         _loc2_.shield = n_type + 1;
-         _loc2_.charcolor = _root.char_colors[n_type];
+         loc2.helmet = n_type + 1;
+         loc2.shield = n_type + 1;
+         loc2.charcolor = _root.char_colors[n_type];
          if(n_type + 1 == 23)
          {
-            _loc2_.emblem = 19;
+            loc2.emblem = 19;
          }
          else if(n_type + 1 == 18)
          {
-            _loc2_.emblem = 23;
-            _loc2_.shield = 21;
+            loc2.emblem = 23;
+            loc2.shield = 21;
          }
          else if(n_type + 1 == 31)
          {
-            _loc2_.emblem = 18;
+            loc2.emblem = 18;
          }
          else
          {
-            _loc2_.emblem = n_type + 1;
+            loc2.emblem = n_type + 1;
          }
-         f_SetPlayerMagic(_loc2_,n_type + 1,true);
+         f_SetPlayerMagic(loc2,n_type + 1,true);
       }
    }
    else
    {
-      _loc2_.magic_type = 6;
-      _loc2_.arrow_type = 6;
-      _loc2_.helmet = n_type;
-      _loc2_.shield = n_type;
+      loc2.magic_type = 6;
+      loc2.arrow_type = 6;
+      loc2.helmet = n_type;
+      loc2.shield = n_type;
       if(n_type == 23)
       {
-         _loc2_.emblem = 19;
+         loc2.emblem = 19;
       }
       else
       {
-         _loc2_.emblem = n_type;
+         loc2.emblem = n_type;
       }
-      _loc2_.charcolor = color_grey;
-      _loc2_.weapon = 2;
-      _loc2_.npc = true;
-      _loc2_.chases = true;
-      _loc2_.blocks = false;
-      _loc2_.aggressiveness = 12;
-      _loc2_.speed = 2 + random(30) / 10;
-      _loc2_.fp_MidAttack = f_EnemyMelee;
-      _loc2_.fp_Character = f_NPCWalk;
+      loc2.charcolor = color_grey;
+      loc2.weapon = 2;
+      loc2.npc = true;
+      loc2.chases = true;
+      loc2.blocks = false;
+      loc2.aggressiveness = 12;
+      loc2.speed = 2 + random(30) / 10;
+      loc2.fp_MidAttack = f_EnemyMelee;
+      loc2.fp_Character = f_NPCWalk;
    }
-   f_DashReset(_loc2_);
-   f_Depth(_loc2_,_loc2_.y);
-   _loc2_.shadow_pt = f_NewShadow();
-   _loc2_.shadow_pt._x = _loc2_.x;
-   _loc2_.shadow_pt._y = _loc2_.y;
-   f_ShadowSize(_loc2_);
-   _loc2_._x = _loc2_.x;
-   _loc2_._y = _loc2_.y;
-   f_UpdatePlayerAttributes(_loc2_);
-   if(_loc2_.pet)
+   f_DashReset(loc2);
+   f_Depth(loc2,loc2.y);
+   loc2.shadow_pt = f_NewShadow();
+   loc2.shadow_pt._x = loc2.x;
+   loc2.shadow_pt._y = loc2.y;
+   f_ShadowSize(loc2);
+   loc2._x = loc2.x;
+   loc2._y = loc2.y;
+   f_UpdatePlayerAttributes(loc2);
+   if(loc2.pet)
    {
-      _loc2_.pet.x = _loc2_.x;
-      _loc2_.pet.y = _loc2_.y;
-      _loc2_.pet._x = _loc2_.pet.x;
-      _loc2_.pet._y = _loc2_.pet.y;
+      loc2.pet.x = loc2.x;
+      loc2.pet.y = loc2.y;
+      loc2.pet._x = loc2.pet.x;
+      loc2.pet._y = loc2.pet.y;
    }
-   return _loc2_;
+   return loc2;
 }
 function f_SetPlayerMagic(u_temp, u_type, human)
 {
@@ -11058,6 +11095,14 @@ function f_SetPlayerMagic(u_temp, u_type, human)
       case 33: // Barb boss
          u_temp.magic_type = 7;
          f_BarbBossDefaults(u_temp);
+         break;
+      case 34:
+         f_CyclopsBossDefaults(u_temp);
+         break;
+      case 35:
+         u_temp.magic_type = 17;
+         f_BeetleDefaults(u_temp);
+         break;
    }
 }
 
@@ -11065,109 +11110,164 @@ function f_BarbBossDefaults(zone) {
    f_UnresponsiveDefaults(zone);
    zone.h = 250; // i laughed out loud as i typed this. the mf is as wide as he is tall
    zone.w = 250;
+   zone.objectDamageMult = 10;
+   zone.powerMult = 10;
+   zone.expMult = 10;
+   zone.healthMult = 5;
+   zone.shadowDefaultScale = 300;
    zone.humanoid = false;
    zone.tossable = false;
+   zone.uniquehit = true;
+   zone.damagesVolcano = true;
+   zone.noBeefyGrabs = true;
    zone.fp_Jab = f_PunchSetBarbBoss1;
    zone.fp_Fierce = f_PunchSetBarbBoss2;
-   zone.uniquehit = true;
    zone.fp_UniqueHit = f_HitBarbBoss;
+}
+
+function f_CyclopsBossDefaults(zone) {
+   f_UnresponsiveDefaults(zone);
+   zone.h = 190;
+   zone.w = 120;
+   zone.objectDamageMult = 5;
+   zone.powerMult = 10;
+   zone.expMult = 5;
+   zone.healthMult = 5;
+   zone.shadowDefaultScale = 200;
+   zone.humanoid = false;
+   zone.tossable = false;
+   zone.noBeefyGrabs = true;
+   zone.damagesVolcano = true;
+   f_SetUndead(zone, zone.undead); // Set vars depending on undead status
+}
+
+function f_SetUndead(zone, undead) {
+   zone.undead = undead;
+   if(undead) {
+      zone.magic_type = 21;
+      zone.fp_StandAnim = f_StandTypeUndead;
+      zone.fp_WalkAnim = f_WalkTypeUndead;
+      zone.fp_DashAnim = f_WalkTypeUndead;
+      zone.fp_Jab = f_PunchSetUndead1;
+      zone.fp_Fierce = f_PunchSetUndead2;
+   }
+   else {
+      zone.magic_type = 10;
+      zone.fp_StandAnim = f_StandType1;
+      zone.fp_WalkAnim = f_WalkType1;
+      zone.fp_DashAnim = f_DashType1;
+      zone.fp_Jab = f_PunchSetCyclops1;
+      zone.fp_Fierce = f_PunchSetCyclops2;
+   }
+}
+
+function f_BeetleDefaults(zone) {
+   f_UnresponsiveDefaults(zone);
+   zone.h = 100;
+   zone.w = 100;
+   zone.powerMult = 5;
+   zone.healthMult = 5;
+   zone.humanoid = false;
+   zone.tossable = false;
+   zone.damagesVolcano = true;
+   zone.noBeefyGrabs = true;
+   zone.fp_Jab = f_PunchSetBeetle1;
+   zone.fp_Fierce = f_PunchSetBeetle2;
+   zone.fp_Hit1 = zone.fp_Hit2 = zone.fp_Hit3 = zone.fp_Juggle = f_HitPlayerBeetle;
 }
 
 function f_UpdatePlayerAgility(zone)
 {
-   var _loc3_ = zone.agility + zone.weapon_agility;
+   var loc3 = zone.agility + zone.weapon_agility;
    if(zone.pet)
    {
-      _loc3_ += zone.pet.agility;
+      loc3 += zone.pet.agility;
    }
-   if(_loc3_ < 1)
+   if(loc3 < 1)
    {
-      _loc3_ = 1;
+      loc3 = 1;
    }
-   var _loc4_ = _loc3_;
-   if(_loc4_ > 25)
+   var loc4 = loc3;
+   if(loc4 > 25)
    {
-      _loc4_ = 25;
+      loc4 = 25;
    }
    if(!_root.arenabattle or _root.arena_mode != 1)
    {
-      zone.speed_x = _loc4_ / 10 + 4.5;
+      zone.speed_x = loc4 / 10 + 4.5;
       zone.speed_y = zone.speed_x * 0.6;
    }
    else
    {
-      zone.speed_x = _loc4_ / 8 + 4.875;
+      zone.speed_x = loc4 / 8 + 4.875;
       zone.speed_y = zone.speed_x - 1.5;
    }
-   zone.arrow_pow = 2 + _loc3_;
+   zone.arrow_pow = 2 + loc3;
    zone.arrow_speed_y = -5;
-   zone.arrow_speed_x = 21 + _loc3_ * 1.15;
+   zone.arrow_speed_x = 21 + loc3 * 1.15;
    zone.arrow_gravity = 1;
 }
 function f_UpdatePlayerAttributes(zone)
 {
    f_WeaponStats(zone,zone.weapon);
-   var _loc4_ = zone.magic + zone.weapon_magic;
-   var _loc5_ = zone.magic;
+   var loc4 = zone.magic + zone.weapon_magic;
+   var loc5 = zone.magic;
    if(zone.pet)
    {
-      _loc4_ += zone.pet.magic;
+      loc4 += zone.pet.magic;
    }
-   if(_loc4_ < 1)
+   if(loc4 < 1)
    {
-      _loc4_ = 1;
+      loc4 = 1;
    }
-   zone.magic_max = 35 + _loc4_ * 5;
+   zone.magic_max = 35 + loc4 * 5;
    zone.magic_current = zone.magic_max;
-   zone.magic_regen = 0.45 + _loc4_ * 0.01;
-   zone.magic_chain = 1 + Math.floor(0.2 * _loc4_);
+   zone.magic_regen = 0.45 + loc4 * 0.01;
+   zone.magic_chain = 1 + Math.floor(0.2 * loc4);
    zone.shield_pow = 3;
-   zone.magic_pow = Math.floor(0.1 * zone.level + 2 * _loc4_);
-   zone.magic_sustain_pow = Math.floor(3 + 0.1 * zone.level + _loc4_ * 0.4);
-   if(zone.p_type == 32) {
-      zone.magic_pow *= 10;
-   }
+   zone.magic_pow = Math.floor(0.1 * zone.level + 2 * loc4);
+   zone.magic_sustain_pow = Math.floor(3 + 0.1 * zone.level + loc4 * 0.4);
    zone.magic_unlocks = new Array(5);
    if(_root.GetCheat(9))
    {
-      var _loc3_ = 0;
-      while(_loc3_ < 5)
+      var loc3 = 0;
+      while(loc3 < 5)
       {
-         zone.magic_unlocks[_loc3_] = true;
-         _loc3_ = _loc3_ + 1;
+         zone.magic_unlocks[loc3] = true;
+         loc3 = loc3 + 1;
       }
    }
    else
    {
-      _loc3_ = 0;
-      while(_loc3_ < 5)
+      loc3 = 0;
+      while(loc3 < 5)
       {
-         zone.magic_unlocks[_loc3_] = false;
-         _loc3_ = _loc3_ + 1;
+         zone.magic_unlocks[loc3] = false;
+         loc3 = loc3 + 1;
       }
-      zone.magic_unlocks[3] = _loc5_ >= 1;
-      zone.magic_unlocks[0] = _loc5_ >= 5;
-      zone.magic_unlocks[4] = _loc5_ >= 10;
-      zone.magic_unlocks[1] = _loc5_ >= 15;
-      zone.magic_unlocks[2] = _loc5_ >= 20;
+      zone.magic_unlocks[3] = loc5 >= 1;
+      zone.magic_unlocks[0] = loc5 >= 5;
+      zone.magic_unlocks[4] = loc5 >= 10;
+      zone.magic_unlocks[1] = loc5 >= 15;
+      zone.magic_unlocks[2] = loc5 >= 20;
    }
    zone.combo_unlocks = new Array(10);
    if(_root.GetCheat(8))
    {
-      _loc3_ = 0;
-      while(_loc3_ < 10)
+      loc3 = 0;
+      while(loc3 < 10)
       {
-         zone.combo_unlocks[_loc3_] = true;
-         _loc3_ = _loc3_ + 1;
+         zone.combo_unlocks[loc3] = true;
+         loc3 = loc3 + 1;
       }
    }
    else
    {
-      _loc3_ = 0;
-      while(_loc3_ < 10)
+      loc3 = 0;
+      while(loc3 < 10)
       {
-         zone.combo_unlocks[_loc3_] = false;
-         _loc3_ = _loc3_ + 1;
+         zone.combo_unlocks[loc3] = false;
+         loc3 = loc3 + 1;
       }
       zone.combo_unlocks[0] = zone.level >= 1;
       zone.combo_unlocks[1] = zone.level >= 2;
@@ -11177,114 +11277,117 @@ function f_UpdatePlayerAttributes(zone)
       zone.combo_unlocks[5] = zone.level >= 32;
       zone.combo_unlocks[6] = zone.level >= 50;
    }
-   _loc4_ = zone.strength + zone.weapon_strength;
+   loc4 = zone.strength + zone.weapon_strength;
    if(zone.pet)
    {
-      _loc4_ += zone.pet.strength;
+      loc4 += zone.pet.strength;
    }
-   if(_loc4_ < 1)
+   if(loc4 < 1)
    {
-      _loc4_ = 1;
+      loc4 = 1;
    }
-   zone.punch_pow_low = Math.floor(3 + zone.level * 0.1 + _loc4_);
-   zone.punch_pow_medium = Math.floor(5 + zone.level * 0.1 + _loc4_ * 1.15);
-   zone.punch_pow_high = Math.floor(10 + zone.level * 0.1 + _loc4_ * 1.2);
-   zone.punch_pow_max = Math.floor(12 + zone.level * 0.1 + _loc4_ * 1.25);
+   zone.punch_pow_low = Math.floor(3 + zone.level * 0.1 + loc4);
+   zone.punch_pow_medium = Math.floor(5 + zone.level * 0.1 + loc4 * 1.15);
+   zone.punch_pow_high = Math.floor(10 + zone.level * 0.1 + loc4 * 1.2);
+   zone.punch_pow_max = Math.floor(12 + zone.level * 0.1 + loc4 * 1.25);
 
-   if(zone.p_type == 32) {
-      f_ApplyMultToAllPunchPows(zone, 10);
-   }
-
-   _loc4_ = zone.defense + zone.weapon_defense;
+   loc4 = zone.defense + zone.weapon_defense;
    if(zone.pet)
    {
-      _loc4_ += zone.pet.defense;
+      loc4 += zone.pet.defense;
    }
-   if(_loc4_ < 1)
+   if(loc4 < 1)
    {
-      _loc4_ = 1;
+      loc4 = 1;
    }
-   zone.recovery = Math.floor(6.75 - _loc4_ * 0.25);
+   zone.recovery = Math.floor(6.75 - loc4 * 0.25);
    if(zone.human)
    {
-      zone.health_max = 69 + _loc4_ * 28 + zone.level * 3;
-      if(zone.p_type == 32) {
-         zone.health_max *= 5;
-      }
-   }
-   if(zone.health > zone.health_max)
-   {
-      zone.health = zone.health_max;
+      zone.health_max = 69 + loc4 * 28 + zone.level * 3;
    }
    zone.resists = new Array(5);
-   zone.resists[DMG_MELEE] = 40 + _loc4_ / 2;
-   zone.resists[DMG_FIRE] = 40 + _loc4_ / 2;
-   zone.resists[DMG_ICE] = 40 + _loc4_ / 2;
-   zone.resists[DMG_POISON] = 40 + _loc4_ / 2;
-   zone.resists[DMG_ELEC] = 40 + _loc4_ / 2;
+   zone.resists[DMG_MELEE] = 40 + loc4 / 2;
+   zone.resists[DMG_FIRE] = 40 + loc4 / 2;
+   zone.resists[DMG_ICE] = 40 + loc4 / 2;
+   zone.resists[DMG_POISON] = 40 + loc4 / 2;
+   zone.resists[DMG_ELEC] = 40 + loc4 / 2;
    f_UpdatePlayerAgility(zone);
+
+   if(zone.powerMult) {
+      f_ApplyMultToAllPunchPows(zone, zone.powerMult);
+      zone.magic_pow *= zone.powerMult;
+   }
+   if(zone.healthMult) {
+      zone.health_max *= zone.healthMult;
+   }
+   if(zone.health > zone.health_max) {
+      zone.health = zone.health_max;
+   }
 }
 function f_SavePlayerInfoToHudForLevelChange(zone)
 {
-   var _loc1_ = zone.hud_pt;
-   _loc1_.w = zone.w;
-   _loc1_.h = zone.h;
-   _loc1_.speed_x = zone.speed_x;
-   _loc1_.speed_y = zone.speed_y;
-   _loc1_.speed_jump = zone.speed_jump;
-   _loc1_.speed_launch = zone.speed_launch;
-   _loc1_.gravity = zone.gravity;
-   _loc1_.pusher = zone.pusher;
-   _loc1_.scroller = zone.scroller;
-   _loc1_.human = zone.human;
-   _loc1_.magic_max = zone.magic_max;
-   _loc1_.magic_current = zone.magic_current;
-   _loc1_.magic_regen = zone.magic_regen;
-   _loc1_.magic_type = zone.magic_type;
-   _loc1_.magic_pow = zone.magic_pow;
-   _loc1_.magic_sustain_pow = zone.magic_sustain_pow;
-   _loc1_.magic_chain = zone.magic_chain;
-   _loc1_.shield_pow = zone.shield_pow;
-   _loc1_.combo_max = zone.combo_max;
-   _loc1_.combo_current = zone.combo_current;
-   _loc1_.equippeditem = zone.equippeditem;
+   var loc1 = zone.hud_pt;
+   loc1.w = zone.w;
+   loc1.h = zone.h;
+   loc1.speed_x = zone.speed_x;
+   loc1.speed_y = zone.speed_y;
+   loc1.speed_jump = zone.speed_jump;
+   loc1.speed_launch = zone.speed_launch;
+   loc1.gravity = zone.gravity;
+   loc1.pusher = zone.pusher;
+   loc1.scroller = zone.scroller;
+   loc1.human = zone.human;
+   loc1.magic_max = zone.magic_max;
+   loc1.magic_current = zone.magic_current;
+   loc1.magic_regen = zone.magic_regen;
+   loc1.magic_type = zone.magic_type;
+   loc1.magic_pow = zone.magic_pow;
+   loc1.magic_sustain_pow = zone.magic_sustain_pow;
+   loc1.magic_chain = zone.magic_chain;
+   loc1.shield_pow = zone.shield_pow;
+   loc1.combo_max = zone.combo_max;
+   loc1.combo_current = zone.combo_current;
+   loc1.equippeditem = zone.equippeditem;
    if(zone.pet)
    {
-      _loc1_.animal_type = zone.pet.animal_type;
+      loc1.animal_type = zone.pet.animal_type;
    }
-   _loc1_.healthpots = zone.healthpots;
-   _loc1_.bombs = zone.bombs;
-   _loc1_.beefies = zone.beefies;
-   _loc1_.arrow_pow = zone.arrow_pow;
-   _loc1_.arrow_speed_y = zone.arrow_speed_y;
-   _loc1_.arrow_speed_x = zone.arrow_speed_x;
-   _loc1_.arrow_gravity = zone.arrow_gravity;
-   _loc1_.arrow_hit_function = zone.arrow_hit_function;
-   _loc1_.punch_pow_low = zone.punch_pow_low;
-   _loc1_.punch_pow_medium = zone.punch_pow_medium;
-   _loc1_.punch_pow_high = zone.punch_pow_high;
-   _loc1_.punch_pow_max = zone.punch_pow_max;
-   _loc1_.weight = zone.weight;
-   _loc1_.rage = zone.rage;
-   _loc1_.rage_goal = zone.rage_goal;
-   _loc1_.recovery = zone.recovery;
-   _loc1_.health_max = zone.health_max;
-   _loc1_.health = zone.health;
-   _loc1_.level = zone.level;
-   _loc1_.exp = zone.exp;
-   _loc1_.exp_mod = zone.exp_mod;
-   _loc1_.exp_next = zone.exp_next;
-   _loc1_.gold = zone.gold;
-   _loc1_.exp_start = zone.exp_start;
-   _loc1_.gold_start = zone.gold_start;
-   _loc1_.kills = zone.kills;
-   _loc1_.resists = zone.resists;
-   _loc1_.xpgained = zone.xpgained;
-   _loc1_.strength = zone.strength;
-   _loc1_.defense = zone.defense;
-   _loc1_.magic = zone.magic;
-   _loc1_.agility = zone.agility;
-   _loc1_.weapon = zone.weapon;
+   loc1.healthpots = zone.healthpots;
+   loc1.bombs = zone.bombs;
+   loc1.beefies = zone.beefies;
+   loc1.arrow_pow = zone.arrow_pow;
+   loc1.arrow_speed_y = zone.arrow_speed_y;
+   loc1.arrow_speed_x = zone.arrow_speed_x;
+   loc1.arrow_gravity = zone.arrow_gravity;
+   loc1.arrow_hit_function = zone.arrow_hit_function;
+   loc1.punch_pow_low = zone.punch_pow_low;
+   loc1.punch_pow_medium = zone.punch_pow_medium;
+   loc1.punch_pow_high = zone.punch_pow_high;
+   loc1.punch_pow_max = zone.punch_pow_max;
+   loc1.weight = zone.weight;
+   loc1.rage = zone.rage;
+   loc1.rage_goal = zone.rage_goal;
+   loc1.recovery = zone.recovery;
+   loc1.health_max = zone.health_max;
+   loc1.health = zone.health;
+   loc1.level = zone.level;
+   loc1.exp = zone.exp;
+   loc1.exp_mod = zone.exp_mod;
+   loc1.exp_next = zone.exp_next;
+   loc1.gold = zone.gold;
+   loc1.exp_start = zone.exp_start;
+   loc1.gold_start = zone.gold_start;
+   loc1.kills = zone.kills;
+   loc1.resists = zone.resists;
+   loc1.xpgained = zone.xpgained;
+   loc1.strength = zone.strength;
+   loc1.defense = zone.defense;
+   loc1.magic = zone.magic;
+   loc1.agility = zone.agility;
+   loc1.weapon = zone.weapon;
+   if(loc1.p_type == 33) {
+      loc1.undead = zone.undead;
+   }
 }
 function f_GetButtons(zone)
 {
@@ -11427,125 +11530,125 @@ function f_ClearButtons(zone)
 }
 function f_LevelInitSpawnPlayers()
 {
-   var _loc13_ = 0;
-   var _loc5_ = 1;
-   while(_loc5_ <= 4)
+   var loc13 = 0;
+   var loc5 = 1;
+   while(loc5 <= 4)
    {
-      var _loc2_ = _root["hud" + int(_loc5_)];
-      if(_loc2_.active and _loc2_.p_type)
+      var loc2 = _root["hud" + int(loc5)];
+      if(loc2.active and loc2.p_type)
       {
-         _loc13_ = _loc13_ + 1;
+         loc13 = loc13 + 1;
       }
-      _loc5_ = _loc5_ + 1;
+      loc5 = loc5 + 1;
    }
-   _loc5_ = 1;
-   while(_loc5_ <= 4)
+   loc5 = 1;
+   while(loc5 <= 4)
    {
-      _loc2_ = _root["hud" + int(_loc5_)];
-      if(_loc2_.active and _loc2_.p_type)
+      loc2 = _root["hud" + int(loc5)];
+      if(loc2.active and loc2.p_type)
       {
-         if(_loc2_.p_type == 1)
+         if(loc2.p_type == 1)
          {
-            _loc2_.charcolor = _root.color_green;
+            loc2.charcolor = _root.color_green;
          }
-         else if(_loc2_.p_type == 2)
+         else if(loc2.p_type == 2)
          {
-            _loc2_.charcolor = _root.color_red;
+            loc2.charcolor = _root.color_red;
          }
-         else if(_loc2_.p_type == 3)
+         else if(loc2.p_type == 3)
          {
-            _loc2_.charcolor = _root.color_blue;
+            loc2.charcolor = _root.color_blue;
          }
-         else if(_loc2_.p_type == 4)
+         else if(loc2.p_type == 4)
          {
-            _loc2_.charcolor = _root.color_orange;
+            loc2.charcolor = _root.color_orange;
          }
          else
          {
-            _loc2_.charcolor = _root.char_colors[_loc2_.p_type];
+            loc2.charcolor = _root.char_colors[loc2.p_type];
          }
-         var _loc8_ = p_game["door" + int(_root.spawn_portal_num)];
-         var _loc12_ = 0;
-         _loc2_.player_pt = _root.f_SpawnPlayer(int(_loc5_),_loc2_.p_type,_loc8_._x + _loc12_,_loc8_._y);
-         _loc2_.player_pt.gotoAndStop("intro");
-         _loc2_.player_pt.pressed_start = _loc2_.pressed_start;
-         _loc2_.player_pt.punched = _loc2_.pressed_punch1;
-         _loc2_.gotoAndStop("stats");
-         var _loc7_ = _loc2_.player_pt.exp_next - _loc2_.player_pt.exp_mod;
-         var _loc11_ = _loc2_.player_pt.exp_next - _loc7_;
-         var _loc10_ = _loc2_.player_pt.exp - _loc7_;
-         var _loc4_ = int(_loc10_ / _loc11_ * 100);
-         if(_loc4_ < 1)
+         var loc8 = p_game["door" + int(_root.spawn_portal_num)];
+         var loc12 = 0;
+         loc2.player_pt = _root.f_SpawnPlayer(int(loc5),loc2.p_type,loc8._x + loc12,loc8._y);
+         loc2.player_pt.gotoAndStop("intro");
+         loc2.player_pt.pressed_start = loc2.pressed_start;
+         loc2.player_pt.punched = loc2.pressed_punch1;
+         loc2.gotoAndStop("stats");
+         var loc7 = loc2.player_pt.exp_next - loc2.player_pt.exp_mod;
+         var loc11 = loc2.player_pt.exp_next - loc7;
+         var loc10 = loc2.player_pt.exp - loc7;
+         var loc4 = int(loc10 / loc11 * 100);
+         if(loc4 < 1)
          {
-            _loc4_ = 1;
+            loc4 = 1;
          }
-         if(_loc4_ > 100)
+         if(loc4 > 100)
          {
-            _loc4_ = 100;
+            loc4 = 100;
          }
-         _loc2_.stats.xp.gotoAndStop(_loc4_);
-         _loc2_.pic.pic.gotoAndStop(_loc2_.player_pt.helmet);
-         _loc2_.pic.picbg.gotoAndStop(_loc2_.player_pt.helmet);
-         _loc2_.stats.itembg.gotoAndStop(_loc2_.player_pt.helmet);
-         SetTextNumeric(_loc2_.stats.level,_loc2_.level);
+         loc2.stats.xp.gotoAndStop(loc4);
+         loc2.pic.pic.gotoAndStop(loc2.player_pt.helmet);
+         loc2.pic.picbg.gotoAndStop(loc2.player_pt.helmet);
+         loc2.stats.itembg.gotoAndStop(loc2.player_pt.helmet);
+         SetTextNumeric(loc2.stats.level,loc2.level);
          if(GetGameMode() == 0)
          {
-            _loc2_.stats.level._visible = true;
+            loc2.stats.level._visible = true;
          }
-         else if(GetGameMode() == 3 and _loc13_ == 1)
+         else if(GetGameMode() == 3 and loc13 == 1)
          {
-            _loc2_.stats.level._visible = true;
+            loc2.stats.level._visible = true;
          }
          else
          {
-            _loc2_.stats.level._visible = false;
+            loc2.stats.level._visible = false;
          }
-         var _loc6_ = false;
-         var _loc3_ = 1;
-         while(_loc3_ <= 11)
+         var loc6 = false;
+         var loc3 = 1;
+         while(loc3 <= 11)
          {
-            if(_loc2_.item_unlocks[_loc3_])
+            if(loc2.item_unlocks[loc3])
             {
-               _loc6_ = true;
+               loc6 = true;
                break;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
-         if(_loc6_)
+         if(loc6)
          {
-            var _loc9_ = _loc2_.player_pt.equippeditem + 1;
-            if(_loc9_ == 2 and !_loc2_.item_unlocks[1])
+            var loc9 = loc2.player_pt.equippeditem + 1;
+            if(loc9 == 2 and !loc2.item_unlocks[1])
             {
-               _loc2_.player_pt.equippeditem = 1;
-               _loc2_.stats.item.gotoAndStop(1);
+               loc2.player_pt.equippeditem = 1;
+               loc2.stats.item.gotoAndStop(1);
             }
             else
             {
-               _loc2_.stats.item.gotoAndStop(_loc9_);
+               loc2.stats.item.gotoAndStop(loc9);
             }
          }
          else
          {
-            _loc2_.stats.item.gotoAndStop(1);
+            loc2.stats.item.gotoAndStop(1);
          }
-         if(!_loc2_.player_pt.alive or _loc2_.player_pt.health <= 0)
+         if(!loc2.player_pt.alive or loc2.player_pt.health <= 0)
          {
-            _loc2_.player_pt.wasdead = true;
-            _loc2_.wasdead = true;
-            _loc2_.player_pt.health = _loc2_.player_pt.health_max;
-            _loc2_.health = _loc2_.health_max;
-            _loc2_.player_pt.magic_current = _loc2_.player_pt.magic_max;
-            _loc2_.player_pt.alive = true;
+            loc2.player_pt.wasdead = true;
+            loc2.wasdead = true;
+            loc2.player_pt.health = loc2.player_pt.health_max;
+            loc2.health = loc2.health_max;
+            loc2.player_pt.magic_current = loc2.player_pt.magic_max;
+            loc2.player_pt.alive = true;
          }
          else
          {
-            _loc2_.player_pt.wasdead = false;
-            _loc2_.wasdead = false;
+            loc2.player_pt.wasdead = false;
+            loc2.wasdead = false;
          }
-         _loc4_ = int(101 - _loc2_.player_pt.health / _loc2_.player_pt.health_max * 100);
-         _loc2_.stats.health.gotoAndStop(_loc4_);
+         loc4 = int(101 - loc2.player_pt.health / loc2.player_pt.health_max * 100);
+         loc2.stats.health.gotoAndStop(loc4);
       }
-      _loc5_ = _loc5_ + 1;
+      loc5 = loc5 + 1;
    }
    f_ResetHudGoldCounters();
 }
@@ -11620,56 +11723,57 @@ function f_ResetPlayerInfoAndStats(zone)
    {
       zone.flag = 1;
    }
+   zone.undead = false;
 }
 function f_SetNPCDefaultInfo(num)
 {
-   var _loc1_ = loader.game.game["p" + int(num)];
-   _loc1_.w = 45;
-   _loc1_.h = 120 * (_loc1_._yscale / 100);
-   _loc1_.speed_x = 5.5;
-   _loc1_.speed_y = 4;
-   _loc1_.speed_jump = 0;
-   _loc1_.speed_launch = -20;
-   _loc1_.gravity = 2;
-   _loc1_.pusher = true;
-   _loc1_.scroller = true;
-   _loc1_.magic_max = 100;
-   _loc1_.magic_current = 100;
-   _loc1_.magic_regen = 0.5;
-   _loc1_.magic_type = 0;
-   _loc1_.magic_pow = 5;
-   _loc1_.magic_sustain_pow = 2;
-   _loc1_.magic_chain = 3;
-   _loc1_.shield_pow = 3;
-   _loc1_.combo_max = 100;
-   _loc1_.combo_current = 0;
-   _loc1_.equippeditem = 1;
-   _loc1_.arrow_pow = 3;
-   _loc1_.arrow_speed_y = -5;
-   _loc1_.arrow_speed_x = 20;
-   _loc1_.arrow_gravity = 1;
-   _loc1_.arrow_hit_function = f_ProjectileHitSpark;
-   _loc1_.punch_pow_low = 4;
-   _loc1_.punch_pow_medium = 6;
-   _loc1_.punch_pow_high = 12;
-   _loc1_.punch_pow_max = 15;
-   _loc1_.weight = 0;
-   _loc1_.rage = 0;
-   _loc1_.rage_goal = 1000;
-   _loc1_.resists = new Array(5);
-   _loc1_.resists[DMG_MELEE] = 50;
-   _loc1_.resists[DMG_POISON] = 50;
-   _loc1_.resists[DMG_FIRE] = 50;
-   _loc1_.resists[DMG_ELEC] = 50;
-   _loc1_.resists[DMG_ICE] = 50;
-   _loc1_.recovery = 9;
-   _loc1_.health_max = 100;
-   _loc1_.health = _loc1_.health_max;
-   _loc1_.alive = true;
-   _loc1_.level = 1;
-   _loc1_.exp = 0;
-   _loc1_.exp_mod = 190;
-   _loc1_.exp_next = _loc1_.exp_mod;
+   var loc1 = loader.game.game["p" + int(num)];
+   loc1.w = 45;
+   loc1.h = 120 * (loc1._yscale / 100);
+   loc1.speed_x = 5.5;
+   loc1.speed_y = 4;
+   loc1.speed_jump = 0;
+   loc1.speed_launch = -20;
+   loc1.gravity = 2;
+   loc1.pusher = true;
+   loc1.scroller = true;
+   loc1.magic_max = 100;
+   loc1.magic_current = 100;
+   loc1.magic_regen = 0.5;
+   loc1.magic_type = 0;
+   loc1.magic_pow = 5;
+   loc1.magic_sustain_pow = 2;
+   loc1.magic_chain = 3;
+   loc1.shield_pow = 3;
+   loc1.combo_max = 100;
+   loc1.combo_current = 0;
+   loc1.equippeditem = 1;
+   loc1.arrow_pow = 3;
+   loc1.arrow_speed_y = -5;
+   loc1.arrow_speed_x = 20;
+   loc1.arrow_gravity = 1;
+   loc1.arrow_hit_function = f_ProjectileHitSpark;
+   loc1.punch_pow_low = 4;
+   loc1.punch_pow_medium = 6;
+   loc1.punch_pow_high = 12;
+   loc1.punch_pow_max = 15;
+   loc1.weight = 0;
+   loc1.rage = 0;
+   loc1.rage_goal = 1000;
+   loc1.resists = new Array(5);
+   loc1.resists[DMG_MELEE] = 50;
+   loc1.resists[DMG_POISON] = 50;
+   loc1.resists[DMG_FIRE] = 50;
+   loc1.resists[DMG_ELEC] = 50;
+   loc1.resists[DMG_ICE] = 50;
+   loc1.recovery = 9;
+   loc1.health_max = 100;
+   loc1.health = loc1.health_max;
+   loc1.alive = true;
+   loc1.level = 1;
+   loc1.exp = 0;
+   loc1.exp_mod = 190;
+   loc1.exp_next = loc1.exp_mod;
 }
 function f_SetAnimalTimer(zone)
 {
@@ -12257,103 +12361,103 @@ function f_WeaponStats(zone, num)
 }
 function f_GetDefaultWeapon(zone)
 {
-   var _loc1_ = 0;
+   var loc1 = 0;
    switch(zone.p_type)
    {
       case 1:
-         _loc1_ = 3;
+         loc1 = 3;
          break;
       case 2:
-         _loc1_ = 25;
+         loc1 = 25;
          break;
       case 3:
-         _loc1_ = 39;
+         loc1 = 39;
          break;
       case 4:
-         _loc1_ = 56;
+         loc1 = 56;
          break;
       case 5:
-         _loc1_ = 2;
+         loc1 = 2;
          break;
       case 6:
-         _loc1_ = 19;
+         loc1 = 19;
          break;
       case 7:
-         _loc1_ = 10;
+         loc1 = 10;
          break;
       case 8:
-         _loc1_ = 18;
+         loc1 = 18;
          break;
       case 9:
-         _loc1_ = 34;
+         loc1 = 34;
          break;
       case 10:
-         _loc1_ = 27;
+         loc1 = 27;
          break;
       case 11:
-         _loc1_ = 47;
+         loc1 = 47;
          break;
       case 12:
-         _loc1_ = 36;
+         loc1 = 36;
          break;
       case 13:
-         _loc1_ = 12;
+         loc1 = 12;
          break;
       case 14:
-         _loc1_ = 33;
+         loc1 = 33;
          break;
       case 15:
-         _loc1_ = 15;
+         loc1 = 15;
          break;
       case 16:
-         _loc1_ = 15;
+         loc1 = 15;
          break;
       case 17:
-         _loc1_ = 6;
+         loc1 = 6;
          break;
       case 18:
-         _loc1_ = 45;
+         loc1 = 45;
          break;
       case 19:
-         _loc1_ = 26;
+         loc1 = 26;
          break;
       case 20:
-         _loc1_ = 57;
+         loc1 = 57;
          break;
       case 21:
-         _loc1_ = 43;
+         loc1 = 43;
          break;
       case 22:
-         _loc1_ = 20;
+         loc1 = 20;
          break;
       case 23:
-         _loc1_ = 2;
+         loc1 = 2;
          break;
       case 24:
-         _loc1_ = 35;
+         loc1 = 35;
          break;
       case 25:
-         _loc1_ = 31;
+         loc1 = 31;
          break;
       case 26:
-         _loc1_ = 48;
+         loc1 = 48;
          break;
       case 27:
-         _loc1_ = 50;
+         loc1 = 50;
          break;
       case 28:
-         _loc1_ = 68;
+         loc1 = 68;
          break;
       case 29:
-         _loc1_ = 63;
+         loc1 = 63;
          break;
       case 30:
-         _loc1_ = 85;
+         loc1 = 85;
          break;
       case 31:
-         _loc1_ = 84;
+         loc1 = 84;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_initLoadedAnimalClip(zone)
 {
@@ -12364,8 +12468,8 @@ function f_initLoadedAnimalClip(zone)
    zone.body_y = 0;
    zone.p_target = undefined;
    zone.timer = random(20);
-   var _loc2_ = zone.getDepth();
-   zone.depth_mod = _loc2_ % 1000;
+   var loc2 = zone.getDepth();
+   zone.depth_mod = loc2 % 1000;
 }
 function f_AnimalFollow(zone)
 {
@@ -12380,15 +12484,15 @@ function f_AnimalFollow(zone)
          zone.goal_x = zone.owner.x + 50;
       }
       zone.goal_y = zone.owner.y;
-      var _loc3_ = Math.abs(zone.x - zone.goal_x) / 10;
-      var _loc2_ = Math.abs(zone.y - zone.goal_y) / 10;
+      var loc3 = Math.abs(zone.x - zone.goal_x) / 10;
+      var loc2 = Math.abs(zone.y - zone.goal_y) / 10;
       if(zone.y > zone.goal_y + 3)
       {
-         _loc2_ = - _loc2_;
+         loc2 = - loc2;
       }
       else if(zone.y > zone.goal_y - 3)
       {
-         _loc2_ = 0;
+         loc2 = 0;
       }
       if(zone.x > zone.goal_x + 4)
       {
@@ -12396,7 +12500,7 @@ function f_AnimalFollow(zone)
          {
             zone._xscale *= -1;
          }
-         _loc3_ = - _loc3_;
+         loc3 = - loc3;
       }
       else if(zone.x < zone.goal_x - 4)
       {
@@ -12407,7 +12511,7 @@ function f_AnimalFollow(zone)
       }
       else
       {
-         _loc3_ = 0;
+         loc3 = 0;
       }
       if(zone.carrying)
       {
@@ -12418,8 +12522,8 @@ function f_AnimalFollow(zone)
             zone.carrying._x = zone.x;
             zone.carrying._y = zone.y;
             f_Depth(zone.carrying,zone.carrying.y);
-            _loc3_ /= 3;
-            _loc2_ /= 3;
+            loc3 /= 3;
+            loc2 /= 3;
          }
          else
          {
@@ -12438,8 +12542,8 @@ function f_AnimalFollow(zone)
          }
          zone.body._y = zone.body_y;
       }
-      zone.x += _loc3_;
-      zone.y += _loc2_;
+      zone.x += loc3;
+      zone.y += loc2;
       zone._x = zone.x;
       zone._y = zone.y;
       f_Depth(zone,zone.y);
@@ -12469,25 +12573,25 @@ function f_AssignAnimal(zone, n_type)
    i = 1;
    while(i <= total_animals)
    {
-      var _loc2_ = _root.loader.game.game["animal" + int(i)];
-      if(!_loc2_.active)
+      var loc2 = _root.loader.game.game["animal" + int(i)];
+      if(!loc2.active)
       {
-         _loc2_.active = true;
-         _loc2_.owner = zone;
-         zone.pet = _loc2_;
-         _loc2_.x = zone.x - 30;
-         _loc2_.y = zone.y - 5;
-         _loc2_._x = _loc2_.x;
-         _loc2_._y = _loc2_.y;
-         f_Depth(_loc2_,_loc2_.y);
-         _loc2_.animal_type = n_type;
-         _loc2_.state = 0;
-         _loc2_.timer = 0;
-         f_SetAnimalTimer(_loc2_);
-         HiFps_ResetRecursive(_loc2_);
-         _loc2_.gotoAndStop("follow");
+         loc2.active = true;
+         loc2.owner = zone;
+         zone.pet = loc2;
+         loc2.x = zone.x - 30;
+         loc2.y = zone.y - 5;
+         loc2._x = loc2.x;
+         loc2._y = loc2.y;
+         f_Depth(loc2,loc2.y);
+         loc2.animal_type = n_type;
+         loc2.state = 0;
+         loc2.timer = 0;
+         f_SetAnimalTimer(loc2);
+         HiFps_ResetRecursive(loc2);
+         loc2.gotoAndStop("follow");
          i = total_animals + 1;
-         return _loc2_;
+         return loc2;
       }
       i++;
    }
@@ -12507,19 +12611,19 @@ function f_AttachAnimal(animal, zone)
    }
    if(animal.unlock)
    {
-      var _loc5_ = zone.hud_pt.animal_unlocks[animal.animal_type];
-      var _loc1_ = 1;
-      while(_loc1_ <= active_players)
+      var loc5 = zone.hud_pt.animal_unlocks[animal.animal_type];
+      var loc1 = 1;
+      while(loc1 <= active_players)
       {
-         var _loc2_ = playerArrayOb["p_pt" + int(_loc1_)];
-         if(_loc2_.alive)
+         var loc2 = playerArrayOb["p_pt" + int(loc1)];
+         if(loc2.alive)
          {
-            _loc2_.hud_pt.animal_unlocks[animal.animal_type] = true;
+            loc2.hud_pt.animal_unlocks[animal.animal_type] = true;
          }
-         _loc1_ = _loc1_ + 1;
+         loc1 = loc1 + 1;
       }
       animal.unlock = false;
-      if(!_loc5_)
+      if(!loc5)
       {
          f_UnlockAnimal(zone,animal.animal_type);
       }
@@ -12544,23 +12648,23 @@ function f_PlaceAnimal(n_type, x, y)
    i = 1;
    while(i <= total_animals)
    {
-      var _loc2_ = _root.loader.game.game["animal" + int(i)];
-      if(!_loc2_.active)
+      var loc2 = _root.loader.game.game["animal" + int(i)];
+      if(!loc2.active)
       {
-         _loc2_.active = true;
-         _loc2_.owner = 0;
-         _loc2_.x = x;
-         _loc2_.y = y;
-         _loc2_._x = x;
-         _loc2_._y = y;
-         f_Depth(_loc2_,_loc2_.y);
-         _loc2_.animal_type = n_type;
-         _loc2_.state = 0;
-         _loc2_.p_target = undefined;
-         _loc2_.gotoAndStop("lost");
-         _loc2_.state = 150;
+         loc2.active = true;
+         loc2.owner = 0;
+         loc2.x = x;
+         loc2.y = y;
+         loc2._x = x;
+         loc2._y = y;
+         f_Depth(loc2,loc2.y);
+         loc2.animal_type = n_type;
+         loc2.state = 0;
+         loc2.p_target = undefined;
+         loc2.gotoAndStop("lost");
+         loc2.state = 150;
          i = total_animals + 1;
-         return _loc2_;
+         return loc2;
       }
       i++;
    }
@@ -12568,19 +12672,19 @@ function f_PlaceAnimal(n_type, x, y)
 }
 function f_AnimalInitLaunch(zone)
 {
-   var _loc3_ = zone.p_target.x - zone.x;
-   var _loc2_ = zone.p_target.y - zone.y;
-   dist = Math.sqrt(_loc3_ * _loc3_ + _loc2_ * _loc2_);
-   _loc3_ /= dist;
-   _loc2_ /= dist;
-   zone.x1 = _loc3_ * 8;
-   zone.y1 = _loc2_ * 8;
+   var loc3 = zone.p_target.x - zone.x;
+   var loc2 = zone.p_target.y - zone.y;
+   dist = Math.sqrt(loc3 * loc3 + loc2 * loc2);
+   loc3 /= dist;
+   loc2 /= dist;
+   zone.x1 = loc3 * 8;
+   zone.y1 = loc2 * 8;
    zone.p_target = undefined;
 }
 function f_AnimalLaunch(zone)
 {
-   var _loc2_ = f_BSPHitTest(zone.x,zone.y,zone.x + zone.x1,zone.y + zone.y1);
-   if(!_loc2_)
+   var loc2 = f_BSPHitTest(zone.x,zone.y,zone.x + zone.x1,zone.y + zone.y1);
+   if(!loc2)
    {
       zone.x += zone.x1;
       zone.y += zone.y1;
@@ -12594,16 +12698,16 @@ function f_AnimalInitHappy(zone)
    i = 1;
    while(i <= total_animals)
    {
-      var _loc2_ = _root.loader.game.game["animal" + int(i)];
-      if(_loc2_.active and _loc2_ != zone)
+      var loc2 = _root.loader.game.game["animal" + int(i)];
+      if(loc2.active and loc2 != zone)
       {
-         if(_loc2_.p_target)
+         if(loc2.p_target)
          {
-            if(_loc2_.p_target == zone.p_target)
+            if(loc2.p_target == zone.p_target)
             {
-               _loc2_.state = 0;
-               _loc2_.timer = 0;
-               _loc2_.gotoAndStop("launch");
+               loc2.state = 0;
+               loc2.timer = 0;
+               loc2.gotoAndStop("launch");
             }
          }
       }
@@ -12623,12 +12727,12 @@ function f_AnimalLost(zone)
       case 0:
          if(zone.x > main.left - 200 and zone.x < main.right + 200)
          {
-            var _loc9_ = random(3);
-            if(!_loc9_)
+            var loc9 = random(3);
+            if(!loc9)
             {
                zone.state = 10;
             }
-            else if(_loc9_ == 1)
+            else if(loc9 == 1)
             {
                zone.state = 20;
             }
@@ -12644,25 +12748,25 @@ function f_AnimalLost(zone)
          }
          break;
       case 10:
-         var _loc3_ = - _root.main.camera_x;
-         var _loc10_ = - _root.main.camera_y;
-         var _loc8_ = (_loc3_ - _root.main.left) / 2;
+         var loc3 = - _root.main.camera_x;
+         var loc10 = - _root.main.camera_y;
+         var loc8 = (loc3 - _root.main.left) / 2;
          if(random(2))
          {
-            _loc3_ = _root.main.left + _loc8_;
+            loc3 = _root.main.left + loc8;
          }
          else
          {
-            _loc3_ = _root.main.left + _loc8_ * 3;
+            loc3 = _root.main.left + loc8 * 3;
          }
          zone.x1 = zone.x;
          zone.y1 = zone.y;
          zone.x2 = zone.x + random(200) - 100;
          zone.y2 = zone.y + random(200) - 100;
-         zone.x3 = _loc3_ + random(600) - 300;
-         zone.y3 = _loc10_ + random(400) - 200;
-         zone.x4 = _loc3_ + (- _root.main.camera_x - zone.x3) / 2;
-         zone.y4 = _loc10_;
+         zone.x3 = loc3 + random(600) - 300;
+         zone.y3 = loc10 + random(400) - 200;
+         zone.x4 = loc3 + (- _root.main.camera_x - zone.x3) / 2;
+         zone.y4 = loc10;
          zone.timer = 0;
          zone.state = 11;
          break;
@@ -12684,8 +12788,8 @@ function f_AnimalLost(zone)
          {
             zone._xscale *= -1;
          }
-         var _loc11_ = f_BSPHitTest(zone.x,zone.y,zone.lerp_x,zone.lerp_y);
-         if(_loc11_)
+         var loc11 = f_BSPHitTest(zone.x,zone.y,zone.lerp_x,zone.lerp_y);
+         if(loc11)
          {
             zone.state = 0;
          }
@@ -12734,8 +12838,8 @@ function f_AnimalLost(zone)
          break;
       case 31:
          zone.timer = zone.timer - 1;
-         _loc11_ = f_BSPHitTest(zone.x,zone.y,zone.x + zone.x1,zone.y + zone.y1);
-         if(_loc11_)
+         loc11 = f_BSPHitTest(zone.x,zone.y,zone.x + zone.x1,zone.y + zone.y1);
+         if(loc11)
          {
             zone.state = 0;
             zone.timer = 0;
@@ -12777,8 +12881,8 @@ function f_AnimalLost(zone)
       case 101:
          zone.timer = zone.timer + 1;
          f_lerp(zone,zone.timer / 40);
-         _loc11_ = f_BSPHitTest(zone.x,zone.y,zone.lerp_x,zone.lerp_y);
-         if(!_loc11_)
+         loc11 = f_BSPHitTest(zone.x,zone.y,zone.lerp_x,zone.lerp_y);
+         if(!loc11)
          {
             zone.x = zone.lerp_x;
             zone.y = zone.lerp_y;
@@ -12811,7 +12915,7 @@ function f_AnimalLost(zone)
             }
          }
          zone.body._y = zone.body_y;
-         var _loc5_ = f_FaceClosestPlayer(zone);
+         var loc5 = f_FaceClosestPlayer(zone);
          if(zone.ignore_timer > 0)
          {
             zone.ignore_timer = zone.ignore_timer - 1;
@@ -12820,13 +12924,13 @@ function f_AnimalLost(zone)
                f_FX(zone.x + random(23) - 11,zone.y + zone.body._y + 1,zone.y - 1,"sleep_z",70 + random(30),100);
             }
          }
-         else if(Math.abs(_loc5_.x - zone.x) < 50)
+         else if(Math.abs(loc5.x - zone.x) < 50)
          {
-            if(Math.abs(_loc5_.y - zone.y) < 20)
+            if(Math.abs(loc5.y - zone.y) < 20)
             {
-               if(_root.GetCheat(1) or zone.unlock or _loc5_.hud_pt.animal_unlocks[zone.animal_type])
+               if(_root.GetCheat(1) or zone.unlock or loc5.hud_pt.animal_unlocks[zone.animal_type])
                {
-                  f_AttachAnimal(zone,_loc5_);
+                  f_AttachAnimal(zone,loc5);
                   zone.love_timer = 60;
                }
                else
@@ -12851,15 +12955,15 @@ function f_AnimalLost(zone)
          }
          zone.goal_x = zone.p_target.x;
          zone.goal_y = zone.p_target.y;
-         _loc5_ = Math.abs(zone.x - zone.goal_x) / 10;
-         var _loc4_ = Math.abs(zone.y - zone.goal_y) / 10;
-         if(_loc5_ > 5)
+         loc5 = Math.abs(zone.x - zone.goal_x) / 10;
+         var loc4 = Math.abs(zone.y - zone.goal_y) / 10;
+         if(loc5 > 5)
          {
-            _loc5_ = 5;
+            loc5 = 5;
          }
-         if(_loc4_ > 5)
+         if(loc4 > 5)
          {
-            _loc4_ = 5;
+            loc4 = 5;
          }
          if(zone.x > zone.goal_x + 6)
          {
@@ -12867,7 +12971,7 @@ function f_AnimalLost(zone)
             {
                zone._xscale *= -1;
             }
-            zone.x1 = - _loc5_;
+            zone.x1 = - loc5;
          }
          else if(zone.x < zone.goal_x - 6)
          {
@@ -12875,18 +12979,18 @@ function f_AnimalLost(zone)
             {
                zone._xscale *= -1;
             }
-            zone.x1 = _loc5_;
+            zone.x1 = loc5;
          }
          if(zone.y > zone.goal_y + 3)
          {
-            zone.y1 = - _loc4_;
+            zone.y1 = - loc4;
          }
          else if(zone.y < zone.goal_y - 3)
          {
-            zone.y1 = _loc4_;
+            zone.y1 = loc4;
          }
-         _loc11_ = f_BSPHitTest(zone.x,zone.y,zone.x + zone.x1,zone.y + zone.y1);
-         if(!_loc11_)
+         loc11 = f_BSPHitTest(zone.x,zone.y,zone.x + zone.x1,zone.y + zone.y1);
+         if(!loc11)
          {
             zone.x += zone.x1;
             zone.y += zone.y1;
@@ -12898,10 +13002,10 @@ function f_AnimalLost(zone)
          {
             if(!zone.p_target.pet)
             {
-               var _loc7_ = zone.p_target.x - zone.x;
-               var _loc6_ = zone.p_target.y - zone.y;
-               var _loc12_ = _loc7_ * _loc7_ + _loc6_ * _loc6_;
-               if(_loc12_ < 400)
+               var loc7 = zone.p_target.x - zone.x;
+               var loc6 = zone.p_target.y - zone.y;
+               var loc12 = loc7 * loc7 + loc6 * loc6;
+               if(loc12 < 400)
                {
                   f_AttachAnimal(zone,zone.p_target);
                   zone.gotoAndStop("happy");
@@ -12935,18 +13039,18 @@ function f_AnimalSleep(zone)
       zone.timer = random(20);
       if(f_SZ_OnScreenMax(zone))
       {
-         var _loc2_ = false;
+         var loc2 = false;
          if(!random(60))
          {
-            _loc2_ = true;
+            loc2 = true;
             zone.state = 10;
          }
          else if(f_IsAPlayerClose(zone,60))
          {
-            _loc2_ = true;
+            loc2 = true;
             zone.state = 30;
          }
-         if(_loc2_ == true)
+         if(loc2 == true)
          {
             zone.gotoAndStop("wake");
          }
@@ -12959,25 +13063,25 @@ function f_AnimalSleep(zone)
 }
 function f_GetSomeLove(zone)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root.loader.game.game["p" + int(_loc3_)];
-      if(_loc2_.alive and !_loc2_.pet)
+      var loc2 = _root.loader.game.game["p" + int(loc3)];
+      if(loc2.alive and !loc2.pet)
       {
-         if(_loc2_.y > _root.loader.game.game.counter._y)
+         if(loc2.y > _root.loader.game.game.counter._y)
          {
-            var _loc5_ = _loc2_.x - zone.x;
-            var _loc4_ = _loc2_.y - zone.y;
-            var _loc6_ = _loc5_ * _loc5_ + _loc4_ * _loc4_;
-            if(_loc6_ < 40000)
+            var loc5 = loc2.x - zone.x;
+            var loc4 = loc2.y - zone.y;
+            var loc6 = loc5 * loc5 + loc4 * loc4;
+            if(loc6 < 40000)
             {
-               _loc3_ = 5;
-               return _loc2_;
+               loc3 = 5;
+               return loc2;
             }
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
    return undefined;
 }
@@ -12985,19 +13089,19 @@ function f_AnimalGoto(zone)
 {
    if(f_OnScreen(zone.loot))
    {
-      var _loc3_ = Math.abs(zone.x - zone.loot.x);
-      var _loc2_ = Math.abs(zone.y - zone.loot.y);
-      if(_loc3_ > _loc2_)
+      var loc3 = Math.abs(zone.x - zone.loot.x);
+      var loc2 = Math.abs(zone.y - zone.loot.y);
+      if(loc3 > loc2)
       {
          zone.speed_x = zone.speed;
-         zone.speed_y = zone.speed * (_loc2_ / _loc3_);
-         var _loc4_ = _loc3_;
+         zone.speed_y = zone.speed * (loc2 / loc3);
+         var loc4 = loc3;
       }
       else
       {
-         zone.speed_x = zone.speed * (_loc3_ / _loc2_);
+         zone.speed_x = zone.speed * (loc3 / loc2);
          zone.speed_y = zone.speed;
-         _loc4_ = _loc2_;
+         loc4 = loc2;
       }
       if(zone.x < zone.loot.x)
       {
@@ -13045,19 +13149,19 @@ function f_AnimalGoto(zone)
 }
 function f_AnimalGotoXY(zone, u_x, u_y)
 {
-   var _loc3_ = Math.abs(zone.x - u_x);
-   var _loc2_ = Math.abs(zone.y - u_y);
-   if(_loc3_ > _loc2_)
+   var loc3 = Math.abs(zone.x - u_x);
+   var loc2 = Math.abs(zone.y - u_y);
+   if(loc3 > loc2)
    {
       zone.speed_x = 8;
-      zone.speed_y = 8 * (_loc2_ / _loc3_);
-      var _loc6_ = _loc3_;
+      zone.speed_y = 8 * (loc2 / loc3);
+      var loc6 = loc3;
    }
    else
    {
-      zone.speed_x = 8 * (_loc3_ / _loc2_);
+      zone.speed_x = 8 * (loc3 / loc2);
       zone.speed_y = 8;
-      _loc6_ = _loc2_;
+      loc6 = loc2;
    }
    if(zone.x < u_x)
    {
@@ -13103,22 +13207,22 @@ function f_AnimalGotoXY(zone, u_x, u_y)
 }
 function f_AnimalGrabSecretItem(zone)
 {
-   var _loc2_ = f_ItemSpawn(zone.x,zone.y,zone.loot.item_type);
+   var loc2 = f_ItemSpawn(zone.x,zone.y,zone.loot.item_type);
    if(zone.loot.weapon_type)
    {
-      _loc2_.weapon_type = zone.loot.weapon_type;
+      loc2.weapon_type = zone.loot.weapon_type;
    }
-   _loc2_.body.gotoAndStop("sit");
-   zone.carrying = _loc2_;
+   loc2.body.gotoAndStop("sit");
+   zone.carrying = loc2;
    zone.loot.dug = true;
    zone.loot = undefined;
    zone.gotoAndStop("follow");
 }
 function f_AnimalGrabFruit(zone)
 {
-   var _loc2_ = f_ItemSpawn(zone.x,zone.y,random(5) + 2);
-   _loc2_.body.gotoAndStop("sit");
-   zone.carrying = _loc2_;
+   var loc2 = f_ItemSpawn(zone.x,zone.y,random(5) + 2);
+   loc2.body.gotoAndStop("sit");
+   zone.carrying = loc2;
    zone.loot.dug = true;
    zone.loot = undefined;
    zone.gotoAndStop("follow");
@@ -13129,10 +13233,10 @@ function f_CardinalTimer(zone)
    if(zone.timer > 30)
    {
       zone.timer = 0;
-      var _loc2_ = 1;
-      while(_loc2_ <= secrets_total)
+      var loc2 = 1;
+      while(loc2 <= secrets_total)
       {
-         u_temp = secrets["s" + int(_loc2_)];
+         u_temp = secrets["s" + int(loc2)];
          if(!u_temp.dug)
          {
             if(f_OnScreen(u_temp))
@@ -13147,7 +13251,7 @@ function f_CardinalTimer(zone)
                }
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
    return false;
@@ -13193,8 +13297,8 @@ function f_AnimalRam(zone)
       {
          if(_root.level_dust != "dust_snow")
          {
-            var _loc3_ = 80 + random(20);
-            var _loc4_ = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,_loc3_,_loc3_);
+            var loc3 = 80 + random(20);
+            var loc4 = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,loc3,loc3);
          }
       }
    }
@@ -13214,67 +13318,67 @@ function f_AnimalRamHit(zone, u_pow)
    {
       return undefined;
    }
-   var _loc4_ = false;
+   var loc4 = false;
    if(zone.owner.human)
    {
-      var _loc3_ = 1;
-      while(_loc3_ <= active_enemies)
+      var loc3 = 1;
+      while(loc3 <= active_enemies)
       {
-         var _loc1_ = enemyArrayOb["e" + int(_loc3_)];
-         if(!_loc1_.nohit and _loc1_.alive)
+         var loc1 = enemyArrayOb["e" + int(loc3)];
+         if(!loc1.nohit and loc1.alive)
          {
-            if(Math.abs(_loc1_.y - zone.y) < 15)
+            if(Math.abs(loc1.y - zone.y) < 15)
             {
-               if(Math.abs(_loc1_.x - zone.x) < 50)
+               if(Math.abs(loc1.x - zone.x) < 50)
                {
-                  if(_loc1_.body_y > -30)
+                  if(loc1.body_y > -30)
                   {
-                     if(_loc1_.tossable)
+                     if(loc1.tossable)
                      {
-                        f_Damage(_loc1_,u_pow,DMG_MELEE,DMGFLAG_JUGGLE,zone._scale <= 0 ? - random(3) : random(3),- (random(6) + 25));
-                        _loc4_ = true;
-                        f_FlipSame(_loc1_,zone);
-                        _loc1_.body._y = -50;
+                        f_Damage(loc1,u_pow,DMG_MELEE,DMGFLAG_JUGGLE,zone._scale <= 0 ? - random(3) : random(3),- (random(6) + 25));
+                        loc4 = true;
+                        f_FlipSame(loc1,zone);
+                        loc1.body._y = -50;
                      }
                   }
                }
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
    }
    if(!zone.owner.human or friendly_fire)
    {
-      _loc3_ = 1;
-      while(_loc3_ <= active_players)
+      loc3 = 1;
+      while(loc3 <= active_players)
       {
-         _loc1_ = playerArrayOb["p_pt" + int(_loc3_)];
-         if(_loc1_ != zone.owner)
+         loc1 = playerArrayOb["p_pt" + int(loc3)];
+         if(loc1 != zone.owner)
          {
-            if(!_loc1_.nohit and _loc1_.alive)
+            if(!loc1.nohit and loc1.alive)
             {
-               if(Math.abs(_loc1_.y - zone.y) < 15)
+               if(Math.abs(loc1.y - zone.y) < 15)
                {
-                  if(Math.abs(_loc1_.x - zone.x) < 50)
+                  if(Math.abs(loc1.x - zone.x) < 50)
                   {
-                     if(_loc1_.body_y > -30)
+                     if(loc1.body_y > -30)
                      {
-                        if(GetGameMode() != 3 or GetGameMode() == 3 and zone.owner.flag != _loc1_.flag)
+                        if(GetGameMode() != 3 or GetGameMode() == 3 and zone.owner.flag != loc1.flag)
                         {
-                           f_Damage(_loc1_,u_pow,DMG_MELEE,DMGFLAG_JUGGLE,zone._scale <= 0 ? - random(3) : random(3),- (random(6) + 25));
-                           _loc4_ = true;
-                           f_FlipSame(_loc1_,zone);
-                           _loc1_.body._y = -50;
+                           f_Damage(loc1,u_pow,DMG_MELEE,DMGFLAG_JUGGLE,zone._scale <= 0 ? - random(3) : random(3),- (random(6) + 25));
+                           loc4 = true;
+                           f_FlipSame(loc1,zone);
+                           loc1.body._y = -50;
                         }
                      }
                   }
                }
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
    }
-   if(_loc4_)
+   if(loc4)
    {
       f_PunchSound();
       f_FX(zone.x,zone.body._y + zone.y,int(zone.y) + 15,"impact1",100,100);
@@ -13286,10 +13390,10 @@ function f_OwletTimer(zone)
    if(zone.timer > 30)
    {
       zone.timer = 0;
-      var _loc1_ = 1;
-      while(_loc1_ <= trees_total)
+      var loc1 = 1;
+      while(loc1 <= trees_total)
       {
-         u_temp = trees["s" + int(_loc1_)];
+         u_temp = trees["s" + int(loc1)];
          if(!u_temp.dug)
          {
             if(f_OnScreen(u_temp))
@@ -13301,7 +13405,7 @@ function f_OwletTimer(zone)
                return true;
             }
          }
-         _loc1_ = _loc1_ + 1;
+         loc1 = loc1 + 1;
       }
    }
    return false;
@@ -13312,10 +13416,10 @@ function f_PazzoTimer(zone)
    if(zone.timer > 30)
    {
       zone.timer = 0;
-      var _loc1_ = 1;
-      while(_loc1_ <= shovelspots_total)
+      var loc1 = 1;
+      while(loc1 <= shovelspots_total)
       {
-         u_temp = shovelspots["s" + int(_loc1_)];
+         u_temp = shovelspots["s" + int(loc1)];
          if(!u_temp.dug)
          {
             if(f_OnScreen(u_temp))
@@ -13327,7 +13431,7 @@ function f_PazzoTimer(zone)
                return true;
             }
          }
-         _loc1_ = _loc1_ + 1;
+         loc1 = loc1 + 1;
       }
    }
    return false;
@@ -13342,8 +13446,8 @@ function f_TrollPetTimer(zone)
       {
          if(zone.owner.health > 0 and zone.owner.alive)
          {
-            var _loc2_ = zone.owner.health_max * 0.01;
-            f_Heal(zone.owner,_loc2_);
+            var loc2 = zone.owner.health_max * 0.01;
+            f_Heal(zone.owner,loc2);
          }
       }
    }
@@ -13364,15 +13468,15 @@ function f_RammyTimer(zone)
       }
       if(zone.owner.human)
       {
-         var _loc3_ = 1;
-         while(_loc3_ <= active_enemies)
+         var loc3 = 1;
+         while(loc3 <= active_enemies)
          {
-            var _loc2_ = enemyArrayOb["e" + int(_loc3_)];
-            if(_loc2_.alive and _loc2_.humanoid and !_loc2_.animalproof)
+            var loc2 = enemyArrayOb["e" + int(loc3)];
+            if(loc2.alive and loc2.humanoid and !loc2.animalproof)
             {
-               if(Math.abs(_loc2_.y - zone.y) < 10)
+               if(Math.abs(loc2.y - zone.y) < 10)
                {
-                  if(_loc2_.x > zone.x and zone._xscale > 0 or _loc2_.x < zone.x and zone._xscale < 0)
+                  if(loc2.x > zone.x and zone._xscale > 0 or loc2.x < zone.x and zone._xscale < 0)
                   {
                      zone.speed = 38;
                      zone.gotoAndStop("ram");
@@ -13380,20 +13484,20 @@ function f_RammyTimer(zone)
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
       if(!zone.owner.human or friendly_fire)
       {
-         _loc3_ = 1;
-         while(_loc3_ <= active_players)
+         loc3 = 1;
+         while(loc3 <= active_players)
          {
-            _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-            if(GetGameMode() != 3 or GetGameMode() == 3 and zone.owner.flag != _loc2_.flag)
+            loc2 = playerArrayOb["p_pt" + int(loc3)];
+            if(GetGameMode() != 3 or GetGameMode() == 3 and zone.owner.flag != loc2.flag)
             {
-               if(Math.abs(_loc2_.y - zone.y) < 10)
+               if(Math.abs(loc2.y - zone.y) < 10)
                {
-                  if(_loc2_.x > zone.x and zone._xscale > 0 or _loc2_.x < zone.x and zone._xscale < 0)
+                  if(loc2.x > zone.x and zone._xscale > 0 or loc2.x < zone.x and zone._xscale < 0)
                   {
                      zone.speed = 38;
                      zone.gotoAndStop("ram_intro");
@@ -13401,7 +13505,7 @@ function f_RammyTimer(zone)
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
    }
@@ -13435,7 +13539,7 @@ function f_InstallBallTimer(zone)
       return false;
    }
    zone.timer = zone.timer + 1;
-   var _loc4_ = 0;
+   var loc4 = 0;
    if(zone.timer > 120 and zone.body_y < -30)
    {
       zone.timer = 0;
@@ -13447,76 +13551,76 @@ function f_InstallBallTimer(zone)
       {
          return false;
       }
-      var _loc3_ = 1;
-      while(_loc3_ <= active_enemies)
+      var loc3 = 1;
+      while(loc3 <= active_enemies)
       {
-         if(!_loc4_)
+         if(!loc4)
          {
-            var _loc2_ = enemyArrayOb["e" + int(_loc3_)];
-            if(_loc2_.alive and _loc2_.humanoid and !_loc2_.animalproof)
+            var loc2 = enemyArrayOb["e" + int(loc3)];
+            if(loc2.alive and loc2.humanoid and !loc2.animalproof)
             {
-               if(Math.abs(_loc2_.y - zone.y) < 10)
+               if(Math.abs(loc2.y - zone.y) < 10)
                {
-                  _loc4_ = enemyArrayOb["e" + int(_loc3_)];
+                  loc4 = enemyArrayOb["e" + int(loc3)];
                }
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      if(!_loc4_ and GetGameMode() == 3)
+      if(!loc4 and GetGameMode() == 3)
       {
-         _loc3_ = 1;
-         while(_loc3_ <= active_players)
+         loc3 = 1;
+         while(loc3 <= active_players)
          {
-            if(!_loc4_)
+            if(!loc4)
             {
-               _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-               if(_loc2_.alive and _loc2_ != zone.owner)
+               loc2 = playerArrayOb["p_pt" + int(loc3)];
+               if(loc2.alive and loc2 != zone.owner)
                {
-                  if(_loc2_.flag != zone.owner.flag)
+                  if(loc2.flag != zone.owner.flag)
                   {
-                     if(Math.abs(_loc2_.y - zone.y) < 10)
+                     if(Math.abs(loc2.y - zone.y) < 10)
                      {
-                        _loc4_ = playerArrayOb["p_pt" + int(_loc3_)];
+                        loc4 = playerArrayOb["p_pt" + int(loc3)];
                      }
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
    }
-   if(_loc4_)
+   if(loc4)
    {
       s_Photon.start(0,0);
-      var _loc5_ = f_FX(zone.x,zone.y,zone.y + 1,"photon",100,100);
-      _loc5_.n_groundtype = zone.owner.n_groundtype;
-      _loc5_.owner = zone.owner;
-      _loc5_.item_type = "photon";
-      _loc5_.body._y = zone.body_y;
-      _loc5_.speed_x = 18;
-      if(_loc4_.x < zone.x)
+      var loc5 = f_FX(zone.x,zone.y,zone.y + 1,"photon",100,100);
+      loc5.n_groundtype = zone.owner.n_groundtype;
+      loc5.owner = zone.owner;
+      loc5.item_type = "photon";
+      loc5.body._y = zone.body_y;
+      loc5.speed_x = 18;
+      if(loc4.x < zone.x)
       {
-         _loc5_.speed_x = - _loc5_.speed_x;
+         loc5.speed_x = - loc5.speed_x;
       }
-      if(_loc4_.body_y < 0)
+      if(loc4.body_y < 0)
       {
-         _loc5_.speed_y = - Math.abs(_loc4_.body_y) / 18;
+         loc5.speed_y = - Math.abs(loc4.body_y) / 18;
       }
       else
       {
-         _loc5_.speed_y = 0;
+         loc5.speed_y = 0;
       }
-      _loc5_.speed_z = 0;
-      _loc5_.gravity = 0;
-      _loc5_.w = 6;
-      _loc5_.shadow_pt = f_NewShadow();
-      _loc5_.shadow_pt._x = _loc5_._x;
-      _loc5_.shadow_pt._y = _loc5_._y;
-      _loc5_.shadow_pt._xscale = 50;
-      _loc5_.shadow_pt._yscale = 50;
-      _loc5_.attack_pow = 5;
-      _loc5_.damage_type = DMG_MELEE;
+      loc5.speed_z = 0;
+      loc5.gravity = 0;
+      loc5.w = 6;
+      loc5.shadow_pt = f_NewShadow();
+      loc5.shadow_pt._x = loc5._x;
+      loc5.shadow_pt._y = loc5._y;
+      loc5.shadow_pt._xscale = 50;
+      loc5.shadow_pt._yscale = 50;
+      loc5.attack_pow = 5;
+      loc5.damage_type = DMG_MELEE;
       return true;
    }
    return false;
@@ -13549,47 +13653,47 @@ function f_HawksterTimer(zone)
    }
    if(!zone.loot)
    {
-      var _loc3_ = 1;
-      while(_loc3_ <= active_enemies)
+      var loc3 = 1;
+      while(loc3 <= active_enemies)
       {
-         var _loc2_ = enemyArrayOb["e" + int(_loc3_)];
-         if(_loc2_.alive and _loc2_.onground)
+         var loc2 = enemyArrayOb["e" + int(loc3)];
+         if(loc2.alive and loc2.onground)
          {
             if(!zone.loot)
             {
-               zone.loot = _loc2_;
+               zone.loot = loc2;
             }
-            else if(Math.abs(_loc2_.x - zone.x) < Math.abs(zone.loot.x - zone.x))
+            else if(Math.abs(loc2.x - zone.x) < Math.abs(zone.loot.x - zone.x))
             {
-               zone.loot = _loc2_;
+               zone.loot = loc2;
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
    }
    if(!zone.loot)
    {
       if(friendly_fire or GetGameMode() == 3)
       {
-         _loc3_ = 1;
-         while(_loc3_ <= active_players)
+         loc3 = 1;
+         while(loc3 <= active_players)
          {
-            _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-            if(_loc2_.alive and _loc2_ != zone.owner and _loc2_.onground)
+            loc2 = playerArrayOb["p_pt" + int(loc3)];
+            if(loc2.alive and loc2 != zone.owner and loc2.onground)
             {
-               if(GetGameMode() != 3 and _loc2_.health < 12 or GetGameMode() == 3 and _loc2_.flag != zone.owner.flag)
+               if(GetGameMode() != 3 and loc2.health < 12 or GetGameMode() == 3 and loc2.flag != zone.owner.flag)
                {
                   if(!zone.loot)
                   {
-                     zone.loot = _loc2_;
+                     zone.loot = loc2;
                   }
-                  else if(Math.abs(_loc2_.x - zone.x) < Math.abs(zone.loot.x - zone.x))
+                  else if(Math.abs(loc2.x - zone.x) < Math.abs(zone.loot.x - zone.x))
                   {
-                     zone.loot = _loc2_;
+                     zone.loot = loc2;
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
    }
@@ -13689,24 +13793,24 @@ function f_FroggletTimer(zone)
       if(zone.timer > 10)
       {
          zone.timer = 0;
-         var _loc3_ = 1;
-         while(_loc3_ <= total_pickups)
+         var loc3 = 1;
+         while(loc3 <= total_pickups)
          {
-            var _loc2_ = pickupArrayOb["pickup" + int(_loc3_)];
-            if(!_loc2_.weapon_type)
+            var loc2 = pickupArrayOb["pickup" + int(loc3)];
+            if(!loc2.weapon_type)
             {
-               if(Math.abs(zone.x - _loc2_.x) < 300)
+               if(Math.abs(zone.x - loc2.x) < 300)
                {
-                  if(Math.abs(zone.y - _loc2_.y) < 10)
+                  if(Math.abs(zone.y - loc2.y) < 10)
                   {
-                     zone.loot = _loc2_;
+                     zone.loot = loc2;
                      zone.tonguelength = 1;
                      zone.tonguespeed = 25;
                      zone.gotoAndStop("tongue");
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
    }
@@ -13739,35 +13843,35 @@ function f_PolarBearTimer(zone)
    }
    if(!zone.loot and !cinema)
    {
-      var _loc2_ = 1;
-      while(_loc2_ <= active_enemies)
+      var loc2 = 1;
+      while(loc2 <= active_enemies)
       {
-         var _loc1_ = enemyArrayOb["e" + int(_loc2_)];
-         if(_loc1_.alive and !_loc1_.animalproof)
+         var loc1 = enemyArrayOb["e" + int(loc2)];
+         if(loc1.alive and !loc1.animalproof)
          {
-            if(_loc1_.health / _loc1_.health_max < 0.08)
+            if(loc1.health / loc1.health_max < 0.08)
             {
-               zone.loot = _loc1_;
+               zone.loot = loc1;
                return undefined;
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
       if(friendly_fire)
       {
-         _loc2_ = 1;
-         while(_loc2_ <= active_players)
+         loc2 = 1;
+         while(loc2 <= active_players)
          {
-            _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-            if(_loc1_.alive and _loc1_ != zone.owner)
+            loc1 = playerArrayOb["p_pt" + int(loc2)];
+            if(loc1.alive and loc1 != zone.owner)
             {
-               if(_loc1_.health / _loc1_.health_max < 0.08)
+               if(loc1.health / loc1.health_max < 0.08)
                {
-                  zone.loot = _loc1_;
+                  zone.loot = loc1;
                   return undefined;
                }
             }
-            _loc2_ = _loc2_ + 1;
+            loc2 = loc2 + 1;
          }
       }
       if(zone.owner.health < 12)
@@ -13835,41 +13939,41 @@ function f_BatTimer(zone)
          if(!cinema)
          {
             zone.timer = 300;
-            var _loc3_ = 1;
-            while(_loc3_ <= active_enemies)
+            var loc3 = 1;
+            while(loc3 <= active_enemies)
             {
-               var _loc1_ = enemyArrayOb["e" + int(_loc3_)];
-               if(_loc1_.alive and _loc1_.humanoid and !_loc1_.hostage)
+               var loc1 = enemyArrayOb["e" + int(loc3)];
+               if(loc1.alive and loc1.humanoid and !loc1.hostage)
                {
-                  if(!_loc1_.beefy and !_loc1_.horse and !_loc1_.animalproof)
+                  if(!loc1.beefy and !loc1.horse and !loc1.animalproof)
                   {
-                     if(f_OnScreen(_loc1_))
+                     if(f_OnScreen(loc1))
                      {
-                        zone.loot = _loc1_;
+                        zone.loot = loc1;
                         return undefined;
                      }
                   }
                }
-               _loc3_ = _loc3_ + 1;
+               loc3 = loc3 + 1;
             }
             if(GetGameMode() == 3)
             {
-               _loc3_ = 1;
-               while(_loc3_ <= active_players)
+               loc3 = 1;
+               while(loc3 <= active_players)
                {
-                  _loc1_ = playerArrayOb["p_pt" + int(_loc3_)];
-                  if(_loc1_.alive and _loc1_ != zone.owner)
+                  loc1 = playerArrayOb["p_pt" + int(loc3)];
+                  if(loc1.alive and loc1 != zone.owner)
                   {
-                     if(!_loc1_.beefy and !_loc1_.horse)
+                     if(!loc1.beefy and !loc1.horse)
                      {
-                        if(_loc1_.flag != zone.owner.flag)
+                        if(loc1.flag != zone.owner.flag)
                         {
-                           zone.loot = _loc1_;
+                           zone.loot = loc1;
                            return undefined;
                         }
                      }
                   }
-                  _loc3_ = _loc3_ + 1;
+                  loc3 = loc3 + 1;
                }
             }
          }
@@ -13890,7 +13994,7 @@ function f_BatTimer(zone)
 function f_DragonTimer(zone)
 {
    zone.timer = zone.timer + 1;
-   var _loc4_ = 0;
+   var loc4 = 0;
    if(zone.timer > 120)
    {
       zone.timer = 0;
@@ -13902,73 +14006,73 @@ function f_DragonTimer(zone)
       {
          return false;
       }
-      var _loc3_ = 1;
-      while(_loc3_ <= active_enemies)
+      var loc3 = 1;
+      while(loc3 <= active_enemies)
       {
-         if(!_loc4_)
+         if(!loc4)
          {
-            var _loc2_ = enemyArrayOb["e" + int(_loc3_)];
-            if(_loc2_.alive and _loc2_.humanoid and !_loc2_.animalproof)
+            var loc2 = enemyArrayOb["e" + int(loc3)];
+            if(loc2.alive and loc2.humanoid and !loc2.animalproof)
             {
-               if(Math.abs(_loc2_.y - zone.y) < 10)
+               if(Math.abs(loc2.y - zone.y) < 10)
                {
-                  if(_loc2_.x > zone.x and zone._xscale > 0 or _loc2_.x < zone.x and zone._xscale < 0)
+                  if(loc2.x > zone.x and zone._xscale > 0 or loc2.x < zone.x and zone._xscale < 0)
                   {
-                     _loc4_ = enemyArrayOb["e" + int(_loc3_)];
+                     loc4 = enemyArrayOb["e" + int(loc3)];
                   }
                }
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      if(!_loc4_ and GetGameMode() == 3)
+      if(!loc4 and GetGameMode() == 3)
       {
-         _loc3_ = 1;
-         while(_loc3_ <= active_players)
+         loc3 = 1;
+         while(loc3 <= active_players)
          {
-            if(!_loc4_)
+            if(!loc4)
             {
-               _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-               if(_loc2_.alive and _loc2_ != zone.owner)
+               loc2 = playerArrayOb["p_pt" + int(loc3)];
+               if(loc2.alive and loc2 != zone.owner)
                {
-                  if(_loc2_.flag != zone.owner.flag)
+                  if(loc2.flag != zone.owner.flag)
                   {
-                     if(Math.abs(_loc2_.y - zone.y) < 10)
+                     if(Math.abs(loc2.y - zone.y) < 10)
                      {
-                        if(_loc2_.x > zone.x and zone._xscale > 0 or _loc2_.x < zone.x and zone._xscale < 0)
+                        if(loc2.x > zone.x and zone._xscale > 0 or loc2.x < zone.x and zone._xscale < 0)
                         {
-                           _loc4_ = playerArrayOb["p_pt" + int(_loc3_)];
+                           loc4 = playerArrayOb["p_pt" + int(loc3)];
                         }
                      }
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
    }
-   if(_loc4_)
+   if(loc4)
    {
-      var _loc5_ = f_FX(zone.x,zone.y,zone.y + 1,"general_projectile",zone._xscale,100);
-      _loc5_.projectile_type = 25;
-      _loc5_.n_groundtype = zone.owner.n_groundtype;
-      _loc5_.owner = zone.owner;
-      _loc5_.attack_pow = zone.owner.magic_pow / 2;
-      _loc5_.body._y = zone.body_y - 10;
-      _loc5_.speed_x = 18;
-      if(_loc4_.x < zone.x)
+      var loc5 = f_FX(zone.x,zone.y,zone.y + 1,"general_projectile",zone._xscale,100);
+      loc5.projectile_type = 25;
+      loc5.n_groundtype = zone.owner.n_groundtype;
+      loc5.owner = zone.owner;
+      loc5.attack_pow = zone.owner.magic_pow / 2;
+      loc5.body._y = zone.body_y - 10;
+      loc5.speed_x = 18;
+      if(loc4.x < zone.x)
       {
-         _loc5_.speed_x = - _loc5_.speed_x;
+         loc5.speed_x = - loc5.speed_x;
       }
-      _loc5_.speed_y = 0;
-      _loc5_.speed_z = 0;
-      _loc5_.gravity = 0;
-      _loc5_.w = 6;
-      _loc5_.shadow_pt = f_NewShadow();
-      _loc5_.shadow_pt._x = _loc5_._x;
-      _loc5_.shadow_pt._y = _loc5_._y;
-      _loc5_.shadow_pt._xscale = 50;
-      _loc5_.shadow_pt._yscale = 50;
+      loc5.speed_y = 0;
+      loc5.speed_z = 0;
+      loc5.gravity = 0;
+      loc5.w = 6;
+      loc5.shadow_pt = f_NewShadow();
+      loc5.shadow_pt._x = loc5._x;
+      loc5.shadow_pt._y = loc5._y;
+      loc5.shadow_pt._xscale = 50;
+      loc5.shadow_pt._yscale = 50;
       return true;
    }
    return false;
@@ -13976,7 +14080,7 @@ function f_DragonTimer(zone)
 function f_PelterTimer(zone)
 {
    zone.timer = zone.timer + 1;
-   var _loc4_ = 0;
+   var loc4 = 0;
    if(zone.timer > 120)
    {
       zone.timer = 0;
@@ -13988,73 +14092,73 @@ function f_PelterTimer(zone)
       {
          return false;
       }
-      var _loc3_ = 1;
-      while(_loc3_ <= active_enemies)
+      var loc3 = 1;
+      while(loc3 <= active_enemies)
       {
-         if(!_loc4_)
+         if(!loc4)
          {
-            var _loc2_ = enemyArrayOb["e" + int(_loc3_)];
-            if(_loc2_.alive and _loc2_.humanoid and !_loc2_.animalproof)
+            var loc2 = enemyArrayOb["e" + int(loc3)];
+            if(loc2.alive and loc2.humanoid and !loc2.animalproof)
             {
-               if(Math.abs(_loc2_.y - zone.y) < 10)
+               if(Math.abs(loc2.y - zone.y) < 10)
                {
-                  if(_loc2_.x > zone.x and zone._xscale > 0 or _loc2_.x < zone.x and zone._xscale < 0)
+                  if(loc2.x > zone.x and zone._xscale > 0 or loc2.x < zone.x and zone._xscale < 0)
                   {
-                     _loc4_ = enemyArrayOb["e" + int(_loc3_)];
+                     loc4 = enemyArrayOb["e" + int(loc3)];
                   }
                }
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      if(!_loc4_ and GetGameMode() == 3)
+      if(!loc4 and GetGameMode() == 3)
       {
-         _loc3_ = 1;
-         while(_loc3_ <= active_players)
+         loc3 = 1;
+         while(loc3 <= active_players)
          {
-            if(!_loc4_)
+            if(!loc4)
             {
-               _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-               if(_loc2_.alive and _loc2_ != zone.owner)
+               loc2 = playerArrayOb["p_pt" + int(loc3)];
+               if(loc2.alive and loc2 != zone.owner)
                {
-                  if(_loc2_.flag != zone.owner.flag)
+                  if(loc2.flag != zone.owner.flag)
                   {
-                     if(Math.abs(_loc2_.y - zone.y) < 10)
+                     if(Math.abs(loc2.y - zone.y) < 10)
                      {
-                        if(_loc2_.x > zone.x and zone._xscale > 0 or _loc2_.x < zone.x and zone._xscale < 0)
+                        if(loc2.x > zone.x and zone._xscale > 0 or loc2.x < zone.x and zone._xscale < 0)
                         {
-                           _loc4_ = playerArrayOb["p_pt" + int(_loc3_)];
+                           loc4 = playerArrayOb["p_pt" + int(loc3)];
                         }
                      }
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
    }
-   if(_loc4_)
+   if(loc4)
    {
-      var _loc5_ = f_FX(zone.x,zone.y,zone.y + 1,"general_projectile",zone._xscale,100);
-      _loc5_.projectile_type = 27;
-      _loc5_.n_groundtype = zone.owner.n_groundtype;
-      _loc5_.owner = zone.owner;
-      _loc5_.attack_pow = zone.owner.magic_pow;
-      _loc5_.body._y = zone.body_y - 10;
-      _loc5_.speed_x = 12 + random(6);
-      if(_loc4_.x < zone.x)
+      var loc5 = f_FX(zone.x,zone.y,zone.y + 1,"general_projectile",zone._xscale,100);
+      loc5.projectile_type = 27;
+      loc5.n_groundtype = zone.owner.n_groundtype;
+      loc5.owner = zone.owner;
+      loc5.attack_pow = zone.owner.magic_pow;
+      loc5.body._y = zone.body_y - 10;
+      loc5.speed_x = 12 + random(6);
+      if(loc4.x < zone.x)
       {
-         _loc5_.speed_x = - _loc5_.speed_x;
+         loc5.speed_x = - loc5.speed_x;
       }
-      _loc5_.speed_y = - (2 + random(8));
-      _loc5_.speed_z = 0;
-      _loc5_.gravity = 1;
-      _loc5_.w = 6;
-      _loc5_.shadow_pt = f_NewShadow();
-      _loc5_.shadow_pt._x = _loc5_._x;
-      _loc5_.shadow_pt._y = _loc5_._y;
-      _loc5_.shadow_pt._xscale = 50;
-      _loc5_.shadow_pt._yscale = 50;
+      loc5.speed_y = - (2 + random(8));
+      loc5.speed_z = 0;
+      loc5.gravity = 1;
+      loc5.w = 6;
+      loc5.shadow_pt = f_NewShadow();
+      loc5.shadow_pt._x = loc5._x;
+      loc5.shadow_pt._y = loc5._y;
+      loc5.shadow_pt._xscale = 50;
+      loc5.shadow_pt._yscale = 50;
       return true;
    }
    return false;
@@ -14065,19 +14169,19 @@ function f_WhaleTimer(zone)
    if(zone.timer <= 0)
    {
       zone.timer = 30 * (12 + random(6));
-      var _loc2_ = f_ItemSpawn(zone._x,zone._y,9);
-      _loc2_.gem_type = 13;
+      var loc2 = f_ItemSpawn(zone._x,zone._y,9);
+      loc2.gem_type = 13;
    }
 }
 function f_WhaleActive()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = _root.p_game["p" + int(_loc2_)];
-      if(_loc3_.alive)
+      var loc3 = _root.p_game["p" + int(loc2)];
+      if(loc3.alive)
       {
-         if(_loc3_.pet.animal_type == 29)
+         if(loc3.pet.animal_type == 29)
          {
             if(random(5) == 0)
             {
@@ -14086,7 +14190,7 @@ function f_WhaleActive()
             return false;
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    return false;
 }
@@ -14101,99 +14205,99 @@ function f_UpdateAchievement(achievement, port, update)
          }
          break;
       case "Traditional":
-         var _loc2_ = 1;
-         while(_loc2_ <= active_players)
+         var loc2 = 1;
+         while(loc2 <= active_players)
          {
-            var _loc3_ = playerArrayOb["p_pt" + int(_loc2_)];
-            if(_loc3_.alive)
+            var loc3 = playerArrayOb["p_pt" + int(loc2)];
+            if(loc3.alive)
             {
-               var _loc1_ = _loc3_.hud_pt;
-               if(f_BeatAllLevels(_loc1_))
+               var loc1 = loc3.hud_pt;
+               if(f_BeatAllLevels(loc1))
                {
-                  UnlockAchievement(_loc1_.port - 1,2);
+                  UnlockAchievement(loc1.port - 1,2);
                }
             }
-            _loc2_ = _loc2_ + 1;
+            loc2 = loc2 + 1;
          }
          break;
       case "TheTraitor":
-         _loc2_ = 1;
-         while(_loc2_ <= active_players)
+         loc2 = 1;
+         while(loc2 <= active_players)
          {
-            _loc3_ = playerArrayOb["p_pt" + int(_loc2_)];
-            if(_loc3_.alive)
+            loc3 = playerArrayOb["p_pt" + int(loc2)];
+            if(loc3.alive)
             {
-               _loc1_ = _loc3_.hud_pt.p_type;
+               loc1 = loc3.hud_pt.p_type;
                switch(level)
                {
                   case 7:
-                     if(_loc1_ == 6)
+                     if(loc1 == 6)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 23:
-                     if(_loc1_ == 19)
+                     if(loc1 == 19)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 29:
-                     if(_loc1_ == 21)
+                     if(loc1 == 21)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 36:
-                     if(_loc1_ == 21)
+                     if(loc1 == 21)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 30:
-                     if(_loc1_ == 24)
+                     if(loc1 == 24)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 58:
-                     if(_loc1_ == 10)
+                     if(loc1 == 10)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 43:
-                     if(_loc1_ == 15)
+                     if(loc1 == 15)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 3:
-                     if(_loc1_ == 14)
+                     if(loc1 == 14)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 51:
-                     if(_loc1_ == 26)
+                     if(loc1 == 26)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 55:
-                     if(_loc1_ == 25)
+                     if(loc1 == 25)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                      break;
                   case 50:
-                     if(_loc1_ == 28)
+                     if(loc1 == 28)
                      {
-                        UnlockAchievement(_loc3_.hud_pt.port - 1,3);
+                        UnlockAchievement(loc3.hud_pt.port - 1,3);
                      }
                }
             }
-            _loc2_ = _loc2_ + 1;
+            loc2 = loc2 + 1;
          }
          break;
       case "DeerTrainer":
@@ -14223,15 +14327,15 @@ function f_UpdateAchievement(achievement, port, update)
       case "MeleeIsBest":
          if(player_used_magic == false)
          {
-            _loc2_ = 1;
-            while(_loc2_ <= active_players)
+            loc2 = 1;
+            while(loc2 <= active_players)
             {
-               _loc3_ = playerArrayOb["p_pt" + int(_loc2_)];
-               if(_loc3_.alive)
+               loc3 = playerArrayOb["p_pt" + int(loc2)];
+               if(loc3.alive)
                {
-                  UnlockAchievement(_loc3_.hud_pt.port - 1,10);
+                  UnlockAchievement(loc3.hud_pt.port - 1,10);
                }
-               _loc2_ = _loc2_ + 1;
+               loc2 = loc2 + 1;
             }
          }
          break;
@@ -14245,62 +14349,62 @@ function f_UpdateAchievement(achievement, port, update)
 }
 function f_ReceivedAllKisses(port, update)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc4_ = _root["hud" + int(_loc3_)];
-      if(_loc4_.port - 1 == port)
+      var loc4 = _root["hud" + int(loc3)];
+      if(loc4.port - 1 == port)
       {
-         var _loc5_ = int(_root.save_data_info.char_offset + _root.save_data_info.char_size * int(f_GetSaveDataOffset(_loc4_.p_type)) + 29);
-         var _loc2_ = ReadStorage(port,_loc5_);
-         _loc2_ |= update;
-         WriteStorage(port,_loc5_,_loc2_);
-         var _loc7_ = 15;
-         if(_loc2_ == _loc7_)
+         var loc5 = int(_root.save_data_info.char_offset + _root.save_data_info.char_size * int(f_GetSaveDataOffset(loc4.p_type)) + 29);
+         var loc2 = ReadStorage(port,loc5);
+         loc2 |= update;
+         WriteStorage(port,loc5,loc2);
+         var loc7 = 15;
+         if(loc2 == loc7)
          {
             return true;
          }
          return false;
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
    return false;
 }
 function f_CheckDigAchievement(zone)
 {
-   var _loc3_ = int(_root.save_data_info.char_offset + _root.save_data_info.char_size * int(f_GetSaveDataOffset(zone.p_type)) + 28);
-   var _loc2_ = ReadStorage(zone.hud_pt.port - 1,_loc3_);
-   if(_loc2_ < 10)
+   var loc3 = int(_root.save_data_info.char_offset + _root.save_data_info.char_size * int(f_GetSaveDataOffset(zone.p_type)) + 28);
+   var loc2 = ReadStorage(zone.hud_pt.port - 1,loc3);
+   if(loc2 < 10)
    {
-      _loc2_ = _loc2_ + 1;
-      WriteStorage(zone.hud_pt.port - 1,_loc3_,_loc2_);
+      loc2 = loc2 + 1;
+      WriteStorage(zone.hud_pt.port - 1,loc3,loc2);
    }
-   if(_loc2_ >= 10)
+   if(loc2 >= 10)
    {
       f_UpdateAchievement("TreasureHunter",zone.hud_pt.port,1);
    }
 }
 function f_CheckMedicAchievement(zone, zone2)
 {
-   var _loc1_ = zone2.hud_pt.port;
-   if(_loc1_ == 1)
+   var loc1 = zone2.hud_pt.port;
+   if(loc1 == 1)
    {
       zone.hud_pt.achievement |= 16;
    }
-   else if(_loc1_ == 2)
+   else if(loc1 == 2)
    {
       zone.hud_pt.achievement |= 32;
    }
-   else if(_loc1_ == 3)
+   else if(loc1 == 3)
    {
       zone.hud_pt.achievement |= 64;
    }
-   else if(_loc1_ == 4)
+   else if(loc1 == 4)
    {
       zone.hud_pt.achievement |= 128;
    }
-   var _loc3_ = zone.hud_pt.achievement & 240;
-   if(_loc3_ == 240)
+   var loc3 = zone.hud_pt.achievement & 240;
+   if(loc3 == 240)
    {
       f_UpdateAchievement("Medic!",zone.hud_pt.port,1);
    }
@@ -14333,148 +14437,148 @@ function f_FlipInverse(zone, zone2)
 }
 function f_ItemSpawn(x, y, item_type)
 {
-   var _loc1_ = f_FX(x,y,int(y),"item",100,100);
-   _loc1_.item_type = item_type;
+   var loc1 = f_FX(x,y,int(y),"item",100,100);
+   loc1.item_type = item_type;
    if(item_type == 9)
    {
       if(f_WhaleActive())
       {
-         _loc1_.gem_type = random(11) + 1;
+         loc1.gem_type = random(11) + 1;
       }
       else
       {
-         _loc1_.gem_type = random(12) + 1;
+         loc1.gem_type = random(12) + 1;
       }
    }
-   _loc1_.body.item.gotoAndStop(_loc1_.item_type);
-   _loc1_.shadow_pt = f_NewShadow();
-   _loc1_.shadow_pt.gotoAndStop("off");
-   return _loc1_;
+   loc1.body.item.gotoAndStop(loc1.item_type);
+   loc1.shadow_pt = f_NewShadow();
+   loc1.shadow_pt.gotoAndStop("off");
+   return loc1;
 }
 function f_RandomItemSpawn(zone)
 {
-   var _loc1_ = random(8) + 2;
-   f_ItemSpawn(zone.x,zone.y,_loc1_);
+   var loc1 = random(8) + 2;
+   f_ItemSpawn(zone.x,zone.y,loc1);
 }
 function f_RandomTreeItem(zone)
 {
-   var _loc1_ = f_ItemSpawn(zone.x,zone.y,random(5) + 2);
-   _loc1_.body.gotoAndPlay("treefall");
+   var loc1 = f_ItemSpawn(zone.x,zone.y,random(5) + 2);
+   loc1.body.gotoAndPlay("treefall");
 }
 function f_RandomGoldSpawn(x, y)
 {
-   var _loc1_ = f_FX(x,y,int(y),"item",100,100);
+   var loc1 = f_FX(x,y,int(y),"item",100,100);
    if(random(3) == 1)
    {
-      _loc1_.item_type = 8;
+      loc1.item_type = 8;
    }
    else
    {
-      _loc1_.item_type = 9;
+      loc1.item_type = 9;
       if(f_WhaleActive())
       {
-         _loc1_.gem_type = random(11) + 1;
+         loc1.gem_type = random(11) + 1;
       }
       else
       {
-         _loc1_.gem_type = random(12) + 1;
+         loc1.gem_type = random(12) + 1;
       }
    }
-   _loc1_.body.item.gotoAndStop(_loc1_.item_type);
-   return _loc1_;
+   loc1.body.item.gotoAndStop(loc1.item_type);
+   return loc1;
 }
 function f_GoldDrop(x, y)
 {
-   var _loc2_ = f_FX(x,y,int(y),"item",100,100);
-   if(_loc2_)
+   var loc2 = f_FX(x,y,int(y),"item",100,100);
+   if(loc2)
    {
-      var _loc3_ = 3;
-      var _loc4_ = 11;
+      var loc3 = 3;
+      var loc4 = 11;
       switch(_root.level)
       {
          case 7:
-            _loc3_ = 2;
-            _loc4_ = 1;
+            loc3 = 2;
+            loc4 = 1;
             break;
          case 21:
-            _loc3_ = 3;
-            _loc4_ = 2;
+            loc3 = 3;
+            loc4 = 2;
             break;
          case 36:
-            _loc3_ = 4;
-            _loc4_ = 5;
+            loc3 = 4;
+            loc4 = 5;
             break;
          case 51:
-            _loc3_ = 6;
-            _loc4_ = 9;
+            loc3 = 6;
+            loc4 = 9;
             break;
          case 53:
-            _loc3_ = 7;
-            _loc4_ = 11;
+            loc3 = 7;
+            loc4 = 11;
             break;
          case 55:
-            _loc3_ = 7;
-            _loc4_ = 11;
+            loc3 = 7;
+            loc4 = 11;
       }
-      if(random(_loc3_) == 1)
+      if(random(loc3) == 1)
       {
-         _loc2_.item_type = 8;
+         loc2.item_type = 8;
       }
       else
       {
-         _loc2_.item_type = 9;
-         if(random(_loc3_) == 1 and !f_WhaleActive())
+         loc2.item_type = 9;
+         if(random(loc3) == 1 and !f_WhaleActive())
          {
-            _loc2_.gem_type = 12;
+            loc2.gem_type = 12;
          }
          else
          {
-            _loc2_.gem_type = random(_loc4_) + 1;
+            loc2.gem_type = random(loc4) + 1;
          }
       }
-      _loc2_.body.item.gotoAndStop(_loc2_.item_type);
-      _loc2_.body.gotoAndPlay("fall");
-      _loc2_.shadow_pt = f_NewShadow();
-      _loc2_.shadow_pt.gotoAndStop("off");
+      loc2.body.item.gotoAndStop(loc2.item_type);
+      loc2.body.gotoAndPlay("fall");
+      loc2.shadow_pt = f_NewShadow();
+      loc2.shadow_pt.gotoAndStop("off");
    }
 }
 function f_GoldShoot(zone)
 {
-   var _loc1_ = f_FX(zone.x - 60 + random(120),zone.y,int(y + 1),"goldshoot",100,100);
-   _loc1_.body._rotation = -3 + random(6);
-   _loc1_.body.speed_y = - (26 + random(10));
+   var loc1 = f_FX(zone.x - 60 + random(120),zone.y,int(y + 1),"goldshoot",100,100);
+   loc1.body._rotation = -3 + random(6);
+   loc1.body.speed_y = - (26 + random(10));
 }
 function f_KillEnemies()
 {
-   var _loc2_ = undefined;
-   var _loc1_ = 1;
-   while(_loc1_ <= total_enemies)
+   var loc2 = undefined;
+   var loc1 = 1;
+   while(loc1 <= total_enemies)
    {
-      _loc2_ = loader.game.game["e" + int(_loc1_)];
-      if(_loc2_.alive)
+      loc2 = loader.game.game["e" + int(loc1)];
+      if(loc2.alive)
       {
-         _loc2_.health = 0;
-         _loc2_.gotoAndStop("hitground1");
+         loc2.health = 0;
+         loc2.gotoAndStop("hitground1");
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_KillOffscreenEnemies()
 {
-   var _loc1_ = undefined;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_enemies)
+   var loc1 = undefined;
+   var loc2 = 1;
+   while(loc2 <= total_enemies)
    {
-      _loc1_ = loader.game.game["e" + int(_loc2_)];
-      if(_loc1_.alive)
+      loc1 = loader.game.game["e" + int(loc2)];
+      if(loc1.alive)
       {
-         if(!f_SZ_PlayerXOnScreen(_loc1_._x) or !f_SZ_PlayerYOnScreen(_loc1_._y))
+         if(!f_SZ_PlayerXOnScreen(loc1._x) or !f_SZ_PlayerYOnScreen(loc1._y))
          {
-            _loc1_.health = 0;
-            _loc1_.gotoAndStop("hitground1");
+            loc1.health = 0;
+            loc1.gotoAndStop("hitground1");
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_KidSettings(zone)
@@ -14793,13 +14897,13 @@ function f_KidToss(zone)
       {
          if(zone._xscale > 0)
          {
-            var _loc5_ = 70;
+            var loc5 = 70;
          }
          else
          {
-            _loc5_ = -70;
+            loc5 = -70;
          }
-         f_FX(zone.x,zone.y,int(zone.y + 1),"big_splash",_loc5_,70);
+         f_FX(zone.x,zone.y,int(zone.y + 1),"big_splash",loc5,70);
          zone.fp_StandAnim(zone);
       }
       else
@@ -14843,9 +14947,9 @@ function f_KidToss(zone)
                f_ScreenShake(0.2,8,zone.hitby);
                if(zone.n_groundtype >= 300 and zone.n_groundtype <= 302)
                {
-                  var _loc2_ = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
-                  _loc2_.body.gotoAndPlay("s3");
-                  f_ColorSwap(_loc2_,water_default);
+                  var loc2 = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
+                  loc2.body.gotoAndPlay("s3");
+                  f_ColorSwap(loc2,water_default);
                }
                else
                {
@@ -14856,9 +14960,9 @@ function f_KidToss(zone)
             {
                if(zone.n_groundtype >= 300 and zone.n_groundtype <= 302)
                {
-                  _loc2_ = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
-                  _loc2_.body.gotoAndPlay("s3");
-                  f_ColorSwap(_loc2_,water_default);
+                  loc2 = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
+                  loc2.body.gotoAndPlay("s3");
+                  f_ColorSwap(loc2,water_default);
                }
                s_Ground4.start(0,0);
             }
@@ -14866,24 +14970,24 @@ function f_KidToss(zone)
             {
                if(zone.n_groundtype >= 300 and zone.n_groundtype <= 302)
                {
-                  _loc2_ = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
-                  _loc2_.body.gotoAndPlay("s3");
-                  f_ColorSwap(_loc2_,water_default);
+                  loc2 = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
+                  loc2.body.gotoAndPlay("s3");
+                  f_ColorSwap(loc2,water_default);
                }
                s_Ground5.start(0,0);
             }
             zone.speed_toss_y = int(zone.speed_toss_y * -0.35);
             if(zone.bounces % 2 == 0)
             {
-               var _loc3_ = zone.body.body._rotation;
+               var loc3 = zone.body.body._rotation;
                zone.gotoAndStop("bounce2");
-               zone.body.body._rotation = _loc3_;
+               zone.body.body._rotation = loc3;
             }
             else
             {
-               _loc3_ = zone.body.body._rotation;
+               loc3 = zone.body.body._rotation;
                zone.gotoAndStop("bounce1");
-               zone.body.body._rotation = _loc3_;
+               zone.body.body._rotation = loc3;
             }
          }
          else
@@ -14901,9 +15005,9 @@ function f_KidToss(zone)
             zone.onground = true;
             if(zone.n_groundtype >= 300 and zone.n_groundtype <= 302)
             {
-               _loc2_ = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
-               _loc2_.body.gotoAndPlay("s3");
-               f_ColorSwap(_loc2_,water_default);
+               loc2 = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
+               loc2.body.gotoAndPlay("s3");
+               f_ColorSwap(loc2,water_default);
             }
             zone.gotoAndStop("hitground1");
          }
@@ -14917,7 +15021,7 @@ function f_KidToss(zone)
          {
             if(zone.body_y > -10)
             {
-               var _loc4_ = zone.jumping;
+               var loc4 = zone.jumping;
                zone.jumping = false;
                if(f_Jump(zone))
                {
@@ -14927,7 +15031,7 @@ function f_KidToss(zone)
                }
                else
                {
-                  zone.jumping = _loc4_;
+                  zone.jumping = loc4;
                }
             }
          }
@@ -14937,85 +15041,85 @@ function f_KidToss(zone)
 }
 function f_KidHitKids(zone)
 {
-   var _loc3_ = undefined;
-   var _loc1_ = undefined;
+   var loc3 = undefined;
+   var loc1 = undefined;
    if(zone.speed_toss_y > 40 or zone.speed_toss_x >= 12)
    {
       if(zone.body_y > -100)
       {
-         var _loc4_ = false;
-         _loc3_ = 1;
-         while(_loc3_ <= active_enemies)
+         var loc4 = false;
+         loc3 = 1;
+         while(loc3 <= active_enemies)
          {
-            _loc1_ = enemyArrayOb["e" + int(_loc3_)];
-            if(!_loc1_.nohit and _loc1_ != zone and _loc1_.alive and _loc1_.invincible_timer <= 0)
+            loc1 = enemyArrayOb["e" + int(loc3)];
+            if(!loc1.nohit and loc1 != zone and loc1.alive and loc1.invincible_timer <= 0)
             {
-               if(Math.abs(_loc1_.y - zone.y) < 15)
+               if(Math.abs(loc1.y - zone.y) < 15)
                {
-                  if(Math.abs(_loc1_.x - zone.x) < _loc1_.w / 2)
+                  if(Math.abs(loc1.x - zone.x) < loc1.w / 2)
                   {
-                     if(!_loc1_.tossable or !_loc1_.humanoid)
+                     if(!loc1.tossable or !loc1.humanoid)
                      {
                         f_Damage(zone,2,DMG_MELEE);
-                        f_Damage(_loc1_,2,DMG_MELEE);
+                        f_Damage(loc1,2,DMG_MELEE);
                         if(zone._xscale < 0)
                         {
-                           f_MoveCharH(zone,_loc1_.x - _loc1_.w / 2 - zone.x,0);
+                           f_MoveCharH(zone,loc1.x - loc1.w / 2 - zone.x,0);
                         }
                         else
                         {
-                           f_MoveCharH(zone,_loc1_.x + _loc1_.w / 2 - zone.x,0);
+                           f_MoveCharH(zone,loc1.x + loc1.w / 2 - zone.x,0);
                         }
                         zone.speed_toss_x *= 0.5;
                         f_FlipChar(zone);
-                        _loc4_ = true;
+                        loc4 = true;
                      }
                      else
                      {
                         f_Damage(zone,1,DMG_MELEE);
-                        f_Damage(_loc1_,2,DMG_MELEE,DMGFLAG_JUGGLE,zone.speed_toss_x * 0.75,- (random(10) + 10));
-                        _loc4_ = true;
-                        f_FlipSame(_loc1_,zone);
-                        if(!_loc1_.beefy)
+                        f_Damage(loc1,2,DMG_MELEE,DMGFLAG_JUGGLE,zone.speed_toss_x * 0.75,- (random(10) + 10));
+                        loc4 = true;
+                        f_FlipSame(loc1,zone);
+                        if(!loc1.beefy)
                         {
-                           _loc1_.body_y = -50;
+                           loc1.body_y = -50;
                         }
                      }
                   }
                }
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
          if(zone.missilemode)
          {
-            _loc3_ = 1;
-            while(_loc3_ <= active_players)
+            loc3 = 1;
+            while(loc3 <= active_players)
             {
-               _loc1_ = playerArrayOb["p_pt" + int(_loc3_)];
-               if(!_loc1_.nohit and _loc1_ != zone and _loc1_.alive)
+               loc1 = playerArrayOb["p_pt" + int(loc3)];
+               if(!loc1.nohit and loc1 != zone and loc1.alive)
                {
-                  if(Math.abs(_loc1_.y - zone.y) < 15)
+                  if(Math.abs(loc1.y - zone.y) < 15)
                   {
-                     if(Math.abs(_loc1_.x - zone.x) < 40)
+                     if(Math.abs(loc1.x - zone.x) < 40)
                      {
-                        if(_loc1_.tossable)
+                        if(loc1.tossable)
                         {
                            f_Damage(zone,1,DMG_MELEE);
-                           f_Damage(_loc1_,2,DMG_MELEE,DMGFLAG_JUGGLE,zone.speed_toss_x * 0.75,- (random(10) + 10));
-                           _loc4_ = true;
-                           f_FlipSame(_loc1_,zone);
-                           if(!_loc1_.beefy)
+                           f_Damage(loc1,2,DMG_MELEE,DMGFLAG_JUGGLE,zone.speed_toss_x * 0.75,- (random(10) + 10));
+                           loc4 = true;
+                           f_FlipSame(loc1,zone);
+                           if(!loc1.beefy)
                            {
-                              _loc1_.body_y = -50;
+                              loc1.body_y = -50;
                            }
                         }
                      }
                   }
                }
-               _loc3_ = _loc3_ + 1;
+               loc3 = loc3 + 1;
             }
          }
-         if(_loc4_)
+         if(loc4)
          {
             f_PunchSound();
             f_FX(zone.x,zone.body_y + zone.y,int(zone.y) + 15,"impact1",100,100);
@@ -15100,68 +15204,68 @@ function f_AutoJumpInit(zone)
 }
 function f_FX(x, y, u_depth, n_type, u_xscale, u_yscale)
 {
-   var _loc1_ = undefined;
+   var loc1 = undefined;
    do
    {
-      _loc1_ = loader.game.game["fx" + int(current_fx)];
+      loc1 = loader.game.game["fx" + int(current_fx)];
       current_fx++;
       if(current_fx > total_fx)
       {
          current_fx = 1;
       }
    }
-   while(_loc1_.shadow_pt.active == true);
+   while(loc1.shadow_pt.active == true);
    
-   if(_loc1_)
+   if(loc1)
    {
-      _loc1_.shadow_pt = undefined;
-      _loc1_.x = x;
-      _loc1_.y = y;
-      _loc1_._x = x;
-      _loc1_._y = y;
-      _loc1_.h = 0;
-      _loc1_.owner = undefined;
-      _loc1_.speed_z = 0;
-      _loc1_.damage_type = DMG_MELEE;
-      _loc1_.magic_type = undefined;
-      _loc1_.splashattack = false;
-      _loc1_.unblockable = false;
-      _loc1_.hit_function = undefined;
-      _loc1_.trail_function = undefined;
-      _loc1_.victim = undefined;
-      _loc1_.attack_pow = undefined;
-      _loc1_.projectile_type = undefined;
-      _loc1_.n_groundtype = 0;
-      _loc1_.nospin = false;
-      _loc1_._xscale = u_xscale;
-      _loc1_._yscale = u_yscale;
-      f_Depth(_loc1_,u_depth);
-      f_ColorSwap(_loc1_,color_default);
-      _loc1_.gotoAndStop("remove");
-      _loc1_.gotoAndStop(n_type);
-      HiFps_ResetRecursive(_loc1_);
+      loc1.shadow_pt = undefined;
+      loc1.x = x;
+      loc1.y = y;
+      loc1._x = x;
+      loc1._y = y;
+      loc1.h = 0;
+      loc1.owner = undefined;
+      loc1.speed_z = 0;
+      loc1.damage_type = DMG_MELEE;
+      loc1.magic_type = undefined;
+      loc1.splashattack = false;
+      loc1.unblockable = false;
+      loc1.hit_function = undefined;
+      loc1.trail_function = undefined;
+      loc1.victim = undefined;
+      loc1.attack_pow = undefined;
+      loc1.projectile_type = undefined;
+      loc1.n_groundtype = 0;
+      loc1.nospin = false;
+      loc1._xscale = u_xscale;
+      loc1._yscale = u_yscale;
+      f_Depth(loc1,u_depth);
+      f_ColorSwap(loc1,color_default);
+      loc1.gotoAndStop("remove");
+      loc1.gotoAndStop(n_type);
+      HiFps_ResetRecursive(loc1);
    }
-   return _loc1_;
+   return loc1;
 }
 function f_ExtraFX(x, y, u_depth, n_type, u_xscale, u_yscale)
 {
-   var _loc1_ = loader.game.game["fx" + int(extra_fx_current)];
-   if(_loc1_)
+   var loc1 = loader.game.game["fx" + int(extra_fx_current)];
+   if(loc1)
    {
-      _loc1_.x = x;
-      _loc1_.y = y;
-      _loc1_._x = x;
-      _loc1_._y = y;
-      _loc1_._xscale = u_xscale;
-      _loc1_._yscale = u_yscale;
-      f_Depth(_loc1_,u_depth);
-      f_ColorSwap(_loc1_,color_default);
-      _loc1_.gotoAndStop("remove");
-      _loc1_.gotoAndStop(n_type);
-      HiFps_ResetRecursive(_loc1_);
+      loc1.x = x;
+      loc1.y = y;
+      loc1._x = x;
+      loc1._y = y;
+      loc1._xscale = u_xscale;
+      loc1._yscale = u_yscale;
+      f_Depth(loc1,u_depth);
+      f_ColorSwap(loc1,color_default);
+      loc1.gotoAndStop("remove");
+      loc1.gotoAndStop(n_type);
+      HiFps_ResetRecursive(loc1);
       extra_fx_current++;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_CheckUppercut(zone)
 {
@@ -15181,10 +15285,10 @@ function f_EndZap(zone)
    }
    else if(zone.tossable)
    {
-      var _loc2_ = f_FX(u_temp.x,u_temp.y + u_temp.body._y,u_temp.y + 5,"lightning_strike",100,100);
+      var loc2 = f_FX(u_temp.x,u_temp.y + u_temp.body._y,u_temp.y + 5,"lightning_strike",100,100);
       if(u_temp._xscale > 0)
       {
-         f_FlipChar(_loc2_);
+         f_FlipChar(loc2);
       }
       u_temp.smoking_timer = 20;
       f_ColorSwap(u_temp,color_dark);
@@ -15201,112 +15305,112 @@ function f_LightningLength(zone)
 {
    if(zone.lightning_timer % 2 == 0 or zone.lightning_timer == 9)
    {
-      var _loc6_ = zone.magic_chain;
-      if(_loc6_ > 5)
+      var loc6 = zone.magic_chain;
+      if(loc6 > 5)
       {
-         _loc6_ = 5;
+         loc6 = 5;
       }
-      var _loc5_ = 50 + _loc6_ / 5 * 300;
-      var _loc4_ = _loc5_;
-      var _loc2_ = f_FX(zone.x,zone.y,zone.y,"inert",100,100);
-      _loc2_.attack_pow = zone.magic_sustain_pow;
-      _loc2_.projectile_type = 3;
-      _loc2_.damage_type = _root.DMG_ELEC;
-      _loc2_.hit_function = f_ProjectileHitGeneral;
-      _loc2_.arrowhit_function = undefined;
+      var loc5 = 50 + loc6 / 5 * 300;
+      var loc4 = loc5;
+      var loc2 = f_FX(zone.x,zone.y,zone.y,"inert",100,100);
+      loc2.attack_pow = zone.magic_sustain_pow;
+      loc2.projectile_type = 3;
+      loc2.damage_type = _root.DMG_ELEC;
+      loc2.hit_function = f_ProjectileHitGeneral;
+      loc2.arrowhit_function = undefined;
       if(zone._xscale > 0)
       {
-         _loc2_.speed_x = _loc4_ + 70;
-         f_ProjectileMove(_loc2_,_loc2_.speed_x);
-         _loc4_ = _loc2_.x - zone.x - 40;
+         loc2.speed_x = loc4 + 70;
+         f_ProjectileMove(loc2,loc2.speed_x);
+         loc4 = loc2.x - zone.x - 40;
       }
       else
       {
-         _loc2_.speed_x = - _loc4_ - 70;
-         _loc2_._xscale *= -1;
-         f_ProjectileMove(_loc2_,_loc2_.speed_x);
-         _loc4_ = zone.x - _loc2_.x - 40;
+         loc2.speed_x = - loc4 - 70;
+         loc2._xscale *= -1;
+         f_ProjectileMove(loc2,loc2.speed_x);
+         loc4 = zone.x - loc2.x - 40;
       }
-      if(_loc4_ < _loc5_)
+      if(loc4 < loc5)
       {
-         _loc2_.gotoAndStop("impact2");
-         var _loc7_ = 60 + random(20);
-         _loc2_.fx._xscale = _loc7_;
-         _loc2_.fx._yscale = _loc7_;
-         _loc2_.fx._y = - (30 + random(20));
+         loc2.gotoAndStop("impact2");
+         var loc7 = 60 + random(20);
+         loc2.fx._xscale = loc7;
+         loc2.fx._yscale = loc7;
+         loc2.fx._y = - (30 + random(20));
       }
       else
       {
-         if(_loc4_ > _loc5_)
+         if(loc4 > loc5)
          {
-            _loc4_ = _loc5_;
+            loc4 = loc5;
          }
-         _loc2_.gotoAndStop("remove");
+         loc2.gotoAndStop("remove");
       }
-      zone.body.hit_range._xscale = 100 * (_loc4_ / 290);
+      zone.body.hit_range._xscale = 100 * (loc4 / 290);
    }
 }
 function f_LightningHit(zone)
 {
    if(zone._xscale > 0)
    {
-      var _loc8_ = zone.x;
-      var _loc7_ = zone.x + zone.body.hit_range._width;
+      var loc8 = zone.x;
+      var loc7 = zone.x + zone.body.hit_range._width;
    }
    else
    {
-      _loc7_ = zone.x;
-      _loc8_ = zone.x - zone.body.hit_range._width;
+      loc7 = zone.x;
+      loc8 = zone.x - zone.body.hit_range._width;
    }
-   var _loc6_ = zone.y + zone.body._y + zone.body.hit_range._y;
-   var _loc4_ = false;
-   var _loc2_ = loader.game.game.gate;
-   if(_loc2_)
+   var loc6 = zone.y + zone.body._y + zone.body.hit_range._y;
+   var loc4 = false;
+   var loc2 = loader.game.game.gate;
+   if(loc2)
    {
-      if(_loc2_.active)
+      if(loc2.active)
       {
-         var _loc9_ = _loc2_.hitzone;
-         if(zone.y <= _loc2_.zone.y + _loc2_.zone.h)
+         var loc9 = loc2.hitzone;
+         if(zone.y <= loc2.zone.y + loc2.zone.h)
          {
-            if(zone.y >= _loc2_.zone.y - _loc2_.zone.h)
+            if(zone.y >= loc2.zone.y - loc2.zone.h)
             {
-               if(zone.y + zone.body._y <= _loc9_.y + _loc9_.h)
+               if(zone.y + zone.body._y <= loc9.y + loc9.h)
                {
-                  if(zone.y + zone.body._y >= _loc9_.y - _loc9_.h)
+                  if(zone.y + zone.body._y >= loc9.y - loc9.h)
                   {
-                     if(_loc2_.x > _loc8_ and _loc2_.x < _loc7_)
+                     if(loc2.x > loc8 and loc2.x < loc7)
                      {
                         if(zone.lightning_timer % 5 == 0)
                         {
-                           _loc4_ = true;
+                           loc4 = true;
                         }
                      }
-                     if(_loc4_)
+                     if(loc4)
                      {
-                        _loc2_.arrow_pt = zone;
-                        _loc2_.hitleft = speed > 0;
-                        _loc2_.hitby = zone.owner;
-                        _loc2_.hitbydamage = zone.attack_pow;
-                        if(_loc2_.punch)
+                        loc2.arrow_pt = zone;
+                        loc2.hitleft = speed > 0;
+                        loc2.hitby = zone.owner;
+                        loc2.hitbydamage = zone.attack_pow;
+                        if(loc2.punch)
                         {
-                           _loc2_.fx_x = zone.x;
-                           _loc2_.fx_y = zone.y + zone.body._y;
-                           _loc2_.fx_body_y = zone.body._y;
-                           if(_loc2_.uniquehit)
+                           loc2.fx_x = zone.x;
+                           loc2.fx_y = zone.y + zone.body._y;
+                           loc2.fx_body_y = zone.body._y;
+                           if(loc2.uniquehit)
                            {
-                              _loc2_.fx_x = zone.x;
-                              _loc2_.fx_y = zone.y + zone.body._y;
+                              loc2.fx_x = zone.x;
+                              loc2.fx_y = zone.y + zone.body._y;
                            }
-                           if(!_loc2_.fp_UniqueHit(_loc2_,zone.punch_pow_low,zone.attack_type))
+                           if(!loc2.fp_UniqueHit(loc2,zone.punch_pow_low,zone.attack_type))
                            {
-                              if(!_loc2_.no_wall_damage)
+                              if(!loc2.no_wall_damage)
                               {
-                                 _loc2_.punch_function(_loc2_);
-                                 f_Damage(_loc2_,zone.attack_pow,zone.damage_type);
+                                 loc2.punch_function(loc2);
+                                 f_Damage(loc2,zone.attack_pow,zone.damage_type);
                               }
                            }
                         }
-                        zone.collide = _loc2_;
+                        zone.collide = loc2;
                      }
                   }
                }
@@ -15314,33 +15418,33 @@ function f_LightningHit(zone)
          }
       }
    }
-   var _loc10_ = undefined;
-   var _loc5_ = 1;
-   while(_loc5_ <= active_enemies)
+   var loc10 = undefined;
+   var loc5 = 1;
+   while(loc5 <= active_enemies)
    {
-      _loc2_ = enemyArrayOb["e" + int(_loc5_)];
-      if(_loc2_.alive)
+      loc2 = enemyArrayOb["e" + int(loc5)];
+      if(loc2.alive)
       {
-         _loc4_ = false;
-         if(Math.abs(_loc2_.y - zone.y) < 15)
+         loc4 = false;
+         if(Math.abs(loc2.y - zone.y) < 15)
          {
-            bod_y = _loc2_.y + _loc2_.body_y;
-            if(bod_y >= _loc6_ - 10)
+            bod_y = loc2.y + loc2.body_y;
+            if(bod_y >= loc6 - 10)
             {
-               if(bod_y - _loc2_.h < _loc6_ + 10)
+               if(bod_y - loc2.h < loc6 + 10)
                {
-                  if(_loc2_.x > _loc8_ and _loc2_.x < _loc7_)
+                  if(loc2.x > loc8 and loc2.x < loc7)
                   {
-                     if(!_loc2_.nohit)
+                     if(!loc2.nohit)
                      {
-                        _loc4_ = true;
+                        loc4 = true;
                         if(zone.lightning_timer % 5 == 0)
                         {
-                           _loc2_.zapping = true;
-                           _loc2_.hitby = zone;
-                           if(!_loc2_.fp_UniqueHit(_loc2_,zone.magic_sustain_pow,_root.DMG_ELEC))
+                           loc2.zapping = true;
+                           loc2.hitby = zone;
+                           if(!loc2.fp_UniqueHit(loc2,zone.magic_sustain_pow,_root.DMG_ELEC))
                            {
-                              f_Damage(_loc2_,zone.magic_sustain_pow,_root.DMG_ELEC);
+                              f_Damage(loc2,zone.magic_sustain_pow,_root.DMG_ELEC);
                            }
                         }
                      }
@@ -15348,125 +15452,125 @@ function f_LightningHit(zone)
                }
             }
          }
-         if(!_loc4_)
+         if(!loc4)
          {
-            _loc2_.zapping = false;
+            loc2.zapping = false;
          }
       }
-      _loc5_ = _loc5_ + 1;
+      loc5 = loc5 + 1;
    }
    if(friendly_fire)
    {
-      _loc5_ = 1;
-      while(_loc5_ <= active_players)
+      loc5 = 1;
+      while(loc5 <= active_players)
       {
-         _loc2_ = playerArrayOb["p_pt" + int(_loc5_)];
-         if(_loc2_.alive and _loc2_ != zone)
+         loc2 = playerArrayOb["p_pt" + int(loc5)];
+         if(loc2.alive and loc2 != zone)
          {
-            if(f_TeamCheck(zone,_loc2_))
+            if(f_TeamCheck(zone,loc2))
             {
-               _loc4_ = false;
-               if(Math.abs(_loc2_.y - zone.y) < 15)
+               loc4 = false;
+               if(Math.abs(loc2.y - zone.y) < 15)
                {
-                  bod_y = _loc2_.y + _loc2_.body_y;
-                  if(bod_y >= _loc6_ - 10)
+                  bod_y = loc2.y + loc2.body_y;
+                  if(bod_y >= loc6 - 10)
                   {
-                     if(bod_y - _loc2_.h < _loc6_ + 10)
+                     if(bod_y - loc2.h < loc6 + 10)
                      {
-                        if(_loc2_.x > _loc8_ and _loc2_.x < _loc7_)
+                        if(loc2.x > loc8 and loc2.x < loc7)
                         {
-                           if(!_loc2_.nohit)
+                           if(!loc2.nohit)
                            {
                               if(zone.lightning_timer % 5 == 0)
                               {
-                                 _loc2_.hitby = zone;
-                                 f_Damage(_loc2_,zone.magic_sustain_pow,DMG_ELEC);
+                                 loc2.hitby = zone;
+                                 f_Damage(loc2,zone.magic_sustain_pow,DMG_ELEC);
                               }
                            }
                         }
                      }
                   }
                }
-               if(!_loc4_)
+               if(!loc4)
                {
-                  _loc2_.zapping = false;
+                  loc2.zapping = false;
                }
             }
          }
-         _loc5_ = _loc5_ + 1;
+         loc5 = loc5 + 1;
       }
    }
 }
 function f_LightningRelease(zone)
 {
-   var _loc1_ = undefined;
-   var _loc2_ = undefined;
-   _loc2_ = 1;
-   while(_loc2_ <= active_enemies)
+   var loc1 = undefined;
+   var loc2 = undefined;
+   loc2 = 1;
+   while(loc2 <= active_enemies)
    {
-      _loc1_ = enemyArrayOb["e" + int(_loc2_)];
-      if(_loc1_.zapping)
+      loc1 = enemyArrayOb["e" + int(loc2)];
+      if(loc1.zapping)
       {
-         _loc1_.zapping = false;
-         if(_loc1_.tossable)
+         loc1.zapping = false;
+         if(loc1.tossable)
          {
-            if(_loc1_.x > zone.x and _loc1_._xscale > 0)
+            if(loc1.x > zone.x and loc1._xscale > 0)
             {
-               f_FlipChar(_loc1_);
+               f_FlipChar(loc1);
             }
-            else if(_loc1_.x < zone.x and _loc1_._xscale < 0)
+            else if(loc1.x < zone.x and loc1._xscale < 0)
             {
-               f_FlipChar(_loc1_);
+               f_FlipChar(loc1);
             }
-            _loc1_.hitby = zone;
-            _loc1_.smoking_timer = 20;
-            f_ColorSwap(_loc1_,color_dark);
-            _loc1_.speed_toss_x = 4;
-            _loc1_.speed_toss_y = -9;
-            f_CallJuggle1(_loc1_);
+            loc1.hitby = zone;
+            loc1.smoking_timer = 20;
+            f_ColorSwap(loc1,color_dark);
+            loc1.speed_toss_x = 4;
+            loc1.speed_toss_y = -9;
+            f_CallJuggle1(loc1);
          }
          else
          {
-            _loc1_.fp_StandAnim(_loc1_);
+            loc1.fp_StandAnim(loc1);
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    if(friendly_fire)
    {
-      _loc2_ = 1;
-      while(_loc2_ <= active_players)
+      loc2 = 1;
+      while(loc2 <= active_players)
       {
-         _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-         if(f_TeamCheck(zone,_loc1_))
+         loc1 = playerArrayOb["p_pt" + int(loc2)];
+         if(f_TeamCheck(zone,loc1))
          {
-            if(_loc1_.zapping)
+            if(loc1.zapping)
             {
-               _loc1_.zapping = false;
-               if(_loc1_.tossable)
+               loc1.zapping = false;
+               if(loc1.tossable)
                {
-                  if(_loc1_.x > zone.x and _loc1_._xscale > 0)
+                  if(loc1.x > zone.x and loc1._xscale > 0)
                   {
-                     f_FlipChar(_loc1_);
+                     f_FlipChar(loc1);
                   }
-                  else if(_loc1_.x < zone.x and _loc1_._xscale < 0)
+                  else if(loc1.x < zone.x and loc1._xscale < 0)
                   {
-                     f_FlipChar(_loc1_);
+                     f_FlipChar(loc1);
                   }
-                  _loc1_.hitby = zone.owner;
-                  _loc1_.smoking_timer = 20;
-                  f_ColorSwap(_loc1_,color_dark);
-                  _loc1_.speed_toss_x = 4;
-                  _loc1_.speed_toss_y = -9;
-                  f_CallJuggle1(_loc1_);
+                  loc1.hitby = zone.owner;
+                  loc1.smoking_timer = 20;
+                  f_ColorSwap(loc1,color_dark);
+                  loc1.speed_toss_x = 4;
+                  loc1.speed_toss_y = -9;
+                  f_CallJuggle1(loc1);
                }
                else
                {
-                  _loc1_.fp_StandAnim(_loc1_);
+                  loc1.fp_StandAnim(loc1);
                }
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
 }
@@ -15474,35 +15578,35 @@ function f_GroundSlamDust(zone)
 {
    if(zone._xscale > 0)
    {
-      var _loc2_ = 100;
+      var loc2 = 100;
    }
    else
    {
-      _loc2_ = -100;
+      loc2 = -100;
    }
-   f_FX(zone.x,zone.y,zone.y + 5,"ground_slam",_loc2_,100);
+   f_FX(zone.x,zone.y,zone.y + 5,"ground_slam",loc2,100);
 }
 function f_Thrown(zone)
 {
    zone.nohit = false;
-   var _loc2_ = undefined;
-   var _loc1_ = undefined;
+   var loc2 = undefined;
+   var loc1 = undefined;
    if(Key.isDown(zone.hitby.button_up))
    {
-      _loc1_ = -36;
-      _loc2_ = 6;
+      loc1 = -36;
+      loc2 = 6;
    }
    else if(Key.isDown(zone.hitby.button_down))
    {
-      _loc1_ = 70;
-      _loc2_ = 6;
+      loc1 = 70;
+      loc2 = 6;
    }
    else
    {
-      _loc1_ = -20;
-      _loc2_ = 12;
+      loc1 = -20;
+      loc2 = 12;
    }
-   f_Damage(zone,zone.hitby.punch_pow_high,DMG_MELEE,DMGFLAG_JUGGLE,_loc2_,_loc1_);
+   f_Damage(zone,zone.hitby.punch_pow_high,DMG_MELEE,DMGFLAG_JUGGLE,loc2,loc1);
 }
 function f_ThrownBeefy(zone)
 {
@@ -15533,72 +15637,72 @@ function f_ElementalPunch(zone, magic_type)
    if(magic_type == 1)
    {
       s_PoisonCloud.start(0,0);
-      var _loc3_ = "elemental_poison";
+      var loc3 = "elemental_poison";
    }
    else if(magic_type == 2)
    {
       s_MagicLightning.start(0,0);
-      _loc3_ = "elemental_lightning";
+      loc3 = "elemental_lightning";
    }
    else if(magic_type == 3)
    {
       s_ShootIce.start(0,0);
-      _loc3_ = "elemental_ice";
+      loc3 = "elemental_ice";
    }
    else if(magic_type == 4)
    {
       s_ShootFire.start(0,0);
-      _loc3_ = "elemental_fire";
+      loc3 = "elemental_fire";
    }
    else if(magic_type == 12)
    {
       s_ShootFire.start(0,0);
-      _loc3_ = "elemental_fire";
+      loc3 = "elemental_fire";
    }
    else if(magic_type == 25)
    {
       s_ShootFire.start(0,0);
-      _loc3_ = "elemental_fire";
+      loc3 = "elemental_fire";
    }
    else if(magic_type == 27)
    {
       s_ShootIce.start(0,0);
-      _loc3_ = "elemental_ice";
+      loc3 = "elemental_ice";
    }
    if(zone._xscale > 0)
    {
-      var _loc4_ = 100;
+      var loc4 = 100;
    }
    else
    {
-      _loc4_ = -100;
+      loc4 = -100;
    }
-   f_FX(zone.x,zone.y + zone.body_y,zone.y + 5,_loc3_,_loc4_,100);
+   f_FX(zone.x,zone.y + zone.body_y,zone.y + 5,loc3,loc4,100);
 }
 function f_MeleeImpactSound(zone)
 {
    if(zone.hit_impact)
    {
-      var _loc3_ = zone.punch_group;
-      var _loc1_ = zone.punch_num;
-      switch(_loc3_)
+      var loc3 = zone.punch_group;
+      var loc1 = zone.punch_num;
+      switch(loc3)
       {
          case 1:
-            if(_loc1_ >= 1 and _loc1_ <= 3)
+            if(loc1 >= 1 and loc1 <= 3)
             {
                f_SwordClang();
             }
-            else if(_loc1_ == 4)
+            else if(loc1 == 4)
             {
                f_HardPunchSound();
             }
             break;
          case 2:
-            if(_loc1_ == 1 or _loc1_ == 2 or _loc1_ == 3)
+            if(loc1 == 1 or loc1 == 2 or loc1 == 3)
             {
                f_HardPunchSound();
             }
-            else if(_loc1_ == 20 or _loc1_ == 21 or _loc1_ == 22)
+            else if(loc1 == 20 or loc1 == 21 or loc1 == 22)
             {
                s_Smack1.start(0,0);
             }
@@ -15616,14 +15720,14 @@ function f_MeleeImpactSound(zone)
       }
       if(zone.jumping)
       {
-         if(_loc1_ <= 3)
+         if(loc1 <= 3)
          {
             if(!zone.spinning)
             {
                zone.jump_attack = true;
-               if(_loc3_ == 12)
+               if(loc3 == 12)
                {
-                  if(_loc1_ == 1)
+                  if(loc1 == 1)
                   {
                      zone.speed_jump = -15;
                   }
@@ -15698,17 +15802,17 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
          return undefined;
       }
    }
-   var _loc19_ = undefined;
-   var _loc9_ = undefined;
-   var _loc6_ = undefined;
-   var _loc7_ = undefined;
-   var _loc16_ = false;
-   var _loc8_ = undefined;
-   var _loc4_ = undefined;
-   var _loc15_ = undefined;
-   var _loc5_ = undefined;
-   var _loc10_ = undefined;
-   var _loc14_ = undefined;
+   var loc19 = undefined;
+   var loc9 = undefined;
+   var loc6 = undefined;
+   var loc7 = undefined;
+   var loc16 = false;
+   var loc8 = undefined;
+   var loc4 = undefined;
+   var loc15 = undefined;
+   var loc5 = undefined;
+   var loc10 = undefined;
+   var loc14 = undefined;
    if(u_temp and u_temp.alive)
    {
       if(u_temp.fp_CheckYSpace(u_temp,y1))
@@ -15717,8 +15821,8 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
          {
             if(bottom >= u_temp.body_y + u_temp._y - u_temp.h)
             {
-               _loc19_ = u_temp.x + u_temp.zone._x * (u_temp._xscale / 100);
-               if(_loc19_ + u_temp.w > left and _loc19_ - u_temp.w < right or zone.stomping and Math.abs(u_temp.x - zone.x) < 50)
+               loc19 = u_temp.x + u_temp.zone._x * (u_temp._xscale / 100);
+               if(loc19 + u_temp.w > left and loc19 - u_temp.w < right or zone.stomping and Math.abs(u_temp.x - zone.x) < 50)
                {
                   if((!u_temp.nohit or zone.hitnohit or zone.stomping and u_temp.onground) and !u_temp.jumping)
                   {
@@ -15728,25 +15832,25 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                      u_temp.hitbydamage = zone.attack_pow;
                      zone.hit_x = u_temp.x;
                      zone.hit_y = u_temp.y;
-                     _loc9_ = zone.hit_y + 2;
+                     loc9 = zone.hit_y + 2;
                      if(zone.x < u_temp.x and right < u_temp.x)
                      {
-                        _loc6_ = right;
+                        loc6 = right;
                      }
                      else if(zone.x > u_temp.x and left > u_temp.x)
                      {
-                        _loc6_ = left;
+                        loc6 = left;
                      }
                      else
                      {
-                        _loc6_ = u_temp.x;
+                        loc6 = u_temp.x;
                      }
-                     _loc6_ = _loc6_ - 10 + random(20);
-                     _loc7_ = y2 - 5 + random(10);
+                     loc6 = loc6 - 10 + random(20);
+                     loc7 = y2 - 5 + random(10);
                      if(u_temp.uniquehit)
                      {
-                        u_temp.fx_x = _loc6_;
-                        u_temp.fx_y = _loc7_;
+                        u_temp.fx_x = loc6;
+                        u_temp.fx_y = loc7;
                      }
                      if(u_temp.fp_UniqueHit(u_temp,zone.attack_pow,zone.attack_type))
                      {
@@ -15790,7 +15894,7 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                         if(u_temp.blocking and !u_temp.frozen and !zone.unblockable and (!zone.splashattack or level == 10))
                         {
                            f_BlockSound();
-                           _loc16_ = true;
+                           loc16 = true;
                            if(u_temp.humanoid)
                            {
                               u_temp.speed_toss_x = 20;
@@ -15818,17 +15922,17 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                         }
                         else
                         {
-                           _loc8_ = zone.punch_group;
-                           _loc4_ = zone.punch_num;
-                           switch(_loc8_)
+                           loc8 = zone.punch_group;
+                           loc4 = zone.punch_num;
+                           switch(loc8)
                            {
                               case 1:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
                                     if(!u_temp.frozen and u_temp.blocks and random(u_temp.block_odds) == 0)
                                     {
                                        f_BlockSound();
-                                       _loc16_ = true;
+                                       loc16 = true;
                                        if(u_temp.humanoid)
                                        {
                                           u_temp.speed_toss_x = 20;
@@ -15859,25 +15963,25 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                        }
                                     }
                                  }
-                                 else if(_loc4_ == 2)
+                                 else if(loc4 == 2)
                                  {
                                     f_Hit2(u_temp);
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                  }
-                                 else if(_loc4_ == 3)
+                                 else if(loc4 == 3)
                                  {
                                     f_Hit3(u_temp);
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                  }
-                                 else if(_loc4_ == 4)
+                                 else if(loc4 == 4)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE,4,-9);
                                  }
                                  break;
                               case 2:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
                                     u_temp.damage_chain = u_temp.damage_chain + 1;
                                     if(!u_temp.frozen and u_temp.damage_chain > 2 and !u_temp.human and !u_temp.nofight)
@@ -15893,60 +15997,60 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                        f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type);
                                     }
                                  }
-                                 else if(_loc4_ == 2)
+                                 else if(loc4 == 2)
                                  {
                                     f_Hit2(u_temp);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type);
                                  }
-                                 else if(_loc4_ == 3)
+                                 else if(loc4 == 3)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE,1,70);
                                  }
                                  break;
                               case 3:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,0,- (random(10) + 20));
                                  }
-                                 else if(_loc4_ == 2)
+                                 else if(loc4 == 2)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,random(3) + 0,100);
                                  }
                                  break;
                               case 4:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,random(6) + 10,-8);
                                  }
-                                 else if(_loc4_ == 2)
+                                 else if(loc4 == 2)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,10,-26);
                                  }
-                                 else if(_loc4_ == 3)
+                                 else if(loc4 == 3)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,10,-16);
                                  }
-                                 else if(_loc4_ == 4)
+                                 else if(loc4 == 4)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_high,zone.attack_type,DMGFLAG_JUGGLE,10,-16);
                                  }
                                  break;
                               case 5:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_STUN);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                  }
-                                 else if(_loc4_ == 2)
+                                 else if(loc4 == 2)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE,random(2),- (16 + random(5)));
                                  }
                                  break;
                               case 6:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
-                                    _loc15_ = zone.magic_type;
+                                    loc15 = zone.magic_type;
                                     if(zone.magic_type == 1)
                                     {
                                        f_Hit1(u_temp);
@@ -15956,34 +16060,34 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                     {
                                        f_Hit1(u_temp);
                                        u_temp.fire_owner = zone;
-                                       _loc15_ = DMG_FIRE;
+                                       loc15 = DMG_FIRE;
                                     }
                                     else if(zone.magic_type == 27)
                                     {
-                                       _loc15_ = DMG_ICE;
+                                       loc15 = DMG_ICE;
                                     }
-                                    f_Damage(u_temp,zone.punch_pow_low + zone.magic_pow,_loc15_);
+                                    f_Damage(u_temp,zone.punch_pow_low + zone.magic_pow,loc15);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                  }
-                                 else if(_loc4_ == 3)
+                                 else if(loc4 == 3)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_STUN);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                  }
                                  break;
                               case 7:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
                                     f_Damage(u_temp,zone.shield_pow,zone.attack_type,DMGFLAG_STUN);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                  }
-                                 else if(_loc4_ == 2)
+                                 else if(loc4 == 2)
                                  {
                                     f_Hit2(u_temp);
                                     f_Damage(u_temp,zone.shield_pow,zone.attack_type);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                  }
-                                 else if(_loc4_ == 3)
+                                 else if(loc4 == 3)
                                  {
                                     f_Damage(u_temp,zone.shield_pow + 1,zone.attack_type,DMGFLAG_JUGGLE,random(6) + 12,- (random(3) + 4));
                                  }
@@ -15992,7 +16096,7 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                  f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,random(2),- (18 + random(3)));
                                  break;
                               case 12:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,random(4),60);
                                  }
@@ -16006,7 +16110,7 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                  {
                                     u_temp.fp_ExtremeDeath1(u_temp);
                                  }
-                                 else if(_loc4_ == 2)
+                                 else if(loc4 == 2)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,5 + random(3),- (5 + random(3)));
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
@@ -16023,7 +16127,7 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                  break;
                               case 200:
                               case 201:
-                                 if(_loc4_ == 1)
+                                 if(loc4 == 1)
                                  {
                                     if(!u_temp.frozen and u_temp.damage_chain > 2 and !u_temp.human and !u_temp.nofight)
                                     {
@@ -16039,17 +16143,17 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                        u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                     }
                                  }
-                                 else if(_loc4_ == 2)
+                                 else if(loc4 == 2)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE,2,-10);
                                  }
-                                 else if(_loc4_ == 3)
+                                 else if(loc4 == 3)
                                  {
                                     f_Hit2(u_temp);
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type);
                                     u_temp.body._y = u_temp.body_y + u_temp.body_table_y;
                                  }
-                                 else if(_loc4_ == 4)
+                                 else if(loc4 == 4)
                                  {
                                     f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE,1,70);
                                  }
@@ -16062,26 +16166,26 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                  }
                                  if(zone.impact_type == 4)
                                  {
-                                    _loc5_ = 70 + random(30);
-                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y,u_temp.y + 10,"impact4",_loc5_,_loc5_);
+                                    loc5 = 70 + random(30);
+                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y,u_temp.y + 10,"impact4",loc5,loc5);
                                  }
                                  else if(zone.impact_type == 1)
                                  {
-                                    _loc5_ = 80 + random(20);
-                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y - 30,u_temp.y + 10,"impact1",_loc5_,_loc5_);
+                                    loc5 = 80 + random(20);
+                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y - 30,u_temp.y + 10,"impact1",loc5,loc5);
                                  }
                                  break;
                               case 301:
                                  f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE | DMGFLAG_BLOODY,zone.force_x,zone.force_y);
                                  if(zone.impact_type == 4)
                                  {
-                                    _loc5_ = 70 + random(30);
-                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y,u_temp.y + 10,"impact4",_loc5_,_loc5_);
+                                    loc5 = 70 + random(30);
+                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y,u_temp.y + 10,"impact4",loc5,loc5);
                                  }
                                  else if(zone.impact_type == 1)
                                  {
-                                    _loc5_ = 80 + random(20);
-                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y - 30,u_temp.y + 10,"impact1",_loc5_,_loc5_);
+                                    loc5 = 80 + random(20);
+                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y - 30,u_temp.y + 10,"impact1",loc5,loc5);
                                  }
                                  break;
                               case 400:
@@ -16099,19 +16203,19 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                            }
                         }
                      }
-                     if(_loc7_ < u_temp.y + u_temp.body_y - u_temp.h)
+                     if(loc7 < u_temp.y + u_temp.body_y - u_temp.h)
                      {
-                        _loc7_ = u_temp.y + u_temp.body_y - u_temp.h;
+                        loc7 = u_temp.y + u_temp.body_y - u_temp.h;
                      }
-                     if(!_loc16_)
+                     if(!loc16)
                      {
-                        _loc10_ = f_FX(_loc6_,_loc7_ + 5,_loc9_,"impact1",100,100);
+                        loc10 = f_FX(loc6,loc7 + 5,loc9,"impact1",100,100);
                         if(u_temp.humanoid)
                         {
-                           f_BloodBathShrapnel(_loc6_,u_temp.y,_loc7_);
+                           f_BloodBathShrapnel(loc6,u_temp.y,loc7);
                         }
                      }
-                     _loc10_.owner = zone;
+                     loc10.owner = zone;
                   }
                   else if(u_temp.body_y < 0 and zone.invincible_timer <= 0)
                   {
@@ -16130,21 +16234,21 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                            }
                            if(u_temp.invincible_timer <= 0)
                            {
-                              _loc4_ = zone.punch_num;
-                              _loc8_ = zone.punch_group;
+                              loc4 = zone.punch_num;
+                              loc8 = zone.punch_group;
                               u_temp.hitby = zone;
-                              if((_loc8_ == 200 or _loc8_ == 201) and _loc4_ > 1)
+                              if((loc8 == 200 or loc8 == 201) and loc4 > 1)
                               {
                                  zone.hit_impact = true;
                                  zone.hit_x = u_temp.x;
                                  zone.hit_y = u_temp.y;
-                                 _loc9_ = zone.hit_y + 2;
-                                 _loc6_ = zone.hit_x - 10 + random(20);
-                                 _loc7_ = y2 - 5 + random(10);
+                                 loc9 = zone.hit_y + 2;
+                                 loc6 = zone.hit_x - 10 + random(20);
+                                 loc7 = y2 - 5 + random(10);
                                  if(random(3))
                                  {
-                                    _loc10_ = f_FX(_loc6_,_loc7_ + 5,_loc9_,"impact1",100,100);
-                                    _loc10_.owner = zone;
+                                    loc10 = f_FX(loc6,loc7 + 5,loc9,"impact1",100,100);
+                                    loc10.owner = zone;
                                  }
                                  if(x2 > x1 and u_temp._xscale > 0)
                                  {
@@ -16156,11 +16260,11 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                  }
                                  if(u_temp.invincible_timer <= 0)
                                  {
-                                    if(_loc4_ == 3)
+                                    if(loc4 == 3)
                                     {
                                        f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE,2,50);
                                     }
-                                    else if(_loc4_ == 2)
+                                    else if(loc4 == 2)
                                     {
                                        u_temp.speed_toss_y = -10;
                                        u_temp.speed_toss_x = 2;
@@ -16172,30 +16276,30 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                        u_temp.spark_owner = zone;
                                        if(zone.y > u_temp.y)
                                        {
-                                          _loc9_ = zone.y + 1;
+                                          loc9 = zone.y + 1;
                                        }
                                        else
                                        {
-                                          _loc9_ = u_temp.y + 1;
+                                          loc9 = u_temp.y + 1;
                                        }
-                                       _loc10_ = f_FX(_loc6_,_loc7_ + 5,_loc9_,"impact1",200,200);
-                                       _loc10_.owner = zone;
+                                       loc10 = f_FX(loc6,loc7 + 5,loc9,"impact1",200,200);
+                                       loc10.owner = zone;
                                        f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE,25,0);
                                     }
                                  }
                               }
-                              else if(_loc8_ == 2 and _loc4_ == 3)
+                              else if(loc8 == 2 and loc4 == 3)
                               {
                                  zone.hit_impact = true;
                                  zone.hit_x = u_temp.x;
                                  zone.hit_y = u_temp.y;
-                                 _loc9_ = zone.hit_y + 2;
-                                 _loc6_ = zone.hit_x - 10 + random(20);
-                                 _loc7_ = y2 - 5 + random(10);
+                                 loc9 = zone.hit_y + 2;
+                                 loc6 = zone.hit_x - 10 + random(20);
+                                 loc7 = y2 - 5 + random(10);
                                  if(random(3))
                                  {
-                                    _loc10_ = f_FX(_loc6_,_loc7_ + 5,_loc9_,"impact1",100,100);
-                                    _loc10_.owner = zone;
+                                    loc10 = f_FX(loc6,loc7 + 5,loc9,"impact1",100,100);
+                                    loc10.owner = zone;
                                  }
                                  if(x2 > x1 and u_temp._xscale > 0)
                                  {
@@ -16210,37 +16314,50 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                     f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,random(4),60);
                                  }
                               }
-                              else if(_loc8_ == 300)
+                              else if(loc8 == 300)
                               {
                                  zone.hit_impact = true;
+                                 var damageFlag = DMGFLAG_JUGGLE;
+                                 var forceX = zone.force_x;
+                                 var forceY = zone.force_y;
+
                                  if(zone.impact_type == 4)
                                  {
-                                    _loc5_ = 70 + random(30);
-                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y,u_temp.y + 10,"impact4",_loc5_,_loc5_);
+                                    loc5 = 70 + random(30);
+                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y,u_temp.y + 10,"impact4",loc5,loc5);
+                                    if(zone.p_type == 33 && zone.unblockable) { // Reducing cyclops slamdown force when hitting an enemy in the air (yes this is STUPID however it's midnight and i'm not writing real code)
+                                       forceX = 0;
+                                       forceY = 0;
+                                    }
                                  }
                                  else if(zone.impact_type == 1)
                                  {
-                                    _loc5_ = 80 + random(20);
-                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y - 30,u_temp.y + 10,"impact1",_loc5_,_loc5_);
+                                    loc5 = 80 + random(20);
+                                    _root.f_FX(u_temp.x,u_temp.y + u_temp.body_y - 30,u_temp.y + 10,"impact1",loc5,loc5);
                                  }
                                  if(zone.fp_SpecialEvent)
                                  {
                                     zone.fp_SpecialEvent(u_temp);
                                  }
-                                 f_Damage(u_temp,zone.punch_pow_medium,zone.attack_type,DMGFLAG_JUGGLE,zone.force_x,zone.force_y);
+                                 f_Damage(u_temp, zone.punch_pow_medium, zone.attack_type, damageFlag, forceX, forceY);
                               }
-                              else if(_loc4_ < 3 or _loc8_ == 4)
+                              else if(loc8 == 400) 
+                              {
+                                 zone.hit_impact = true;
+                                 f_Damage(u_temp,zone.attack_pow,zone.attack_type,DMGFLAG_JUGGLE,zone.force_x,zone.force_y);
+                              }
+                              else if(loc4 < 3 or loc8 == 4)
                               {
                                  zone.hit_impact = true;
                                  zone.hit_x = u_temp.x;
                                  zone.hit_y = u_temp.y;
-                                 _loc9_ = zone.hit_y + 2;
-                                 _loc6_ = zone.hit_x - 10 + random(20);
-                                 _loc7_ = y2 - 5 + random(10);
+                                 loc9 = zone.hit_y + 2;
+                                 loc6 = zone.hit_x - 10 + random(20);
+                                 loc7 = y2 - 5 + random(10);
                                  if(random(3))
                                  {
-                                    _loc10_ = f_FX(_loc6_,_loc7_ + 5,_loc9_,"impact1",100,100);
-                                    _loc10_.owner = zone;
+                                    loc10 = f_FX(loc6,loc7 + 5,loc9,"impact1",100,100);
+                                    loc10.owner = zone;
                                  }
                                  if(x2 > x1 and u_temp._xscale > 0)
                                  {
@@ -16252,39 +16369,39 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                  }
                                  if(u_temp.invincible_timer <= 0)
                                  {
-                                    if(_loc8_ == 3)
+                                    if(loc8 == 3)
                                     {
-                                       var _loc13_ = 0;
-                                       var _loc18_ = 0;
-                                       if(_loc4_ == 1)
+                                       var loc13 = 0;
+                                       var loc18 = 0;
+                                       if(loc4 == 1)
                                        {
-                                          _loc13_ = - (random(10) + 20);
+                                          loc13 = - (random(10) + 20);
                                        }
                                        else
                                        {
-                                          _loc13_ = 60;
-                                          _loc18_ = random(4) + 0;
+                                          loc13 = 60;
+                                          loc18 = random(4) + 0;
                                        }
-                                       f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,_loc18_,_loc13_);
+                                       f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,loc18,loc13);
                                     }
-                                    else if(_loc8_ == 4)
+                                    else if(loc8 == 4)
                                     {
-                                       if(_loc4_ == 2)
+                                       if(loc4 == 2)
                                        {
                                           u_temp.speed_toss_y = - (random(10) + 20);
                                           u_temp.speed_toss_x = random(6) + 7;
                                           f_CallJuggle1(u_temp);
                                        }
-                                       else if(_loc4_ == 3)
+                                       else if(loc4 == 3)
                                        {
                                           u_temp.speed_toss_y = -16;
                                           u_temp.speed_toss_x = 10;
                                           f_CallJuggle1(u_temp);
                                        }
                                     }
-                                    else if(_loc8_ == 12)
+                                    else if(loc8 == 12)
                                     {
-                                       if(_loc4_ == 1)
+                                       if(loc4 == 1)
                                        {
                                           f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,random(4),60);
                                        }
@@ -16293,14 +16410,14 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
                                           f_Damage(u_temp,zone.punch_pow_low,zone.attack_type,DMGFLAG_JUGGLE,random(2),- (10 + random(4)));
                                        }
                                     }
-                                    else if(_loc8_ == 30)
+                                    else if(loc8 == 30)
                                     {
-                                       _loc14_ = int(zone.punch_pow_medium * 0.2);
-                                       if(_loc14_ < 1)
+                                       loc14 = int(zone.punch_pow_medium * 0.2);
+                                       if(loc14 < 1)
                                        {
-                                          _loc14_ = 1;
+                                          loc14 = 1;
                                        }
-                                       f_Damage(u_temp,_loc14_,zone.attack_type,DMGFLAG_JUGGLE,random(4) + 6,- (18 + random(3)));
+                                       f_Damage(u_temp,loc14,zone.attack_type,DMGFLAG_JUGGLE,random(4) + 6,- (18 + random(3)));
                                     }
                                     else
                                     {
@@ -16320,28 +16437,28 @@ function f_MeleeCheckHit(zone, u_temp, x1, y1, x2, y2, top, bottom, left, right)
 }
 function f_PunchHit(zone)
 {
-   var _loc17_ = zone.x;
-   var _loc6_ = zone.y;
+   var loc17 = zone.x;
+   var loc6 = zone.y;
    u_point.x = 0;
    u_point.y = 0;
-   var _loc19_ = zone.body.punch_pt;
+   var loc19 = zone.body.punch_pt;
    if(zone.body.frog_tongue)
    {
-      _loc19_ = zone.body.body.punch_pt;
+      loc19 = zone.body.body.punch_pt;
    }
-   f_LocalToGame(_loc19_,u_point);
-   var _loc16_ = u_point.x;
-   var _loc11_ = u_point.y;
-   var _loc21_ = _loc19_._width / 2 * (Math.abs(zone._xscale) / 100);
-   var _loc20_ = _loc19_._height / 2 * (Math.abs(zone._yscale) / 100);
-   var _loc12_ = _loc11_ - _loc20_;
-   var _loc7_ = _loc11_ + _loc20_;
-   var _loc9_ = _loc16_ - _loc21_;
-   var _loc8_ = _loc16_ + _loc21_;
+   f_LocalToGame(loc19,u_point);
+   var loc16 = u_point.x;
+   var loc11 = u_point.y;
+   var loc21 = loc19._width / 2 * (Math.abs(zone._xscale) / 100);
+   var loc20 = loc19._height / 2 * (Math.abs(zone._yscale) / 100);
+   var loc12 = loc11 - loc20;
+   var loc7 = loc11 + loc20;
+   var loc9 = loc16 - loc21;
+   var loc8 = loc16 + loc21;
    zone.hit_impact = false;
-   zone.hit_x = _loc16_;
-   zone.hit_y = _loc11_;
-   var _loc22_ = false;
+   zone.hit_x = loc16;
+   zone.hit_y = loc11;
+   var loc22 = false;
    if(zone.temp_attack_type)
    {
       zone.attack_type = zone.temp_attack_type;
@@ -16355,144 +16472,185 @@ function f_PunchHit(zone)
    {
       zone.attack_pow = zone.punch_pow_low;
    }
-   var _loc1_ = undefined;
-   var _loc3_ = undefined;
-   var _loc4_ = undefined;
+   var loc1 = undefined;
+   var loc3 = undefined;
+   var loc4 = undefined;
    if(friendly_fire)
    {
-      _loc4_ = 1;
-      while(_loc4_ <= active_players)
+      loc4 = 1;
+      while(loc4 <= active_players)
       {
-         _loc1_ = playerArrayOb["p_pt" + int(_loc4_)];
+         loc1 = playerArrayOb["p_pt" + int(loc4)];
          if(zone.human)
          {
-            _loc3_ = zone;
+            loc3 = zone;
          }
          else if(zone.rider)
          {
-            _loc3_ = zone.rider;
+            loc3 = zone.rider;
          }
          else
          {
-            _loc3_ = zone.owner;
+            loc3 = zone.owner;
          }
-         if(_loc1_ != _loc3_)
+         if(loc1 != loc3)
          {
-            if(f_TeamCheck(_loc3_,_loc1_))
+            if(f_TeamCheck(loc3,loc1))
             {
-               f_MeleeCheckHit(zone,_loc1_,_loc17_,_loc6_,_loc16_,_loc11_,_loc12_,_loc7_,_loc9_,_loc8_);
+               f_MeleeCheckHit(zone,loc1,loc17,loc6,loc16,loc11,loc12,loc7,loc9,loc8);
             }
          }
-         _loc4_ = _loc4_ + 1;
+         loc4 = loc4 + 1;
       }
    }
-   _loc4_ = 1;
-   while(_loc4_ <= active_enemies)
+   loc4 = 1;
+   while(loc4 <= active_enemies)
    {
-      _loc1_ = enemyArrayOb["e" + int(_loc4_)];
-      f_MeleeCheckHit(zone,_loc1_,_loc17_,_loc6_,_loc16_,_loc11_,_loc12_,_loc7_,_loc9_,_loc8_);
-      _loc4_ = _loc4_ + 1;
+      loc1 = enemyArrayOb["e" + int(loc4)];
+      f_MeleeCheckHit(zone,loc1,loc17,loc6,loc16,loc11,loc12,loc7,loc9,loc8);
+      loc4 = loc4 + 1;
    }
    if(zone.hit_impact)
    {
-      _loc22_ = true;
+      loc22 = true;
    }
-   var _loc10_ = undefined;
-   var _loc18_ = undefined;
-   var _loc13_ = undefined;
-   var _loc15_ = undefined;
-   var _loc5_ = undefined;
-   var _loc14_ = undefined;
-   _loc4_ = 1;
-   while(_loc4_ <= object_index)
+   var loc10 = undefined;
+   var loc18 = undefined;
+   var loc13 = undefined;
+   var loc15 = undefined;
+   var loc5 = undefined;
+   var loc14 = undefined;
+   loc4 = 1;
+   while(loc4 <= object_index)
    {
-      _loc1_ = loader.game.game["object" + int(_loc4_)];
-      if(_loc1_.punch and _loc1_.active)
+      loc1 = loader.game.game["object" + int(loc4)];
+      if(loc1.punch and loc1.active)
       {
-         _loc3_ = _loc1_.hitzone;
-         if(_loc1_.fp_CheckYSpace(_loc1_,_loc6_) or _loc6_ > _loc1_.y and _loc6_ < _loc3_.y + _loc3_.h)
+         loc3 = loc1.hitzone;
+         if(loc1.fp_CheckYSpace(loc1,loc6) or loc6 > loc1.y and loc6 < loc3.y + loc3.h)
          {
-            if(_loc12_ <= _loc3_.y + _loc3_.h)
+            if(loc12 <= loc3.y + loc3.h)
             {
-               if(_loc7_ >= _loc3_.y - _loc3_.h)
+               if(loc7 >= loc3.y - loc3.h)
                {
-                  _loc10_ = 0;
-                  if(_loc1_.angle)
+                  loc10 = 0;
+                  if(loc1.angle)
                   {
-                     _loc18_ = (_loc1_.zone.y - zone.y) * _loc1_.angle;
-                     _loc10_ = _loc18_ * g_sin30;
+                     loc18 = (loc1.zone.y - zone.y) * loc1.angle;
+                     loc10 = loc18 * g_sin30;
                   }
-                  if(_loc3_.x - _loc10_ + _loc3_.w > _loc9_ and _loc3_.x - _loc10_ - _loc3_.w < _loc8_)
+                  if(loc3.x - loc10 + loc3.w > loc9 and loc3.x - loc10 - loc3.w < loc8)
                   {
-                     if(zone.x < _loc1_.x)
+                     if(zone.x < loc1.x)
                      {
-                        zone.hit_x = _loc3_.x - _loc3_.w / 2;
+                        zone.hit_x = loc3.x - loc3.w / 2;
                      }
                      else
                      {
-                        zone.hit_x = _loc3_.x + _loc3_.w / 2;
+                        zone.hit_x = loc3.x + loc3.w / 2;
                      }
-                     zone.hit_y = _loc1_.y;
-                     _loc13_ = zone.hit_y + 2;
-                     _loc15_ = zone.hit_x - 10 + random(20);
-                     _loc5_ = _loc11_ - 5 + random(10);
-                     if(_loc5_ < _loc1_.y + _loc1_.body_y - _loc1_.h)
+                     zone.hit_y = loc1.y;
+                     loc13 = zone.hit_y + 2;
+                     loc15 = zone.hit_x - 10 + random(20);
+                     loc5 = loc11 - 5 + random(10);
+                     if(loc5 < loc1.y + loc1.body_y - loc1.h)
                      {
-                        _loc5_ = _loc1_.y + _loc1_.body_y - _loc1_.h;
+                        loc5 = loc1.y + loc1.body_y - loc1.h;
                      }
-                     _loc1_.fx_x = zone.x;
-                     _loc1_.fx_y = zone.y;
-                     _loc1_.fx_body_y = _loc5_ - zone.y;
-                     _loc1_.hitby = zone;
-                     _loc1_.hitbydamage = zone.attack_pow;
+                     loc1.fx_x = zone.x;
+                     loc1.fx_y = zone.y;
+                     loc1.fx_body_y = loc5 - zone.y;
+                     loc1.hitby = zone;
+                     loc1.hitbydamage = zone.attack_pow;
                      zone.hit_impact = true;
-                     _loc1_.punch_function(_loc1_);
-                     if(_loc1_.blocked)
+                     loc1.punch_function(loc1);
+                     if(loc1.blocked)
                      {
-                        _loc14_ = f_FX(_loc15_,_loc5_,_loc13_,"impact_block",100,100);
+                        loc14 = f_FX(loc15,loc5,loc13,"impact_block",100,100);
                      }
                      else
                      {
-                        _loc14_ = f_FX(_loc15_,_loc5_,_loc13_,"impact2",100,100);
-                        _loc14_.owner = zone;
+                        loc14 = f_FX(loc15,loc5,loc13,"impact2",100,100);
+                        loc14.owner = zone;
                      }
                   }
                }
             }
          }
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
-   _loc4_ = 1;
-   while(_loc4_ <= grass_total)
+   loc4 = 1;
+   while(loc4 <= grass_total)
    {
-      _loc1_ = grass["g" + int(_loc4_)];
-      if(!_loc1_.cut)
+      loc1 = grass["g" + int(loc4)];
+      if(!loc1.cut)
       {
-         if(Math.abs(zone.y - _loc1_.y) < 20)
+         if(Math.abs(zone.y - loc1.y) < 20)
          {
-            if(_loc7_ >= _loc1_.y - 50)
+            if(loc7 >= loc1.y - 50)
             {
-               if(_loc1_.x + _loc1_.w > _loc9_ and _loc1_.x - _loc1_.w < _loc8_)
+               if(loc1.x + loc1.w > loc9 and loc1.x - loc1.w < loc8)
                {
                   s_GrassCut.start(0,0);
-                  _loc1_.cut = true;
-                  if(_loc1_.item_type)
+                  loc1.cut = true;
+                  if(loc1.item_type)
                   {
-                     f_ItemSpawn(_loc1_.x,_loc1_.y,_loc1_.item_type);
+                     f_ItemSpawn(loc1.x,loc1.y,loc1.item_type);
                   }
                   else if(random(3) == 1 or zone.pet.animal_type == 12)
                   {
-                     _loc3_ = random(5) + 2;
-                     f_ItemSpawn(_loc1_.x,_loc1_.y,_loc3_);
+                     loc3 = random(5) + 2;
+                     f_ItemSpawn(loc1.x,loc1.y,loc3);
                   }
-                  _loc1_.gotoAndStop(2);
-                  _loc4_ = grass_total + 1;
+                  loc1.gotoAndStop(2);
+                  loc4 = grass_total + 1;
                }
             }
          }
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
+   }
+   // Hitting full moon boulder
+   if(zone.p_type > 31) {
+      if(level == 34) {
+         loc1 = p_game.boss;
+         if(loc1.active) {
+            if(Math.abs(zone.y - loc1.y) < 20) {
+               if(loc7 >= loc1.y - 50) {
+                  if(loc1.x + loc1.w > loc9 and loc1.x - loc1.w < loc8) {
+                     loc1.speed_x *= -1.5;
+                     loc1.speed_jump = -20;
+                     s_RockSmash1.start(0,0);
+                     zone.hit_impact = true;
+                  }
+               }
+            }
+         }
+      }
+      // Hitting ripoffs
+      var _loc2_ = 1;
+      while(_loc2_ <= ripoffs_total)
+      {
+         u_temp = ripoffs["s" + int(_loc2_)];
+         if(u_temp.active and !u_temp.busy)
+         {
+            if(Math.abs(zone.y - u_temp.ripoff.y) < u_temp.ripoff.h)
+            {
+               if(Math.abs(zone.x - u_temp.ripoff.x) < u_temp.ripoff.w + loc19._width)
+               {
+                  u_temp.busy = true;
+                  s_BeefyDoorRip.start(0,0);
+                  u_temp._y = u_temp.y = zone.y + 1;
+                  f_Depth(u_temp,u_temp.y);
+                  u_temp.active = false;
+                  u_temp.gotoAndPlay("die");
+                  break;
+               }
+            }
+         }
+         _loc2_ += 1;
+      }
    }
    f_MeleeImpactSound(zone);
    zone.attack_type = DMG_MELEE;
@@ -16558,7 +16716,7 @@ function f_Jumping(zone)
    }
    else
    {
-      var _loc2_ = undefined;
+      var loc2 = undefined;
       zone.body_y += zone.speed_jump;
       if(zone.beefy)
       {
@@ -16591,7 +16749,7 @@ function f_Jumping(zone)
             {
                s_Splash2.start(0,0);
             }
-            _loc2_ = f_FX(zone._x,zone._y,int(zone._y + 1),"temple_splash",50,50);
+            loc2 = f_FX(zone._x,zone._y,int(zone._y + 1),"temple_splash",50,50);
          }
          else if(zone.n_groundtype >= 300 and zone.n_groundtype <= 302)
          {
@@ -16603,21 +16761,21 @@ function f_Jumping(zone)
             {
                s_Splash2.start(0,0);
             }
-            _loc2_ = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
-            _loc2_.body.gotoAndPlay("s3");
-            f_ColorSwap(_loc2_,water_default);
+            loc2 = f_FX(zone._x,zone._y,int(zone._y + 1),"splash",100,100);
+            loc2.body.gotoAndPlay("s3");
+            f_ColorSwap(loc2,water_default);
          }
          if((level == 23 or level == 102) and !zone.horse)
          {
             if(zone._xscale > 0)
             {
-               var _loc3_ = 70;
+               var loc3 = 70;
             }
             else
             {
-               _loc3_ = -70;
+               loc3 = -70;
             }
-            f_FX(zone.x,zone.y,int(zone.y + 1),"big_splash",_loc3_,70);
+            f_FX(zone.x,zone.y,int(zone.y + 1),"big_splash",loc3,70);
             zone.fp_StandAnim(zone);
          }
          else
@@ -16645,9 +16803,9 @@ function f_TopSpinInit(zone)
 }
 function f_MagicJump(zone)
 {
-   var _loc2_ = f_FX(zone.x,zone.y,zone.y + 1,"generaljump",100,100);
-   _loc2_.magic_type = zone.magic_type;
-   _loc2_.owner = zone;
+   var loc2 = f_FX(zone.x,zone.y,zone.y + 1,"generaljump",100,100);
+   loc2.magic_type = zone.magic_type;
+   loc2.owner = zone;
 }
 function f_JumpAction(zone)
 {
@@ -16707,13 +16865,13 @@ function f_JumpAction(zone)
             s_SplashOut.start(0,0);
             if(level == 32)
             {
-               var _loc3_ = f_FX(zone._x,zone._y,int(zone._y + 1),"temple_splash",30,40);
+               var loc3 = f_FX(zone._x,zone._y,int(zone._y + 1),"temple_splash",30,40);
             }
             else
             {
-               _loc3_ = f_FX(zone._x,zone._y - 5,int(zone._y + 1),"splash",100,100);
-               _loc3_.body.gotoAndPlay("s2");
-               f_ColorSwap(_loc3_,water_default);
+               loc3 = f_FX(zone._x,zone._y - 5,int(zone._y + 1),"splash",100,100);
+               loc3.body.gotoAndPlay("s2");
+               f_ColorSwap(loc3,water_default);
             }
          }
          zone.gotoAndStop("jump");
@@ -17099,12 +17257,12 @@ function f_Character(zone)
                   zone.dashing_timer = zone.dashing_timer + 1;
                   if(zone.dashing_timer == 1 or zone.dashing_timer % 5 == 0)
                   {
-                     var _loc3_ = (80 + random(20)) / 100;
+                     var loc3 = (80 + random(20)) / 100;
                      if(zone.n_groundtype < 300 or zone.n_groundtype > 302)
                      {
-                        var _loc2_ = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * _loc3_,100 * _loc3_);
-                        _loc2_._x += random(10) - 5;
-                        _loc2_._y += random(4) - 2;
+                        var loc2 = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * loc3,100 * loc3);
+                        loc2._x += random(10) - 5;
+                        loc2._y += random(4) - 2;
                      }
                   }
                   if(zone.pet.animal_type == 3 and zone.truespeed)
@@ -17186,10 +17344,10 @@ function f_CharacterBeefy(zone)
                   {
                      if(zone.n_groundtype < 300 or zone.n_groundtype > 302)
                      {
-                        var _loc3_ = (80 + random(20)) / 100;
-                        var _loc2_ = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * _loc3_,100 * _loc3_);
-                        _loc2_._x += random(10) - 5;
-                        _loc2_._y += random(4) - 2;
+                        var loc3 = (80 + random(20)) / 100;
+                        var loc2 = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * loc3,100 * loc3);
+                        loc2._x += random(10) - 5;
+                        loc2._y += random(4) - 2;
                      }
                   }
                   zone.fp_DashAnim(zone);
@@ -17270,10 +17428,10 @@ function f_CharacterBeefyCarry(zone)
             {
                if(zone.n_groundtype < 300 or zone.n_groundtype > 302)
                {
-                  var _loc3_ = (80 + random(20)) / 100;
-                  var _loc2_ = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * _loc3_,100 * _loc3_);
-                  _loc2_._x += random(10) - 5;
-                  _loc2_._y += random(4) - 2;
+                  var loc3 = (80 + random(20)) / 100;
+                  var loc2 = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * loc3,100 * loc3);
+                  loc2._x += random(10) - 5;
+                  loc2._y += random(4) - 2;
                }
             }
             zone.fp_WalkAnim(zone);
@@ -17302,9 +17460,9 @@ function f_CharacterBeefyCarry(zone)
 }
 function f_OnScreen(zone)
 {
-   var _loc1_ = zone.x + game_x;
-   var _loc2_ = zone._width;
-   if(_loc1_ + _loc2_ > 0 and _loc1_ - _loc2_ < scaled_screen_width)
+   var loc1 = zone.x + game_x;
+   var loc2 = zone._width;
+   if(loc1 + loc2 > 0 and loc1 - loc2 < scaled_screen_width)
    {
       return true;
    }
@@ -17312,247 +17470,247 @@ function f_OnScreen(zone)
 }
 function f_HitWallGroupV(zone, speed, group_total, group_min, name)
 {
-   var _loc1_ = undefined;
-   var _loc6_ = undefined;
-   var _loc4_ = undefined;
-   var _loc5_ = group_min;
-   while(_loc5_ <= group_total)
+   var loc1 = undefined;
+   var loc6 = undefined;
+   var loc4 = undefined;
+   var loc5 = group_min;
+   while(loc5 <= group_total)
    {
-      _loc1_ = loader.game.game[name + int(_loc5_)];
-      if(_loc1_.active)
+      loc1 = loader.game.game[name + int(loc5)];
+      if(loc1.active)
       {
-         if(_loc1_.angle)
+         if(loc1.angle)
          {
-            if(zone.y + speed >= _loc1_.zone.top and zone.y + speed <= _loc1_.zone.bottom)
+            if(zone.y + speed >= loc1.zone.top and zone.y + speed <= loc1.zone.bottom)
             {
-               if(Math.abs(zone.x - _loc1_.zone.x) <= _loc1_.zone.w)
+               if(Math.abs(zone.x - loc1.zone.x) <= loc1.zone.w)
                {
-                  _loc6_ = (_loc1_.zone.right - zone.x) / (_loc1_.zone.w * 2);
-                  _loc4_ = _loc1_.zone.bottom - _loc1_.zone.h * 2 * _loc6_;
-                  if(speed > 0 and zone.y <= _loc4_ and zone.y + speed >= _loc4_ or speed < 0 and zone.y >= _loc4_ and zone.y + speed <= _loc4_)
+                  loc6 = (loc1.zone.right - zone.x) / (loc1.zone.w * 2);
+                  loc4 = loc1.zone.bottom - loc1.zone.h * 2 * loc6;
+                  if(speed > 0 and zone.y <= loc4 and zone.y + speed >= loc4 or speed < 0 and zone.y >= loc4 and zone.y + speed <= loc4)
                   {
-                     zone.collide = _loc1_;
+                     zone.collide = loc1;
                      return true;
                   }
                }
             }
          }
-         else if(Math.abs(zone.x - _loc1_.zone.x) < _loc1_.zone.w)
+         else if(Math.abs(zone.x - loc1.zone.x) < loc1.zone.w)
          {
-            if(zone.y < _loc1_.zone.top and zone.y + speed >= _loc1_.zone.top)
+            if(zone.y < loc1.zone.top and zone.y + speed >= loc1.zone.top)
             {
                return true;
             }
-            if(zone.y > _loc1_.zone.bottom and zone.y + speed <= _loc1_.zone.bottom)
+            if(zone.y > loc1.zone.bottom and zone.y + speed <= loc1.zone.bottom)
             {
                return true;
             }
          }
       }
-      _loc5_ = _loc5_ + 1;
+      loc5 = loc5 + 1;
    }
    return false;
 }
 function f_HitWallGroupH(zone, speed, group_total, group_min, name)
 {
-   var _loc1_ = undefined;
-   var _loc6_ = undefined;
-   var _loc4_ = undefined;
-   var _loc5_ = group_min;
-   while(_loc5_ <= group_total)
+   var loc1 = undefined;
+   var loc6 = undefined;
+   var loc4 = undefined;
+   var loc5 = group_min;
+   while(loc5 <= group_total)
    {
-      _loc1_ = loader.game.game[name + int(_loc5_)];
-      if(_loc1_.active and _loc1_ != zone)
+      loc1 = loader.game.game[name + int(loc5)];
+      if(loc1.active and loc1 != zone)
       {
-         if(zone.y >= _loc1_.zone.top and zone.y <= _loc1_.zone.bottom)
+         if(zone.y >= loc1.zone.top and zone.y <= loc1.zone.bottom)
          {
-            if(_loc1_.angle)
+            if(loc1.angle)
             {
-               if(zone.x + speed >= _loc1_.zone.left and zone.x + speed <= _loc1_.zone.right)
+               if(zone.x + speed >= loc1.zone.left and zone.x + speed <= loc1.zone.right)
                {
-                  _loc6_ = 1 - (_loc1_.zone.bottom - zone.y) / (_loc1_.zone.h * 2);
-                  _loc4_ = _loc1_.zone.left + _loc1_.zone.w * 2 * _loc6_;
-                  if(speed > 0 and zone.x <= _loc4_ and zone.x + speed >= _loc4_ or speed < 0 and zone.x >= _loc4_ and zone.x + speed <= _loc4_)
+                  loc6 = 1 - (loc1.zone.bottom - zone.y) / (loc1.zone.h * 2);
+                  loc4 = loc1.zone.left + loc1.zone.w * 2 * loc6;
+                  if(speed > 0 and zone.x <= loc4 and zone.x + speed >= loc4 or speed < 0 and zone.x >= loc4 and zone.x + speed <= loc4)
                   {
-                     _loc1_.wall_x = _loc1_.zone.x;
-                     _loc1_.wall_y = _loc1_.zone.y;
-                     zone.collide = _loc1_;
+                     loc1.wall_x = loc1.zone.x;
+                     loc1.wall_y = loc1.zone.y;
+                     zone.collide = loc1;
                      return true;
                   }
                }
             }
-            else if(zone.x < _loc1_.zone.x and zone.x + speed >= _loc1_.zone.left and speed > 0 or zone.x > _loc1_.zone.x and zone.x + speed <= _loc1_.zone.right and speed < 0)
+            else if(zone.x < loc1.zone.x and zone.x + speed >= loc1.zone.left and speed > 0 or zone.x > loc1.zone.x and zone.x + speed <= loc1.zone.right and speed < 0)
             {
-               if(zone.body_y > - _loc1_.hitzone._height)
+               if(zone.body_y > - loc1.hitzone._height)
                {
-                  _loc1_.wall_x = _loc1_.zone.x;
-                  _loc1_.wall_y = _loc1_.zone.y;
-                  zone.collide = _loc1_;
+                  loc1.wall_x = loc1.zone.x;
+                  loc1.wall_y = loc1.zone.y;
+                  zone.collide = loc1;
                   return true;
                }
             }
          }
       }
-      _loc5_ = _loc5_ + 1;
+      loc5 = loc5 + 1;
    }
    return false;
 }
 function f_HitWallH(zone, speed)
 {
-   var _loc7_ = false;
+   var loc7 = false;
    if(zone.splashattack)
    {
       return false;
    }
    if(f_HitWallGroupH(zone,speed,object_index,1,"object"))
    {
-      _loc7_ = true;
+      loc7 = true;
    }
    else
    {
-      var _loc1_ = undefined;
-      var _loc9_ = undefined;
-      var _loc8_ = undefined;
-      var _loc5_ = undefined;
-      var _loc4_ = undefined;
-      var _loc3_ = 1;
-      while(_loc3_ <= active_walls)
+      var loc1 = undefined;
+      var loc9 = undefined;
+      var loc8 = undefined;
+      var loc5 = undefined;
+      var loc4 = undefined;
+      var loc3 = 1;
+      while(loc3 <= active_walls)
       {
-         _loc1_ = wallArrayOb["w" + int(_loc3_)];
-         _loc1_.wall_y = _loc1_._y + _loc1_.wall._y;
-         _loc9_ = _loc1_.wall_y - _loc1_.wall._height / 2;
-         if(zone.y >= _loc9_)
+         loc1 = wallArrayOb["w" + int(loc3)];
+         loc1.wall_y = loc1._y + loc1.wall._y;
+         loc9 = loc1.wall_y - loc1.wall._height / 2;
+         if(zone.y >= loc9)
          {
-            _loc8_ = _loc1_.wall_y + _loc1_.wall._height / 2;
-            if(zone.y <= _loc8_)
+            loc8 = loc1.wall_y + loc1.wall._height / 2;
+            if(zone.y <= loc8)
             {
                if(speed > 0)
                {
-                  if(_loc1_._xscale < 0)
+                  if(loc1._xscale < 0)
                   {
-                     _loc1_.wall_x = _loc1_._x - _loc1_.wall._x;
-                     _loc5_ = _loc1_.wall_x - _loc1_.wall._width / 2;
+                     loc1.wall_x = loc1._x - loc1.wall._x;
+                     loc5 = loc1.wall_x - loc1.wall._width / 2;
                   }
                   else
                   {
-                     _loc1_.wall_x = _loc1_._x + _loc1_.wall._x;
-                     _loc5_ = _loc1_.wall_x - _loc1_.wall._width / 2;
+                     loc1.wall_x = loc1._x + loc1.wall._x;
+                     loc5 = loc1.wall_x - loc1.wall._width / 2;
                   }
-                  if(zone.x <= _loc5_)
+                  if(zone.x <= loc5)
                   {
-                     if(zone.x + speed >= _loc5_)
+                     if(zone.x + speed >= loc5)
                      {
-                        zone.collide = _loc1_;
-                        _loc7_ = true;
+                        zone.collide = loc1;
+                        loc7 = true;
                      }
                   }
                }
                else
                {
-                  if(_loc1_._xscale < 0)
+                  if(loc1._xscale < 0)
                   {
-                     _loc1_.wall_x = _loc1_._x - _loc1_.wall._x;
-                     _loc4_ = _loc1_.wall_x + _loc1_.wall._width / 2;
+                     loc1.wall_x = loc1._x - loc1.wall._x;
+                     loc4 = loc1.wall_x + loc1.wall._width / 2;
                   }
                   else
                   {
-                     _loc1_.wall_x = _loc1_._x + _loc1_.wall._x;
-                     _loc4_ = _loc1_.wall_x + _loc1_.wall._width / 2;
+                     loc1.wall_x = loc1._x + loc1.wall._x;
+                     loc4 = loc1.wall_x + loc1.wall._width / 2;
                   }
-                  if(zone.x >= _loc4_)
+                  if(zone.x >= loc4)
                   {
-                     if(zone.x + speed <= _loc4_)
+                     if(zone.x + speed <= loc4)
                      {
-                        zone.collide = _loc1_;
-                        _loc7_ = true;
+                        zone.collide = loc1;
+                        loc7 = true;
                      }
                   }
                }
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
    }
-   zone.hitwall = _loc7_;
-   return _loc7_;
+   zone.hitwall = loc7;
+   return loc7;
 }
 function f_HitWallV(zone, speed)
 {
-   var _loc9_ = false;
+   var loc9 = false;
    if(f_HitWallGroupV(zone,speed,object_index,1,"object"))
    {
-      _loc9_ = true;
+      loc9 = true;
    }
    else
    {
-      var _loc1_ = undefined;
-      var _loc8_ = undefined;
-      var _loc6_ = undefined;
-      var _loc7_ = undefined;
-      var _loc4_ = undefined;
-      var _loc3_ = 1;
-      while(_loc3_ <= active_walls)
+      var loc1 = undefined;
+      var loc8 = undefined;
+      var loc6 = undefined;
+      var loc7 = undefined;
+      var loc4 = undefined;
+      var loc3 = 1;
+      while(loc3 <= active_walls)
       {
-         _loc1_ = wallArrayOb["w" + int(_loc3_)];
-         _loc1_.wall_y = _loc1_._y + _loc1_.wall._y;
-         if(_loc1_ != zone)
+         loc1 = wallArrayOb["w" + int(loc3)];
+         loc1.wall_y = loc1._y + loc1.wall._y;
+         if(loc1 != zone)
          {
-            if(_loc1_._xscale < 0)
+            if(loc1._xscale < 0)
             {
-               _loc1_.wall_x = _loc1_._x - _loc1_.wall._x;
-               _loc8_ = _loc1_.wall_x - _loc1_.wall._width / 2;
+               loc1.wall_x = loc1._x - loc1.wall._x;
+               loc8 = loc1.wall_x - loc1.wall._width / 2;
             }
             else
             {
-               _loc1_.wall_x = _loc1_._x + _loc1_.wall._x;
-               _loc8_ = _loc1_.wall_x - _loc1_.wall._width / 2;
+               loc1.wall_x = loc1._x + loc1.wall._x;
+               loc8 = loc1.wall_x - loc1.wall._width / 2;
             }
-            if(zone.x >= _loc8_)
+            if(zone.x >= loc8)
             {
-               if(_loc1_._xscale < 0)
+               if(loc1._xscale < 0)
                {
-                  _loc1_.wall_x = _loc1_._x - _loc1_.wall._x;
-                  _loc6_ = _loc1_.wall_x + _loc1_.wall._width / 2;
+                  loc1.wall_x = loc1._x - loc1.wall._x;
+                  loc6 = loc1.wall_x + loc1.wall._width / 2;
                }
                else
                {
-                  _loc1_.wall_x = _loc1_._x + _loc1_.wall._x;
-                  _loc6_ = _loc1_.wall_x + _loc1_.wall._width / 2;
+                  loc1.wall_x = loc1._x + loc1.wall._x;
+                  loc6 = loc1.wall_x + loc1.wall._width / 2;
                }
-               if(zone.x <= _loc6_)
+               if(zone.x <= loc6)
                {
                   if(speed > 0)
                   {
-                     _loc7_ = _loc1_.wall_y - _loc1_.wall._height / 2;
-                     if(zone.y <= _loc7_)
+                     loc7 = loc1.wall_y - loc1.wall._height / 2;
+                     if(zone.y <= loc7)
                      {
-                        if(zone.y + speed >= _loc7_)
+                        if(zone.y + speed >= loc7)
                         {
-                           zone.collide = _loc1_;
-                           _loc9_ = true;
+                           zone.collide = loc1;
+                           loc9 = true;
                         }
                      }
                   }
                   else
                   {
-                     _loc4_ = _loc1_.wall_y + _loc1_.wall._height / 2;
-                     if(zone.y >= _loc4_)
+                     loc4 = loc1.wall_y + loc1.wall._height / 2;
+                     if(zone.y >= loc4)
                      {
-                        if(zone.y + speed <= _loc4_)
+                        if(zone.y + speed <= loc4)
                         {
-                           zone.collide = _loc1_;
-                           _loc9_ = true;
+                           zone.collide = loc1;
+                           loc9 = true;
                         }
                      }
                   }
                }
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
    }
-   zone.hitwall = _loc9_;
-   return _loc9_;
+   zone.hitwall = loc9;
+   return loc9;
 }
 function f_ArrowHitBullseye(zone)
 {
@@ -17568,188 +17726,188 @@ function f_ArrowHitBullseye(zone)
 }
 function f_ProjectileHitWallH(zone, speed)
 {
-   var _loc11_ = false;
-   var _loc1_ = undefined;
-   var _loc6_ = undefined;
-   var _loc5_ = undefined;
-   var _loc10_ = undefined;
-   var _loc13_ = undefined;
-   var _loc4_ = undefined;
-   var _loc9_ = 1;
-   while(_loc9_ <= object_index)
+   var loc11 = false;
+   var loc1 = undefined;
+   var loc6 = undefined;
+   var loc5 = undefined;
+   var loc10 = undefined;
+   var loc13 = undefined;
+   var loc4 = undefined;
+   var loc9 = 1;
+   while(loc9 <= object_index)
    {
-      _loc1_ = loader.game.game["object" + int(_loc9_)];
-      if(_loc1_.active)
+      loc1 = loader.game.game["object" + int(loc9)];
+      if(loc1.active)
       {
-         _loc6_ = _loc1_.hitzone;
-         if(zone.y <= _loc1_.zone.y + _loc1_.zone.h)
+         loc6 = loc1.hitzone;
+         if(zone.y <= loc1.zone.y + loc1.zone.h)
          {
-            if(zone.y >= _loc1_.zone.y - _loc1_.zone.h)
+            if(zone.y >= loc1.zone.y - loc1.zone.h)
             {
-               if(zone.y + zone.body._y <= _loc6_.y + _loc6_.h)
+               if(zone.y + zone.body._y <= loc6.y + loc6.h)
                {
-                  if(zone.y + zone.body._y >= _loc6_.y - _loc6_.h)
+                  if(zone.y + zone.body._y >= loc6.y - loc6.h)
                   {
-                     _loc5_ = 0;
-                     _loc10_ = false;
-                     if(_loc1_.angle)
+                     loc5 = 0;
+                     loc10 = false;
+                     if(loc1.angle)
                      {
-                        if(zone.x + speed >= _loc1_.zone.left and zone.x + speed <= _loc1_.zone.right)
+                        if(zone.x + speed >= loc1.zone.left and zone.x + speed <= loc1.zone.right)
                         {
-                           _loc13_ = 1 - (_loc1_.zone.bottom - zone.y) / (_loc1_.zone.h * 2);
-                           _loc4_ = _loc1_.zone.left + _loc1_.zone.w * 2 * _loc13_;
-                           if(speed > 0 and zone.x <= _loc4_ and zone.x + speed >= _loc4_ or speed < 0 and zone.x >= _loc4_ and zone.x + speed <= _loc4_)
+                           loc13 = 1 - (loc1.zone.bottom - zone.y) / (loc1.zone.h * 2);
+                           loc4 = loc1.zone.left + loc1.zone.w * 2 * loc13;
+                           if(speed > 0 and zone.x <= loc4 and zone.x + speed >= loc4 or speed < 0 and zone.x >= loc4 and zone.x + speed <= loc4)
                            {
-                              zone.collide = _loc1_;
-                              _loc10_ = true;
+                              zone.collide = loc1;
+                              loc10 = true;
                            }
                         }
                      }
-                     else if(zone.x + _loc5_ < _loc1_.hitzone.left and zone.x + _loc5_ + speed >= _loc1_.hitzone.left or zone.x + _loc5_ > _loc1_.hitzone.right and zone.x + _loc5_ + speed <= _loc1_.hitzone.right)
+                     else if(zone.x + loc5 < loc1.hitzone.left and zone.x + loc5 + speed >= loc1.hitzone.left or zone.x + loc5 > loc1.hitzone.right and zone.x + loc5 + speed <= loc1.hitzone.right)
                      {
-                        _loc10_ = true;
+                        loc10 = true;
                      }
-                     if(_loc10_)
+                     if(loc10)
                      {
-                        _loc1_.arrow_pt = zone;
-                        _loc1_.hitleft = speed > 0;
-                        _loc1_.hitby = zone.owner;
-                        _loc1_.hitbydamage = zone.attack_pow;
-                        if(_loc1_.punch)
+                        loc1.arrow_pt = zone;
+                        loc1.hitleft = speed > 0;
+                        loc1.hitby = zone.owner;
+                        loc1.hitbydamage = zone.attack_pow;
+                        if(loc1.punch)
                         {
-                           _loc1_.fx_x = zone.x;
-                           _loc1_.fx_y = zone.y + zone.body._y;
-                           _loc1_.fx_body_y = zone.body._y;
-                           if(_loc1_.uniquehit)
+                           loc1.fx_x = zone.x;
+                           loc1.fx_y = zone.y + zone.body._y;
+                           loc1.fx_body_y = zone.body._y;
+                           if(loc1.uniquehit)
                            {
-                              _loc1_.fx_x = zone.x;
-                              _loc1_.fx_y = zone.y + zone.body._y;
+                              loc1.fx_x = zone.x;
+                              loc1.fx_y = zone.y + zone.body._y;
                            }
-                           if(!_loc1_.fp_UniqueHit(_loc1_,zone.punch_pow_low,zone.attack_type))
+                           if(!loc1.fp_UniqueHit(loc1,zone.punch_pow_low,zone.attack_type))
                            {
-                              if(!_loc1_.no_wall_damage)
+                              if(!loc1.no_wall_damage)
                               {
-                                 _loc1_.punch_function(_loc1_);
-                                 f_Damage(_loc1_,zone.attack_pow,zone.damage_type);
+                                 loc1.punch_function(loc1);
+                                 f_Damage(loc1,zone.attack_pow,zone.damage_type);
                               }
                            }
-                           if(_loc1_.angle)
+                           if(loc1.angle)
                            {
-                              zone.x = _loc4_;
+                              zone.x = loc4;
                               zone._x = zone.x;
                            }
-                           else if(_loc1_.hitleft)
+                           else if(loc1.hitleft)
                            {
-                              zone.x = _loc1_.hitzone.left;
+                              zone.x = loc1.hitzone.left;
                               zone._x = zone.x;
                            }
                            else
                            {
-                              zone.x = _loc1_.hitzone.right;
+                              zone.x = loc1.hitzone.right;
                               zone._x = zone.x;
                            }
-                           _loc1_.arrowhit_function(_loc1_);
+                           loc1.arrowhit_function(loc1);
                         }
-                        zone.collide = _loc1_;
-                        _loc11_ = true;
+                        zone.collide = loc1;
+                        loc11 = true;
                      }
                   }
                }
             }
          }
       }
-      _loc9_ = _loc9_ + 1;
+      loc9 = loc9 + 1;
    }
-   var _loc14_ = undefined;
-   var _loc12_ = undefined;
-   var _loc8_ = undefined;
-   var _loc7_ = undefined;
-   _loc9_ = 1;
-   while(_loc9_ <= active_walls)
+   var loc14 = undefined;
+   var loc12 = undefined;
+   var loc8 = undefined;
+   var loc7 = undefined;
+   loc9 = 1;
+   while(loc9 <= active_walls)
    {
-      _loc1_ = wallArrayOb["w" + int(_loc9_)];
-      _loc14_ = _loc1_._y + _loc1_.wall._y - _loc1_.wall._height / 2;
-      if(zone.y >= _loc14_)
+      loc1 = wallArrayOb["w" + int(loc9)];
+      loc14 = loc1._y + loc1.wall._y - loc1.wall._height / 2;
+      if(zone.y >= loc14)
       {
-         _loc12_ = _loc1_._y + _loc1_.wall._y + _loc1_.wall._height / 2;
-         if(zone.y <= _loc12_)
+         loc12 = loc1._y + loc1.wall._y + loc1.wall._height / 2;
+         if(zone.y <= loc12)
          {
-            if(zone.y + zone.body._y >= _loc1_.y - _loc1_.h)
+            if(zone.y + zone.body._y >= loc1.y - loc1.h)
             {
                if(speed > 0)
                {
-                  if(_loc1_._xscale > 0)
+                  if(loc1._xscale > 0)
                   {
-                     _loc8_ = _loc1_._x + _loc1_.wall._x - _loc1_.wall._width / 2;
+                     loc8 = loc1._x + loc1.wall._x - loc1.wall._width / 2;
                   }
                   else
                   {
-                     _loc8_ = _loc1_._x - _loc1_.wall._x - _loc1_.wall._width / 2;
+                     loc8 = loc1._x - loc1.wall._x - loc1.wall._width / 2;
                   }
-                  if(zone.x <= _loc8_)
+                  if(zone.x <= loc8)
                   {
-                     if(zone.x + speed >= _loc8_)
+                     if(zone.x + speed >= loc8)
                      {
-                        if(_loc1_.invincible_timer <= 0 and !_loc1_.no_wall_damage)
+                        if(loc1.invincible_timer <= 0 and !loc1.no_wall_damage)
                         {
-                           _loc1_.damage_pow = zone.attack_pow;
-                           _loc1_.damage_type = zone.damage_type;
-                           _loc1_.hitby = zone.owner;
-                           _loc1_.hitbydamage = zone.attack_pow;
-                           zone.x = _loc8_;
+                           loc1.damage_pow = zone.attack_pow;
+                           loc1.damage_type = zone.damage_type;
+                           loc1.hitby = zone.owner;
+                           loc1.hitbydamage = zone.attack_pow;
+                           zone.x = loc8;
                            zone._x = zone.x;
-                           _loc1_.fx_x = zone.x;
-                           _loc1_.fx_y = zone.body._y + zone.y;
-                           if(!_loc1_.uniquehit)
+                           loc1.fx_x = zone.x;
+                           loc1.fx_y = zone.body._y + zone.y;
+                           if(!loc1.uniquehit)
                            {
-                              f_Damage(_loc1_,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
+                              f_Damage(loc1,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
                            }
                            else
                            {
-                              _loc1_.fp_UniqueHit(_loc1_,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
+                              loc1.fp_UniqueHit(loc1,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
                            }
-                           _loc1_.arrowhit_function(_loc1_);
-                           zone.collide = _loc1_;
-                           _loc11_ = true;
+                           loc1.arrowhit_function(loc1);
+                           zone.collide = loc1;
+                           loc11 = true;
                         }
                      }
                   }
                }
                else
                {
-                  if(_loc1_._xscale > 0)
+                  if(loc1._xscale > 0)
                   {
-                     _loc7_ = _loc1_._x + _loc1_.wall._x + _loc1_.wall._width / 2;
+                     loc7 = loc1._x + loc1.wall._x + loc1.wall._width / 2;
                   }
                   else
                   {
-                     _loc7_ = _loc1_._x - _loc1_.wall._x + _loc1_.wall._width / 2;
+                     loc7 = loc1._x - loc1.wall._x + loc1.wall._width / 2;
                   }
-                  if(zone.x >= _loc7_)
+                  if(zone.x >= loc7)
                   {
-                     if(zone.x + speed <= _loc7_)
+                     if(zone.x + speed <= loc7)
                      {
-                        if(_loc1_.invincible_timer <= 0 and !_loc1_.no_wall_damage)
+                        if(loc1.invincible_timer <= 0 and !loc1.no_wall_damage)
                         {
-                           _loc1_.damage_pow = zone.attack_pow;
-                           _loc1_.damage_type = zone.damage_type;
-                           _loc1_.hitby = zone.owner;
-                           _loc1_.hitbydamage = zone.attack_pow;
-                           zone.x = _loc7_;
+                           loc1.damage_pow = zone.attack_pow;
+                           loc1.damage_type = zone.damage_type;
+                           loc1.hitby = zone.owner;
+                           loc1.hitbydamage = zone.attack_pow;
+                           zone.x = loc7;
                            zone._x = zone.x;
-                           _loc1_.fx_x = zone.x;
-                           _loc1_.fx_y = zone.body._y + zone.y;
-                           if(!_loc1_.uniquehit)
+                           loc1.fx_x = zone.x;
+                           loc1.fx_y = zone.body._y + zone.y;
+                           if(!loc1.uniquehit)
                            {
-                              f_Damage(_loc1_,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
+                              f_Damage(loc1,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
                            }
                            else
                            {
-                              _loc1_.fp_UniqueHit(_loc1_,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
+                              loc1.fp_UniqueHit(loc1,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
                            }
-                           _loc1_.arrowhit_function(_loc1_);
-                           zone.collide = _loc1_;
-                           _loc11_ = true;
+                           loc1.arrowhit_function(loc1);
+                           zone.collide = loc1;
+                           loc11 = true;
                         }
                      }
                   }
@@ -17757,10 +17915,10 @@ function f_ProjectileHitWallH(zone, speed)
             }
          }
       }
-      _loc9_ = _loc9_ + 1;
+      loc9 = loc9 + 1;
    }
-   zone.hitwall = _loc11_;
-   return _loc11_;
+   zone.hitwall = loc11;
+   return loc11;
 }
 function f_DepthVal(u_depth_mod, u_depth)
 {
@@ -17783,98 +17941,98 @@ function f_GetGold(zone, u_gold)
 {
    zone.gold += u_gold;
    zone.total_gold_collected += u_gold;
-   var _loc6_ = f_FX(zone.x,zone.y - 100,zone.y + 5,"damage_val",100,100);
-   var _loc2_ = undefined;
-   f_ShowVal(_loc6_,u_gold,color_gold);
+   var loc6 = f_FX(zone.x,zone.y - 100,zone.y + 5,"damage_val",100,100);
+   var loc2 = undefined;
+   f_ShowVal(loc6,u_gold,color_gold);
    if(_root.p_game.specialmode == 2)
    {
-      var _loc3_ = 1;
-      while(_loc3_ <= active_players)
+      var loc3 = 1;
+      while(loc3 <= active_players)
       {
-         _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-         if(_loc2_.alive and _loc2_ != zone)
+         loc2 = playerArrayOb["p_pt" + int(loc3)];
+         if(loc2.alive and loc2 != zone)
          {
             if(friendly_fire)
             {
-               if(f_TeamCheck(zone,_loc2_))
+               if(f_TeamCheck(zone,loc2))
                {
-                  f_Damage(_loc2_,u_gold,DMG_MELEE);
-                  f_CheckHealth(_loc2_);
+                  f_Damage(loc2,u_gold,DMG_MELEE);
+                  f_CheckHealth(loc2);
                }
             }
             else
             {
-               f_Damage(_loc2_,u_gold,DMG_MELEE);
-               f_CheckHealth(_loc2_);
+               f_Damage(loc2,u_gold,DMG_MELEE);
+               f_CheckHealth(loc2);
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
    }
 }
 function f_IsWeaponUnlocked(zone, wepId)
 {
-   var _loc3_ = _root.save_data_info.num_items;
-   var _loc2_ = 0;
-   if(wepId < _loc3_)
+   var loc3 = _root.save_data_info.num_items;
+   var loc2 = 0;
+   if(wepId < loc3)
    {
-      _loc2_ = zone.hud_pt.item_unlocks[wepId];
+      loc2 = zone.hud_pt.item_unlocks[wepId];
    }
    else
    {
-      _loc2_ = zone.hud_pt.item_unlocks_expansion[wepId - _loc3_];
+      loc2 = zone.hud_pt.item_unlocks_expansion[wepId - loc3];
    }
-   return _loc2_;
+   return loc2;
 }
 function f_SetWeaponUnlocked(zone, wepId, unlocked)
 {
-   var _loc2_ = _root.save_data_info.num_items;
-   if(wepId < _loc2_)
+   var loc2 = _root.save_data_info.num_items;
+   if(wepId < loc2)
    {
       zone.hud_pt.item_unlocks[wepId] = unlocked;
    }
    else
    {
-      zone.hud_pt.item_unlocks_expansion[wepId - _loc2_] = unlocked;
+      zone.hud_pt.item_unlocks_expansion[wepId - loc2] = unlocked;
    }
 }
 function f_GetWeapon(zone, u_temp)
 {
    if(!(u_temp == 70 and level == 50))
    {
-      var _loc6_ = f_ItemSpawn(zone._x,zone._y,14);
-      _loc6_.weapon_type = zone.weapon;
-      _loc6_.body_y = 0;
-      _loc6_.body_table_y = 0;
-      _loc6_.body.gotoAndPlay("toss");
+      var loc6 = f_ItemSpawn(zone._x,zone._y,14);
+      loc6.weapon_type = zone.weapon;
+      loc6.body_y = 0;
+      loc6.body_table_y = 0;
+      loc6.body.gotoAndPlay("toss");
       if(zone._xscale > 0)
       {
-         _loc6_.toss_speed_x = -8;
+         loc6.toss_speed_x = -8;
       }
       else
       {
-         _loc6_.toss_speed_x = 8;
+         loc6.toss_speed_x = 8;
       }
    }
-   var _loc5_ = weapon_offset + u_temp;
-   if(!f_IsWeaponUnlocked(zone,_loc5_))
+   var loc5 = weapon_offset + u_temp;
+   if(!f_IsWeaponUnlocked(zone,loc5))
    {
-      f_UnlockItem(zone,_loc5_);
+      f_UnlockItem(zone,loc5);
    }
-   var _loc7_ = zone.hud_pt.port - 1;
-   var _loc3_ = undefined;
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc7 = zone.hud_pt.port - 1;
+   var loc3 = undefined;
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      _loc3_ = _root["hud" + int(_loc2_)];
-      if(_loc3_.active)
+      loc3 = _root["hud" + int(loc2)];
+      if(loc3.active)
       {
-         if(IsSameProfile(_loc7_,_loc3_.port - 1))
+         if(IsSameProfile(loc7,loc3.port - 1))
          {
-            f_SetWeaponUnlocked(_loc3_.player_pt,_loc5_,true);
+            f_SetWeaponUnlocked(loc3.player_pt,loc5,true);
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    zone.weapon = u_temp;
    f_UpdatePlayerAttributes(zone);
@@ -17904,73 +18062,73 @@ function f_GetRelic(zone, u_temp)
 function f_ShowVal(u_digit, u_value, u_color, critical)
 {
    u_value = Math.abs(u_value);
-   var _loc3_ = u_value / 100;
-   _loc3_ = Math.floor(_loc3_);
-   var _loc4_ = (u_value - _loc3_ * 100) / 10;
-   _loc4_ = Math.floor(_loc4_);
-   var _loc6_ = u_value - _loc3_ * 100 - _loc4_ * 10;
-   _loc6_ = Math.floor(_loc6_);
+   var loc3 = u_value / 100;
+   loc3 = Math.floor(loc3);
+   var loc4 = (u_value - loc3 * 100) / 10;
+   loc4 = Math.floor(loc4);
+   var loc6 = u_value - loc3 * 100 - loc4 * 10;
+   loc6 = Math.floor(loc6);
    u_digit.body.critical = critical;
-   var _loc1_ = u_digit.body.body.body;
-   if(_loc6_ == 0)
+   var loc1 = u_digit.body.body.body;
+   if(loc6 == 0)
    {
-      var _loc2_ = 10;
+      var loc2 = 10;
    }
    else
    {
-      _loc2_ = _loc6_;
+      loc2 = loc6;
    }
-   _loc1_.one.gotoAndStop(_loc2_);
-   _loc1_.one.outline.gotoAndStop(_loc2_);
-   f_ColorSwap(_loc1_.one.outline,u_color);
+   loc1.one.gotoAndStop(loc2);
+   loc1.one.outline.gotoAndStop(loc2);
+   f_ColorSwap(loc1.one.outline,u_color);
    if(u_value >= 10)
    {
-      if(_loc4_ == 0)
+      if(loc4 == 0)
       {
-         _loc2_ = 10;
+         loc2 = 10;
       }
       else
       {
-         _loc2_ = _loc4_;
+         loc2 = loc4;
       }
-      _loc1_.ten.gotoAndStop(_loc2_);
-      _loc1_.ten.outline.gotoAndStop(_loc2_);
-      f_ColorSwap(_loc1_.ten.outline,u_color);
+      loc1.ten.gotoAndStop(loc2);
+      loc1.ten.outline.gotoAndStop(loc2);
+      f_ColorSwap(loc1.ten.outline,u_color);
       if(u_value >= 100)
       {
-         if(_loc3_ == 0)
+         if(loc3 == 0)
          {
-            _loc2_ = 10;
+            loc2 = 10;
          }
          else
          {
-            _loc2_ = _loc3_;
+            loc2 = loc3;
          }
-         _loc1_.hundred.gotoAndStop(_loc2_);
-         _loc1_.hundred.outline.gotoAndStop(_loc2_);
-         f_ColorSwap(_loc1_.hundred.outline,u_color);
+         loc1.hundred.gotoAndStop(loc2);
+         loc1.hundred.outline.gotoAndStop(loc2);
+         f_ColorSwap(loc1.hundred.outline,u_color);
       }
       else
       {
-         _loc1_.hundred.gotoAndStop("blank");
-         _loc1_.one._x = 8;
-         _loc1_.ten._x = -8;
+         loc1.hundred.gotoAndStop("blank");
+         loc1.one._x = 8;
+         loc1.ten._x = -8;
       }
    }
    else
    {
-      _loc1_.ten.gotoAndStop("blank");
-      _loc1_.hundred.gotoAndStop("blank");
-      _loc1_.one._x = 0;
+      loc1.ten.gotoAndStop("blank");
+      loc1.hundred.gotoAndStop("blank");
+      loc1.one._x = 0;
    }
 }
 function f_Heal(zone, heal_pow)
 {
    if(!zone.npc)
    {
-      var _loc9_ = f_FX(zone.x,zone.y + zone.body_y - 100,zone.y + 5,"damage_val",100,100);
-      var _loc10_ = color_green;
-      f_ShowVal(_loc9_,heal_pow,_loc10_);
+      var loc9 = f_FX(zone.x,zone.y + zone.body_y - 100,zone.y + 5,"damage_val",100,100);
+      var loc10 = color_green;
+      f_ShowVal(loc9,heal_pow,loc10);
    }
    heal_pow = Math.min(heal_pow,zone.health_max - zone.health);
    if(heal_pow > 999)
@@ -17984,35 +18142,35 @@ function f_Heal(zone, heal_pow)
    }
    if(zone.lifebar)
    {
-      var _loc4_ = undefined;
-      var _loc6_ = false;
-      var _loc3_ = undefined;
-      _loc3_ = 1;
-      while(_loc3_ <= total_huds)
+      var loc4 = undefined;
+      var loc6 = false;
+      var loc3 = undefined;
+      loc3 = 1;
+      while(loc3 <= total_huds)
       {
-         _loc4_ = this["hud" + int(_loc3_)];
-         if(_loc4_.kid_pointer == zone and !_loc4_.ready)
+         loc4 = this["hud" + int(loc3)];
+         if(loc4.kid_pointer == zone and !loc4.ready)
          {
-            f_UpdateHUD(_loc4_,zone);
-            _loc6_ = true;
-            _loc3_ = total_huds + 1;
+            f_UpdateHUD(loc4,zone);
+            loc6 = true;
+            loc3 = total_huds + 1;
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
-      if(!_loc6_)
+      if(!loc6)
       {
-         _loc3_ = 1;
-         while(_loc3_ <= total_huds)
+         loc3 = 1;
+         while(loc3 <= total_huds)
          {
-            _loc4_ = _root["hud" + int(_loc3_)];
-            if(_loc4_.ready)
+            loc4 = _root["hud" + int(loc3)];
+            if(loc4.ready)
             {
-               _loc4_.ready = false;
-               _loc4_.kid_pointer = zone;
-               f_UpdateHUD(_loc4_,zone);
-               _loc3_ = total_huds + 1;
+               loc4.ready = false;
+               loc4.kid_pointer = zone;
+               f_UpdateHUD(loc4,zone);
+               loc3 = total_huds + 1;
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
       }
    }
@@ -18020,13 +18178,13 @@ function f_Heal(zone, heal_pow)
    {
       if(zone.health > 0)
       {
-         var _loc8_ = int(101 - zone.health / zone.health_max * 100);
+         var loc8 = int(101 - zone.health / zone.health_max * 100);
       }
       else
       {
-         _loc8_ = 101;
+         loc8 = 101;
       }
-      zone.hud_pt.stats.health.gotoAndStop(_loc8_);
+      zone.hud_pt.stats.health.gotoAndStop(loc8);
    }
 }
 function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_y)
@@ -18069,7 +18227,7 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
    {
       damage_type = DMG_MELEE;
    }
-   var _loc13_ = false;
+   var loc13 = false;
    if(zone.hitby)
    {
       if(damage_type == DMG_MELEE)
@@ -18078,7 +18236,7 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
          {
             if(random(zone.hitby.weapon_critical) == 0)
             {
-               _loc13_ = true;
+               loc13 = true;
                damage_pow *= 4;
             }
          }
@@ -18109,66 +18267,66 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
    {
       damage_type = DMG_MELEE;
    }
-   var _loc9_ = undefined;
+   var loc9 = undefined;
    if(zone.resists != undefined)
    {
       if(damage_type < zone.resists.length)
       {
-         _loc9_ = zone.resists[damage_type];
+         loc9 = zone.resists[damage_type];
       }
    }
    if(damage_flags & DMGFLAG_NORESIST)
    {
-      _loc9_ = 0;
+      loc9 = 0;
    }
-   if(_loc9_ == undefined)
+   if(loc9 == undefined)
    {
-      _loc9_ = 0;
+      loc9 = 0;
    }
-   damage_pow = Math.min(Math.max(Math.round(damage_pow * (100 - _loc9_) / 50),1),999);
-   var _loc15_ = Math.round(_loc9_ / 25);
-   var _loc10_ = undefined;
-   var _loc7_ = undefined;
-   switch(_loc15_)
+   damage_pow = Math.min(Math.max(Math.round(damage_pow * (100 - loc9) / 50),1),999);
+   var loc15 = Math.round(loc9 / 25);
+   var loc10 = undefined;
+   var loc7 = undefined;
+   switch(loc15)
    {
       case 0:
-         _loc10_ = 2;
-         _loc7_ = 1.5;
+         loc10 = 2;
+         loc7 = 1.5;
          break;
       case 1:
-         _loc10_ = 1.5;
-         _loc7_ = 1.25;
+         loc10 = 1.5;
+         loc7 = 1.25;
          break;
       case 2:
-         _loc10_ = 1;
-         _loc7_ = 1;
+         loc10 = 1;
+         loc7 = 1;
          break;
       case 3:
-         _loc10_ = 0.5;
-         _loc7_ = 0.5;
+         loc10 = 0.5;
+         loc7 = 0.5;
          break;
       case 100:
-         _loc10_ = 1;
-         _loc7_ = 1;
+         loc10 = 1;
+         loc7 = 1;
          break;
       case 4:
       default:
-         _loc10_ = 0;
-         _loc7_ = _loc9_ >= 90 ? 0 : 0.5;
+         loc10 = 0;
+         loc7 = loc9 >= 90 ? 0 : 0.5;
    }
    if(recoil_x != undefined)
    {
-      recoil_x *= _loc10_;
-      recoil_y *= _loc10_;
+      recoil_x *= loc10;
+      recoil_y *= loc10;
    }
    if(damage_flags & DMGFLAG_NO_ELEM_EFFECT)
    {
-      _loc7_ = 0;
+      loc7 = 0;
    }
-   var _loc16_ = false;
+   var loc16 = false;
    if(zone.frozen and (!zone.hitby.splashattack or damage_type != DMG_ICE))
    {
-      _loc16_ = true;
+      loc16 = true;
       zone.frozen = false;
       f_IceShatter(zone);
    }
@@ -18176,7 +18334,7 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
    {
       f_StoneHeart(zone);
    }
-   if(_loc7_ and zone.humanoid)
+   if(loc7 and zone.humanoid)
    {
       switch(damage_type)
       {
@@ -18185,7 +18343,7 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
          case DMG_POISON:
             if(zone.poison_timer <= 0)
             {
-               zone.poison_timer = 119 * _loc7_;
+               zone.poison_timer = 119 * loc7;
                if(zone.hitby.owner)
                {
                   zone.poison_owner = zone.hitby.owner;
@@ -18200,8 +18358,8 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
          case DMG_FIRE:
             if(zone.fire_timer <= 0)
             {
-               zone.fire_timer = 59 * _loc7_;
-               zone.smoking_timer = 60 * _loc7_;
+               zone.fire_timer = 59 * loc7;
+               zone.smoking_timer = 60 * loc7;
                f_ColorSwap(zone,color_dark);
                if(zone.hitby.owner)
                {
@@ -18220,7 +18378,7 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
             }
             break;
          case DMG_ICE:
-            if(!_loc16_)
+            if(!loc16)
             {
                if(zone.body_y >= 0)
                {
@@ -18238,7 +18396,7 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
             }
       }
    }
-   if(_loc15_ < 4)
+   if(loc15 < 4)
    {
       if(recoil_y != undefined)
       {
@@ -18279,17 +18437,17 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
    }
    if(!zone.npc)
    {
-      var _loc14_ = f_FX(zone.x,zone.y + zone.body_y - 100,zone.y + 5,"damage_val",100,100);
-      zone.u_digit = _loc14_;
+      var loc14 = f_FX(zone.x,zone.y + zone.body_y - 100,zone.y + 5,"damage_val",100,100);
+      zone.u_digit = loc14;
       if(damage_pow > 0)
       {
-         var _loc20_ = color_red;
+         var loc20 = color_red;
       }
       else
       {
-         _loc20_ = color_green;
+         loc20 = color_green;
       }
-      f_ShowVal(_loc14_,damage_pow,_loc20_,_loc13_);
+      f_ShowVal(loc14,damage_pow,loc20,loc13);
    }
    zone.health -= damage_pow;
    if(zone.health > zone.health_max)
@@ -18303,35 +18461,35 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
    }
    if(zone.lifebar)
    {
-      var _loc11_ = false;
-      var _loc4_ = undefined;
-      var _loc5_ = undefined;
-      _loc4_ = 1;
-      while(_loc4_ <= total_huds)
+      var loc11 = false;
+      var loc4 = undefined;
+      var loc5 = undefined;
+      loc4 = 1;
+      while(loc4 <= total_huds)
       {
-         _loc5_ = this["hud" + int(_loc4_)];
-         if(_loc5_.kid_pointer == zone and !_loc5_.ready)
+         loc5 = this["hud" + int(loc4)];
+         if(loc5.kid_pointer == zone and !loc5.ready)
          {
-            f_UpdateHUD(_loc5_,zone);
-            _loc11_ = true;
-            _loc4_ = total_huds + 1;
+            f_UpdateHUD(loc5,zone);
+            loc11 = true;
+            loc4 = total_huds + 1;
          }
-         _loc4_ = _loc4_ + 1;
+         loc4 = loc4 + 1;
       }
-      if(!_loc11_)
+      if(!loc11)
       {
-         _loc4_ = 1;
-         while(_loc4_ <= total_huds)
+         loc4 = 1;
+         while(loc4 <= total_huds)
          {
-            _loc5_ = _root["hud" + int(_loc4_)];
-            if(_loc5_.ready)
+            loc5 = _root["hud" + int(loc4)];
+            if(loc5.ready)
             {
-               _loc5_.ready = false;
-               _loc5_.kid_pointer = zone;
-               f_UpdateHUD(_loc5_,zone);
-               _loc4_ = total_huds + 1;
+               loc5.ready = false;
+               loc5.kid_pointer = zone;
+               f_UpdateHUD(loc5,zone);
+               loc4 = total_huds + 1;
             }
-            _loc4_ = _loc4_ + 1;
+            loc4 = loc4 + 1;
          }
       }
    }
@@ -18339,13 +18497,13 @@ function f_Damage(zone, damage_pow, damage_type, damage_flags, recoil_x, recoil_
    {
       if(zone.health > 0)
       {
-         var _loc19_ = int(101 - zone.health / zone.health_max * 100);
+         var loc19 = int(101 - zone.health / zone.health_max * 100);
       }
       else
       {
-         _loc19_ = 101;
+         loc19 = 101;
       }
-      zone.hud_pt.stats.health.gotoAndStop(_loc19_);
+      zone.hud_pt.stats.health.gotoAndStop(loc19);
    }
    if(zone.hitby.invincible_recover)
    {
@@ -18369,13 +18527,13 @@ function f_SlideDust(zone)
 {
    if(zone._xscale > 0)
    {
-      var _loc2_ = zone._x + 35;
+      var loc2 = zone._x + 35;
    }
    else
    {
-      _loc2_ = zone._x - 35;
+      loc2 = zone._x - 35;
    }
-   var _loc3_ = f_FX(_loc2_,zone.y + 5,int(zone.y) + 5,level_dust,zone._xscale,100);
+   var loc3 = f_FX(loc2,zone.y + 5,int(zone.y) + 5,level_dust,zone._xscale,100);
 }
 function f_DashSlam(zone)
 {
@@ -18383,7 +18541,7 @@ function f_DashSlam(zone)
    f_MoveCharH(zone,zone.speed_slam,0);
    if(zone.speed_slam % 4 == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone.y + 10,int(zone.y) + 4,level_dust,zone._xscale,100);
+      var loc2 = f_FX(zone.x,zone.y + 10,int(zone.y) + 4,level_dust,zone._xscale,100);
    }
    if(zone.speed_slam > 0)
    {
@@ -18424,7 +18582,7 @@ function f_KidInit(zone)
 }
 function f_RandomRun(zone)
 {
-   var _loc2_ = loader.game.game;
+   var loc2 = loader.game.game;
    if(zone.speed_x > 0 and zone._xscale < 0)
    {
       f_FlipChar(zone);
@@ -18441,19 +18599,19 @@ function f_RandomRun(zone)
    {
       zone.speed_y *= -1;
    }
-   if(zone.y > _loc2_.limit_bottomright.y and zone.speed_y > 0)
+   if(zone.y > loc2.limit_bottomright.y and zone.speed_y > 0)
    {
       zone.speed_y *= -1;
    }
-   else if(zone.y < _loc2_.limit_topleft.y and zone.speed_y < 0)
+   else if(zone.y < loc2.limit_topleft.y and zone.speed_y < 0)
    {
       zone.speed_y *= -1;
    }
-   if(zone.x > _loc2_.limit_bottomright.x and zone.speed_x > 0)
+   if(zone.x > loc2.limit_bottomright.x and zone.speed_x > 0)
    {
       zone.speed_x *= -1;
    }
-   else if(zone.x < _loc2_.limit_topleft.x and zone.speed_x < 0)
+   else if(zone.x < loc2.limit_topleft.x and zone.speed_x < 0)
    {
       zone.speed_x *= -1;
    }
@@ -18609,43 +18767,43 @@ function f_BeefyCarryEnemy(zone)
 }
 function f_StompRange(zone)
 {
-   var _loc8_ = false;
-   var _loc7_ = false;
+   var loc8 = false;
+   var loc7 = false;
    zone.throwmove = false;
-   var _loc2_ = undefined;
-   var _loc5_ = undefined;
-   var _loc4_ = undefined;
-   var _loc6_ = undefined;
-   _loc4_ = 1;
-   while(_loc4_ <= active_enemies)
+   var loc2 = undefined;
+   var loc5 = undefined;
+   var loc4 = undefined;
+   var loc6 = undefined;
+   loc4 = 1;
+   while(loc4 <= active_enemies)
    {
-      _loc2_ = enemyArrayOb["e" + int(_loc4_)];
-      if(_loc2_.alive)
+      loc2 = enemyArrayOb["e" + int(loc4)];
+      if(loc2.alive)
       {
-         if(Math.abs(_loc2_.x - zone.x) < 60)
+         if(Math.abs(loc2.x - zone.x) < 60)
          {
-            if(Math.abs(_loc2_.y - zone.y) < 20)
+            if(Math.abs(loc2.y - zone.y) < 20)
             {
-               if(_loc2_.onground)
+               if(loc2.onground)
                {
                   if(zone.body_y >= 0)
                   {
-                     _loc7_ = true;
+                     loc7 = true;
                   }
                }
-               else if(!_loc2_.nohit or _loc2_.body_y < 0)
+               else if(!loc2.nohit or loc2.body_y < 0)
                {
-                  if(_loc2_.grab and !_loc2_.beefy)
+                  if(loc2.grab and !loc2.beefy)
                   {
-                     if(Math.abs(_loc2_.x - zone.x) < 30)
+                     if(Math.abs(loc2.x - zone.x) < 30)
                      {
-                        if(zone.body_y > _loc2_.body_y - 20)
+                        if(zone.body_y > loc2.body_y - 20)
                         {
-                           if(zone.body_y < _loc2_.body_y + 60)
+                           if(zone.body_y < loc2.body_y + 60)
                            {
                               if(!(_root.boss_fight and _root.level == 43))
                               {
-                                 zone.fp_ThrowAction(zone,_loc2_);
+                                 zone.fp_ThrowAction(zone,loc2);
                                  return false;
                               }
                            }
@@ -18656,40 +18814,40 @@ function f_StompRange(zone)
             }
          }
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
    if(friendly_fire)
    {
-      _loc4_ = 1;
-      while(_loc4_ <= active_players)
+      loc4 = 1;
+      while(loc4 <= active_players)
       {
-         _loc2_ = playerArrayOb["p_pt" + int(_loc4_)];
-         if(_loc2_.alive and _loc2_ != zone)
+         loc2 = playerArrayOb["p_pt" + int(loc4)];
+         if(loc2.alive and loc2 != zone)
          {
-            if(f_TeamCheck(zone,_loc2_))
+            if(f_TeamCheck(zone,loc2))
             {
-               if(Math.abs(_loc2_.x - zone.x) < 60)
+               if(Math.abs(loc2.x - zone.x) < 60)
                {
-                  if(Math.abs(_loc2_.y - zone.y) < 20)
+                  if(Math.abs(loc2.y - zone.y) < 20)
                   {
-                     if(_loc2_.onground)
+                     if(loc2.onground)
                      {
                         if(zone.body_y >= 0)
                         {
-                           _loc7_ = true;
+                           loc7 = true;
                         }
                      }
-                     else if(!_loc2_.nohit)
+                     else if(!loc2.nohit)
                      {
-                        if(_loc2_.grab and !_loc2_.beefy)
+                        if(loc2.grab and !loc2.beefy)
                         {
-                           if(Math.abs(_loc2_.x - zone.x) < 30)
+                           if(Math.abs(loc2.x - zone.x) < 30)
                            {
-                              if(zone.body_y > _loc2_.body_y - 20)
+                              if(zone.body_y > loc2.body_y - 20)
                               {
-                                 if(zone.body_y < _loc2_.body_y + 60)
+                                 if(zone.body_y < loc2.body_y + 60)
                                  {
-                                    zone.fp_ThrowAction(zone,_loc2_);
+                                    zone.fp_ThrowAction(zone,loc2);
                                     return false;
                                  }
                               }
@@ -18700,70 +18858,80 @@ function f_StompRange(zone)
                }
             }
          }
-         _loc4_ = _loc4_ + 1;
+         loc4 = loc4 + 1;
       }
    }
    else if(zone.human)
    {
-      _loc4_ = 1;
-      while(_loc4_ <= 4)
+      loc4 = 1;
+      while(loc4 <= 4)
       {
-         _loc2_ = p_game["p" + int(_loc4_)];
-         if(_loc2_.active and _loc2_ != zone and _loc2_.hud_pt and _loc2_.hud_pt.active)
+         loc2 = p_game["p" + int(loc4)];
+         if(loc2.active and loc2 != zone and loc2.hud_pt and loc2.hud_pt.active)
          {
-            if(!_loc2_.alive and _loc2_.health <= 0)
+            if(!loc2.alive and loc2.health <= 0)
             {
-               if(Math.abs(zone.x - _loc2_.x) < 60)
+               if(Math.abs(zone.x - loc2.x) < 60)
                {
-                  if(Math.abs(zone.y - _loc2_.y) < 20)
+                  if(Math.abs(zone.y - loc2.y) < 20)
                   {
                      if(zone.body_y >= 0)
                      {
-                        _loc6_ = 1;
-                        while(_loc6_ <= 4)
+                        loc6 = 1;
+                        while(loc6 <= 4)
                         {
-                           _loc5_ = p_game["p" + int(_loc6_)];
-                           if(_loc5_ != zone)
+                           loc5 = p_game["p" + int(loc6)];
+                           if(loc5 != zone)
                            {
-                              if(_loc5_.cpr == _loc2_ and _loc5_.alive)
+                              if(loc5.cpr == loc2 and loc5.alive)
                               {
                                  return false;
                               }
                            }
-                           _loc6_ = _loc6_ + 1;
+                           loc6 = loc6 + 1;
                         }
                         zone.throwmove = true;
                         var xoffset = 20;
-                        if(_loc2_.p_type == 32) {
+                        if(loc2.p_type == 32) {
                            xoffset = -20;
                         }
-                        if(_loc2_._xscale > 0)
+                        if(loc2._xscale > 0)
                         {
-                           f_SetXY(zone,_loc2_.x,_loc2_.y);
+                           f_SetXY(zone,loc2.x,loc2.y);
                            f_MoveCharH(zone,- xoffset,0);
                         }
                         else
                         {
-                           f_SetXY(zone,_loc2_.x,_loc2_.y);
+                           f_SetXY(zone,loc2.x,loc2.y);
                            f_MoveCharH(zone,xoffset,0);
                         }
                         f_Depth(zone,zone.y + 1);
-                        f_FlipSame(zone,_loc2_);
+                        f_FlipSame(zone,loc2);
                         zone.gotoAndStop("cpr");
                         zone.blocking = false;
-                        zone.cpr = _loc2_;
-                        _loc2_.gotoAndStop("die");
-                        _loc2_.body.gotoAndPlay("cpr");
+                        zone.cpr = loc2;
+                        if(loc2.p_type == 33) { // cyclops dual death thing
+                           if(loc2.undead) {
+                              loc2.gotoAndStop("undead_die");
+                           }
+                           else {
+                              loc2.gotoAndStop("swim");
+                           }
+                        }
+                        else {
+                           loc2.gotoAndStop("die");
+                        }
+                        loc2.body.gotoAndPlay("cpr");
                         return false;
                      }
                   }
                }
             }
          }
-         _loc4_ = _loc4_ + 1;
+         loc4 = loc4 + 1;
       }
    }
-   if(_loc8_ == false and _loc7_)
+   if(loc8 == false and loc7)
    {
       return true;
    }
@@ -18829,8 +18997,8 @@ function f_ResetCombo(zone)
 function f_PunchSet1(zone)
 {
    zone.punching = true;
-   var _loc2_ = zone.punch_group;
-   var _loc3_ = zone.punch_num;
+   var loc2 = zone.punch_group;
+   var loc3 = zone.punch_num;
    if(zone.dashing and zone.truespeed and zone.body_y == 0 and zone.combo_unlocks[2])
    {
       if(zone._xscale > 0)
@@ -18849,9 +19017,9 @@ function f_PunchSet1(zone)
    }
    else if(zone.body_y < 0)
    {
-      if(_loc2_ == 11)
+      if(loc2 == 11)
       {
-         if(_loc3_ == 1)
+         if(loc3 == 1)
          {
             zone.punch_num = 2;
             s_Swing2.start(0,0);
@@ -18875,19 +19043,19 @@ function f_PunchSet1(zone)
          zone.body.gotoAndPlay(1);
       }
    }
-   else if(_loc2_ == 6 and _loc3_ == 1)
+   else if(loc2 == 6 and loc3 == 1)
    {
       zone.punch_group = 6;
       zone.punch_num = 3;
       zone.gotoAndStop("punch6_3");
    }
-   else if(_loc2_ == 6 and _loc3_ == 3 and zone.combo_unlocks[6])
+   else if(loc2 == 6 and loc3 == 3 and zone.combo_unlocks[6])
    {
       zone.punch_group = 6;
       zone.punch_num = 4;
       zone.gotoAndStop("punch6_4");
    }
-   else if(_loc2_ == 1)
+   else if(loc2 == 1)
    {
       if(zone.punch_num == 1)
       {
@@ -18925,8 +19093,8 @@ function f_PunchSet1(zone)
 function f_PunchSet2(zone)
 {
    zone.punching = true;
-   var _loc3_ = zone.punch_group;
-   var _loc2_ = zone.punch_num;
+   var loc3 = zone.punch_group;
+   var loc2 = zone.punch_num;
    if(zone.magicmode)
    {
       if(zone.body_y < -5)
@@ -18940,19 +19108,19 @@ function f_PunchSet2(zone)
             }
             if(zone.magic_type == 3)
             {
-               var _loc4_ = int(zone.magic_max * 0.5);
-               if(_loc4_ < 25)
+               var loc4 = int(zone.magic_max * 0.5);
+               if(loc4 < 25)
                {
-                  _loc4_ = 25;
+                  loc4 = 25;
                }
             }
             else
             {
-               _loc4_ = 25;
+               loc4 = 25;
             }
-            if(zone.magic_current >= _loc4_)
+            if(zone.magic_current >= loc4)
             {
-               f_Magic(zone,- _loc4_);
+               f_Magic(zone,- loc4);
                if(zone.magic_type == 16 or zone.magic_type == 20)
                {
                   zone.gotoAndStop("tornado");
@@ -18987,19 +19155,19 @@ function f_PunchSet2(zone)
          }
          if(zone.magic_type == 3 or zone.magic_type == 27 or zone.magic_type == 30)
          {
-            _loc4_ = int(zone.magic_max * 0.5);
-            if(_loc4_ < 25)
+            loc4 = int(zone.magic_max * 0.5);
+            if(loc4 < 25)
             {
-               _loc4_ = 25;
+               loc4 = 25;
             }
          }
          else
          {
-            _loc4_ = 25;
+            loc4 = 25;
          }
-         if(zone.magic_current >= _loc4_)
+         if(zone.magic_current >= loc4)
          {
-            f_Magic(zone,- _loc4_);
+            f_Magic(zone,- loc4);
             if(zone.magic_type == 2)
             {
                zone.lightning_timer = 9;
@@ -19029,11 +19197,11 @@ function f_PunchSet2(zone)
    }
    if(zone.body_y < 0)
    {
-      if(_loc3_ == 11 and _loc2_ == 1 and zone.combo_unlocks[3])
+      if(loc3 == 11 and loc2 == 1 and zone.combo_unlocks[3])
       {
          f_Uppercut(zone);
       }
-      else if(_loc3_ == 12 and _loc2_ == 1)
+      else if(loc3 == 12 and loc2 == 1)
       {
          zone.punch_num = 2;
          if(zone.u_punch2_2 == 2)
@@ -19045,13 +19213,13 @@ function f_PunchSet2(zone)
             zone.gotoAndStop("punch2_2");
          }
       }
-      else if(_loc3_ == 12 and _loc2_ == 2)
+      else if(loc3 == 12 and loc2 == 2)
       {
          zone.punch_group = 13;
          zone.punch_num = 1;
          zone.gotoAndStop("punch11_1");
       }
-      else if(_loc3_ == 13)
+      else if(loc3 == 13)
       {
          if(zone.punch_num == 1)
          {
@@ -19105,23 +19273,23 @@ function f_PunchSet2(zone)
    {
       zone.throwmove = false;
    }
-   else if(_loc3_ == 1 and _loc2_ == 1 and zone.combo_unlocks[3])
+   else if(loc3 == 1 and loc2 == 1 and zone.combo_unlocks[3])
    {
       f_Uppercut(zone);
    }
-   else if(_loc3_ == 1 and _loc2_ == 2 and zone.combo_unlocks[4])
+   else if(loc3 == 1 and loc2 == 2 and zone.combo_unlocks[4])
    {
       zone.punch_group = 5;
       zone.punch_num = 1;
       zone.gotoAndStop("punch5_1");
    }
-   else if(_loc3_ == 1 and _loc2_ == 3 and zone.magic_unlocks[1])
+   else if(loc3 == 1 and loc2 == 3 and zone.magic_unlocks[1])
    {
       zone.punch_group = 6;
       zone.punch_num = 1;
       zone.gotoAndStop("punch6_1");
    }
-   else if(_loc3_ == 6 and _loc2_ == 1 and zone.combo_unlocks[6])
+   else if(loc3 == 6 and loc2 == 1 and zone.combo_unlocks[6])
    {
       zone.punch_group = 4;
       zone.punch_num = 4;
@@ -19135,13 +19303,13 @@ function f_PunchSet2(zone)
       }
       zone.gotoAndStop("punch4_4");
    }
-   else if(_loc3_ == 5 and _loc2_ == 1 and zone.combo_unlocks[5])
+   else if(loc3 == 5 and loc2 == 1 and zone.combo_unlocks[5])
    {
       zone.punch_group = 5;
       zone.punch_num = 2;
       zone.gotoAndStop("punch5_2");
    }
-   else if(_loc3_ == 4 and _loc2_ == 2)
+   else if(loc3 == 4 and loc2 == 2)
    {
       zone.punch_group = 2;
       zone.punch_num = 2;
@@ -19158,7 +19326,7 @@ function f_PunchSet2(zone)
    else
    {
       zone.punch_group = 2;
-      if(_loc2_ == 1)
+      if(loc2 == 1)
       {
          zone.punch_num = 2;
          if(zone.u_punch2_2 == 2)
@@ -19170,7 +19338,7 @@ function f_PunchSet2(zone)
             zone.gotoAndStop("punch2_2");
          }
       }
-      else if(_loc2_ == 2 and zone.body_y >= 0)
+      else if(loc2 == 2 and zone.body_y >= 0)
       {
          zone.punch_num = 3;
          zone.gotoAndStop("punch2_3");
@@ -19339,10 +19507,10 @@ function f_PunchSet200(zone)
          zone.throwmove = false;
          return undefined;
       }
-      var _loc2_ = 1;
-      while(_loc2_ <= ripoffs_total)
+      var loc2 = 1;
+      while(loc2 <= ripoffs_total)
       {
-         u_temp = ripoffs["s" + int(_loc2_)];
+         u_temp = ripoffs["s" + int(loc2)];
          if(u_temp.active and !u_temp.busy)
          {
             if(Math.abs(zone.y - u_temp.ripoff.y) < u_temp.ripoff.h)
@@ -19364,7 +19532,7 @@ function f_PunchSet200(zone)
                }
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
    if(zone.dashing and zone.truespeed or zone.jumping)
@@ -19530,49 +19698,49 @@ function f_PunchSet300(zone)
 }
 function f_EnemyAttackHit(zone)
 {
-   var _loc1_ = loader.game.game.p1;
-   if(Math.abs(zone.x - _loc1_.x) < 101)
+   var loc1 = loader.game.game.p1;
+   if(Math.abs(zone.x - loc1.x) < 101)
    {
-      if(Math.abs(zone.y - _loc1_.y) <= 10)
+      if(Math.abs(zone.y - loc1.y) <= 10)
       {
-         if(_loc1_.health > 0)
+         if(loc1.health > 0)
          {
-            if(_loc1_.x < zone.x and _loc1_._xscale > 0)
+            if(loc1.x < zone.x and loc1._xscale > 0)
             {
-               var _loc3_ = true;
+               var loc3 = true;
             }
-            else if(_loc1_.x > zone.x and _loc1_._xscale < 0)
+            else if(loc1.x > zone.x and loc1._xscale < 0)
             {
-               _loc3_ = true;
+               loc3 = true;
             }
             else
             {
-               _loc3_ = false;
+               loc3 = false;
             }
-            if(_loc1_.blocking and !_loc1_.ladder and _loc3_)
+            if(loc1.blocking and !loc1.ladder and loc3)
             {
                f_BlockSound();
-               if(_loc1_.humanoid)
+               if(loc1.humanoid)
                {
-                  _loc1_.gotoAndStop("block1");
-                  _loc1_.body.body.gotoAndPlay(1);
-                  _loc1_.punching = false;
-                  _loc1_.punched = false;
+                  loc1.gotoAndStop("block1");
+                  loc1.body.body.gotoAndPlay(1);
+                  loc1.punching = false;
+                  loc1.punched = false;
                }
                zone.speed_toss_x = 10;
                zone.gotoAndStop("blocked");
             }
             else
             {
-               f_Damage(_loc1_,10,DMG_MELEE,DMGFLAG_JUGGLE,random(8) + 12,- (random(10) + 10));
-               if(_loc1_.x < zone.x and _loc1_._xscale < 0 or _loc1_.x >= zone.x and _loc1_._xscale > 0)
+               f_Damage(loc1,10,DMG_MELEE,DMGFLAG_JUGGLE,random(8) + 12,- (random(10) + 10));
+               if(loc1.x < zone.x and loc1._xscale < 0 or loc1.x >= zone.x and loc1._xscale > 0)
                {
-                  f_FlipChar(_loc1_);
+                  f_FlipChar(loc1);
                }
-               _loc1_.speed_toss_y = - (random(10) + 10);
-               _loc1_.speed_toss_x = random(8) + 12;
-               f_FX(_loc1_.x,_loc1_.body_y + _loc1_.y,int(_loc1_.y) + 7,"impact1",100,100);
-               f_CallJuggle1(_loc1_);
+               loc1.speed_toss_y = - (random(10) + 10);
+               loc1.speed_toss_x = random(8) + 12;
+               f_FX(loc1.x,loc1.body_y + loc1.y,int(loc1.y) + 7,"impact1",100,100);
+               f_CallJuggle1(loc1);
                s_Punch3.start(0,0);
             }
          }
@@ -19581,44 +19749,44 @@ function f_EnemyAttackHit(zone)
 }
 function f_EnemyAttack(zone)
 {
-   var _loc7_ = zone.x;
-   var _loc6_ = zone.y;
+   var loc7 = zone.x;
+   var loc6 = zone.y;
    u_point.x = 0;
    u_point.y = 0;
    f_LocalToGame(zone.body.punch_pt,u_point);
-   var _loc5_ = u_point.x;
-   var _loc4_ = u_point.y;
-   var _loc13_ = zone.body.punch_pt._width / 2 * (Math.abs(zone._xscale) / 100);
-   var _loc12_ = zone.body.punch_pt._height / 2 * (Math.abs(zone._yscale) / 100);
-   var _loc10_ = _loc4_ - _loc12_;
-   var _loc8_ = _loc4_ + _loc12_;
-   var _loc11_ = _loc5_ - _loc13_;
-   var _loc9_ = _loc5_ + _loc13_;
+   var loc5 = u_point.x;
+   var loc4 = u_point.y;
+   var loc13 = zone.body.punch_pt._width / 2 * (Math.abs(zone._xscale) / 100);
+   var loc12 = zone.body.punch_pt._height / 2 * (Math.abs(zone._yscale) / 100);
+   var loc10 = loc4 - loc12;
+   var loc8 = loc4 + loc12;
+   var loc11 = loc5 - loc13;
+   var loc9 = loc5 + loc13;
    zone.hit_impact = false;
    if(!zone.attack_pow)
    {
       zone.attack_pow = zone.punch_pow_low;
    }
-   var _loc3_ = undefined;
-   var _loc1_ = undefined;
-   _loc1_ = 1;
-   while(_loc1_ <= total_players)
+   var loc3 = undefined;
+   var loc1 = undefined;
+   loc1 = 1;
+   while(loc1 <= total_players)
    {
-      _loc3_ = playerArrayOb["p_pt" + int(_loc1_)];
-      f_MeleeCheckHit(zone,_loc3_,_loc7_,_loc6_,_loc5_,_loc4_,_loc10_,_loc8_,_loc11_,_loc9_);
-      _loc1_ = _loc1_ + 1;
+      loc3 = playerArrayOb["p_pt" + int(loc1)];
+      f_MeleeCheckHit(zone,loc3,loc7,loc6,loc5,loc4,loc10,loc8,loc11,loc9);
+      loc1 = loc1 + 1;
    }
    if(zone.damage_all)
    {
-      _loc1_ = 1;
-      while(_loc1_ <= total_enemies)
+      loc1 = 1;
+      while(loc1 <= total_enemies)
       {
-         _loc3_ = enemyArrayOb["e" + int(_loc1_)];
-         if(_loc3_ != zone)
+         loc3 = enemyArrayOb["e" + int(loc1)];
+         if(loc3 != zone)
          {
-            f_MeleeCheckHit(zone,_loc3_,_loc7_,_loc6_,_loc5_,_loc4_,_loc10_,_loc8_,_loc11_,_loc9_);
+            f_MeleeCheckHit(zone,loc3,loc7,loc6,loc5,loc4,loc10,loc8,loc11,loc9);
          }
-         _loc1_ = _loc1_ + 1;
+         loc1 = loc1 + 1;
       }
    }
    f_MeleeImpactSound(zone);
@@ -19626,31 +19794,31 @@ function f_EnemyAttack(zone)
 }
 function f_EnemyAttackEmbed(zone, punch_pt)
 {
-   var _loc7_ = zone.x;
-   var _loc6_ = zone.y;
+   var loc7 = zone.x;
+   var loc6 = zone.y;
    u_point.x = 0;
    u_point.y = 0;
    f_LocalToGame(punch_pt,u_point);
-   var _loc5_ = u_point.x;
-   var _loc4_ = u_point.y;
-   var _loc13_ = punch_pt._width / 2 * (Math.abs(zone._xscale) / 100);
-   var _loc12_ = punch_pt._height / 2 * (Math.abs(zone._yscale) / 100);
-   var _loc10_ = _loc4_ - _loc12_;
-   var _loc8_ = _loc4_ + _loc12_;
-   var _loc11_ = _loc5_ - _loc13_;
-   var _loc9_ = _loc5_ + _loc13_;
+   var loc5 = u_point.x;
+   var loc4 = u_point.y;
+   var loc13 = punch_pt._width / 2 * (Math.abs(zone._xscale) / 100);
+   var loc12 = punch_pt._height / 2 * (Math.abs(zone._yscale) / 100);
+   var loc10 = loc4 - loc12;
+   var loc8 = loc4 + loc12;
+   var loc11 = loc5 - loc13;
+   var loc9 = loc5 + loc13;
    zone.hit_impact = false;
    if(!zone.attack_pow)
    {
       zone.attack_pow = zone.punch_pow_low;
    }
-   var _loc3_ = undefined;
-   var _loc1_ = 1;
-   while(_loc1_ <= total_players)
+   var loc3 = undefined;
+   var loc1 = 1;
+   while(loc1 <= total_players)
    {
-      _loc3_ = playerArrayOb["p_pt" + int(_loc1_)];
-      f_MeleeCheckHit(zone,_loc3_,_loc7_,_loc6_,_loc5_,_loc4_,_loc10_,_loc8_,_loc11_,_loc9_);
-      _loc1_ = _loc1_ + 1;
+      loc3 = playerArrayOb["p_pt" + int(loc1)];
+      f_MeleeCheckHit(zone,loc3,loc7,loc6,loc5,loc4,loc10,loc8,loc11,loc9);
+      loc1 = loc1 + 1;
    }
    f_MeleeImpactSound(zone);
    return zone.hit_impact;
@@ -19677,16 +19845,16 @@ function f_FireClock(zone)
       }
       if(zone.fire_timer % 3 == 0)
       {
-         var _loc2_ = random(40) + 80;
+         var loc2 = random(40) + 80;
          if(random(6) == 1)
          {
-            var _loc3_ = zone.y + 1;
+            var loc3 = zone.y + 1;
          }
          else
          {
-            _loc3_ = zone.y - 1;
+            loc3 = zone.y - 1;
          }
-         f_FX(zone.x + random(zone.w / 2) - zone.w / 4,zone.y + zone.body_y - random(zone.h),_loc3_,"fire",_loc2_,_loc2_);
+         f_FX(zone.x + random(zone.w / 2) - zone.w / 4,zone.y + zone.body_y - random(zone.h),loc3,"fire",loc2,loc2);
       }
       if(zone.fire_timer % 15 == 0)
       {
@@ -19708,9 +19876,9 @@ function f_SmokingClock(zone)
    {
       if(zone.smoking_timer % 2 == 0)
       {
-         var _loc2_ = 70 + random(30);
-         var _loc3_ = f_FX(zone.x,zone.y + zone.body_y - 20,zone.y - 1,"smokefade",_loc2_,_loc2_);
-         f_SmokeFade(_loc3_);
+         var loc2 = 70 + random(30);
+         var loc3 = f_FX(zone.x,zone.y + zone.body_y - 20,zone.y - 1,"smokefade",loc2,loc2);
+         f_SmokeFade(loc3);
       }
       zone.smoking_timer = zone.smoking_timer - 1;
       if(zone.smoking_timer <= 0)
@@ -19725,9 +19893,9 @@ function f_PaintClock(zone)
    {
       if(zone.paint_timer % 3 == 0)
       {
-         var _loc2_ = 70 + random(30);
-         var _loc3_ = f_FX(zone.x - 15 + random(30),zone.y + zone.body_y - (20 + random(10)),zone.y - 1,"paintswirl2",_loc2_,_loc2_);
-         _loc3_.body.body.body.body.gotoAndStop(zone.paint_type);
+         var loc2 = 70 + random(30);
+         var loc3 = f_FX(zone.x - 15 + random(30),zone.y + zone.body_y - (20 + random(10)),zone.y - 1,"paintswirl2",loc2,loc2);
+         loc3.body.body.body.body.gotoAndStop(zone.paint_type);
       }
       zone.paint_timer = zone.paint_timer - 1;
    }
@@ -19746,8 +19914,8 @@ function f_SparkClock(zone)
    {
       if(zone.spark_timer % 2 == 0)
       {
-         var _loc2_ = zone.y + 1;
-         var _loc3_ = f_FX(zone.x,zone.y,_loc2_,level_dust,zone._xscale,100);
+         var loc2 = zone.y + 1;
+         var loc3 = f_FX(zone.x,zone.y,loc2,level_dust,zone._xscale,100);
       }
       zone.spark_timer = zone.spark_timer - 1;
    }
@@ -19765,24 +19933,24 @@ function f_SparkleEffectClock(zone)
 }
 function f_RandomOverlay(zone, name)
 {
-   var _loc2_ = random(40) + 80;
+   var loc2 = random(40) + 80;
    if(random(3) == 1)
    {
-      var _loc3_ = zone.y - 1;
+      var loc3 = zone.y - 1;
    }
    else
    {
-      _loc3_ = zone.y + 1;
+      loc3 = zone.y + 1;
    }
    if(zone.h)
    {
-      var _loc4_ = zone.h;
+      var loc4 = zone.h;
    }
    else
    {
-      _loc4_ = zone._height;
+      loc4 = zone._height;
    }
-   f_FX(zone.x + random(zone.w) - zone.w / 2,zone.y + zone.body_y - random(_loc4_),_loc3_,name,_loc2_,_loc2_);
+   f_FX(zone.x + random(zone.w) - zone.w / 2,zone.y + zone.body_y - random(loc4),loc3,name,loc2,loc2);
 }
 function f_BeefyClock(zone)
 {
@@ -19793,8 +19961,8 @@ function f_BeefyClock(zone)
          zone.beefy_timer = zone.beefy_timer - 1;
          if(zone.beefy_timer % 30 == 0)
          {
-            var _loc3_ = f_FX(zone.x,zone.y - 150,zone.y + 5,"beefycount",100,100);
-            f_ShowVal(_loc3_,zone.beefy_timer / 30,color_gold);
+            var loc3 = f_FX(zone.x,zone.y - 150,zone.y + 5,"beefycount",100,100);
+            f_ShowVal(loc3,zone.beefy_timer / 30,color_gold);
             if(zone.beefy_timer / 30 == 1)
             {
                zone.beefy_smoke_timer = 60;
@@ -19810,8 +19978,8 @@ function f_BeefyClock(zone)
    {
       if(zone.beefy_smoke_timer % 2 == 0)
       {
-         var _loc2_ = 80 + random(30);
-         var _loc4_ = f_FX(zone.x - 40 + random(80),zone.y + zone.body_y + zone.body_table_y - random(60),zone.y + 2,"beefysmoke",_loc2_,_loc2_);
+         var loc2 = 80 + random(30);
+         var loc4 = f_FX(zone.x - 40 + random(80),zone.y + zone.body_y + zone.body_table_y - random(60),zone.y + 2,"beefysmoke",loc2,loc2);
       }
       zone.beefy_smoke_timer = zone.beefy_smoke_timer - 1;
    }
@@ -19856,10 +20024,10 @@ function f_PoisonClock(zone)
 }
 function f_MagicClock(zone)
 {
-   var _loc3_ = random(40) + 80;
-   var _loc2_ = f_FX(zone.x,zone.y,zone.y - 6,"glowset",_loc3_,_loc3_);
-   _loc2_.magic_type = zone.magic_type;
-   _loc2_.body._y = zone.body_y - 40;
+   var loc3 = random(40) + 80;
+   var loc2 = f_FX(zone.x,zone.y,zone.y - 6,"glowset",loc3,loc3);
+   loc2.magic_type = zone.magic_type;
+   loc2.body._y = zone.body_y - 40;
 }
 function f_EnemyClock(zone)
 {
@@ -19889,10 +20057,10 @@ function f_EnemyMagicClock(zone)
       {
          if(zone.magicclock % 2 == 0)
          {
-            var _loc3_ = random(40) + 80;
-            var _loc2_ = f_FX(zone.x,zone.y,zone.y - 6,"glowset",_loc3_,_loc3_);
-            _loc2_.magic_type = zone.magic_type;
-            _loc2_.body._y = zone.body_y - 40;
+            var loc3 = random(40) + 80;
+            var loc2 = f_FX(zone.x,zone.y,zone.y - 6,"glowset",loc3,loc3);
+            loc2.magic_type = zone.magic_type;
+            loc2.body._y = zone.body_y - 40;
          }
          if(zone.magic_timer > 1)
          {
@@ -19903,45 +20071,45 @@ function f_EnemyMagicClock(zone)
 }
 function f_SparkShrapnel(x, y, body_y)
 {
-   var _loc2_ = random(20) + 40;
-   var _loc1_ = f_FX(x,y,y,"spark",_loc2_,_loc2_);
-   _loc1_.speed_x = random(10) - 5;
-   _loc1_.speed_y = - (random(10) + 50);
-   _loc1_.gravity = random(2) + 8;
-   _loc1_.body._y = body_y;
-   _loc1_.hit_function = f_ShrapnelVanish;
+   var loc2 = random(20) + 40;
+   var loc1 = f_FX(x,y,y,"spark",loc2,loc2);
+   loc1.speed_x = random(10) - 5;
+   loc1.speed_y = - (random(10) + 50);
+   loc1.gravity = random(2) + 8;
+   loc1.body._y = body_y;
+   loc1.hit_function = f_ShrapnelVanish;
 }
 function f_StoneWallShrapnel(x, y, body_y, left)
 {
-   var _loc2_ = random(40) + 60;
-   var _loc1_ = f_FX(x,y,y,"stonewall_shrapnel",_loc2_,_loc2_);
-   _loc1_.speed_x = random(10);
+   var loc2 = random(40) + 60;
+   var loc1 = f_FX(x,y,y,"stonewall_shrapnel",loc2,loc2);
+   loc1.speed_x = random(10);
    if(left)
    {
-      _loc1_.speed_x *= -1;
+      loc1.speed_x *= -1;
    }
-   _loc1_.speed_y = - (random(20) + 10);
-   _loc1_.gravity = 8;
-   _loc1_.body._y = body_y;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1 + random(2);
-   _loc1_.hit_function = f_RubbleBounce;
+   loc1.speed_y = - (random(20) + 10);
+   loc1.gravity = 8;
+   loc1.body._y = body_y;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1 + random(2);
+   loc1.hit_function = f_RubbleBounce;
 }
 function f_DoorShrapnel(x, y, body_y, left)
 {
-   var _loc2_ = random(60) + 80;
-   var _loc1_ = f_FX(x,y,y,"door_shrapnel",_loc2_,_loc2_);
-   _loc1_.speed_x = random(10);
+   var loc2 = random(60) + 80;
+   var loc1 = f_FX(x,y,y,"door_shrapnel",loc2,loc2);
+   loc1.speed_x = random(10);
    if(left)
    {
-      _loc1_.speed_x *= -1;
+      loc1.speed_x *= -1;
    }
-   _loc1_.speed_y = - (random(20) + 10);
-   _loc1_.gravity = 8;
-   _loc1_.body._y = body_y;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1 + random(2);
-   _loc1_.hit_function = f_RubbleBounce;
+   loc1.speed_y = - (random(20) + 10);
+   loc1.gravity = 8;
+   loc1.body._y = body_y;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1 + random(2);
+   loc1.hit_function = f_RubbleBounce;
 }
 function f_CannonBallBombExplode(zone)
 {
@@ -19963,27 +20131,27 @@ function f_SmokeFade(u_temp)
    u_temp.body1._rotation = random(50) - 25;
    u_temp.body1._x = random(40) - 20;
    u_temp.body1._y = random(20) - 10;
-   var _loc2_ = random(30) + 70;
-   u_temp.body1._xscale = _loc2_;
-   u_temp.body1._yscale = _loc2_;
+   var loc2 = random(30) + 70;
+   u_temp.body1._xscale = loc2;
+   u_temp.body1._yscale = loc2;
    u_temp.body2._rotation = random(50) - 25;
    u_temp.body2._x = random(40) - 20;
    u_temp.body2._y = random(20) - 10;
-   _loc2_ = random(30) + 70;
-   u_temp.body2._xscale = _loc2_;
-   u_temp.body2._yscale = _loc2_;
+   loc2 = random(30) + 70;
+   u_temp.body2._xscale = loc2;
+   u_temp.body2._yscale = loc2;
    u_temp.body3._rotation = random(50) - 25;
    u_temp.body3._x = random(40) - 20;
    u_temp.body3._y = random(20) - 10;
-   _loc2_ = random(30) + 70;
-   u_temp.body3._xscale = _loc2_;
-   u_temp.body3._yscale = _loc2_;
+   loc2 = random(30) + 70;
+   u_temp.body3._xscale = loc2;
+   u_temp.body3._yscale = loc2;
    u_temp.body4._rotation = random(50) - 25;
    u_temp.body4._x = random(40) - 20;
    u_temp.body4._y = random(20) - 10;
-   _loc2_ = random(30) + 70;
-   u_temp.body4._xscale = _loc2_;
-   u_temp.body4._yscale = _loc2_;
+   loc2 = random(30) + 70;
+   u_temp.body4._xscale = loc2;
+   u_temp.body4._yscale = loc2;
 }
 function f_CannonBallTrail(zone)
 {
@@ -19992,35 +20160,35 @@ function f_CannonBallTrail(zone)
       zone.trail_timer = zone.trail_timer + 1;
       if(zone.trail_timer % 3 == 0)
       {
-         var _loc4_ = random(30) + 70;
-         var _loc3_ = f_FX(zone.x,zone.y + zone.body._y,zone.y - 1,"smokefade",100,100);
-         f_SmokeFade(_loc3_);
+         var loc4 = random(30) + 70;
+         var loc3 = f_FX(zone.x,zone.y + zone.body._y,zone.y - 1,"smokefade",100,100);
+         f_SmokeFade(loc3);
       }
    }
    else
    {
-      _loc3_ = f_FX(zone.x,zone.y + zone.body._y,zone.y - 1,"smokefade",100,100);
-      f_SmokeFade(_loc3_);
+      loc3 = f_FX(zone.x,zone.y + zone.body._y,zone.y - 1,"smokefade",100,100);
+      f_SmokeFade(loc3);
    }
-   return _loc3_;
+   return loc3;
 }
 function f_CannonBallBomb(x, y, body_y, left)
 {
-   var _loc2_ = 100;
-   var _loc1_ = f_FX(x,y,y,"cannonball_bomb",_loc2_,_loc2_);
-   _loc1_.speed_x = 20;
+   var loc2 = 100;
+   var loc1 = f_FX(x,y,y,"cannonball_bomb",loc2,loc2);
+   loc1.speed_x = 20;
    if(left)
    {
-      f_FlipChar(_loc1_);
-      _loc1_.speed_x *= -1;
+      f_FlipChar(loc1);
+      loc1.speed_x *= -1;
    }
-   _loc1_.speed_y = -20;
-   _loc1_.gravity = 5;
-   _loc1_.body._y = body_y;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 0;
-   _loc1_.hit_function = f_CannonBallBombExplode;
-   return _loc1_;
+   loc1.speed_y = -20;
+   loc1.gravity = 5;
+   loc1.body._y = body_y;
+   loc1.bounces = 0;
+   loc1.bounces_max = 0;
+   loc1.hit_function = f_CannonBallBombExplode;
+   return loc1;
 }
 function f_CannonBallExplode(zone)
 {
@@ -20066,163 +20234,163 @@ function f_SkeletonShrapnel(zone)
 {
    if(zone.hitby.x > zone.x)
    {
-      var _loc5_ = -1;
+      var loc5 = -1;
    }
    else
    {
-      _loc5_ = 1;
+      loc5 = 1;
    }
    if(zone._xscale > 0)
    {
-      var _loc8_ = 1;
-      var _loc7_ = -50;
+      var loc8 = 1;
+      var loc7 = -50;
    }
    else
    {
-      _loc8_ = -1;
-      _loc7_ = 50;
+      loc8 = -1;
+      loc7 = 50;
    }
-   var _loc4_ = zone.x;
-   var _loc2_ = zone.y;
-   var _loc3_ = zone.body_y;
-   var _loc1_ = f_FX(_loc4_,_loc2_,_loc2_ + 1,"skull",100 * _loc8_,100);
-   _loc1_.speed_x = (1 + random(2)) * _loc5_;
-   _loc1_.speed_y = - (2 + random(2));
-   _loc1_.gravity = 0.5;
-   _loc1_.body._y = _loc3_ - (65 + random(7));
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_,_loc2_,_loc2_,"ribs",100 * _loc8_,100);
-   _loc1_.speed_x = 0.5 * _loc5_;
-   _loc1_.speed_y = 0;
-   _loc1_.gravity = 0.1;
-   _loc1_.body._y = _loc3_ - 30;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_ + 20,_loc2_,_loc2_,"armbone",100,100);
-   _loc1_.speed_x = 3 * _loc5_;
-   _loc1_.speed_y = -2;
-   _loc1_.gravity = 0.4;
-   _loc1_.body._y = _loc3_ - 30;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 2;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_ - 20,_loc2_,_loc2_,"armbone",100,100);
-   _loc1_.speed_x = 2 * _loc5_;
-   _loc1_.speed_y = -1;
-   _loc1_.gravity = 0.4;
-   _loc1_.body._y = _loc3_ - 30;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 2;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_ + 10,_loc2_,_loc2_,"legbone",100,100);
-   _loc1_.speed_x = 0.1 * _loc5_;
-   _loc1_.speed_y = 0;
-   _loc1_.gravity = 0.1;
-   _loc1_.body._y = _loc3_;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 10;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_ - 10,_loc2_,_loc2_,"legbone",100,100);
-   _loc1_.speed_x = 0.1 * _loc5_;
-   _loc1_.speed_y = 0;
-   _loc1_.gravity = 0.1;
-   _loc1_.body._y = _loc3_;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 10;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_ + _loc7_,_loc2_,_loc2_,"smallgib1",100,100);
-   _loc1_.speed_x = 6 * _loc5_;
-   _loc1_.speed_y = -8;
-   _loc1_.gravity = 1;
-   _loc1_.body._y = _loc3_ - 50;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 2;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_ + _loc7_,_loc2_,_loc2_,"smallgib2",100,100);
-   _loc1_.speed_x = 8 * _loc5_;
-   _loc1_.speed_y = -7;
-   _loc1_.gravity = 1;
-   _loc1_.body._y = _loc3_ - 20;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 2;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_ + _loc7_,_loc2_,_loc2_,"smallgib3",100,100);
-   _loc1_.speed_x = 6 * _loc5_;
-   _loc1_.speed_y = -6;
-   _loc1_.gravity = 1;
-   _loc1_.body._y = _loc3_ - 30;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 2;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   _loc1_ = f_FX(_loc4_ + _loc7_,_loc2_,_loc2_,"smallgib4",100,100);
-   _loc1_.speed_x = 5 * _loc5_;
-   _loc1_.speed_y = -5;
-   _loc1_.gravity = 1;
-   _loc1_.body._y = _loc3_;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 2;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   f_BloodBathShrapnel(_loc4_,_loc2_,_loc3_);
+   var loc4 = zone.x;
+   var loc2 = zone.y;
+   var loc3 = zone.body_y;
+   var loc1 = f_FX(loc4,loc2,loc2 + 1,"skull",100 * loc8,100);
+   loc1.speed_x = (1 + random(2)) * loc5;
+   loc1.speed_y = - (2 + random(2));
+   loc1.gravity = 0.5;
+   loc1.body._y = loc3 - (65 + random(7));
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4,loc2,loc2,"ribs",100 * loc8,100);
+   loc1.speed_x = 0.5 * loc5;
+   loc1.speed_y = 0;
+   loc1.gravity = 0.1;
+   loc1.body._y = loc3 - 30;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4 + 20,loc2,loc2,"armbone",100,100);
+   loc1.speed_x = 3 * loc5;
+   loc1.speed_y = -2;
+   loc1.gravity = 0.4;
+   loc1.body._y = loc3 - 30;
+   loc1.bounces = 0;
+   loc1.bounces_max = 2;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4 - 20,loc2,loc2,"armbone",100,100);
+   loc1.speed_x = 2 * loc5;
+   loc1.speed_y = -1;
+   loc1.gravity = 0.4;
+   loc1.body._y = loc3 - 30;
+   loc1.bounces = 0;
+   loc1.bounces_max = 2;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4 + 10,loc2,loc2,"legbone",100,100);
+   loc1.speed_x = 0.1 * loc5;
+   loc1.speed_y = 0;
+   loc1.gravity = 0.1;
+   loc1.body._y = loc3;
+   loc1.bounces = 0;
+   loc1.bounces_max = 10;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4 - 10,loc2,loc2,"legbone",100,100);
+   loc1.speed_x = 0.1 * loc5;
+   loc1.speed_y = 0;
+   loc1.gravity = 0.1;
+   loc1.body._y = loc3;
+   loc1.bounces = 0;
+   loc1.bounces_max = 10;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4 + loc7,loc2,loc2,"smallgib1",100,100);
+   loc1.speed_x = 6 * loc5;
+   loc1.speed_y = -8;
+   loc1.gravity = 1;
+   loc1.body._y = loc3 - 50;
+   loc1.bounces = 0;
+   loc1.bounces_max = 2;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4 + loc7,loc2,loc2,"smallgib2",100,100);
+   loc1.speed_x = 8 * loc5;
+   loc1.speed_y = -7;
+   loc1.gravity = 1;
+   loc1.body._y = loc3 - 20;
+   loc1.bounces = 0;
+   loc1.bounces_max = 2;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4 + loc7,loc2,loc2,"smallgib3",100,100);
+   loc1.speed_x = 6 * loc5;
+   loc1.speed_y = -6;
+   loc1.gravity = 1;
+   loc1.body._y = loc3 - 30;
+   loc1.bounces = 0;
+   loc1.bounces_max = 2;
+   loc1.hit_function = f_ShrapnelBounce;
+   loc1 = f_FX(loc4 + loc7,loc2,loc2,"smallgib4",100,100);
+   loc1.speed_x = 5 * loc5;
+   loc1.speed_y = -5;
+   loc1.gravity = 1;
+   loc1.body._y = loc3;
+   loc1.bounces = 0;
+   loc1.bounces_max = 2;
+   loc1.hit_function = f_ShrapnelBounce;
+   f_BloodBathShrapnel(loc4,loc2,loc3);
 }
 function f_BloodShrapnel(x, y, body_y)
 {
-   var _loc3_ = x + random(20) - 10;
-   var _loc2_ = random(40) + 60;
-   var _loc1_ = f_FX(_loc3_,y,y,"blood_drop",_loc2_,_loc2_);
-   _loc1_.nospin = true;
-   _loc1_.speed_x = random(30) - 15;
-   _loc1_.speed_y = - (random(10) + 20);
-   _loc1_.gravity = random(2) + 2;
-   _loc1_.body._y = body_y - y + random(10) - 5;
-   _loc1_.hit_function = f_ShrapnelVanish;
+   var loc3 = x + random(20) - 10;
+   var loc2 = random(40) + 60;
+   var loc1 = f_FX(loc3,y,y,"blood_drop",loc2,loc2);
+   loc1.nospin = true;
+   loc1.speed_x = random(30) - 15;
+   loc1.speed_y = - (random(10) + 20);
+   loc1.gravity = random(2) + 2;
+   loc1.body._y = body_y - y + random(10) - 5;
+   loc1.hit_function = f_ShrapnelVanish;
 }
 function f_BloodShrapnel2(x, y, body_y, noblood)
 {
-   var _loc3_ = x + random(20) - 10;
-   var _loc2_ = random(40) + 60;
-   var _loc1_ = f_FX(_loc3_,y,y,"blood_drop",_loc2_,_loc2_);
-   _loc1_.nospin = true;
-   _loc1_.speed_x = random(12) - 6;
-   _loc1_.speed_y = - (random(10) + 5);
-   _loc1_.gravity = 1;
+   var loc3 = x + random(20) - 10;
+   var loc2 = random(40) + 60;
+   var loc1 = f_FX(loc3,y,y,"blood_drop",loc2,loc2);
+   loc1.nospin = true;
+   loc1.speed_x = random(12) - 6;
+   loc1.speed_y = - (random(10) + 5);
+   loc1.gravity = 1;
    if(noblood)
    {
-      _loc1_.noblood = true;
+      loc1.noblood = true;
    }
-   _loc1_.body._y = body_y - y + random(10) - 5;
-   _loc1_.hit_function = f_ShrapnelVanish;
+   loc1.body._y = body_y - y + random(10) - 5;
+   loc1.hit_function = f_ShrapnelVanish;
 }
 function f_GeneralShrapnel(u_temp2, x, y, body_y, u_size)
 {
-   var _loc1_ = f_FX(x,y,y,u_temp2,u_size,100);
-   _loc1_.nospin = true;
-   _loc1_.speed_x = random(4) + 4;
-   _loc1_.speed_y = - (random(7) + 7);
-   _loc1_.gravity = 2;
-   _loc1_.body._y = body_y;
-   _loc1_.hit_function = f_ShrapnelVanish;
-   return _loc1_;
+   var loc1 = f_FX(x,y,y,u_temp2,u_size,100);
+   loc1.nospin = true;
+   loc1.speed_x = random(4) + 4;
+   loc1.speed_y = - (random(7) + 7);
+   loc1.gravity = 2;
+   loc1.body._y = body_y;
+   loc1.hit_function = f_ShrapnelVanish;
+   return loc1;
 }
 function f_MakeShrapnel(shrapnel_type, x, y, body_y, u_size)
 {
-   var _loc1_ = f_FX(x,y,y,"general_shrapnel",u_size,100);
-   _loc1_.shrapnel_type = shrapnel_type;
-   _loc1_.nospin = false;
-   _loc1_.speed_x = random(6) + 4;
+   var loc1 = f_FX(x,y,y,"general_shrapnel",u_size,100);
+   loc1.shrapnel_type = shrapnel_type;
+   loc1.nospin = false;
+   loc1.speed_x = random(6) + 4;
    if(u_size < 0)
    {
-      _loc1_.speed_x *= -1;
+      loc1.speed_x *= -1;
    }
-   _loc1_.speed_y = - (random(7) + 12);
-   _loc1_.gravity = 2;
-   _loc1_.body._y = body_y;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 2;
-   _loc1_.hit_function = f_ShrapnelBounce;
-   return _loc1_;
+   loc1.speed_y = - (random(7) + 12);
+   loc1.gravity = 2;
+   loc1.body._y = body_y;
+   loc1.bounces = 0;
+   loc1.bounces_max = 2;
+   loc1.hit_function = f_ShrapnelBounce;
+   return loc1;
 }
 function f_BloodBathShrapnel(x, y, body_y, noblood)
 {
@@ -20238,12 +20406,12 @@ function f_SmokeTrail(zone)
 {
    if(zone.trail_timer % 2 == 0)
    {
-      var _loc3_ = random(30) + 30;
-      var _loc1_ = f_FX(zone.x,zone.y,zone.y - 1,"embersmoke",100,100);
-      _loc1_.body._xscale = _loc3_;
-      _loc1_.body._yscale = _loc3_;
-      _loc1_.body._rotation = random(180);
-      _loc1_.body._y = zone.body._y;
+      var loc3 = random(30) + 30;
+      var loc1 = f_FX(zone.x,zone.y,zone.y - 1,"embersmoke",100,100);
+      loc1.body._xscale = loc3;
+      loc1.body._yscale = loc3;
+      loc1.body._rotation = random(180);
+      loc1.body._y = zone.body._y;
    }
    zone.trail_timer = zone.trail_timer + 1;
 }
@@ -20255,49 +20423,49 @@ function f_EmberBounce(zone)
 }
 function f_EmberShrapnel(x, y, body_y)
 {
-   var _loc1_ = f_FX(x,y,y,"ember_shrapnel",100,100);
-   _loc1_.nospin = true;
-   _loc1_.speed_x = random(24) - 12;
-   _loc1_.speed_y = - (random(16) + 10);
-   _loc1_.trail_timer = 2;
-   _loc1_.gravity = random(2) + 1;
-   _loc1_.body._y = body_y;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.hit_function = f_EmberBounce;
-   return _loc1_;
+   var loc1 = f_FX(x,y,y,"ember_shrapnel",100,100);
+   loc1.nospin = true;
+   loc1.speed_x = random(24) - 12;
+   loc1.speed_y = - (random(16) + 10);
+   loc1.trail_timer = 2;
+   loc1.gravity = random(2) + 1;
+   loc1.body._y = body_y;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.hit_function = f_EmberBounce;
+   return loc1;
 }
 function f_HattyGemShrapnel(x, y, body_y, left)
 {
-   var _loc2_ = random(20) + 80;
-   var _loc1_ = f_FX(x,y,y,"hatty_gem_shards",_loc2_,_loc2_);
-   _loc1_.speed_x = random(15);
+   var loc2 = random(20) + 80;
+   var loc1 = f_FX(x,y,y,"hatty_gem_shards",loc2,loc2);
+   loc1.speed_x = random(15);
    if(left)
    {
-      _loc1_.speed_x *= -1;
+      loc1.speed_x *= -1;
    }
-   _loc1_.speed_y = - (random(10) + 30);
-   _loc1_.gravity = random(2) + 6;
-   _loc1_.body._y = body_y;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.hit_function = f_IceBounce;
+   loc1.speed_y = - (random(10) + 30);
+   loc1.gravity = random(2) + 6;
+   loc1.body._y = body_y;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.hit_function = f_IceBounce;
 }
 function f_IceShrapnel(x, y, body_y, left)
 {
-   var _loc2_ = random(20) + 80;
-   var _loc1_ = f_FX(x,y,y,"ice_shrapnel",_loc2_,_loc2_);
-   _loc1_.speed_x = random(15);
+   var loc2 = random(20) + 80;
+   var loc1 = f_FX(x,y,y,"ice_shrapnel",loc2,loc2);
+   loc1.speed_x = random(15);
    if(left)
    {
-      _loc1_.speed_x *= -1;
+      loc1.speed_x *= -1;
    }
-   _loc1_.speed_y = - (random(10) + 30);
-   _loc1_.gravity = random(2) + 6;
-   _loc1_.body._y = body_y;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.hit_function = f_IceBounce;
+   loc1.speed_y = - (random(10) + 30);
+   loc1.gravity = random(2) + 6;
+   loc1.body._y = body_y;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.hit_function = f_IceBounce;
 }
 function f_EndFrozen(zone)
 {
@@ -20363,80 +20531,80 @@ function f_GeneralBounce(zone)
 }
 function f_BarrelShrapnel(zone, u_temp2)
 {
-   var _loc4_ = zone.x + random(20) - 10;
-   var _loc3_ = random(20) + 80;
-   var _loc2_ = _loc3_;
+   var loc4 = zone.x + random(20) - 10;
+   var loc3 = random(20) + 80;
+   var loc2 = loc3;
    if(random(2) == 1)
    {
-      _loc2_ *= -1;
+      loc2 *= -1;
    }
-   var _loc1_ = f_FX(_loc4_,zone.y,zone.y + 2,u_temp2,_loc2_,_loc3_);
-   _loc1_.speed_x = random(10) - 5;
-   _loc1_.speed_y = - (random(10) + 16);
-   _loc1_.gravity = random(2) + 3;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.body._y = - random(60);
-   _loc1_.hit_function = f_ShrapnelBounce;
+   var loc1 = f_FX(loc4,zone.y,zone.y + 2,u_temp2,loc2,loc3);
+   loc1.speed_x = random(10) - 5;
+   loc1.speed_y = - (random(10) + 16);
+   loc1.gravity = random(2) + 3;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.body._y = - random(60);
+   loc1.hit_function = f_ShrapnelBounce;
 }
 function f_PlankShrapnel(zone)
 {
-   var _loc4_ = zone.x + random(30) - 15;
-   var _loc3_ = random(20) + 80;
-   var _loc2_ = _loc3_;
+   var loc4 = zone.x + random(30) - 15;
+   var loc3 = random(20) + 80;
+   var loc2 = loc3;
    if(random(2) == 1)
    {
-      _loc2_ *= -1;
+      loc2 *= -1;
    }
-   var _loc1_ = f_FX(_loc4_,zone.y,zone.y + 2,"plank_shrapnel",_loc2_,_loc3_);
-   _loc1_.speed_x = random(20) - 10;
-   _loc1_.speed_y = - (random(10) + 25);
-   _loc1_.gravity = random(2) + 3;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.body._y = - random(60);
-   _loc1_.hit_function = f_ShrapnelBounce;
+   var loc1 = f_FX(loc4,zone.y,zone.y + 2,"plank_shrapnel",loc2,loc3);
+   loc1.speed_x = random(20) - 10;
+   loc1.speed_y = - (random(10) + 25);
+   loc1.gravity = random(2) + 3;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.body._y = - random(60);
+   loc1.hit_function = f_ShrapnelBounce;
 }
 function f_MushroomShrapnelL(zone)
 {
-   var _loc1_ = f_FX(zone.x - 25,zone.y,zone.y,"mushroom1",100,100);
-   _loc1_.speed_x = - (random(4) + 3);
-   _loc1_.speed_y = - (random(10) + 14);
-   _loc1_.gravity = random(2) + 2;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.hit_function = f_ShrapnelBounce;
+   var loc1 = f_FX(zone.x - 25,zone.y,zone.y,"mushroom1",100,100);
+   loc1.speed_x = - (random(4) + 3);
+   loc1.speed_y = - (random(10) + 14);
+   loc1.gravity = random(2) + 2;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.hit_function = f_ShrapnelBounce;
 }
 function f_MushroomShrapnelR(zone)
 {
-   var _loc1_ = f_FX(zone.x + 25,zone.y,zone.y,"mushroom2",100,100);
-   _loc1_.speed_x = random(4) + 3;
-   _loc1_.speed_y = - (random(10) + 14);
-   _loc1_.gravity = random(2) + 2;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1;
-   _loc1_.hit_function = f_ShrapnelBounce;
+   var loc1 = f_FX(zone.x + 25,zone.y,zone.y,"mushroom2",100,100);
+   loc1.speed_x = random(4) + 3;
+   loc1.speed_y = - (random(10) + 14);
+   loc1.gravity = random(2) + 2;
+   loc1.bounces = 0;
+   loc1.bounces_max = 1;
+   loc1.hit_function = f_ShrapnelBounce;
 }
 function f_StoneHeart(zone)
 {
    _root.s_IceShatter.start(0,0);
    f_ScreenShake(0.2,8,zone);
-   var _loc3_ = f_FX(zone.x - 25,zone.y,int(zone.y) + 1,"stoneheart",100,100);
-   _loc3_.body._y -= 30;
-   _loc3_.speed_x = - (random(4) + 3);
-   _loc3_.speed_y = - (random(5) + 19);
-   _loc3_.gravity = 2;
-   _loc3_.bounces = 0;
-   _loc3_.bounces_max = 1;
-   _loc3_.hit_function = f_ShrapnelBounce;
-   _loc3_ = f_FX(zone.x - 25,zone.y,int(zone.y) + 1,"stoneheart",100,100);
-   _loc3_.body._y -= 30;
-   _loc3_.speed_x = random(4) + 3;
-   _loc3_.speed_y = - (random(5) + 21);
-   _loc3_.gravity = 3;
-   _loc3_.bounces = 0;
-   _loc3_.bounces_max = 1;
-   _loc3_.hit_function = f_ShrapnelBounce;
+   var loc3 = f_FX(zone.x - 25,zone.y,int(zone.y) + 1,"stoneheart",100,100);
+   loc3.body._y -= 30;
+   loc3.speed_x = - (random(4) + 3);
+   loc3.speed_y = - (random(5) + 19);
+   loc3.gravity = 2;
+   loc3.bounces = 0;
+   loc3.bounces_max = 1;
+   loc3.hit_function = f_ShrapnelBounce;
+   loc3 = f_FX(zone.x - 25,zone.y,int(zone.y) + 1,"stoneheart",100,100);
+   loc3.body._y -= 30;
+   loc3.speed_x = random(4) + 3;
+   loc3.speed_y = - (random(5) + 21);
+   loc3.gravity = 3;
+   loc3.bounces = 0;
+   loc3.bounces_max = 1;
+   loc3.hit_function = f_ShrapnelBounce;
    f_MakeShrapnel(random(3) + 7,zone.x - 25 + random(50),zone.y,- random(zone.h),100);
    f_MakeShrapnel(random(3) + 7,zone.x - 25 + random(50),zone.y,- random(zone.h),-100);
    f_MakeShrapnel(random(3) + 7,zone.x - 25 + random(50),zone.y,- random(zone.h),100);
@@ -20445,15 +20613,15 @@ function f_StoneHeart(zone)
 }
 function f_GrassShrapnel(zone)
 {
-   var _loc3_ = zone.x + random(20) - 10;
-   var _loc2_ = random(20) + 80;
-   var _loc4_ = "grass" + (random(2) + 1);
-   var _loc1_ = f_FX(_loc3_,zone.y,zone.y,_loc4_,_loc2_,_loc2_);
-   _loc1_.speed_x = random(10) - 5;
-   _loc1_.speed_y = - (random(10) + 8);
-   _loc1_.gravity = random(2) + 1;
-   _loc1_.body._y = - random(50);
-   _loc1_.hit_function = f_ShrapnelVanish;
+   var loc3 = zone.x + random(20) - 10;
+   var loc2 = random(20) + 80;
+   var loc4 = "grass" + (random(2) + 1);
+   var loc1 = f_FX(loc3,zone.y,zone.y,loc4,loc2,loc2);
+   loc1.speed_x = random(10) - 5;
+   loc1.speed_y = - (random(10) + 8);
+   loc1.gravity = random(2) + 1;
+   loc1.body._y = - random(50);
+   loc1.hit_function = f_ShrapnelVanish;
 }
 function f_ShrapnelPermaBounce(zone)
 {
@@ -20514,93 +20682,93 @@ function f_EndHit(zone)
 }
 function f_ProjectileHit(zone)
 {
-   var _loc8_ = false;
-   var _loc3_ = undefined;
+   var loc8 = false;
+   var loc3 = undefined;
    if(zone.owner.human)
    {
-      var _loc4_ = 1;
-      while(_loc4_ <= active_enemies)
+      var loc4 = 1;
+      while(loc4 <= active_enemies)
       {
-         _loc3_ = enemyArrayOb["e" + int(_loc4_)];
-         if(_loc3_.alive)
+         loc3 = enemyArrayOb["e" + int(loc4)];
+         if(loc3.alive)
          {
-            if(_loc3_.fp_CheckYSpace(_loc3_,zone.y))
+            if(loc3.fp_CheckYSpace(loc3,zone.y))
             {
                if(zone._xscale > 0)
                {
-                  if(zone.x + zone._width / 2 > _loc3_.zone.x - _loc3_.zone.w and zone.x - zone._width / 2 < _loc3_.zone.x + _loc3_.zone.w)
+                  if(zone.x + zone._width / 2 > loc3.zone.x - loc3.zone.w and zone.x - zone._width / 2 < loc3.zone.x + loc3.zone.w)
                   {
-                     var _loc9_ = true;
+                     var loc9 = true;
                   }
                   else
                   {
-                     _loc9_ = false;
+                     loc9 = false;
                   }
                }
-               else if(zone.x - zone._width / 2 < _loc3_.zone.x + _loc3_.zone.w and zone.x + zone._width / 2 > _loc3_.zone.x - _loc3_.zone.w)
+               else if(zone.x - zone._width / 2 < loc3.zone.x + loc3.zone.w and zone.x + zone._width / 2 > loc3.zone.x - loc3.zone.w)
                {
-                  _loc9_ = true;
+                  loc9 = true;
                }
                else
                {
-                  _loc9_ = false;
+                  loc9 = false;
                }
-               if(_loc9_)
+               if(loc9)
                {
-                  var _loc7_ = zone.body._y + zone._y;
-                  var _loc6_ = _loc3_.body_y + _loc3_._y;
-                  if(_loc7_ - zone.h <= _loc6_)
+                  var loc7 = zone.body._y + zone._y;
+                  var loc6 = loc3.body_y + loc3._y;
+                  if(loc7 - zone.h <= loc6)
                   {
-                     if(_loc7_ + zone.h >= _loc6_ - _loc3_.h)
+                     if(loc7 + zone.h >= loc6 - loc3.h)
                      {
-                        if(!_loc3_.nohit or zone.hitnohit or _loc3_.body_y < 0)
+                        if(!loc3.nohit or zone.hitnohit or loc3.body_y < 0)
                         {
-                           if(!(zone.splashattack and _loc3_.toss_clock > 0))
+                           if(!(zone.splashattack and loc3.toss_clock > 0))
                            {
                               if(zone.hit_function != _root.f_ProjectileHitBoomerang)
                               {
-                                 if(zone.x > _loc3_.zone.x)
+                                 if(zone.x > loc3.zone.x)
                                  {
-                                    f_SetXY(zone,_loc3_.zone.x + _loc3_.zone.w,zone.y);
+                                    f_SetXY(zone,loc3.zone.x + loc3.zone.w,zone.y);
                                  }
                                  else
                                  {
-                                    f_SetXY(zone,_loc3_.zone.x - _loc3_.zone.w,zone.y);
+                                    f_SetXY(zone,loc3.zone.x - loc3.zone.w,zone.y);
                                  }
                               }
-                              _loc8_ = true;
+                              loc8 = true;
                               zone.victim = undefined;
-                              var _loc10_ = _loc3_.directionaless_blocking or (zone.speed_x >= 0 and _loc3_._xscale < 0 or zone.speed_x <= 0 and _loc3_._xscale > 0);
-                              if(!_loc3_.frozen and !zone.unblockable and _loc3_.blocking and _loc10_)
+                              var loc10 = loc3.directionaless_blocking or (zone.speed_x >= 0 and loc3._xscale < 0 or zone.speed_x <= 0 and loc3._xscale > 0);
+                              if(!loc3.frozen and !zone.unblockable and loc3.blocking and loc10)
                               {
-                                 if(_loc3_.humanoid)
+                                 if(loc3.humanoid)
                                  {
-                                    _loc3_.speed_toss_x = 10;
-                                    _loc3_.gotoAndStop("blocked");
-                                    _loc3_.body.gotoAndPlay(1);
+                                    loc3.speed_toss_x = 10;
+                                    loc3.gotoAndStop("blocked");
+                                    loc3.body.gotoAndPlay(1);
                                  }
                               }
                               else
                               {
-                                 zone.victim = _loc3_;
-                                 _loc3_.hitby = zone.owner;
+                                 zone.victim = loc3;
+                                 loc3.hitby = zone.owner;
                                  if(zone.speed_y > 0)
                                  {
-                                    _loc3_.hitdown = true;
+                                    loc3.hitdown = true;
                                  }
-                                 _loc3_.hitbydamage = zone.attack_pow;
-                                 if(_loc3_.humanoid)
+                                 loc3.hitbydamage = zone.attack_pow;
+                                 if(loc3.humanoid)
                                  {
-                                    if(zone.speed_x > 0 and _loc3_._xscale > 0)
+                                    if(zone.speed_x > 0 and loc3._xscale > 0)
                                     {
-                                       f_FlipChar(_loc3_);
+                                       f_FlipChar(loc3);
                                     }
-                                    else if(zone.speed_x < 0 and _loc3_._xscale < 0)
+                                    else if(zone.speed_x < 0 and loc3._xscale < 0)
                                     {
-                                       f_FlipChar(_loc3_);
+                                       f_FlipChar(loc3);
                                     }
                                  }
-                                 _loc3_.body._y = _loc3_.body_y + _loc3_.body_table_y;
+                                 loc3.body._y = loc3.body_y + loc3.body_table_y;
                               }
                            }
                         }
@@ -20609,68 +20777,68 @@ function f_ProjectileHit(zone)
                }
             }
          }
-         _loc4_ = _loc4_ + 1;
+         loc4 = loc4 + 1;
       }
    }
    if(!zone.owner.human or friendly_fire)
    {
-      _loc4_ = 1;
-      while(_loc4_ <= total_players)
+      loc4 = 1;
+      while(loc4 <= total_players)
       {
-         _loc3_ = playerArrayOb["p_pt" + int(_loc4_)];
-         if(_loc3_.alive and _loc3_ != zone.owner)
+         loc3 = playerArrayOb["p_pt" + int(loc4)];
+         if(loc3.alive and loc3 != zone.owner)
          {
-            if(f_TeamCheck(zone.owner,_loc3_))
+            if(f_TeamCheck(zone.owner,loc3))
             {
-               if(Math.abs(_loc3_.y - zone.y) < 10)
+               if(Math.abs(loc3.y - zone.y) < 10)
                {
-                  if(Math.abs(_loc3_.x - zone.x) < zone._width / 2)
+                  if(Math.abs(loc3.x - zone.x) < zone._width / 2)
                   {
-                     _loc7_ = zone.body._y + zone._y;
-                     _loc6_ = _loc3_.body_y + _loc3_._y;
-                     if(_loc7_ - zone.h <= _loc6_)
+                     loc7 = zone.body._y + zone._y;
+                     loc6 = loc3.body_y + loc3._y;
+                     if(loc7 - zone.h <= loc6)
                      {
-                        if(_loc7_ >= _loc6_ - _loc3_.h)
+                        if(loc7 >= loc6 - loc3.h)
                         {
-                           if(!_loc3_.nohit or zone.hitnohit)
+                           if(!loc3.nohit or zone.hitnohit)
                            {
-                              if(!(zone.splashattack and _loc3_.toss_clock > 0))
+                              if(!(zone.splashattack and loc3.toss_clock > 0))
                               {
-                                 _loc8_ = true;
+                                 loc8 = true;
                                  zone.victim = undefined;
-                                 var _loc5_ = false;
-                                 if(!_loc3_.frozen and _loc3_.blocking and !zone.unblockable)
+                                 var loc5 = false;
+                                 if(!loc3.frozen and loc3.blocking and !zone.unblockable)
                                  {
-                                    if(zone.speed_x <= 0 and _loc3_._xscale > 0)
+                                    if(zone.speed_x <= 0 and loc3._xscale > 0)
                                     {
-                                       _loc5_ = true;
+                                       loc5 = true;
                                     }
-                                    else if(zone.speed_x >= 0 and _loc3_._xscale < 0)
+                                    else if(zone.speed_x >= 0 and loc3._xscale < 0)
                                     {
-                                       _loc5_ = true;
+                                       loc5 = true;
                                     }
                                  }
-                                 if(!_loc5_)
+                                 if(!loc5)
                                  {
-                                    zone.victim = _loc3_;
+                                    zone.victim = loc3;
                                     if(zone.hit_function != _root.f_ProjectileHitBoomerang)
                                     {
-                                       if(zone.speed_x > 0 and _loc3_._xscale > 0)
+                                       if(zone.speed_x > 0 and loc3._xscale > 0)
                                        {
-                                          f_FlipChar(_loc3_);
+                                          f_FlipChar(loc3);
                                        }
-                                       else if(zone.speed_x < 0 and _loc3_._xscale < 0)
+                                       else if(zone.speed_x < 0 and loc3._xscale < 0)
                                        {
-                                          f_FlipChar(_loc3_);
+                                          f_FlipChar(loc3);
                                        }
                                     }
                                  }
                                  else
                                  {
                                     f_BlockSound();
-                                    _loc3_.punching = false;
-                                    _loc3_.punched = false;
-                                    _loc3_.gotoAndStop("block1");
+                                    loc3.punching = false;
+                                    loc3.punched = false;
+                                    loc3.gotoAndStop("block1");
                                  }
                               }
                            }
@@ -20680,10 +20848,10 @@ function f_ProjectileHit(zone)
                }
             }
          }
-         _loc4_ = _loc4_ + 1;
+         loc4 = loc4 + 1;
       }
    }
-   return _loc8_;
+   return loc8;
 }
 function f_ProjectileHitStick(zone)
 {
@@ -20699,16 +20867,16 @@ function f_ProjectileHitStick(zone)
 function f_ProjectileHitStickFall(zone)
 {
    s_arrowHit.start(0,0);
-   var _loc2_ = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"impact2",50,50);
-   _loc2_.owner = zone.owner;
+   var loc2 = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"impact2",50,50);
+   loc2.owner = zone.owner;
    f_RemoveShadow(zone);
    zone.gotoAndStop("remove");
 }
 function f_ProjectileHitSpark(zone)
 {
    s_arrowHit.start(0,0);
-   var _loc2_ = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"impact2",50,50);
-   _loc2_.owner = zone.owner;
+   var loc2 = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"impact2",50,50);
+   loc2.owner = zone.owner;
    f_RemoveShadow(zone);
    zone.gotoAndStop("remove");
 }
@@ -20716,8 +20884,8 @@ function f_ProjectileHitBoomerang(zone)
 {
    if(!zone.victim.stunned)
    {
-      var _loc2_ = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"impact2",50,50);
-      _loc2_.owner = zone.owner;
+      var loc2 = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"impact2",50,50);
+      loc2.owner = zone.owner;
       if(zone.victim.humanoid)
       {
          zone.victim.stunned = true;
@@ -20731,34 +20899,34 @@ function f_ProjectileHitBoomerang(zone)
 }
 function f_ProjectileHitPenguin(zone)
 {
-   var _loc3_ = 100;
+   var loc3 = 100;
    if(zone._xscale < 0)
    {
-      var _loc4_ = - _loc3_;
+      var loc4 = - loc3;
    }
    else
    {
-      _loc4_ = _loc3_;
+      loc4 = loc3;
    }
-   var _loc2_ = f_FX(zone._x,zone._y,zone._y + 5,"penguin_explode",_loc4_,_loc3_);
-   _loc2_.body._y = zone.body._y;
-   _loc2_.projectile_type = zone.projectile_type;
-   _loc2_.owner = zone.owner;
-   _loc2_.attack_pow = zone.attack_pow;
-   _loc2_.victim = zone.victim;
+   var loc2 = f_FX(zone._x,zone._y,zone._y + 5,"penguin_explode",loc4,loc3);
+   loc2.body._y = zone.body._y;
+   loc2.projectile_type = zone.projectile_type;
+   loc2.owner = zone.owner;
+   loc2.attack_pow = zone.attack_pow;
+   loc2.victim = zone.victim;
    if(zone.victim)
    {
-      _loc2_ = zone.victim;
-      _loc2_.hitby = zone.owner;
-      if(!_loc2_.uniquehit)
+      loc2 = zone.victim;
+      loc2.hitby = zone.owner;
+      if(!loc2.uniquehit)
       {
          f_Damage(zone.victim,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE | DMGFLAG_SPARKLE_EFFECT,10,-6);
       }
       else
       {
-         _loc2_.fx_x = zone.x;
-         _loc2_.fx_y = zone.y + zone.body._y;
-         _loc2_.fx_body_y = zone.body._y;
+         loc2.fx_x = zone.x;
+         loc2.fx_y = zone.y + zone.body._y;
+         loc2.fx_body_y = zone.body._y;
          zone.victim.fp_UniqueHit(zone.victim,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE | DMGFLAG_SPARKLE_EFFECT,10,-6);
       }
    }
@@ -20767,34 +20935,34 @@ function f_ProjectileHitPenguin(zone)
 }
 function f_ProjectileHitGeneral(zone)
 {
-   var _loc3_ = 100;
+   var loc3 = 100;
    if(zone._xscale < 0)
    {
-      var _loc4_ = - _loc3_;
+      var loc4 = - loc3;
    }
    else
    {
-      _loc4_ = _loc3_;
+      loc4 = loc3;
    }
-   var _loc2_ = f_FX(zone._x,zone._y,zone._y + 5,"impact_general",_loc4_,_loc3_);
-   _loc2_.body._y = zone.body._y;
-   _loc2_.projectile_type = zone.projectile_type;
-   _loc2_.owner = zone.owner;
-   _loc2_.attack_pow = zone.attack_pow;
-   _loc2_.victim = zone.victim;
+   var loc2 = f_FX(zone._x,zone._y,zone._y + 5,"impact_general",loc4,loc3);
+   loc2.body._y = zone.body._y;
+   loc2.projectile_type = zone.projectile_type;
+   loc2.owner = zone.owner;
+   loc2.attack_pow = zone.attack_pow;
+   loc2.victim = zone.victim;
    if(zone.victim)
    {
-      _loc2_ = zone.victim;
-      _loc2_.hitby = zone.owner;
-      if(!_loc2_.uniquehit)
+      loc2 = zone.victim;
+      loc2.hitby = zone.owner;
+      if(!loc2.uniquehit)
       {
          f_Damage(zone.victim,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
       }
       else
       {
-         _loc2_.fx_x = zone.x;
-         _loc2_.fx_y = zone.y + zone.body._y;
-         _loc2_.fx_body_y = zone.body._y;
+         loc2.fx_x = zone.x;
+         loc2.fx_y = zone.y + zone.body._y;
+         loc2.fx_body_y = zone.body._y;
          zone.victim.fp_UniqueHit(zone.victim,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
       }
    }
@@ -20803,34 +20971,34 @@ function f_ProjectileHitGeneral(zone)
 }
 function f_ProjectileHitHattyGem(zone)
 {
-   var _loc3_ = 100;
+   var loc3 = 100;
    if(zone._xscale < 0)
    {
-      var _loc4_ = - _loc3_;
+      var loc4 = - loc3;
    }
    else
    {
-      _loc4_ = _loc3_;
+      loc4 = loc3;
    }
-   var _loc2_ = f_FX(zone._x,zone._y,zone._y + 5,"impact_gem",_loc4_,_loc3_);
-   _loc2_.body._y = zone.body._y;
-   _loc2_.projectile_type = zone.projectile_type;
-   _loc2_.owner = zone.owner;
-   _loc2_.attack_pow = zone.attack_pow;
-   _loc2_.victim = zone.victim;
+   var loc2 = f_FX(zone._x,zone._y,zone._y + 5,"impact_gem",loc4,loc3);
+   loc2.body._y = zone.body._y;
+   loc2.projectile_type = zone.projectile_type;
+   loc2.owner = zone.owner;
+   loc2.attack_pow = zone.attack_pow;
+   loc2.victim = zone.victim;
    if(zone.victim)
    {
-      _loc2_ = zone.victim;
-      _loc2_.hitby = zone.owner;
-      if(!_loc2_.uniquehit)
+      loc2 = zone.victim;
+      loc2.hitby = zone.owner;
+      if(!loc2.uniquehit)
       {
          f_Damage(zone.victim,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
       }
       else
       {
-         _loc2_.fx_x = zone.x;
-         _loc2_.fx_y = zone.y + zone.body._y;
-         _loc2_.fx_body_y = zone.body._y;
+         loc2.fx_x = zone.x;
+         loc2.fx_y = zone.y + zone.body._y;
+         loc2.fx_body_y = zone.body._y;
          zone.victim.fp_UniqueHit(zone.victim,zone.attack_pow,zone.damage_type,DMGFLAG_JUGGLE,10,-6);
       }
    }
@@ -20841,41 +21009,41 @@ function f_Explosion(zone)
 {
    if(!zone.owner.human or friendly_fire)
    {
-      var _loc1_ = 1;
-      while(_loc1_ <= players)
+      var loc1 = 1;
+      while(loc1 <= players)
       {
-         var _loc2_ = loader.game.game["p" + int(_loc1_)];
-         if(_loc2_.alive)
+         var loc2 = loader.game.game["p" + int(loc1)];
+         if(loc2.alive)
          {
-            if(f_TeamCheck(zone.owner,_loc2_))
+            if(f_TeamCheck(zone.owner,loc2))
             {
-               f_ExplosionCheckHit(zone,_loc2_);
+               f_ExplosionCheckHit(zone,loc2);
             }
          }
-         _loc1_ = _loc1_ + 1;
+         loc1 = loc1 + 1;
       }
    }
-   _loc1_ = 1;
-   while(_loc1_ <= active_enemies)
+   loc1 = 1;
+   while(loc1 <= active_enemies)
    {
-      _loc2_ = enemyArrayOb["e" + int(_loc1_)];
-      if(_loc2_.alive)
+      loc2 = enemyArrayOb["e" + int(loc1)];
+      if(loc2.alive)
       {
-         f_ExplosionCheckHit(zone,_loc2_);
+         f_ExplosionCheckHit(zone,loc2);
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_MagicExplosionCheckHit(zone, u_temp, damage_type)
 {
-   var _loc3_ = false;
+   var loc3 = false;
    if(Math.abs(u_temp.y - zone.y) < 30)
    {
       if(Math.abs(zone.x - u_temp.x) < 60)
       {
          if(u_temp.body_y > -100 and !u_temp.nohit)
          {
-            _loc3_ = true;
+            loc3 = true;
             f_Damage(u_temp,zone.magic_pow,damage_type,DMGFLAG_JUGGLE,random(16) + 1,- (random(10) + 20));
             if(zone.damage_type == DMG_POISON and u_temp.poison_timer <= 0)
             {
@@ -20888,55 +21056,55 @@ function f_MagicExplosionCheckHit(zone, u_temp, damage_type)
          }
       }
    }
-   return _loc3_;
+   return loc3;
 }
 function f_MagicExplosion(zone, damage_type)
 {
-   var _loc4_ = false;
+   var loc4 = false;
    if(zone.human)
    {
-      var _loc2_ = 1;
-      while(_loc2_ <= active_enemies)
+      var loc2 = 1;
+      while(loc2 <= active_enemies)
       {
-         var _loc1_ = enemyArrayOb["e" + int(_loc2_)];
-         if(_loc1_.alive)
+         var loc1 = enemyArrayOb["e" + int(loc2)];
+         if(loc1.alive)
          {
-            if(f_MagicExplosionCheckHit(zone,_loc1_,damage_type))
+            if(f_MagicExplosionCheckHit(zone,loc1,damage_type))
             {
-               _loc4_ = true;
+               loc4 = true;
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
    if(friendly_fire or !zone.human)
    {
-      _loc2_ = 1;
-      while(_loc2_ <= active_players)
+      loc2 = 1;
+      while(loc2 <= active_players)
       {
-         _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-         if(_loc1_.alive and _loc1_ != zone)
+         loc1 = playerArrayOb["p_pt" + int(loc2)];
+         if(loc1.alive and loc1 != zone)
          {
-            if(f_TeamCheck(zone,_loc1_))
+            if(f_TeamCheck(zone,loc1))
             {
-               if(f_MagicExplosionCheckHit(zone,_loc1_,damage_type))
+               if(f_MagicExplosionCheckHit(zone,loc1,damage_type))
                {
-                  _loc4_ = true;
+                  loc4 = true;
                }
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
 }
 function f_StompCheckHit(zone, u_temp)
 {
-   var _loc2_ = false;
+   var loc2 = false;
    if(Math.abs(u_temp.y - zone.y) < 20)
    {
       if(Math.abs(zone.x - u_temp.x) < 60)
       {
-         _loc2_ = true;
+         loc2 = true;
          u_temp.nohit = false;
          f_Damage(u_temp,zone.punch_pow_medium,DMG_MELEE,DMGFLAG_JUGGLE,random(5) + 8,- (random(3) + 9));
          f_FlipInverse(u_temp,zone);
@@ -20954,44 +21122,44 @@ function f_StompCheckHit(zone, u_temp)
          f_FX(u_temp.x,u_temp.body._y + u_temp.y,int(u_temp.y) + 7,"impact1",100,100);
       }
    }
-   return _loc2_;
+   return loc2;
 }
 function f_StompHit(zone)
 {
-   var _loc4_ = false;
-   var _loc2_ = 1;
-   while(_loc2_ <= active_enemies)
+   var loc4 = false;
+   var loc2 = 1;
+   while(loc2 <= active_enemies)
    {
-      var _loc1_ = enemyArrayOb["e" + int(_loc2_)];
-      if(_loc1_.alive)
+      var loc1 = enemyArrayOb["e" + int(loc2)];
+      if(loc1.alive)
       {
-         if(f_StompCheckHit(zone,_loc1_))
+         if(f_StompCheckHit(zone,loc1))
          {
-            _loc4_ = true;
+            loc4 = true;
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    if(friendly_fire)
    {
-      _loc2_ = 1;
-      while(_loc2_ <= active_players)
+      loc2 = 1;
+      while(loc2 <= active_players)
       {
-         _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-         if(_loc1_.alive and _loc1_ != zone)
+         loc1 = playerArrayOb["p_pt" + int(loc2)];
+         if(loc1.alive and loc1 != zone)
          {
-            if(f_TeamCheck(zone,_loc1_))
+            if(f_TeamCheck(zone,loc1))
             {
-               if(f_StompCheckHit(zone,_loc1_))
+               if(f_StompCheckHit(zone,loc1))
                {
-                  _loc4_ = true;
+                  loc4 = true;
                }
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
-   if(_loc4_)
+   if(loc4)
    {
       f_ScreenShake(0.2,8,0);
       s_Punch3.start(0,0);
@@ -21003,18 +21171,18 @@ function f_StompHit(zone)
 }
 function f_FireBallTrail(zone)
 {
-   var _loc2_ = random(30) + 30;
-   var _loc3_ = f_FX(zone.x,zone.y + zone.body._y - 10 + random(20),zone.y - 1,"smokeblast",_loc2_,_loc2_);
-   _loc3_.body._rotation = random(180);
+   var loc2 = random(30) + 30;
+   var loc3 = f_FX(zone.x,zone.y + zone.body._y - 10 + random(20),zone.y - 1,"smokeblast",loc2,loc2);
+   loc3.body._rotation = random(180);
 }
 function f_PoisonBallTrail(zone)
 {
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 2 == 0)
    {
-      var _loc2_ = random(30) + 70;
-      var _loc3_ = f_FX(zone.x,zone.y + zone.body._y - 10 + random(20),zone.y - 1,"poison_trail",_loc2_,_loc2_);
-      _loc3_.body._rotation = random(360);
+      var loc2 = random(30) + 70;
+      var loc3 = f_FX(zone.x,zone.y + zone.body._y - 10 + random(20),zone.y - 1,"poison_trail",loc2,loc2);
+      loc3.body._rotation = random(360);
    }
 }
 function f_SpitTrail(zone)
@@ -21022,8 +21190,8 @@ function f_SpitTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 3 == 0)
    {
-      var _loc2_ = random(20) + 80;
-      var _loc3_ = f_FX(zone.x,zone.y + zone.body._y - 10 + random(20),zone.y - 1,"spit_trail",_loc2_,_loc2_);
+      var loc2 = random(20) + 80;
+      var loc3 = f_FX(zone.x,zone.y + zone.body._y - 10 + random(20),zone.y - 1,"spit_trail",loc2,loc2);
    }
 }
 function f_LightningBallTrail(zone)
@@ -21031,14 +21199,14 @@ function f_LightningBallTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 2 == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone.y + zone.body._y,zone.y - 1,"lightning_trail",100,100);
+      var loc2 = f_FX(zone.x,zone.y + zone.body._y,zone.y - 1,"lightning_trail",100,100);
       if(zone.trail_timer % 4 == 0)
       {
-         _loc2_.body._yscale = -100;
+         loc2.body._yscale = -100;
       }
       if(zone._xscale < 0)
       {
-         _loc2_._xscale = -100;
+         loc2._xscale = -100;
       }
    }
 }
@@ -21047,14 +21215,14 @@ function f_BoomerangTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 2 == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"boomerangtrail",zone._xscale,100);
+      var loc2 = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"boomerangtrail",zone._xscale,100);
       if(zone.body._currentframe == 9)
       {
-         _loc2_.body.body.gotoAndStop(1);
+         loc2.body.body.gotoAndStop(1);
       }
       else
       {
-         _loc2_.body.body.gotoAndStop(zone.body._currentframe);
+         loc2.body.body.gotoAndStop(zone.body._currentframe);
       }
    }
 }
@@ -21063,7 +21231,7 @@ function f_PenguinTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 2 == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"penguintrail",zone._xscale,100);
+      var loc2 = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"penguintrail",zone._xscale,100);
    }
 }
 function f_HattyTearTrail(zone)
@@ -21071,7 +21239,7 @@ function f_HattyTearTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 4 == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"hattyteartrail",zone._xscale,100);
+      var loc2 = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"hattyteartrail",zone._xscale,100);
    }
 }
 function f_DaggerTrail(zone)
@@ -21079,14 +21247,14 @@ function f_DaggerTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 2 == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"daggertrail",zone._xscale,100);
+      var loc2 = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"daggertrail",zone._xscale,100);
       if(zone.body._currentframe == 10)
       {
-         _loc2_.body.body.gotoAndStop(1);
+         loc2.body.body.gotoAndStop(1);
       }
       else
       {
-         _loc2_.body.body.gotoAndStop(zone.body._currentframe);
+         loc2.body.body.gotoAndStop(zone.body._currentframe);
       }
    }
 }
@@ -21095,7 +21263,7 @@ function f_CyclopsFireTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 5 == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"cyclopsfiretrail",zone._xscale,100);
+      var loc2 = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"cyclopsfiretrail",zone._xscale,100);
    }
 }
 function f_GeneralTrail(zone)
@@ -21103,8 +21271,8 @@ function f_GeneralTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % zone.trail_interval == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"generaltrail",zone._xscale,100);
-      _loc2_.projectile_type = zone.projectile_type;
+      var loc2 = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"generaltrail",zone._xscale,100);
+      loc2.projectile_type = zone.projectile_type;
    }
 }
 function f_BlackMagicTrail(zone)
@@ -21112,7 +21280,7 @@ function f_BlackMagicTrail(zone)
    zone.trail_timer = zone.trail_timer + 1;
    if(zone.trail_timer % 3 == 0)
    {
-      var _loc2_ = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"blackmagictrail",zone._xscale,100);
+      var loc2 = f_FX(zone.x,zone._y + zone.body._y - 10 + random(20),zone._y - 1,"blackmagictrail",zone._xscale,100);
    }
 }
 function f_ProjectileHitExplode(zone)
@@ -21132,19 +21300,19 @@ function f_ProjectileHitExplode(zone)
 function f_ProjectileHitArrow(zone)
 {
    s_arrowHit.start(0,0);
-   var _loc2_ = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"impact2",50,50);
-   _loc2_.owner = zone.owner;
+   var loc2 = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"impact2",50,50);
+   loc2.owner = zone.owner;
    if(zone.victim)
    {
-      _loc2_ = zone.victim;
-      _loc2_.fx_x = zone.x;
-      _loc2_.fx_y = zone.y + zone.body._y;
-      if(_loc2_.uniquehit)
+      loc2 = zone.victim;
+      loc2.fx_x = zone.x;
+      loc2.fx_y = zone.y + zone.body._y;
+      if(loc2.uniquehit)
       {
-         _loc2_.fx_x = zone.x;
-         _loc2_.fx_y = zone.y + zone.body._y;
+         loc2.fx_x = zone.x;
+         loc2.fx_y = zone.y + zone.body._y;
       }
-      if(!_loc2_.fp_UniqueHit(_loc2_,zone.attack_pow,zone.damage_type))
+      if(!loc2.fp_UniqueHit(loc2,zone.attack_pow,zone.damage_type))
       {
          if(zone.victim.arrowplink)
          {
@@ -21161,17 +21329,17 @@ function f_ProjectileHitArrow(zone)
 }
 function f_ProjectileHitPhoton(zone)
 {
-   var _loc2_ = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"photon_hit",100,100);
-   _loc2_.owner = zone.owner;
-   _loc2_ = zone.victim;
-   if(!_loc2_.blocking)
+   var loc2 = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"photon_hit",100,100);
+   loc2.owner = zone.owner;
+   loc2 = zone.victim;
+   if(!loc2.blocking)
    {
-      if(_loc2_.uniquehit)
+      if(loc2.uniquehit)
       {
-         _loc2_.fx_x = zone.x;
-         _loc2_.fx_y = zone.y + zone.body._y;
+         loc2.fx_x = zone.x;
+         loc2.fx_y = zone.y + zone.body._y;
       }
-      if(!_loc2_.fp_UniqueHit(_loc2_,zone.attack_pow,zone.damage_type))
+      if(!loc2.fp_UniqueHit(loc2,zone.attack_pow,zone.damage_type))
       {
          s_PhotonHit.start(0,0);
          f_Hit1(zone.victim);
@@ -21185,15 +21353,15 @@ function f_ProjectileHitPhoton(zone)
 function f_ProjectileHitSpit(zone)
 {
    s_arrowHit.start(0,0);
-   var _loc2_ = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"spit_hit",100,100);
-   _loc2_.owner = zone.owner;
-   _loc2_ = zone.victim;
-   if(!_loc2_.blocking)
+   var loc2 = f_FX(zone.x,zone.y + zone.body._y,zone.y + 5,"spit_hit",100,100);
+   loc2.owner = zone.owner;
+   loc2 = zone.victim;
+   if(!loc2.blocking)
    {
-      if(_loc2_.uniquehit)
+      if(loc2.uniquehit)
       {
-         _loc2_.fx_x = zone.x;
-         _loc2_.fx_y = zone.y + zone.body._y;
+         loc2.fx_x = zone.x;
+         loc2.fx_y = zone.y + zone.body._y;
       }
       if(!zone.victim.fp_UniqueHit(zone.victim,zone.attack_pow,zone.damage_type))
       {
@@ -21241,13 +21409,13 @@ function f_Projectile(zone)
       {
          if(zone._xscale > 0)
          {
-            var _loc2_ = -60;
+            var loc2 = -60;
          }
          else
          {
-            _loc2_ = 60;
+            loc2 = 60;
          }
-         f_FX(zone.x,zone.y,int(zone.y + 1),"big_splash",_loc2_,70);
+         f_FX(zone.x,zone.y,int(zone.y + 1),"big_splash",loc2,70);
          f_RemoveShadow(zone);
          zone.shadow_pt = undefined;
          zone.gotoAndStop("remove");
@@ -21276,7 +21444,7 @@ function f_Projectile(zone)
 }
 function f_ProjectileBoomerang(zone)
 {
-   var _loc3_ = zone.x;
+   var loc3 = zone.x;
    zone.trail_function(zone);
    if(f_ProjectileMove(zone,zone.speed_x) == 1)
    {
@@ -21286,33 +21454,33 @@ function f_ProjectileBoomerang(zone)
    {
       zone.hit_function(zone);
    }
-   var _loc4_ = false;
+   var loc4 = false;
    if(zone.victim)
    {
-      _loc4_ = zone.victim.boomerangexploit;
+      loc4 = zone.victim.boomerangexploit;
    }
-   if(_root.boss_fight or _loc4_)
+   if(_root.boss_fight or loc4)
    {
       if(zone.speed_x > 0)
       {
-         if(zone.x - zone.speed_x < _loc3_)
+         if(zone.x - zone.speed_x < loc3)
          {
             zone.x += zone.speed_x;
          }
       }
       else if(zone.speed_x < 0)
       {
-         if(zone.x - zone.speed_x > _loc3_)
+         if(zone.x - zone.speed_x > loc3)
          {
             zone.x += zone.speed_x;
          }
       }
-      else if(zone.x == _loc3_)
+      else if(zone.x == loc3)
       {
          zone.x += zone.speed_x;
       }
    }
-   if(zone.x == _loc3_)
+   if(zone.x == loc3)
    {
       if(zone.speed_return < 0 and zone.speed_x > 0)
       {
@@ -21323,10 +21491,10 @@ function f_ProjectileBoomerang(zone)
          zone.speed_x = 1;
       }
    }
-   var _loc5_ = zone.owner.y - zone.prev_y;
-   zone.y += _loc5_;
+   var loc5 = zone.owner.y - zone.prev_y;
+   zone.y += loc5;
    zone._y = zone.y;
-   zone.shadow_pt._y += _loc5_;
+   zone.shadow_pt._y += loc5;
    zone.prev_y = zone.owner.y;
    zone.speed_x += zone.speed_return;
    f_ObjectCheckPickups(zone);
@@ -21351,15 +21519,15 @@ function f_ProjectileBoomerang(zone)
 }
 function f_ThrowBoomerang(zone, u_temp2)
 {
-   var _loc1_ = f_Shoot(zone,"boomerang",0,u_temp2,0,0);
-   _loc1_.prev_y = zone.y;
+   var loc1 = f_Shoot(zone,"boomerang",0,u_temp2,0,0);
+   loc1.prev_y = zone.y;
    if(zone._xscale > 0)
    {
-      _loc1_.speed_return = -1;
+      loc1.speed_return = -1;
    }
    else
    {
-      _loc1_.speed_return = 1;
+      loc1.speed_return = 1;
    }
    zone.boomeranged = true;
 }
@@ -21389,192 +21557,192 @@ function f_ArrowColorOLD_REMOVE(zone)
 }
 function f_Shoot(zone, item_type, attack_pow, u_speed_x, u_speed_y, u_gravity)
 {
-   var _loc4_ = zone.body.punch_pt._y + zone.body._y + zone._y;
+   var loc4 = zone.body.punch_pt._y + zone.body._y + zone._y;
    if(zone._xscale > 0)
    {
-      var _loc3_ = 100;
+      var loc3 = 100;
    }
    else
    {
       u_speed_x *= -1;
-      _loc3_ = -100;
+      loc3 = -100;
    }
-   var _loc1_ = f_FX(zone.x,zone.y,zone.y + 1,item_type,_loc3_,100);
-   _loc1_.n_groundtype = zone.n_groundtype;
-   _loc1_.owner = zone;
-   _loc1_.unblockable = false;
-   _loc1_.attack_pow = attack_pow;
-   _loc1_.item_type = item_type;
-   _loc1_.body._y = _loc4_ - _loc1_._y;
-   _loc1_.body_y = _loc1_.body._y;
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 0;
-   _loc1_.speed_x = u_speed_x;
-   _loc1_.speed_y = u_speed_y;
-   _loc1_.speed_z = 0;
-   _loc1_.gravity = u_gravity;
-   _loc1_.w = _loc1_.body._width / 2;
-   _loc1_.shadow_pt = f_NewShadow();
-   _loc1_.shadow_pt._x = _loc1_._x;
-   _loc1_.shadow_pt._y = _loc1_._y;
-   f_ShadowSize(_loc1_);
-   _loc1_.damage_type = DMG_OBJECT;
-   return _loc1_;
+   var loc1 = f_FX(zone.x,zone.y,zone.y + 1,item_type,loc3,100);
+   loc1.n_groundtype = zone.n_groundtype;
+   loc1.owner = zone;
+   loc1.unblockable = false;
+   loc1.attack_pow = attack_pow;
+   loc1.item_type = item_type;
+   loc1.body._y = loc4 - loc1._y;
+   loc1.body_y = loc1.body._y;
+   loc1.bounces = 0;
+   loc1.bounces_max = 0;
+   loc1.speed_x = u_speed_x;
+   loc1.speed_y = u_speed_y;
+   loc1.speed_z = 0;
+   loc1.gravity = u_gravity;
+   loc1.w = loc1.body._width / 2;
+   loc1.shadow_pt = f_NewShadow();
+   loc1.shadow_pt._x = loc1._x;
+   loc1.shadow_pt._y = loc1._y;
+   f_ShadowSize(loc1);
+   loc1.damage_type = DMG_OBJECT;
+   return loc1;
 }
 function f_CamelSpit(zone)
 {
-   var _loc4_ = zone.body.punch_pt._y + zone.body._y + zone._y;
+   var loc4 = zone.body.punch_pt._y + zone.body._y + zone._y;
    if(zone._xscale > 0)
    {
-      var _loc3_ = 100;
-      var _loc5_ = zone.x + 100;
+      var loc3 = 100;
+      var loc5 = zone.x + 100;
       if(!zone.rider.human)
       {
-         var _loc6_ = random(4) + 14;
+         var loc6 = random(4) + 14;
       }
       else if(Key.isDown(zone.rider.button_right) or Key.isDown(zone.rider.button_walk_right))
       {
-         _loc6_ = random(6) + 16;
+         loc6 = random(6) + 16;
       }
       else
       {
-         _loc6_ = random(6) + 9;
+         loc6 = random(6) + 9;
       }
    }
    else
    {
-      _loc3_ = -100;
-      _loc5_ = zone.x - 100;
+      loc3 = -100;
+      loc5 = zone.x - 100;
       if(!zone.rider.human)
       {
-         _loc6_ = - (random(4) + 14);
+         loc6 = - (random(4) + 14);
       }
       else if(Key.isDown(zone.rider.button_left) or Key.isDown(zone.rider.button_walk_left))
       {
-         _loc6_ = - (random(6) + 16);
+         loc6 = - (random(6) + 16);
       }
       else
       {
-         _loc6_ = - (random(6) + 9);
+         loc6 = - (random(6) + 9);
       }
    }
-   var _loc1_ = f_FX(_loc5_,zone.y,zone.y + 1,"spit",_loc3_,100);
-   _loc1_.n_groundtype = zone.n_groundtype;
-   _loc1_.owner = zone.rider;
-   _loc1_.attack_pow = 5;
-   _loc1_.item_type = "spit";
-   _loc1_.body._y = _loc4_ - _loc1_._y;
-   _loc1_.speed_x = _loc6_;
-   _loc1_.speed_y = - random(4);
-   _loc1_.speed_z = 0;
-   _loc1_.gravity = 2;
-   _loc1_.w = 10;
-   _loc1_.shadow_pt = f_NewShadow();
-   _loc1_.shadow_pt._x = _loc1_._x;
-   _loc1_.shadow_pt._y = _loc1_._y;
-   _loc1_.shadow_pt.shadow._xscale = 50;
-   _loc1_.damage_type = DMG_MELEE;
-   return _loc1_;
+   var loc1 = f_FX(loc5,zone.y,zone.y + 1,"spit",loc3,100);
+   loc1.n_groundtype = zone.n_groundtype;
+   loc1.owner = zone.rider;
+   loc1.attack_pow = 5;
+   loc1.item_type = "spit";
+   loc1.body._y = loc4 - loc1._y;
+   loc1.speed_x = loc6;
+   loc1.speed_y = - random(4);
+   loc1.speed_z = 0;
+   loc1.gravity = 2;
+   loc1.w = 10;
+   loc1.shadow_pt = f_NewShadow();
+   loc1.shadow_pt._x = loc1._x;
+   loc1.shadow_pt._y = loc1._y;
+   loc1.shadow_pt.shadow._xscale = 50;
+   loc1.damage_type = DMG_MELEE;
+   return loc1;
 }
 function f_FrogMagicBurp(zone)
 {
    if(zone._xscale > 0)
    {
-      var _loc6_ = -50;
-      var _loc5_ = 100;
+      var loc6 = -50;
+      var loc5 = 100;
    }
    else
    {
-      _loc6_ = 50;
-      _loc5_ = -100;
+      loc6 = 50;
+      loc5 = -100;
    }
-   var _loc1_ = f_FX(zone.x + _loc6_,zone.y,zone.y,"area_frogburp",_loc5_,100);
+   var loc1 = f_FX(zone.x + loc6,zone.y,zone.y,"area_frogburp",loc5,100);
    if(zone.magic_chain > 6)
    {
       zone.magic_chain = 6;
    }
-   var _loc4_ = f_utilNormalizeScale(1,6,zone.magic_chain);
-   var _loc3_ = f_utilLerp(35,100,_loc4_);
-   _loc1_.body.body._xscale = _loc3_;
-   _loc1_.body_y = 0;
-   _loc1_.body_table_y = 0;
-   _loc1_.splashattack = true;
-   _loc1_.n_groundtype = zone.n_groundtype;
-   _loc1_.owner = zone;
-   _loc1_.attack_pow = zone.magic_pow / 2;
+   var loc4 = f_utilNormalizeScale(1,6,zone.magic_chain);
+   var loc3 = f_utilLerp(35,100,loc4);
+   loc1.body.body._xscale = loc3;
+   loc1.body_y = 0;
+   loc1.body_table_y = 0;
+   loc1.splashattack = true;
+   loc1.n_groundtype = zone.n_groundtype;
+   loc1.owner = zone;
+   loc1.attack_pow = zone.magic_pow / 2;
    if(zone.human or zone.npc)
    {
-      _loc1_.fp_PunchHit = f_PunchHit;
+      loc1.fp_PunchHit = f_PunchHit;
    }
    else
    {
-      _loc1_.fp_PunchHit = f_EnemyAttack;
+      loc1.fp_PunchHit = f_EnemyAttack;
    }
-   _loc1_.magic_chain = zone.magic_chain;
-   _loc1_.current_chain = 1;
+   loc1.magic_chain = zone.magic_chain;
+   loc1.current_chain = 1;
 }
 function f_AreaGeneral(zone, u_type)
 {
    if(zone._xscale > 0)
    {
-      var _loc4_ = 40;
-      var _loc3_ = 100;
+      var loc4 = 40;
+      var loc3 = 100;
    }
    else
    {
-      _loc4_ = -40;
-      _loc3_ = -100;
+      loc4 = -40;
+      loc3 = -100;
    }
-   var _loc1_ = f_FX(zone.x,zone.y,zone.y + 4,u_type,_loc3_,100);
-   _loc1_.body_y = 0;
-   _loc1_.body_table_y = 0;
-   _loc1_.splashattack = true;
-   _loc1_.n_groundtype = zone.n_groundtype;
-   f_MoveCharH(_loc1_,_loc4_,0);
-   _loc1_.owner = zone;
-   _loc1_.attack_pow = zone.magic_pow / 2;
+   var loc1 = f_FX(zone.x,zone.y,zone.y + 4,u_type,loc3,100);
+   loc1.body_y = 0;
+   loc1.body_table_y = 0;
+   loc1.splashattack = true;
+   loc1.n_groundtype = zone.n_groundtype;
+   f_MoveCharH(loc1,loc4,0);
+   loc1.owner = zone;
+   loc1.attack_pow = zone.magic_pow / 2;
    if(zone.human or zone.npc)
    {
-      _loc1_.fp_PunchHit = f_PunchHit;
+      loc1.fp_PunchHit = f_PunchHit;
    }
    else
    {
-      _loc1_.fp_PunchHit = f_EnemyAttack;
+      loc1.fp_PunchHit = f_EnemyAttack;
    }
-   _loc1_.magic_chain = zone.magic_chain;
-   _loc1_.current_chain = 1;
+   loc1.magic_chain = zone.magic_chain;
+   loc1.current_chain = 1;
 }
 function f_AreaRainbow(zone)
 {
    if(zone._xscale > 0)
    {
-      var _loc4_ = 40;
-      var _loc3_ = 100;
+      var loc4 = 40;
+      var loc3 = 100;
    }
    else
    {
-      _loc4_ = -40;
-      _loc3_ = -100;
+      loc4 = -40;
+      loc3 = -100;
    }
-   var _loc1_ = f_FX(zone.x,zone.y,zone.y - 6,"area_rainbow",_loc3_,100);
-   _loc1_.body_y = 0;
-   _loc1_.body_table_y = 0;
-   _loc1_.splashattack = true;
-   _loc1_.n_groundtype = zone.n_groundtype;
-   f_MoveCharH(_loc1_,_loc4_,0);
-   f_Depth(_loc1_,zone.y - 6);
-   _loc1_.owner = zone;
-   _loc1_.attack_pow = zone.magic_pow / 2;
+   var loc1 = f_FX(zone.x,zone.y,zone.y - 6,"area_rainbow",loc3,100);
+   loc1.body_y = 0;
+   loc1.body_table_y = 0;
+   loc1.splashattack = true;
+   loc1.n_groundtype = zone.n_groundtype;
+   f_MoveCharH(loc1,loc4,0);
+   f_Depth(loc1,zone.y - 6);
+   loc1.owner = zone;
+   loc1.attack_pow = zone.magic_pow / 2;
    if(zone.human or zone.npc)
    {
-      _loc1_.fp_PunchHit = f_PunchHit;
+      loc1.fp_PunchHit = f_PunchHit;
    }
    else
    {
-      _loc1_.fp_PunchHit = f_EnemyAttack;
+      loc1.fp_PunchHit = f_EnemyAttack;
    }
-   _loc1_.magic_chain = Math.min(zone.magic_chain,4);
-   _loc1_.current_chain = 1;
+   loc1.magic_chain = Math.min(zone.magic_chain,4);
+   loc1.current_chain = 1;
 }
 function f_InitSplashChild(zone, u_temp)
 {
@@ -21626,26 +21794,26 @@ function f_ShootMagic(zone)
    }
    else if(zone.magic_type == 12)
    {
-      var _loc2_ = f_Shoot(zone,"general_projectile",zone.magic_pow,20,0,0);
-      _loc2_.projectile_type = 70;
-      _loc2_.splashattack = true;
+      var loc2 = f_Shoot(zone,"general_projectile",zone.magic_pow,20,0,0);
+      loc2.projectile_type = 70;
+      loc2.splashattack = true;
       if(zone._xscale > 0)
       {
-         if(f_ProjectileMove(_loc2_,60) == 1)
+         if(f_ProjectileMove(loc2,60) == 1)
          {
-            _loc2_.hit_function(_loc2_);
+            loc2.hit_function(loc2);
          }
       }
-      else if(f_ProjectileMove(_loc2_,-60) == 1)
+      else if(f_ProjectileMove(loc2,-60) == 1)
       {
-         _loc2_.hit_function(_loc2_);
+         loc2.hit_function(loc2);
       }
    }
    else if(zone.magic_type == 13)
    {
       s_AreaKing.start(0,0);
-      _loc2_ = f_FX(zone.x,zone.y,zone.y + 4,"area_heal",zone._xscale,100);
-      _loc2_.owner = zone;
+      loc2 = f_FX(zone.x,zone.y,zone.y + 4,"area_heal",zone._xscale,100);
+      loc2.owner = zone;
    }
    else if(zone.magic_type == 14 or zone.magic_type == 15)
    {
@@ -21685,8 +21853,8 @@ function f_ShootMagic(zone)
    else if(zone.magic_type == 32)
    {
       s_HattySplashMagic.start(0,0);
-      _loc2_ = f_FX(zone.x,zone.y,zone.y + 4,"area_whale",zone._xscale,100);
-      _loc2_.owner = zone;
+      loc2 = f_FX(zone.x,zone.y,zone.y + 4,"area_whale",zone._xscale,100);
+      loc2.owner = zone;
       f_AreaGeneral(zone,"area_golddrop");
    }
    else
@@ -21698,7 +21866,7 @@ function f_ShootMagic(zone)
 function f_MagicBullet(zone)
 {
    zone.jump_attack = true;
-   var _loc2_ = undefined;
+   var loc2 = undefined;
    if(zone.magic_type == 16)
    {
       s_MagicWind.start(0,0);
@@ -21706,20 +21874,20 @@ function f_MagicBullet(zone)
    }
    else if(zone.magic_type == 32)
    {
-      _loc2_ = f_Shoot(zone,"hatty_tears",zone.magic_pow,20,0,0);
-      _loc2_.projectile_type = zone.magic_type;
+      loc2 = f_Shoot(zone,"hatty_tears",zone.magic_pow,20,0,0);
+      loc2.projectile_type = zone.magic_type;
    }
    else
    {
       if(zone.magic_type == 12)
       {
-         _loc2_ = f_Shoot(zone,"general_projectile",zone.magic_pow / 1.5,20,0,0);
+         loc2 = f_Shoot(zone,"general_projectile",zone.magic_pow / 1.5,20,0,0);
       }
       else
       {
-         _loc2_ = f_Shoot(zone,"general_projectile",zone.magic_pow,20,0,0);
+         loc2 = f_Shoot(zone,"general_projectile",zone.magic_pow,20,0,0);
       }
-      _loc2_.projectile_type = zone.magic_type;
+      loc2.projectile_type = zone.magic_type;
    }
 }
 function f_MagicBulletDown(zone)
@@ -21772,16 +21940,16 @@ function f_CheckLightning(zone)
 }
 function f_GameOver()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= total_enemies)
+   var loc2 = 1;
+   while(loc2 <= total_enemies)
    {
-      var _loc1_ = loader.game.game["e" + int(_loc2_)];
-      if(_loc1_)
+      var loc1 = loader.game.game["e" + int(loc2)];
+      if(loc1)
       {
-         _loc1_.active = false;
-         _loc1_.gotoAndStop("blank");
+         loc1.active = false;
+         loc1.gotoAndStop("blank");
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    gotoAndStop("gameover");
 }
@@ -21811,7 +21979,7 @@ function f_CheckHealth(zone)
          else
          {
             s_Ground3.start(0,0);
-            if(zone.p_type == 32) {
+            if(zone.p_type > 31) {
                zone.gotoAndStop("die");
             }
             else {
@@ -21825,9 +21993,9 @@ function f_CheckHealthPots(zone)
 {
    if(zone.hud_pt)
    {
-      var _loc3_ = GetFlashGlobal("g_nPort" + int(zone.hud_pt.port) + "State");
+      var loc3 = GetFlashGlobal("g_nPort" + int(zone.hud_pt.port) + "State");
    }
-   if(_loc3_ != 0 and !_root.vs_fight and zone.healthpots > 0)
+   if(loc3 != 0 and !_root.vs_fight and zone.healthpots > 0)
    {
       zone.healthpots = zone.healthpots - 1;
       _root.f_Heal(zone,zone.health_max - zone.health);
@@ -21934,7 +22102,11 @@ function f_SetDummy(zone)
 function f_HitGeneral(zone)
 {
    f_PunchSound();
-   zone.health -= 1;
+   var dmg = 1;
+   if(zone.hitby.human) {
+      dmg *= zone.hitby.objectDamageMult;
+   }
+   zone.health -= dmg;
    if(zone.health <= 0)
    {
       zone.active = false;
@@ -22009,7 +22181,11 @@ function f_UniqueTrue(zone, attack_pow, attack_type)
 function f_HitBarrel(zone)
 {
    f_PunchSound();
-   zone.health = zone.health - 1;
+   var dmg = 1;
+   if(zone.hitby.human) {
+      dmg *= zone.hitby.objectDamageMult;
+   }
+   zone.health -= dmg;
    if(zone.health <= 0)
    {
       f_RemoveShadow(zone);
@@ -22024,8 +22200,8 @@ function f_HitBarrel(zone)
       }
       else
       {
-         var _loc2_ = random(5) + 2;
-         f_ItemSpawn(zone.x,zone.y - 1,_loc2_);
+         var loc2 = random(5) + 2;
+         f_ItemSpawn(zone.x,zone.y - 1,loc2);
       }
       zone.active = false;
       zone.gotoAndStop("die");
@@ -22057,7 +22233,11 @@ function f_SetBarrel(zone)
 function f_HitRoundTable(zone)
 {
    f_PunchSound();
-   zone.health = zone.health - 1;
+   var dmg = 1;
+   if(zone.hitby.human) {
+      dmg *= zone.hitby.objectDamageMult;
+   }
+   zone.health -= dmg;
    if(zone.health <= 0)
    {
       if(zone.weapon_type)
@@ -22103,7 +22283,11 @@ function f_SetRoundTable(zone)
 function f_HitTombstone(zone)
 {
    f_PunchSound();
-   zone.health = zone.health - 1;
+   var dmg = 1;
+   if(zone.hitby.human) {
+      dmg *= zone.hitby.objectDamageMult;
+   }
+   zone.health -= dmg;
    if(zone.health <= 0)
    {
       f_MakeShrapnel(random(3) + 4,zone.x - 30 + random(60),zone.y,- random(zone._height),100);
@@ -22319,7 +22503,11 @@ function f_SetPurpleTower(zone)
 function f_HitTree(zone)
 {
    f_PunchSound();
-   zone.health = zone.health - 1;
+   var dmg = 1;
+   if(zone.hitby.human) {
+      dmg *= zone.hitby.objectDamageMult;
+   }
+   zone.health -= dmg;
    if(zone.health <= 0)
    {
       zone.body.gotoAndStop(2);
@@ -22359,7 +22547,11 @@ function f_SetTree(zone)
 function f_HitRoundTableChair(zone)
 {
    f_PunchSound();
-   zone.health = zone.health - 1;
+   var dmg = 1;
+   if(zone.hitby.human) {
+      dmg *= zone.hitby.objectDamageMult;
+   }
+   zone.health -= dmg;
    if(zone.health <= 0)
    {
       f_RemoveShadow(zone);
@@ -22401,20 +22593,20 @@ function f_HitSiegeTower(zone)
       zone.hitby.gotoAndStop("blocked");
       zone.hitby.body.gotoAndPlay(1);
    }
-   var _loc4_ = zone.x + random(60) - 30;
-   var _loc3_ = random(60) + 80;
-   var _loc1_ = f_FX(_loc4_,zone.y + 10,zone.y + 10,"door_shrapnel",_loc3_,_loc3_);
-   _loc1_.speed_x = random(5) + 5;
+   var loc4 = zone.x + random(60) - 30;
+   var loc3 = random(60) + 80;
+   var loc1 = f_FX(loc4,zone.y + 10,zone.y + 10,"door_shrapnel",loc3,loc3);
+   loc1.speed_x = random(5) + 5;
    if(random(2) == 1)
    {
-      _loc1_.speed_x *= -1;
+      loc1.speed_x *= -1;
    }
-   _loc1_.speed_y = - (random(20) + 10);
-   _loc1_.gravity = 8;
-   _loc1_.body._y = - random(50);
-   _loc1_.bounces = 0;
-   _loc1_.bounces_max = 1 + random(2);
-   _loc1_.hit_function = f_GeneralBounce;
+   loc1.speed_y = - (random(20) + 10);
+   loc1.gravity = 8;
+   loc1.body._y = - random(50);
+   loc1.bounces = 0;
+   loc1.bounces_max = 1 + random(2);
+   loc1.hit_function = f_GeneralBounce;
    f_CheckDead(zone);
 }
 function f_HitGuardTower(zone)
@@ -22442,8 +22634,8 @@ function f_HitStoneWall(zone)
 {
    f_PunchSound();
    var dmg = 7;
-   if(zone.hitby.p_type == 32) {
-      dmg *= 10;
+   if(zone.hitby.human) {
+      dmg *= zone.hitby.objectDamageMult;
    }
    zone.n_health -= dmg;
    if(zone.n_health < 0)
@@ -22474,46 +22666,46 @@ function f_HitDoor(zone)
 {
    f_PunchSound();
    var dmg = 7;
-   if(zone.hitby.p_type == 32) {
-      dmg *= 10;
+   if(zone.hitby.human) {
+      dmg *= zone.hitby.objectDamageMult;
    }
    zone.n_health -= dmg;
-   var _loc2_ = zone.hitby.y;
+   var loc2 = zone.hitby.y;
    if(zone.n_health < 0)
    {
       zone.door.gotoAndStop(6);
       f_UnSetDoor(zone);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
       zone.fp_SmashAction();
    }
    else if(zone.n_health < zone.n_health_max * 0.25)
    {
       zone.door.gotoAndStop(5);
-      _loc2_ = zone.fx_y - zone.fx_body_y - 20 + random(40);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
+      loc2 = zone.fx_y - zone.fx_body_y - 20 + random(40);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
    }
    else if(zone.n_health < zone.n_health_max * 0.5)
    {
       zone.door.gotoAndStop(4);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
    }
    else if(zone.n_health < zone.n_health_max * 0.75)
    {
       zone.door.gotoAndStop(3);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
    }
    else if(zone.n_health < zone.n_health_max * 0.9)
    {
       zone.door.gotoAndStop(2);
-      f_DoorShrapnel(zone.x,_loc2_,zone.fx_body_y,true);
+      f_DoorShrapnel(zone.x,loc2,zone.fx_body_y,true);
    }
    zone.gotoAndPlay("doorsmack");
 }
@@ -22691,22 +22883,22 @@ function f_ExplosionCheckHit(zone, zone2)
    {
       return false;
    }
-   var _loc3_ = false;
+   var loc3 = false;
    if(zone.magic_type)
    {
-      var _loc4_ = zone.magic_type;
+      var loc4 = zone.magic_type;
    }
    else
    {
-      _loc4_ = 4;
+      loc4 = 4;
    }
    if(zone.attack_pow)
    {
-      var _loc5_ = zone.attack_pow;
+      var loc5 = zone.attack_pow;
    }
    else
    {
-      _loc5_ = 4;
+      loc5 = 4;
    }
    if(Math.abs(zone2.y - zone.y) < zone.explosion_range_y * zone._yscale / 100)
    {
@@ -22716,29 +22908,29 @@ function f_ExplosionCheckHit(zone, zone2)
          {
             if(!zone2.nohit and zone2.invincible_timer <= 0 and zone2 != zone.owner and zone2 != zone.victim)
             {
-               _loc3_ = true;
+               loc3 = true;
                zone2.fp_FlipHit(zone,zone2);
-               f_Damage(zone2,_loc5_,_loc4_,DMGFLAG_JUGGLE,random(16) + 1,- (random(15) + 25));
+               f_Damage(zone2,loc5,loc4,DMGFLAG_JUGGLE,random(16) + 1,- (random(15) + 25));
                f_FX(zone2.x,zone2.body._y + zone2.y,int(zone2.y) + 7,"impact1",100,100);
             }
          }
       }
    }
-   return _loc3_;
+   return loc3;
 }
 function f_LevelUpAttack(zone)
 {
    zone.explosion_range_x = 150;
    zone.explosion_range_y = 30;
-   var _loc1_ = 1;
-   while(_loc1_ <= active_enemies)
+   var loc1 = 1;
+   while(loc1 <= active_enemies)
    {
-      var _loc2_ = enemyArrayOb["e" + int(_loc1_)];
-      if(_loc2_.alive)
+      var loc2 = enemyArrayOb["e" + int(loc1)];
+      if(loc2.alive)
       {
-         f_ExplosionCheckHit(zone,_loc2_);
+         f_ExplosionCheckHit(zone,loc2);
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_Magic(zone, u_change)
@@ -22756,8 +22948,8 @@ function f_Magic(zone, u_change)
    {
       zone.magic_current = 0;
    }
-   var _loc2_ = int(101 - zone.magic_current / zone.magic_max * 100);
-   zone.hud_pt.stats.magic.gotoAndStop(_loc2_);
+   var loc2 = int(101 - zone.magic_current / zone.magic_max * 100);
+   zone.hud_pt.stats.magic.gotoAndStop(loc2);
 }
 function f_Exp(zone, u_change)
 {
@@ -22776,8 +22968,8 @@ function f_Exp(zone, u_change)
       {
          mult += 0.1;
       }
-      if(zone.p_type == 32) {
-         mult += 10; // Barb boss should get 10x xp because he does 10x damage
+      if(zone.expMult) {
+         mult += zone.expMult; // For NPCs with buffed damage values
       }
       u_change += u_change * mult;
       if(!_root.IsFullGame() and zone.level >= 5)
@@ -22818,23 +23010,23 @@ function f_Exp(zone, u_change)
                zone.health = zone.health_max;
                zone.magic_current = zone.magic_max;
             }
-            var _loc3_ = int(101 - zone.health / zone.health_max * 100);
-            zone.hud_pt.stats.health.gotoAndStop(_loc3_);
+            var loc3 = int(101 - zone.health / zone.health_max * 100);
+            zone.hud_pt.stats.health.gotoAndStop(loc3);
             f_UnlockCombo(zone,zone.level);
          }
-         var _loc4_ = zone.exp_next - zone.exp_mod;
-         var _loc6_ = zone.exp_next - _loc4_;
-         var _loc5_ = zone.exp - _loc4_;
-         _loc3_ = int(_loc5_ / _loc6_ * 100);
-         if(_loc3_ < 1)
+         var loc4 = zone.exp_next - zone.exp_mod;
+         var loc6 = zone.exp_next - loc4;
+         var loc5 = zone.exp - loc4;
+         loc3 = int(loc5 / loc6 * 100);
+         if(loc3 < 1)
          {
-            _loc3_ = 1;
+            loc3 = 1;
          }
-         if(_loc3_ > 100)
+         if(loc3 > 100)
          {
-            _loc3_ = 100;
+            loc3 = 100;
          }
-         zone.hud_pt.stats.xp.gotoAndStop(_loc3_);
+         zone.hud_pt.stats.xp.gotoAndStop(loc3);
       }
    }
 }
@@ -22862,10 +23054,10 @@ function f_PlayerClock(zone)
                      }
                   }
                   zone.overlay.gotoAndStop("itemselect");
-                  var _loc3_ = zone.overlay.itemselect;
-                  _loc3_.gotoAndPlay(2);
-                  _loc3_.icon2.gotoAndPlay(1);
-                  _loc3_.icon.gotoAndStop(zone.equippeditem);
+                  var loc3 = zone.overlay.itemselect;
+                  loc3.gotoAndPlay(2);
+                  loc3.icon2.gotoAndPlay(1);
+                  loc3.icon.gotoAndStop(zone.equippeditem);
                   if(!zone.healthpots)
                   {
                      zone.equippeditem = 0;
@@ -22873,11 +23065,11 @@ function f_PlayerClock(zone)
                   }
                   if(console_version)
                   {
-                     SetTextNumeric(_loc3_.icon.healthpots,zone.healthpots);
+                     SetTextNumeric(loc3.icon.healthpots,zone.healthpots);
                   }
                   else
                   {
-                     _loc3_.icon.healthpots.text = zone.healthpots;
+                     loc3.icon.healthpots.text = zone.healthpots;
                   }
                }
             }
@@ -22976,11 +23168,11 @@ function f_PlayerClock(zone)
    {
       if(zone.levelup_timer % 5 == 0)
       {
-         var _loc2_ = zone.levelup_timer / 60 * 100;
-         if(_loc2_ >= 30)
+         var loc2 = zone.levelup_timer / 60 * 100;
+         if(loc2 >= 30)
          {
-            _loc3_ = f_FX(zone.x,zone.y + zone.body_y + zone.body_table_y,int(zone.y) - 1,"levelup",_loc2_,_loc2_);
-            _loc3_.body._rotation = -20 + random(40);
+            loc3 = f_FX(zone.x,zone.y + zone.body_y + zone.body_table_y,int(zone.y) - 1,"levelup",loc2,loc2);
+            loc3.body._rotation = -20 + random(40);
             LOGPush(0,zone.level,zone.hud_pt.port);
          }
       }
@@ -22999,23 +23191,36 @@ function f_PlayerClock(zone)
    {
       fp_Wait(zone);
    }
-   /*if(Key.isDown(zone.button_l2) && Key.isDown(zone.button_r2)) {
-      f_KillEnemies();
-   }*/
+   /*
+   if(Key.isDown(zone.button_l2) && Key.isDown(zone.button_r2)) {
+      if(!zone.pressed_debug) {
+         zone.pressed_debug = true;
+         if(zone.p_type == 33) {
+            f_SetUndead(zone, !zone.undead);
+         }
+         else {
+            f_KillEnemies();
+         }
+      }
+   }
+   else {
+      zone.pressed_debug = false;
+   }
+   */
 }
 function f_WarpIn(zone)
 {
-   var _loc5_ = undefined;
-   var _loc3_ = undefined;
-   var _loc6_ = undefined;
+   var loc5 = undefined;
+   var loc3 = undefined;
+   var loc6 = undefined;
    if(_root.active_players == 1)
    {
       zone.x = f_GetWPX(f_GetClosestWaypoint(zone.x));
       zone._x = zone.x;
       zone.y = f_GetWPY(f_GetClosestWaypoint(zone.x));
       zone._y = zone.y;
-      zone.shadow_pt._x = _loc5_;
-      zone.shadow_pt._y = _loc3_;
+      zone.shadow_pt._x = loc5;
+      zone.shadow_pt._y = loc3;
       zone.body_y = -500;
       zone.body_table_y = 0;
       f_ShadowSize(zone);
@@ -23029,60 +23234,60 @@ function f_WarpIn(zone)
       zone.gotoAndStop("jump");
       zone.body.gotoAndStop("mid");
    }
-   var _loc4_ = undefined;
-   var _loc7_ = undefined;
-   var _loc9_ = undefined;
-   var _loc10_ = undefined;
-   var _loc8_ = undefined;
+   var loc4 = undefined;
+   var loc7 = undefined;
+   var loc9 = undefined;
+   var loc10 = undefined;
+   var loc8 = undefined;
    if(zone.player_num == _root.main.n_bottomplayer)
    {
       if(main.n_topplayer and zone.player_num != main.n_top_player)
       {
-         _loc6_ = playerArrayOb["p_pt" + int(main.n_topplayer)];
-         _loc4_ = _loc6_.x;
-         _loc7_ = _loc6_.y;
-         _loc9_ = _loc4_ + 50;
+         loc6 = playerArrayOb["p_pt" + int(main.n_topplayer)];
+         loc4 = loc6.x;
+         loc7 = loc6.y;
+         loc9 = loc4 + 50;
          if(random(2))
          {
-            _loc9_ = _loc4_ + 50;
+            loc9 = loc4 + 50;
          }
-         _loc10_ = _loc9_ - _loc4_;
-         _loc8_ = _root.f_BSPHitTest(_loc4_,_loc7_,_loc9_,_loc7_) * 0.8;
-         if(!_loc8_)
+         loc10 = loc9 - loc4;
+         loc8 = _root.f_BSPHitTest(loc4,loc7,loc9,loc7) * 0.8;
+         if(!loc8)
          {
-            _loc8_ = 1;
+            loc8 = 1;
          }
-         _loc5_ = _loc4_ + _loc8_ * _loc10_;
-         _loc3_ = _loc7_;
+         loc5 = loc4 + loc8 * loc10;
+         loc3 = loc7;
       }
    }
    else
    {
-      _loc6_ = playerArrayOb["p_pt" + int(main.n_bottomplayer)];
-      _loc4_ = _loc6_.x;
-      _loc7_ = _loc6_.y;
-      _loc9_ = _root.main.left + 200;
-      _loc10_ = _loc9_ - _loc4_;
-      _loc8_ = _root.f_BSPHitTest(_loc4_,_loc7_,_loc9_,_loc7_) * 0.8;
-      if(!_loc8_)
+      loc6 = playerArrayOb["p_pt" + int(main.n_bottomplayer)];
+      loc4 = loc6.x;
+      loc7 = loc6.y;
+      loc9 = _root.main.left + 200;
+      loc10 = loc9 - loc4;
+      loc8 = _root.f_BSPHitTest(loc4,loc7,loc9,loc7) * 0.8;
+      if(!loc8)
       {
-         _loc8_ = 1;
+         loc8 = 1;
       }
-      _loc5_ = _loc4_ + _loc8_ * _loc10_;
-      _loc3_ = _loc7_;
+      loc5 = loc4 + loc8 * loc10;
+      loc3 = loc7;
    }
-   if(_loc6_)
+   if(loc6)
    {
-      var _loc11_ = _loc6_.n_groundtype;
-      if(_loc11_ == 50)
+      var loc11 = loc6.n_groundtype;
+      if(loc11 == 50)
       {
-         f_FX(_loc5_ - 110,_loc3_ + 10,_loc3_ + 15,"ground_slam",100,100);
-         zone.x = _loc5_;
-         zone._x = _loc5_;
-         zone.y = _loc3_;
-         zone._y = _loc3_;
-         zone.shadow_pt._x = _loc5_;
-         zone.shadow_pt._y = _loc3_;
+         f_FX(loc5 - 110,loc3 + 10,loc3 + 15,"ground_slam",100,100);
+         zone.x = loc5;
+         zone._x = loc5;
+         zone.y = loc3;
+         zone._y = loc3;
+         zone.shadow_pt._x = loc5;
+         zone.shadow_pt._y = loc3;
          zone.body_y = 0;
          zone.body_table_y = 0;
          f_ShadowSize(zone);
@@ -23091,18 +23296,18 @@ function f_WarpIn(zone)
          zone.jumping = false;
          zone.busy = true;
          zone.ladder = true;
-         zone.n_groundtype = _loc11_;
+         zone.n_groundtype = loc11;
          zone.gotoAndStop("climb");
          zone.body.body.stop();
       }
       else
       {
-         zone.x = _loc5_;
-         zone._x = _loc5_;
-         zone.y = _loc3_;
-         zone._y = _loc3_;
-         zone.shadow_pt._x = _loc5_;
-         zone.shadow_pt._y = _loc3_;
+         zone.x = loc5;
+         zone._x = loc5;
+         zone.y = loc3;
+         zone._y = loc3;
+         zone.shadow_pt._x = loc5;
+         zone.shadow_pt._y = loc3;
          zone.body_y = -500;
          zone.body_table_y = 0;
          f_ShadowSize(zone);
@@ -23112,7 +23317,7 @@ function f_WarpIn(zone)
          zone.ladder = false;
          zone.busy = false;
          zone.speed_jump = 10;
-         zone.n_groundtype = _loc11_;
+         zone.n_groundtype = loc11;
          zone.gotoAndStop("jump");
          zone.body.gotoAndStop("mid");
       }
@@ -23153,8 +23358,8 @@ function f_UnresponsiveDefaults(zone)
 }
 function f_LargeObjectRanges(zone)
 {
-   var _loc3_ = Math.abs(zone._xscale) / 100;
-   var _loc2_ = Math.abs(zone._yscale) / 100;
+   var loc3 = Math.abs(zone._xscale) / 100;
+   var loc2 = Math.abs(zone._yscale) / 100;
    if(zone._xscale > 0)
    {
       zone.zone.x = zone.x + zone.zone._x;
@@ -23164,8 +23369,8 @@ function f_LargeObjectRanges(zone)
       zone.zone.x = zone.x - zone.zone._x;
    }
    zone.zone.y = zone.y + zone.zone._y;
-   zone.zone.h = zone.zone._height / 2 * _loc2_;
-   zone.zone.w = zone.zone._width / 2 * _loc3_;
+   zone.zone.h = zone.zone._height / 2 * loc2;
+   zone.zone.w = zone.zone._width / 2 * loc3;
    zone.zone.top = zone.zone.y - zone.zone.h;
    zone.zone.bottom = zone.zone.y + zone.zone.h;
    zone.zone.right = zone.zone.x + zone.zone.w;
@@ -23174,16 +23379,16 @@ function f_LargeObjectRanges(zone)
 function f_ShadowSize(zone)
 {
    var shadow_x_default = 100;
-   if(zone.p_type == 32) {
-      shadow_x_default = 300;
+   if(zone.shadowDefaultScale) {
+      shadow_x_default = zone.shadowDefaultScale;
    }
-   var _loc1_ = shadow_x_default + zone.body._y * 0.25;
-   if(_loc1_ < 35)
+   var loc1 = shadow_x_default + zone.body._y * 0.25;
+   if(loc1 < 35)
    {
-      _loc1_ = 35;
+      loc1 = 35;
    }
-   zone.shadow_pt._xscale = _loc1_;
-   zone.shadow_pt._yscale = _loc1_;
+   zone.shadow_pt._xscale = loc1;
+   zone.shadow_pt._yscale = loc1;
 }
 function f_EnemyRoll(zone)
 {
@@ -23235,13 +23440,13 @@ function f_Roll_UNUSED(zone)
       }
       else
       {
-         var _loc2_ = 100 + zone.body._y * 0.25;
-         if(_loc2_ < 10)
+         var loc2 = 100 + zone.body._y * 0.25;
+         if(loc2 < 10)
          {
-            _loc2_ = 10;
+            loc2 = 10;
          }
-         zone.shadow_pt._xscale = _loc2_;
-         zone.shadow_pt._yscale = _loc2_;
+         zone.shadow_pt._xscale = loc2;
+         zone.shadow_pt._yscale = loc2;
       }
       zone.speed_toss_x -= 0.5;
       zone.speed_toss_y = zone.speed_toss_y + 1;
@@ -23253,134 +23458,134 @@ function f_Roll_UNUSED(zone)
 }
 function f_StaticRange()
 {
-   var _loc4_ = static_index;
-   var _loc3_ = 1;
-   var _loc1_ = 1;
-   while(_loc1_ <= static_index)
+   var loc4 = static_index;
+   var loc3 = 1;
+   var loc1 = 1;
+   while(loc1 <= static_index)
    {
-      var _loc2_ = loader.game.game["static" + int(_loc1_)];
-      if(_loc2_.x > loader.game.game.limit_topleft.x)
+      var loc2 = loader.game.game["static" + int(loc1)];
+      if(loc2.x > loader.game.game.limit_topleft.x)
       {
-         if(_loc2_.x < loader.game.game.limit_bottomright.x)
+         if(loc2.x < loader.game.game.limit_bottomright.x)
          {
-            if(_loc1_ < _loc4_)
+            if(loc1 < loc4)
             {
-               _loc4_ = _loc1_;
+               loc4 = loc1;
             }
-            if(_loc1_ > _loc3_)
+            if(loc1 > loc3)
             {
-               _loc3_ = _loc1_;
+               loc3 = loc1;
             }
          }
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
-   statics_min = _loc4_;
-   total_statics = _loc3_;
-   _loc4_ = object_index;
+   statics_min = loc4;
+   total_statics = loc3;
+   loc4 = object_index;
    total_objects = 0;
-   _loc1_ = 1;
-   while(_loc1_ <= object_index)
+   loc1 = 1;
+   while(loc1 <= object_index)
    {
-      _loc2_ = loader.game.game["object" + int(_loc1_)];
-      if(_loc2_._x > loader.game.game.limit_topleft.x)
+      loc2 = loader.game.game["object" + int(loc1)];
+      if(loc2._x > loader.game.game.limit_topleft.x)
       {
-         if(_loc2_._x < loader.game.game.limit_bottomright.x)
+         if(loc2._x < loader.game.game.limit_bottomright.x)
          {
-            if(_loc2_.active)
+            if(loc2.active)
             {
                total_objects++;
-               loader.game.game["object_pt" + int(total_objects)] = _loc2_;
+               loader.game.game["object_pt" + int(total_objects)] = loc2;
             }
          }
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
-   _loc4_ = 1;
-   _loc3_ = hills_total;
-   _loc1_ = 1;
-   while(_loc1_ <= hills_total)
+   loc4 = 1;
+   loc3 = hills_total;
+   loc1 = 1;
+   while(loc1 <= hills_total)
    {
-      _loc2_ = hills["hillx" + int(_loc1_)];
-      if(_loc2_ < loader.game.game.limit_topleft.x)
+      loc2 = hills["hillx" + int(loc1)];
+      if(loc2 < loader.game.game.limit_topleft.x)
       {
-         if(_loc1_ > _loc4_)
+         if(loc1 > loc4)
          {
-            _loc4_ = _loc1_;
+            loc4 = loc1;
          }
       }
-      else if(_loc2_ > loader.game.game.limit_bottomright.x)
+      else if(loc2 > loader.game.game.limit_bottomright.x)
       {
-         if(_loc1_ < _loc3_)
+         if(loc1 < loc3)
          {
-            _loc3_ = _loc1_;
+            loc3 = loc1;
          }
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
-   if(_loc3_ < 2)
+   if(loc3 < 2)
    {
-      _loc3_ = 2;
+      loc3 = 2;
    }
-   hills_min = _loc4_;
-   hills_max = _loc3_;
+   hills_min = loc4;
+   hills_max = loc3;
 }
 function f_ArrayInsert(a_theArray, cl_data)
 {
-   var _loc1_ = a_theArray.length;
+   var loc1 = a_theArray.length;
    i = 0;
-   while(i < _loc1_)
+   while(i < loc1)
    {
       if(a_theArray[i] == undefined)
       {
          a_theArray[i] = cl_data;
-         i = _loc1_;
+         i = loc1;
       }
       i++;
    }
-   if(i == _loc1_ - 1)
+   if(i == loc1 - 1)
    {
       //Error("f_ArrayInsert");
    }
 }
 function f_ArraySplice(a_theArray, cl_data)
 {
-   var _loc1_ = a_theArray.length;
+   var loc1 = a_theArray.length;
    i = 0;
-   while(i < _loc1_)
+   while(i < loc1)
    {
       if(a_theArray[i] == cl_data)
       {
          a_theArray[i] = undefined;
-         i = _loc1_;
+         i = loc1;
       }
       i++;
    }
-   if(i < _loc1_)
+   if(i < loc1)
    {
       //Error("f_ArraySplice");
    }
 }
 function f_ArrayNumItems(a_theArray)
 {
-   var _loc1_ = 0;
-   var _loc3_ = a_theArray.length;
+   var loc1 = 0;
+   var loc3 = a_theArray.length;
    i = 0;
    while(i < u_size)
    {
       if(a_theArray[i] != undefined)
       {
-         _loc1_ = _loc1_ + 1;
+         loc1 = loc1 + 1;
       }
       i++;
    }
-   return _loc1_;
+   return loc1;
 }
 function f_ArrayClear(a_theArray)
 {
-   var _loc1_ = a_theArray.length;
+   var loc1 = a_theArray.length;
    i = 0;
-   while(i < _loc1_)
+   while(i < loc1)
    {
       a_theArray[i] = undefined;
       i++;
@@ -23394,24 +23599,24 @@ function f_PickupPush(zone)
 function f_PickupPop(zone)
 {
    f_RemoveShadow(zone);
-   var _loc1_ = 1;
-   while(_loc1_ <= total_pickups)
+   var loc1 = 1;
+   while(loc1 <= total_pickups)
    {
-      var _loc2_ = pickupArrayOb["pickup" + int(_loc1_)];
-      if(_loc2_ == zone)
+      var loc2 = pickupArrayOb["pickup" + int(loc1)];
+      if(loc2 == zone)
       {
-         if(_loc1_ == total_pickups)
+         if(loc1 == total_pickups)
          {
-            pickupArrayOb["pickup" + int(_loc1_)] = undefined;
+            pickupArrayOb["pickup" + int(loc1)] = undefined;
          }
          else
          {
-            pickupArrayOb["pickup" + int(_loc1_)] = pickupArrayOb["pickup" + int(total_pickups)];
+            pickupArrayOb["pickup" + int(loc1)] = pickupArrayOb["pickup" + int(total_pickups)];
          }
          total_pickups--;
          return undefined;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_CreatePickupArray()
@@ -23422,15 +23627,15 @@ function f_CreatePickupArray()
 }
 function f_ConfirmPickup(zone)
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_pickups)
+   var loc1 = 1;
+   while(loc1 <= total_pickups)
    {
-      var _loc2_ = pickupArrayOb["pickup" + int(_loc1_)];
-      if(_loc2_ == zone)
+      var loc2 = pickupArrayOb["pickup" + int(loc1)];
+      if(loc2 == zone)
       {
          return true;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
    return false;
 }
@@ -23442,12 +23647,12 @@ function f_GetPickup(zone, u_temp)
       {
          if(zone.pet.animal_type == 18)
          {
-            var _loc6_ = zone.health_max * 0.8;
+            var loc6 = zone.health_max * 0.8;
             s_Pig2.start(0,0);
          }
          else
          {
-            _loc6_ = zone.health_max * 0.5;
+            loc6 = zone.health_max * 0.5;
             s_Eat.start(0,0);
          }
       }
@@ -23455,7 +23660,7 @@ function f_GetPickup(zone, u_temp)
       {
          if(zone.pet.animal_type == 18)
          {
-            _loc6_ = zone.health_max * 0.75;
+            loc6 = zone.health_max * 0.75;
             if(random(2) == 1)
             {
                s_Pig2.start(0,0);
@@ -23467,18 +23672,18 @@ function f_GetPickup(zone, u_temp)
          }
          else
          {
-            _loc6_ = zone.health_max * 0.5;
+            loc6 = zone.health_max * 0.5;
             s_Eat.start(0,0);
          }
       }
       else if(u_temp.item_type >= 15 and u_temp.item_type <= 17)
       {
-         _loc6_ = 1;
+         loc6 = 1;
          s_Eat.start(0,0);
       }
       else if(zone.pet.animal_type == 18)
       {
-         _loc6_ = zone.health_max * 0.2;
+         loc6 = zone.health_max * 0.2;
          if(random(2) == 1)
          {
             s_Pig2.start(0,0);
@@ -23490,46 +23695,46 @@ function f_GetPickup(zone, u_temp)
       }
       else
       {
-         _loc6_ = zone.health_max * 0.1;
+         loc6 = zone.health_max * 0.1;
          s_Eat.start(0,0);
       }
-      f_Heal(zone,_loc6_);
+      f_Heal(zone,loc6);
    }
    else if(u_temp.item_type == 8 or u_temp.item_type == 9 or u_temp.item_type == 13)
    {
       if(u_temp.item_type == 8)
       {
-         var _loc7_ = 5;
+         var loc7 = 5;
       }
       else if(u_temp.item_type == 13)
       {
-         _loc7_ = 1;
+         loc7 = 1;
       }
       else if(u_temp.gem_type >= 12)
       {
-         _loc7_ = 1;
+         loc7 = 1;
       }
       else
       {
-         _loc7_ = 5 + u_temp.gem_type;
+         loc7 = 5 + u_temp.gem_type;
       }
       if(!(zone.hud_pt && GetFlashGlobal("g_bHudHidden")))
       {
-         var _loc4_ = f_FX(u_temp.x,u_temp.y,u_temp.y - 1,"item",100,100);
-         _loc4_.targ_hud = zone.hud_pt;
-         _loc4_.pos = new Object();
-         _loc4_.pos.x = u_temp.x;
-         _loc4_.pos.y = u_temp.y;
-         _loc4_.item_type = u_temp.item_type;
-         _loc4_.gem_type = u_temp.gem_type;
-         u_temp._parent.localToGlobal(_loc4_.pos);
-         _loc4_.targ_hud.stats.globalToLocal(_loc4_.pos);
-         _loc4_.body.gotoAndStop("flytohud");
-         _loc4_.body.item.gotoAndStop(u_temp.item_type);
-         _loc4_.t = 0;
+         var loc4 = f_FX(u_temp.x,u_temp.y,u_temp.y - 1,"item",100,100);
+         loc4.targ_hud = zone.hud_pt;
+         loc4.pos = new Object();
+         loc4.pos.x = u_temp.x;
+         loc4.pos.y = u_temp.y;
+         loc4.item_type = u_temp.item_type;
+         loc4.gem_type = u_temp.gem_type;
+         u_temp._parent.localToGlobal(loc4.pos);
+         loc4.targ_hud.stats.globalToLocal(loc4.pos);
+         loc4.body.gotoAndStop("flytohud");
+         loc4.body.item.gotoAndStop(u_temp.item_type);
+         loc4.t = 0;
          zone.hud_pt.show_gold = true;
       }
-      f_GetGold(zone,_loc7_);
+      f_GetGold(zone,loc7);
       if(random(2) == 1)
       {
          s_Coin1.start(0,0);
@@ -23555,7 +23760,7 @@ function f_GetPickup(zone, u_temp)
          }
       }
       s_GetWeapon.start(0,0);
-      var _loc5_ = weapon_offset + u_temp.weapon_type;
+      var loc5 = weapon_offset + u_temp.weapon_type;
       if(zone.hud_pt.p_type != 11)
       {
          f_WeaponStats(u_temp,u_temp.weapon_type);
@@ -23563,14 +23768,14 @@ function f_GetPickup(zone, u_temp)
          {
             f_GetWeapon(zone,u_temp.weapon_type);
          }
-         else if(!f_IsWeaponUnlocked(zone,_loc5_))
+         else if(!f_IsWeaponUnlocked(zone,loc5))
          {
-            f_UnlockItem(zone,_loc5_);
+            f_UnlockItem(zone,loc5);
          }
       }
-      else if(!f_IsWeaponUnlocked(zone,_loc5_))
+      else if(!f_IsWeaponUnlocked(zone,loc5))
       {
-         f_UnlockItem(zone,_loc5_);
+         f_UnlockItem(zone,loc5);
       }
    }
    else if(u_temp.item_type == 11)
@@ -23672,91 +23877,91 @@ function f_GetPickup(zone, u_temp)
 }
 function f_ObjectCheckPickups(zone)
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= total_pickups)
+   var loc2 = 1;
+   while(loc2 <= total_pickups)
    {
-      var _loc1_ = pickupArrayOb["pickup" + int(_loc2_)];
-      if(Math.abs(_loc1_.x - zone.x) < 50)
+      var loc1 = pickupArrayOb["pickup" + int(loc2)];
+      if(Math.abs(loc1.x - zone.x) < 50)
       {
-         if(Math.abs(_loc1_.y - zone.y) < 20)
+         if(Math.abs(loc1.y - zone.y) < 20)
          {
-            if(f_GetPickup(zone.owner,_loc1_))
+            if(f_GetPickup(zone.owner,loc1))
             {
-               _loc1_.body.gotoAndStop("pickup");
-               f_PickupPop(_loc1_);
+               loc1.body.gotoAndStop("pickup");
+               f_PickupPop(loc1);
             }
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_PlayerCheckPickups(zone)
 {
    if(zone.body_y > -30 or zone.horse)
    {
-      var _loc2_ = 1;
-      while(_loc2_ <= total_pickups)
+      var loc2 = 1;
+      while(loc2 <= total_pickups)
       {
-         var _loc1_ = pickupArrayOb["pickup" + int(_loc2_)];
-         if(Math.abs(_loc1_.x - zone.x) < 50)
+         var loc1 = pickupArrayOb["pickup" + int(loc2)];
+         if(Math.abs(loc1.x - zone.x) < 50)
          {
-            if(Math.abs(_loc1_.y - zone.y) < 20)
+            if(Math.abs(loc1.y - zone.y) < 20)
             {
-               if(zone.human or _loc1_.item_type < 10)
+               if(zone.human or loc1.item_type < 10)
                {
-                  if(f_GetPickup(zone,_loc1_))
+                  if(f_GetPickup(zone,loc1))
                   {
-                     _loc1_.body.gotoAndStop("pickup");
-                     f_PickupPop(_loc1_);
+                     loc1.body.gotoAndStop("pickup");
+                     f_PickupPop(loc1);
                   }
                }
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
 }
 function f_PlayerGetsPickups(zone)
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= total_pickups)
+   var loc2 = 1;
+   while(loc2 <= total_pickups)
    {
-      var _loc1_ = pickupArrayOb["pickup" + int(_loc2_)];
-      if(f_OnScreen(_loc1_))
+      var loc1 = pickupArrayOb["pickup" + int(loc2)];
+      if(f_OnScreen(loc1))
       {
-         f_GetPickup(zone,_loc1_);
-         _loc1_.body.gotoAndStop("pickup");
-         f_PickupPop(_loc1_);
+         f_GetPickup(zone,loc1);
+         loc1.body.gotoAndStop("pickup");
+         f_PickupPop(loc1);
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    f_CreatePickupArray();
 }
 function f_PickupItem(zone)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= total_players)
+   var loc3 = 1;
+   while(loc3 <= total_players)
    {
-      var _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-      if(_loc2_.alive)
+      var loc2 = playerArrayOb["p_pt" + int(loc3)];
+      if(loc2.alive)
       {
-         if(Math.abs(_loc2_.x - zone.x) < 50)
+         if(Math.abs(loc2.x - zone.x) < 50)
          {
-            if(Math.abs(_loc2_.y - zone.y) < 20)
+            if(Math.abs(loc2.y - zone.y) < 20)
             {
-               if(_loc2_.body_y > -30 or _loc2_.horse)
+               if(loc2.body_y > -30 or loc2.horse)
                {
                   if(zone.item_type > 1 and zone.item_type < 8)
                   {
-                     var _loc4_ = random(7) + 4;
-                     f_Heal(_loc2_,_loc4_);
+                     var loc4 = random(7) + 4;
+                     f_Heal(loc2,loc4);
                      s_Eat.start(0,0);
                      zone.body.gotoAndStop("pickup");
                   }
                   else if(zone.item_type == 8 or zone.item_type == 10)
                   {
-                     var _loc5_ = 50 + random(200);
-                     f_GetGold(zone,_loc5_);
+                     var loc5 = 50 + random(200);
+                     f_GetGold(zone,loc5);
                      if(random(2) == 1)
                      {
                         s_Coin1.start(0,0);
@@ -23769,13 +23974,13 @@ function f_PickupItem(zone)
                   }
                   else if(zone.item_type == 9)
                   {
-                     if(_loc2_.weapon_type)
+                     if(loc2.weapon_type)
                      {
-                        if(_loc2_.hud_pt.p_type != 11)
+                        if(loc2.hud_pt.p_type != 11)
                         {
-                           if(!f_IsWeaponUnlocked(_loc2_,weapon_offset + zone.weapon_type))
+                           if(!f_IsWeaponUnlocked(loc2,weapon_offset + zone.weapon_type))
                            {
-                              f_GetWeapon(_loc2_,zone.weapon_type);
+                              f_GetWeapon(loc2,zone.weapon_type);
                               s_GetWeapon.start(0,0);
                               zone.body.gotoAndStop("pickup");
                            }
@@ -23786,13 +23991,13 @@ function f_PickupItem(zone)
             }
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_HorseBowAdjust(zone)
 {
-   var _loc2_ = zone.horse.body._currentframe;
-   switch(_loc2_)
+   var loc2 = zone.horse.body._currentframe;
+   switch(loc2)
    {
       case 1:
          zone.body._y = zone.body_y;
@@ -23923,13 +24128,13 @@ function f_HorseAttack(zone)
                   zone.bombs = zone.bombs - 1;
                   if(zone.punch_pow_high > zone.magic_pow)
                   {
-                     var _loc2_ = zone.punch_pow_high * 2;
+                     var loc2 = zone.punch_pow_high * 2;
                   }
                   else
                   {
-                     _loc2_ = zone.magic_pow * 2;
+                     loc2 = zone.magic_pow * 2;
                   }
-                  u_temp = f_Shoot(zone,"general_projectile",_loc2_,20,0,0);
+                  u_temp = f_Shoot(zone,"general_projectile",loc2,20,0,0);
                   u_temp.projectile_type = 74;
                   u_temp.body_y = zone.body_y + zone.body_table_y - 50;
                   u_temp.body._y = u_temp.body_y;
@@ -24014,7 +24219,7 @@ function f_HorseWaitCheck(zone, u_temp)
                {
                   if(u_temp.speed_jump > 0 and !u_temp.beefy and !u_temp.oncatapult)
                   {
-                     if(u_temp.p_type == 32) {
+                     if(u_temp.p_type > 31) {
                         s_Fart1.start(0,0);
                         zone._yscale /= 7;
                         zone.body._y = - zone.h / 7;
@@ -24056,52 +24261,52 @@ function f_HorseWaitCheck(zone, u_temp)
 function f_HorseWait(zone)
 {
    if(zone.alive) {
-      var _loc2_ = 1;
-      while(_loc2_ <= total_players)
+      var loc2 = 1;
+      while(loc2 <= total_players)
       {
-         var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-         if(f_HorseWaitCheck(zone,_loc1_))
+         var loc1 = playerArrayOb["p_pt" + int(loc2)];
+         if(f_HorseWaitCheck(zone,loc1))
          {
             return undefined;
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
-      _loc2_ = 1;
-      while(_loc2_ <= active_enemies)
+      loc2 = 1;
+      while(loc2 <= active_enemies)
       {
-         _loc1_ = enemyArrayOb["e" + int(_loc2_)];
-         if(f_HorseWaitCheck(zone,_loc1_))
+         loc1 = enemyArrayOb["e" + int(loc2)];
+         if(f_HorseWaitCheck(zone,loc1))
          {
             return undefined;
          }
          if(zone._x > main.left)
          {
-            if(_loc1_.alive)
+            if(loc1.alive)
             {
-               if(_loc1_.humanoid and !_loc1_.beefy and !_loc1_.horse)
+               if(loc1.humanoid and !loc1.beefy and !loc1.horse)
                {
-                  _loc1_.prey = zone;
+                  loc1.prey = zone;
                   return undefined;
                }
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
    }
 }
 function f_HorseFlee()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= total_players)
+   var loc2 = 1;
+   while(loc2 <= total_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc1_.horse)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc1.horse)
       {
-         _loc1_.horse.gotoAndStop("escape");
-         _loc1_.horse = undefined;
-         f_JumpAction(_loc1_);
+         loc1.horse.gotoAndStop("escape");
+         loc1.horse = undefined;
+         f_JumpAction(loc1);
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_HorseEscape(zone)
@@ -24173,10 +24378,10 @@ function f_HorseRide(zone)
          {
             if(zone.n_groundtype < 300 or zone.n_groundtype > 302)
             {
-               var _loc4_ = (80 + random(20)) / 100;
-               var _loc3_ = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * _loc4_,100 * _loc4_);
-               _loc3_._x += random(10) - 5;
-               _loc3_._y += random(4) - 2;
+               var loc4 = (80 + random(20)) / 100;
+               var loc3 = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * loc4,100 * loc4);
+               loc3._x += random(10) - 5;
+               loc3._y += random(4) - 2;
             }
             if(zone.dashing_timer == 99)
             {
@@ -24189,11 +24394,11 @@ function f_HorseRide(zone)
          }
          if(zone.horse.mount_type == 2 or zone.horse.mount_type == 4)
          {
-            var _loc2_ = zone.horse.body.head._currentframe;
+            var loc2 = zone.horse.body.head._currentframe;
             zone.horse.gotoAndStop(zone.horse.anim_walk);
-            if(_loc2_ > 2 and _loc2_ < 19 and zone.horse.body.head._currentframe == 1)
+            if(loc2 > 2 and loc2 < 19 and zone.horse.body.head._currentframe == 1)
             {
-               zone.horse.body.head.gotoAndPlay(_loc2_ + 1);
+               zone.horse.body.head.gotoAndPlay(loc2 + 1);
             }
          }
          else
@@ -24211,11 +24416,11 @@ function f_HorseRide(zone)
          f_SetXY(zone.horse,zone.x,zone.y - 1);
          if(zone.horse.mount_type == 2 or zone.horse.mount_type == 4)
          {
-            _loc2_ = zone.horse.body.head._currentframe;
+            loc2 = zone.horse.body.head._currentframe;
             zone.horse.gotoAndStop("idle");
-            if(_loc2_ > 2 and _loc2_ < 19 and zone.horse.body.head._currentframe == 1)
+            if(loc2 > 2 and loc2 < 19 and zone.horse.body.head._currentframe == 1)
             {
-               zone.horse.body.head.gotoAndPlay(_loc2_);
+               zone.horse.body.head.gotoAndPlay(loc2);
             }
          }
          else
@@ -24282,35 +24487,35 @@ function f_HorseRide(zone)
 }
 function f_HorseRam(zone, u_pow)
 {
-   var _loc4_ = false;
-   var _loc2_ = 1;
-   while(_loc2_ <= active_enemies)
+   var loc4 = false;
+   var loc2 = 1;
+   while(loc2 <= active_enemies)
    {
-      var _loc1_ = enemyArrayOb["e" + int(_loc2_)];
-      if(!_loc1_.nohit and _loc1_.alive)
+      var loc1 = enemyArrayOb["e" + int(loc2)];
+      if(!loc1.nohit and loc1.alive)
       {
-         if(Math.abs(_loc1_.y - zone.y) < 15)
+         if(Math.abs(loc1.y - zone.y) < 15)
          {
-            if(Math.abs(_loc1_.x - zone.x) < 50)
+            if(Math.abs(loc1.x - zone.x) < 50)
             {
-               if(_loc1_.body_y > -100)
+               if(loc1.body_y > -100)
                {
-                  if(!(!_loc1_.tossable and !_loc1_.scorpion))
+                  if(!(!loc1.tossable and !loc1.scorpion))
                   {
-                     if(!(_loc1_.scorpion and _loc1_.speed_toss_y < 0))
+                     if(!(loc1.scorpion and loc1.speed_toss_y < 0))
                      {
-                        f_Damage(_loc1_,u_pow,DMG_MELEE,DMGFLAG_JUGGLE,zone._scale <= 0 ? - random(3) : random(3),- (random(6) + 25));
-                        _loc4_ = true;
-                        f_FlipSame(_loc1_,zone);
+                        f_Damage(loc1,u_pow,DMG_MELEE,DMGFLAG_JUGGLE,zone._scale <= 0 ? - random(3) : random(3),- (random(6) + 25));
+                        loc4 = true;
+                        f_FlipSame(loc1,zone);
                      }
                   }
                }
             }
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   if(_loc4_)
+   if(loc4)
    {
       f_PunchSound();
       f_FX(zone.x,zone.body._y + zone.y,int(zone.y) + 15,"impact1",100,100);
@@ -24339,29 +24544,29 @@ function f_Prioritize(zone, prey)
 {
    if(zone.prey == prey)
    {
-      var _loc2_ = 1;
-      while(_loc2_ <= active_enemies)
+      var loc2 = 1;
+      while(loc2 <= active_enemies)
       {
-         var _loc1_ = enemyArrayOb["e" + int(_loc2_)];
-         if(_loc1_ != zone)
+         var loc1 = enemyArrayOb["e" + int(loc2)];
+         if(loc1 != zone)
          {
-            if(_loc1_.prey == prey)
+            if(loc1.prey == prey)
             {
-               if(_loc1_.priority < zone.priority)
+               if(loc1.priority < zone.priority)
                {
-                  _loc1_.priority = _loc1_.priority + 1;
+                  loc1.priority = loc1.priority + 1;
                }
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
       zone.priority = 1;
    }
 }
 function f_PickRandomPlayer()
 {
-   var _loc1_ = playerArrayOb["p_pt" + (random(active_players) + 1)];
-   return _loc1_;
+   var loc1 = playerArrayOb["p_pt" + (random(active_players) + 1)];
+   return loc1;
 }
 function f_PlayerArray()
 {
@@ -24369,37 +24574,37 @@ function f_PlayerArray()
    playerArrayOb = new Object();
    total_players = 0;
    active_players = 0;
-   var _loc1_ = 1;
-   while(_loc1_ <= players)
+   var loc1 = 1;
+   while(loc1 <= players)
    {
-      var _loc2_ = loader.game.game["p" + int(_loc1_)];
-      if(_loc2_.alive)
+      var loc2 = loader.game.game["p" + int(loc1)];
+      if(loc2.alive)
       {
          total_players++;
-         if(_loc1_ <= 4)
+         if(loc1 <= 4)
          {
             active_players++;
          }
-         playerArrayOb["p_pt" + int(total_players)] = _loc2_;
+         playerArrayOb["p_pt" + int(total_players)] = loc2;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
    f_SetTargets();
 }
 function f_SetTargets()
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= total_players)
+   var loc3 = 1;
+   while(loc3 <= total_players)
    {
-      playerArrayOb["u_priority" + int(_loc3_)] = 1;
-      _loc3_ = _loc3_ + 1;
+      playerArrayOb["u_priority" + int(loc3)] = 1;
+      loc3 = loc3 + 1;
    }
-   var _loc5_ = int(random(total_players));
-   if(!_loc5_)
+   var loc5 = int(random(total_players));
+   if(!loc5)
    {
-      _loc5_ = 0;
+      loc5 = 0;
    }
-   switch(_loc5_)
+   switch(loc5)
    {
       case 0:
          orderArray[1] = 1;
@@ -24425,95 +24630,95 @@ function f_SetTargets()
          orderArray[3] = 2;
          orderArray[4] = 1;
    }
-   var _loc2_ = 1;
+   var loc2 = 1;
    enemyArrayOb = undefined;
    enemyArrayOb = new Object();
    wallArrayOb = undefined;
    wallArrayOb = new Object();
    active_enemies = 0;
    active_walls = 0;
-   var _loc4_ = 1;
-   while(_loc4_ <= total_enemies)
+   var loc4 = 1;
+   while(loc4 <= total_enemies)
    {
-      var _loc1_ = loader.game.game["e" + int(_loc4_)];
-      if(_loc1_.alive)
+      var loc1 = loader.game.game["e" + int(loc4)];
+      if(loc1.alive)
       {
          active_enemies++;
-         enemyArrayOb["e" + int(active_enemies)] = _loc1_;
-         if(_loc1_.haswall)
+         enemyArrayOb["e" + int(active_enemies)] = loc1;
+         if(loc1.haswall)
          {
             active_walls++;
-            wallArrayOb["w" + int(active_walls)] = _loc1_;
+            wallArrayOb["w" + int(active_walls)] = loc1;
          }
-         if(!_loc1_.skiptarget)
+         if(!loc1.skiptarget)
          {
-            _loc1_.prey = playerArrayOb["p_pt" + orderArray[int(_loc2_)]];
-            _loc1_.priority = playerArrayOb["u_priority" + orderArray[int(_loc2_)]];
-            if(_loc1_.priority == 1)
+            loc1.prey = playerArrayOb["p_pt" + orderArray[int(loc2)]];
+            loc1.priority = playerArrayOb["u_priority" + orderArray[int(loc2)]];
+            if(loc1.priority == 1)
             {
-               _loc1_.u_mod = 90;
+               loc1.u_mod = 90;
             }
-            else if(_loc1_.priority == 2)
+            else if(loc1.priority == 2)
             {
-               _loc1_.u_mod = 150;
+               loc1.u_mod = 150;
             }
-            else if(_loc1_.priority == 3)
+            else if(loc1.priority == 3)
             {
-               _loc1_.u_mod = 250;
+               loc1.u_mod = 250;
             }
             else
             {
-               _loc1_.u_mod = 1;
+               loc1.u_mod = 1;
             }
-            if(_loc1_.chases)
+            if(loc1.chases)
             {
-               if(playerArrayOb["u_priority" + orderArray[int(_loc2_)]] == 1)
+               if(playerArrayOb["u_priority" + orderArray[int(loc2)]] == 1)
                {
-                  _loc1_.prey.hunter = _loc1_;
-                  if(_loc1_.prey.npc)
+                  loc1.prey.hunter = loc1;
+                  if(loc1.prey.npc)
                   {
-                     _loc1_.prey.prey = _loc1_;
-                     _loc1_.prey.priority = 1;
-                     _loc1_.prey.peaceful = false;
-                     _loc1_.prey.dashing = false;
-                     _loc1_.prey.follow = false;
+                     loc1.prey.prey = loc1;
+                     loc1.prey.priority = 1;
+                     loc1.prey.peaceful = false;
+                     loc1.prey.dashing = false;
+                     loc1.prey.follow = false;
                   }
                }
-               playerArrayOb["u_priority" + orderArray[int(_loc2_)]]++;
+               playerArrayOb["u_priority" + orderArray[int(loc2)]]++;
                u_priority++;
             }
-            _loc2_ = _loc2_ + 1;
-            if(_loc2_ > total_players)
+            loc2 = loc2 + 1;
+            if(loc2 > total_players)
             {
-               _loc2_ = 1;
+               loc2 = 1;
             }
          }
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
-   _loc2_ = 1;
-   _loc4_ = 1;
-   while(_loc4_ <= total_players)
+   loc2 = 1;
+   loc4 = 1;
+   while(loc4 <= total_players)
    {
-      _loc1_ = playerArrayOb["p_pt" + int(_loc4_)];
-      if(_loc1_.npc)
+      loc1 = playerArrayOb["p_pt" + int(loc4)];
+      if(loc1.npc)
       {
-         _loc1_.u_mod = 90;
-         if(!_loc1_.hunter.alive)
+         loc1.u_mod = 90;
+         if(!loc1.hunter.alive)
          {
             if(active_enemies > 0)
             {
-               _loc1_.prey = enemyArrayOb["e" + (random(active_enemies) + 1)];
-               _loc1_.priority = 1;
-               _loc1_.follow = false;
+               loc1.prey = enemyArrayOb["e" + (random(active_enemies) + 1)];
+               loc1.priority = 1;
+               loc1.follow = false;
             }
             else
             {
-               _loc1_.fp_taskcomplete(_loc1_);
+               loc1.fp_taskcomplete(loc1);
             }
          }
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
 }
 function f_SetActiveEnemies()
@@ -24524,16 +24729,16 @@ function f_SetActiveEnemies()
    wallArrayOb = new Object();
    active_enemies = 0;
    active_walls = 0;
-   var _loc1_ = 1;
-   while(_loc1_ <= total_enemies)
+   var loc1 = 1;
+   while(loc1 <= total_enemies)
    {
-      var _loc2_ = loader.game.game["e" + int(_loc1_)];
-      if(_loc2_.alive)
+      var loc2 = loader.game.game["e" + int(loc1)];
+      if(loc2.alive)
       {
          active_enemies++;
-         enemyArrayOb["e" + int(active_enemies)] = _loc2_;
+         enemyArrayOb["e" + int(active_enemies)] = loc2;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_NPCFollowTarget(u_temp)
@@ -24566,33 +24771,33 @@ function f_Guard(zone)
 }
 function f_NPCGuard()
 {
-   var _loc3_ = 1;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_players)
+   var loc3 = 1;
+   var loc2 = 1;
+   while(loc2 <= total_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc1_.npc)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc1.npc)
       {
-         if(_loc1_.alive)
+         if(loc1.alive)
          {
-            _loc1_.alive = false;
-            _loc1_.prey = loader.game.game["guard" + _loc3_];
-            _loc1_.prey.x = _loc1_.prey._x;
-            _loc1_.prey.y = _loc1_.prey._y;
-            _loc3_ = _loc3_ + 1;
-            _loc1_.fp_Character = f_GoalWalk;
-            _loc1_.fp_Goal = f_Guard;
+            loc1.alive = false;
+            loc1.prey = loader.game.game["guard" + loc3];
+            loc1.prey.x = loc1.prey._x;
+            loc1.prey.y = loc1.prey._y;
+            loc3 = loc3 + 1;
+            loc1.fp_Character = f_GoalWalk;
+            loc1.fp_Goal = f_Guard;
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    f_PlayerArray();
 }
 function f_RangedWalkInit(zone)
 {
-   var _loc2_ = zone.prey;
-   var _loc3_ = zone.prey.hunter;
-   if(zone.x < _loc2_.x)
+   var loc2 = zone.prey;
+   var loc3 = zone.prey.hunter;
+   if(zone.x < loc2.x)
    {
       if(zone._xscale < 0)
       {
@@ -24605,22 +24810,22 @@ function f_RangedWalkInit(zone)
    }
    if(zone.priority == 1)
    {
-      if(zone.x < _loc2_.x)
+      if(zone.x < loc2.x)
       {
-         zone.target_x = _loc2_.x - 250;
+         zone.target_x = loc2.x - 250;
       }
       else
       {
-         zone.target_x = _loc2_.x + 250;
+         zone.target_x = loc2.x + 250;
       }
    }
-   else if(_loc3_.target_x < _loc2_.x)
+   else if(loc3.target_x < loc2.x)
    {
-      zone.target_x = _loc3_.target_x + zone.u_mod;
+      zone.target_x = loc3.target_x + zone.u_mod;
    }
    else
    {
-      zone.target_x = _loc3_.target_x - zone.u_mod;
+      zone.target_x = loc3.target_x - zone.u_mod;
    }
    if(zone.target_x < main.left + 50)
    {
@@ -24630,7 +24835,7 @@ function f_RangedWalkInit(zone)
    {
       zone.target_x = main.right - 50;
    }
-   zone.target_y = _loc2_.y - 2;
+   zone.target_y = loc2.y - 2;
    if(zone.priority > 3)
    {
       if(!zone.wander)
@@ -24673,28 +24878,28 @@ function f_RangedWalkInit(zone)
    {
       if(zone.priority > 1)
       {
-         var _loc4_ = Math.abs(zone.x - _loc2_.x);
-         if(_loc4_ < 200)
+         var loc4 = Math.abs(zone.x - loc2.x);
+         if(loc4 < 200)
          {
-            zone.target_y = _loc2_.y - (50 - _loc4_ / 4);
+            zone.target_y = loc2.y - (50 - loc4 / 4);
          }
          if(zone.priority == 2)
          {
-            if(_loc3_.x < _loc2_.x)
+            if(loc3.x < loc2.x)
             {
-               zone.target_x = _loc2_.x + zone.u_mod;
+               zone.target_x = loc2.x + zone.u_mod;
             }
             else
             {
-               zone.target_x = _loc2_.x - zone.u_mod;
+               zone.target_x = loc2.x - zone.u_mod;
             }
          }
       }
       x1 = zone.x - zone.target_x;
       y1 = zone.y - zone.target_y;
-      _loc2_ = (- zone.speed) / Math.sqrt(x1 * x1 + y1 * y1);
-      zone.temp_speed_x = _loc2_ * x1;
-      zone.temp_speed_y = _loc2_ * y1;
+      loc2 = (- zone.speed) / Math.sqrt(x1 * x1 + y1 * y1);
+      zone.temp_speed_x = loc2 * x1;
+      zone.temp_speed_y = loc2 * y1;
    }
    zone.walking = true;
    zone.standing = false;
@@ -24702,11 +24907,11 @@ function f_RangedWalkInit(zone)
 }
 function f_EnemyWalkInit(zone)
 {
-   var _loc3_ = zone.prey;
-   var _loc5_ = zone.prey.hunter;
-   if(zone.x < _loc3_.x)
+   var loc3 = zone.prey;
+   var loc5 = zone.prey.hunter;
+   if(zone.x < loc3.x)
    {
-      zone.target_x = _loc3_.x - zone.u_mod;
+      zone.target_x = loc3.x - zone.u_mod;
       if(zone._xscale < 0)
       {
          f_FlipChar(zone);
@@ -24714,13 +24919,13 @@ function f_EnemyWalkInit(zone)
    }
    else
    {
-      zone.target_x = _loc3_.x + zone.u_mod;
+      zone.target_x = loc3.x + zone.u_mod;
       if(zone._xscale > 0)
       {
          f_FlipChar(zone);
       }
    }
-   zone.target_y = _loc3_.y - 1;
+   zone.target_y = loc3.y - 1;
    if(zone.collide_h)
    {
       if(zone.target_y > zone.y)
@@ -24797,20 +25002,20 @@ function f_EnemyWalkInit(zone)
    {
       if(zone.priority > 1)
       {
-         var _loc4_ = Math.abs(zone.x - _loc3_.x);
-         if(_loc4_ < 200)
+         var loc4 = Math.abs(zone.x - loc3.x);
+         if(loc4 < 200)
          {
-            zone.target_y = _loc3_.y - (100 - _loc4_ / 2);
+            zone.target_y = loc3.y - (100 - loc4 / 2);
          }
          if(zone.priority == 2)
          {
-            if(_loc5_.x < _loc3_.x)
+            if(loc5.x < loc3.x)
             {
-               zone.target_x = _loc3_.x + zone.u_mod;
+               zone.target_x = loc3.x + zone.u_mod;
             }
             else
             {
-               zone.target_x = _loc3_.x - zone.u_mod;
+               zone.target_x = loc3.x - zone.u_mod;
             }
          }
       }
@@ -24828,16 +25033,16 @@ function f_EnemyWalkInit(zone)
 }
 function f_EnemyWalkInit_EXPERIMENT(zone)
 {
-   var _loc2_ = f_GetClosestWaypoint(zone.x);
-   if(f_GetWPX(_loc2_) < zone.x)
+   var loc2 = f_GetClosestWaypoint(zone.x);
+   if(f_GetWPX(loc2) < zone.x)
    {
-      var _loc3_ = _loc2_;
-      var _loc4_ = _loc2_ + 1;
+      var loc3 = loc2;
+      var loc4 = loc2 + 1;
    }
    else
    {
-      _loc3_ = _loc2_ - 1;
-      _loc4_ = _loc2_;
+      loc3 = loc2 - 1;
+      loc4 = loc2;
    }
    if(zone.x < zone.prey.x)
    {
@@ -24845,10 +25050,10 @@ function f_EnemyWalkInit_EXPERIMENT(zone)
       {
          f_FlipChar(zone);
       }
-      if(f_GetWPX(_loc4_) - zone.x < zone.prey.x - zone.x)
+      if(f_GetWPX(loc4) - zone.x < zone.prey.x - zone.x)
       {
-         zone.target_x = f_GetWPX(_loc4_) + zone.speed;
-         zone.target_y = f_GetWPY(_loc4_);
+         zone.target_x = f_GetWPX(loc4) + zone.speed;
+         zone.target_y = f_GetWPY(loc4);
       }
       else
       {
@@ -24862,10 +25067,10 @@ function f_EnemyWalkInit_EXPERIMENT(zone)
       {
          f_FlipChar(zone);
       }
-      if(zone.x - f_GetWPX(_loc3_) > zone.x - zone.prey.x)
+      if(zone.x - f_GetWPX(loc3) > zone.x - zone.prey.x)
       {
-         zone.target_x = f_GetWPX(_loc3_) - zone.speed;
-         zone.target_y = f_GetWPY(_loc3_);
+         zone.target_x = f_GetWPX(loc3) - zone.speed;
+         zone.target_y = f_GetWPY(loc3);
       }
       else
       {
@@ -25054,18 +25259,18 @@ function f_EnemyWalk(zone)
    {
       if(zone.walking)
       {
-         var _loc3_ = zone.x;
-         var _loc2_ = zone.y;
+         var loc3 = zone.x;
+         var loc2 = zone.y;
          zone.prev_x = zone.x;
          zone.prev_y = zone.y;
          f_MoveCharH(zone,zone.temp_speed_x,0);
-         if(zone.y == _loc2_ or Math.abs(zone.temp_speed_x) < 0.5)
+         if(zone.y == loc2 or Math.abs(zone.temp_speed_x) < 0.5)
          {
             f_MoveCharV(zone,zone.temp_speed_y,0);
          }
          if(zone.wander)
          {
-            if(_loc3_ == zone.x or _loc2_ == zone.y)
+            if(loc3 == zone.x or loc2 == zone.y)
             {
                zone.wander = false;
             }
@@ -25131,22 +25336,22 @@ function f_NPCWalking(zone)
          if(zone.prey.dashing)
          {
             zone.dashing = true;
-            var _loc3_ = zone.temp_speed_x * 2;
-            var _loc2_ = zone.temp_speed_y * 1.75;
+            var loc3 = zone.temp_speed_x * 2;
+            var loc2 = zone.temp_speed_y * 1.75;
          }
          else
          {
-            _loc3_ = zone.temp_speed_x;
-            _loc2_ = zone.temp_speed_y * 0.75;
+            loc3 = zone.temp_speed_x;
+            loc2 = zone.temp_speed_y * 0.75;
          }
-         zone.success_x = f_MoveCharH(zone,_loc3_,0);
-         zone.success_y = f_MoveCharV(zone,_loc2_,0);
+         zone.success_x = f_MoveCharH(zone,loc3,0);
+         zone.success_y = f_MoveCharV(zone,loc2,0);
          if(!zone.success_x)
          {
-            zone.success_x = f_MoveCharH(zone,_loc3_,0);
+            zone.success_x = f_MoveCharH(zone,loc3,0);
             if(!zone.success_y)
             {
-               zone.success_y = f_MoveCharV(zone,_loc2_,0);
+               zone.success_y = f_MoveCharV(zone,loc2,0);
             }
          }
          if(!zone.jumping and !zone.ladder and !zone.horse)
@@ -25228,10 +25433,10 @@ function f_EnemyDashing(zone)
    {
       if(zone.n_groundtype < 300 or zone.n_groundtype > 302)
       {
-         var _loc3_ = (60 + random(20)) / 100;
-         var _loc2_ = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * _loc3_,100 * _loc3_);
-         _loc2_._x += random(10) - 5;
-         _loc2_._y += random(4) - 2;
+         var loc3 = (60 + random(20)) / 100;
+         var loc2 = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * loc3,100 * loc3);
+         loc2._x += random(10) - 5;
+         loc2._y += random(4) - 2;
       }
    }
    zone.dash_length = zone.dash_length - 1;
@@ -25384,35 +25589,35 @@ function f_EnemyQuickBomb(zone)
 {
    if(zone.shot_timer <= 0)
    {
-      var _loc3_ = 15 + random(4);
+      var loc3 = 15 + random(4);
       if(zone._xscale > 0)
       {
-         var _loc4_ = 100;
+         var loc4 = 100;
       }
       else
       {
-         _loc3_ *= -1;
-         _loc4_ = -100;
+         loc3 *= -1;
+         loc4 = -100;
       }
-      var _loc1_ = f_FX(zone.x,zone.y,zone.y + 1,"general_projectile",_loc4_,100);
-      _loc1_.n_groundtype = zone.n_groundtype;
-      _loc1_.owner = zone;
-      _loc1_.projectile_type = 22;
-      _loc1_.unblockable = false;
-      _loc1_.attack_pow = zone.arrow_pow;
-      _loc1_.body._y = _loc1_.body_y - 40;
-      _loc1_.body_y = _loc1_.body._y;
-      _loc1_.bounces = 0;
-      _loc1_.bounces_max = 0;
-      _loc1_.speed_x = _loc3_;
-      _loc1_.speed_y = - (18 + random(8));
-      _loc1_.speed_z = 0;
-      _loc1_.gravity = 2;
-      _loc1_.w = _loc1_.body._width / 2;
-      _loc1_.shadow_pt = f_NewShadow();
-      _loc1_.shadow_pt._x = _loc1_._x;
-      _loc1_.shadow_pt._y = _loc1_._y;
-      _loc1_.damage_type = DMG_OBJECT;
+      var loc1 = f_FX(zone.x,zone.y,zone.y + 1,"general_projectile",loc4,100);
+      loc1.n_groundtype = zone.n_groundtype;
+      loc1.owner = zone;
+      loc1.projectile_type = 22;
+      loc1.unblockable = false;
+      loc1.attack_pow = zone.arrow_pow;
+      loc1.body._y = loc1.body_y - 40;
+      loc1.body_y = loc1.body._y;
+      loc1.bounces = 0;
+      loc1.bounces_max = 0;
+      loc1.speed_x = loc3;
+      loc1.speed_y = - (18 + random(8));
+      loc1.speed_z = 0;
+      loc1.gravity = 2;
+      loc1.w = loc1.body._width / 2;
+      loc1.shadow_pt = f_NewShadow();
+      loc1.shadow_pt._x = loc1._x;
+      loc1.shadow_pt._y = loc1._y;
+      loc1.damage_type = DMG_OBJECT;
       zone.shot_timer = zone.shot_timer_default;
    }
 }
@@ -25473,18 +25678,18 @@ function f_EnemyBlocking(zone)
    }
    else
    {
-      var _loc2_ = true;
+      var loc2 = true;
       if(Math.abs(zone.y - zone.prey.y) < 10)
       {
          if(zone.prey.dashing)
          {
             if(zone.prey.x > zone.x and zone.prey._xscale < 0 or zone.prey.x < zone.x and zone.prey._xscale > 0)
             {
-               _loc2_ = false;
+               loc2 = false;
             }
          }
       }
-      if(_loc2_)
+      if(loc2)
       {
          zone.blocking = false;
          zone.fp_StandAnim(zone);
@@ -25608,34 +25813,34 @@ function f_EnemyClose(zone)
 }
 function f_PlayersInFront(zone, distance_x, distance_y)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= total_players)
+   var loc3 = 1;
+   while(loc3 <= total_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc3_)];
-      if(_loc1_.alive)
+      var loc1 = playerArrayOb["p_pt" + int(loc3)];
+      if(loc1.alive)
       {
-         if(Math.abs(_loc1_.y - zone.y) <= distance_y)
+         if(Math.abs(loc1.y - zone.y) <= distance_y)
          {
             if(zone._xscale > 0)
             {
-               if(_loc1_.x >= zone.x)
+               if(loc1.x >= zone.x)
                {
-                  if(_loc1_.x < zone.x + distance_x)
+                  if(loc1.x < zone.x + distance_x)
                   {
                      return true;
                   }
                }
             }
-            else if(_loc1_.x <= zone.x)
+            else if(loc1.x <= zone.x)
             {
-               if(_loc1_.x > zone.x - distance_x)
+               if(loc1.x > zone.x - distance_x)
                {
                   return true;
                }
             }
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
    return false;
 }
@@ -25675,47 +25880,47 @@ function f_FollowWalkInit(zone)
    switch(zone.follow_order)
    {
       case 1:
-         var _loc2_ = 0;
-         var _loc4_ = 10;
+         var loc2 = 0;
+         var loc4 = 10;
          break;
       case 2:
-         _loc2_ = 100;
-         _loc4_ = 0;
+         loc2 = 100;
+         loc4 = 0;
          break;
       case 3:
-         _loc2_ = 30;
-         _loc4_ = -20;
+         loc2 = 30;
+         loc4 = -20;
          break;
       case 4:
-         _loc2_ = 70;
-         _loc4_ = 30;
+         loc2 = 70;
+         loc4 = 30;
          break;
       case 5:
-         _loc2_ = 140;
-         _loc4_ = -25;
+         loc2 = 140;
+         loc4 = -25;
          break;
       case 6:
-         _loc2_ = 160;
-         _loc4_ = 25;
+         loc2 = 160;
+         loc4 = 25;
    }
    if(zone.success_y == false)
    {
       if(zone._xscale > 0)
       {
-         zone.target_x = zone.prey.x + (250 + _loc2_);
+         zone.target_x = zone.prey.x + (250 + loc2);
       }
       else
       {
-         zone.target_x = zone.prey.x - (250 + _loc2_);
+         zone.target_x = zone.prey.x - (250 + loc2);
       }
    }
    else if(zone.prey._xscale > 0)
    {
-      zone.target_x = zone.prey.x - (60 + _loc2_);
+      zone.target_x = zone.prey.x - (60 + loc2);
    }
    else
    {
-      zone.target_x = zone.prey.x + (60 + _loc2_);
+      zone.target_x = zone.prey.x + (60 + loc2);
    }
    if(zone.success_x == false)
    {
@@ -25723,7 +25928,7 @@ function f_FollowWalkInit(zone)
    }
    else
    {
-      zone.target_y = zone.prey.y - 2 - _loc4_;
+      zone.target_y = zone.prey.y - 2 - loc4;
    }
    x1 = zone.x - zone.target_x;
    y1 = zone.y - zone.target_y;
@@ -25740,9 +25945,9 @@ function f_FollowWalkInit(zone)
    }
    if(random(2) == 1)
    {
-      var _loc3_ = (60 + random(40)) * 0.01;
-      zone.temp_speed_x *= _loc3_;
-      zone.temp_speed_y *= _loc3_;
+      var loc3 = (60 + random(40)) * 0.01;
+      zone.temp_speed_x *= loc3;
+      zone.temp_speed_y *= loc3;
    }
    zone.last_x = zone.temp_speed_x;
    zone.last_y = zone.temp_speed_y;
@@ -26102,35 +26307,35 @@ function f_FrogJump(zone)
 }
 function f_MegaSlam()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= total_players)
+   var loc2 = 1;
+   while(loc2 <= total_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc1_.alive)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc1.alive)
       {
-         if(_loc1_.body_y >= 0)
+         if(loc1.body_y >= 0)
          {
-            _loc1_.speed_toss_y = - (random(6) + 6);
-            _loc1_.speed_toss_x = random(5) + 3;
-            f_CallJuggle1(_loc1_);
+            loc1.speed_toss_y = - (random(6) + 6);
+            loc1.speed_toss_x = random(5) + 3;
+            f_CallJuggle1(loc1);
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_OrcDust(zone)
 {
    s_SlamGround.start(0,0);
-   var _loc1_ = zone.y - 6;
+   var loc1 = zone.y - 6;
    if(zone._xscale > 0)
    {
-      var _loc3_ = zone.x + 75;
+      var loc3 = zone.x + 75;
    }
    else
    {
-      _loc3_ = zone.x - 75;
+      loc3 = zone.x - 75;
    }
-   f_FX(_loc3_,_loc1_,_loc1_,"shockwave2",100,100);
+   f_FX(loc3,loc1,loc1,"shockwave2",100,100);
 }
 function f_WraithRise(zone)
 {
@@ -26202,24 +26407,24 @@ function f_WraithWalk(zone)
          }
       }
       f_ShadowSize(zone);
-      var _loc3_ = scaled_screen_width / 2;
-      var _loc6_ = scaled_screen_width * 0.4;
-      var _loc4_ = Math.abs(zone.x + game_x - _loc3_);
-      if(_loc4_ > _loc3_)
+      var loc3 = scaled_screen_width / 2;
+      var loc6 = scaled_screen_width * 0.4;
+      var loc4 = Math.abs(zone.x + game_x - loc3);
+      if(loc4 > loc3)
       {
-         _loc4_ = _loc3_;
+         loc4 = loc3;
       }
-      var _loc5_ = 1 - _loc4_ / _loc6_;
-      var _loc2_ = (_loc3_ + 100 - _loc4_) / zone.loop_speed;
-      if(_loc2_ < 1)
+      var loc5 = 1 - loc4 / loc6;
+      var loc2 = (loc3 + 100 - loc4) / zone.loop_speed;
+      if(loc2 < 1)
       {
-         _loc2_ = 1;
+         loc2 = 1;
       }
       if(zone.goleft)
       {
-         f_MoveCharH(zone,- _loc2_,0);
-         var _loc7_ = zone.prey.y - 60 * _loc5_ - zone.y;
-         f_MoveCharV(zone,_loc7_);
+         f_MoveCharH(zone,- loc2,0);
+         var loc7 = zone.prey.y - 60 * loc5 - zone.y;
+         f_MoveCharV(zone,loc7);
          if(zone.x + game_x < scaled_screen_width * 0.1)
          {
             zone.loops = zone.loops - 1;
@@ -26234,9 +26439,9 @@ function f_WraithWalk(zone)
       }
       else
       {
-         f_MoveCharH(zone,_loc2_,0);
-         _loc7_ = zone.prey.y + 60 * _loc5_ - zone.y;
-         f_MoveCharV(zone,_loc7_,0);
+         f_MoveCharH(zone,loc2,0);
+         loc7 = zone.prey.y + 60 * loc5 - zone.y;
+         f_MoveCharV(zone,loc7,0);
          if(zone.x + game_x > scaled_screen_width * 0.9)
          {
             zone.loops = zone.loops - 1;
@@ -26276,7 +26481,7 @@ function f_ArcherWalk(zone)
    {
       f_MoveCharH(zone,zone.speed * 2,0);
    }
-   var _loc2_ = true;
+   var loc2 = true;
    if(zone.shot_timer > 0)
    {
       zone.shot_timer = zone.shot_timer - 1;
@@ -26285,14 +26490,14 @@ function f_ArcherWalk(zone)
    {
       if(zone.x + game_x < scaled_screen_width * 0.75 and zone._xscale < 0)
       {
-         _loc2_ = false;
+         loc2 = false;
          zone.tookshot = true;
          zone.gotoAndStop("arrow");
          zone.body._y = zone.body_table_y;
       }
       else if(zone.x + game_x > scaled_screen_width * 0.25 and zone._xscale > 0)
       {
-         _loc2_ = false;
+         loc2 = false;
          zone.tookshot = true;
          zone.gotoAndStop("arrow");
          zone.body._y = zone.body_table_y;
@@ -26302,18 +26507,18 @@ function f_ArcherWalk(zone)
    {
       if(zone.x + game_x > scaled_screen_width + 200)
       {
-         _loc2_ = false;
+         loc2 = false;
          f_EnemyDie(zone);
          return undefined;
       }
       if(zone.x + game_x < -200)
       {
-         _loc2_ = false;
+         loc2 = false;
          f_EnemyDie(zone);
          return undefined;
       }
    }
-   if(_loc2_)
+   if(loc2)
    {
       zone.gotoAndStop("walk");
       zone.body._y = zone.body_table_y;
@@ -26331,19 +26536,19 @@ function f_RemovePlayer(zone)
          LOGPush(10,0,zone.hud_pt.port);
       }
       zone.hud_pt.gotoAndStop("wait");
-      var _loc5_ = false;
-      var _loc2_ = 1;
-      while(_loc2_ <= active_players)
+      var loc5 = false;
+      var loc2 = 1;
+      while(loc2 <= active_players)
       {
-         var _loc3_ = playerArrayOb["p_pt" + int(_loc2_)];
-         if(_loc3_.alive)
+         var loc3 = playerArrayOb["p_pt" + int(loc2)];
+         if(loc3.alive)
          {
-            _loc5_ = true;
+            loc5 = true;
             break;
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
-      if(!_loc5_)
+      if(!loc5)
       {
          _root.f_ChangeLevel("../map/map.swf");
       }
@@ -26391,23 +26596,23 @@ function f_Ember(zone)
 }
 function f_WaitUntilClose(zone, u_frame)
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_players)
+   var loc1 = 1;
+   while(loc1 <= total_players)
    {
-      var _loc2_ = playerArrayOb["p_pt" + int(_loc1_)];
-      if(_loc2_.x > zone.x - 150)
+      var loc2 = playerArrayOb["p_pt" + int(loc1)];
+      if(loc2.x > zone.x - 150)
       {
          zone.gotoAndStop("cinema_butt2");
-         _loc1_ = total_players + 1;
+         loc1 = total_players + 1;
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_OpenPortal()
 {
-   var _loc2_ = scaled_screen_width / 2 - game_x;
-   var _loc1_ = 100 - game_y;
-   f_FX(_loc2_,_loc1_,loader.game.game.limit_topleft.y,"portal",100,100);
+   var loc2 = scaled_screen_width / 2 - game_x;
+   var loc1 = 100 - game_y;
+   f_FX(loc2,loc1,loader.game.game.limit_topleft.y,"portal",100,100);
 }
 function f_FireBurnHit(zone, u_temp)
 {
@@ -26422,14 +26627,14 @@ function f_FireBurnHit(zone, u_temp)
                if(u_temp.fire_timer <= 0)
                {
                   s_FireHit.start(0,0);
-                  var _loc4_ = 5;
+                  var loc4 = 5;
                   if(_root.insane_mode == true)
                   {
-                     _loc4_ = 20;
+                     loc4 = 20;
                   }
                   if(zone.geyser)
                   {
-                     f_Damage(u_temp,_loc4_,DMG_FIRE,DMGFLAG_JUGGLE,2 + random(2),- (40 + random(6)));
+                     f_Damage(u_temp,loc4,DMG_FIRE,DMGFLAG_JUGGLE,2 + random(2),- (40 + random(6)));
                      u_temp.speed_toss_x = 2 + random(2);
                      u_temp.speed_toss_y = - (40 + random(6));
                      u_temp.fire_timer = 59;
@@ -26439,7 +26644,7 @@ function f_FireBurnHit(zone, u_temp)
                   }
                   else
                   {
-                     f_Damage(u_temp,_loc4_,DMG_FIRE);
+                     f_Damage(u_temp,loc4,DMG_FIRE);
                   }
                   f_CheckHealth(u_temp);
                }
@@ -26452,17 +26657,17 @@ function f_FireBurn(zone)
 {
    if(f_OnScreen(zone))
    {
-      var _loc1_ = 1;
-      while(_loc1_ <= total_players)
+      var loc1 = 1;
+      while(loc1 <= total_players)
       {
-         f_FireBurnHit(zone,playerArrayOb["p_pt" + int(_loc1_)]);
-         _loc1_ = _loc1_ + 1;
+         f_FireBurnHit(zone,playerArrayOb["p_pt" + int(loc1)]);
+         loc1 = loc1 + 1;
       }
-      _loc1_ = 1;
-      while(_loc1_ <= active_enemies)
+      loc1 = 1;
+      while(loc1 <= active_enemies)
       {
-         f_FireBurnHit(zone,enemyArrayOb["e" + int(_loc1_)]);
-         _loc1_ = _loc1_ + 1;
+         f_FireBurnHit(zone,enemyArrayOb["e" + int(loc1)]);
+         loc1 = loc1 + 1;
       }
    }
 }
@@ -26472,9 +26677,9 @@ function f_FireWallBurnHit(zone, u_temp)
    {
       if(u_temp.y < zone.x + zone.bottom._x)
       {
-         var _loc5_ = (u_temp.y - (zone.top._y + zone._y)) / (zone.bottom._y - zone.top._y);
-         var _loc6_ = zone.x + zone.top._x + (zone.bottom._x - zone.top._x) * _loc5_;
-         if(Math.abs(u_temp.x - _loc6_) < 20)
+         var loc5 = (u_temp.y - (zone.top._y + zone._y)) / (zone.bottom._y - zone.top._y);
+         var loc6 = zone.x + zone.top._x + (zone.bottom._x - zone.top._x) * loc5;
+         if(Math.abs(u_temp.x - loc6) < 20)
          {
             if(u_temp.fire_timer <= 0)
             {
@@ -26483,12 +26688,12 @@ function f_FireWallBurnHit(zone, u_temp)
                {
                   u_temp._xscale *= -1;
                }
-               var _loc4_ = 5;
+               var loc4 = 5;
                if(_root.insane_mode == true)
                {
-                  _loc4_ = 20;
+                  loc4 = 20;
                }
-               f_Damage(u_temp,_loc4_,DMG_FIRE,DMGFLAG_JUGGLE,5 + random(3),- (20 + random(6)));
+               f_Damage(u_temp,loc4,DMG_FIRE,DMGFLAG_JUGGLE,5 + random(3),- (20 + random(6)));
             }
          }
       }
@@ -26498,17 +26703,17 @@ function f_FireWallBurn(zone)
 {
    if(f_OnScreen(zone))
    {
-      var _loc1_ = 1;
-      while(_loc1_ <= total_players)
+      var loc1 = 1;
+      while(loc1 <= total_players)
       {
-         f_FireWallBurnHit(zone,playerArrayOb["p_pt" + int(_loc1_)]);
-         _loc1_ = _loc1_ + 1;
+         f_FireWallBurnHit(zone,playerArrayOb["p_pt" + int(loc1)]);
+         loc1 = loc1 + 1;
       }
-      _loc1_ = 1;
-      while(_loc1_ <= active_enemies)
+      loc1 = 1;
+      while(loc1 <= active_enemies)
       {
-         f_FireWallBurnHit(zone,enemyArrayOb["e" + int(_loc1_)]);
-         _loc1_ = _loc1_ + 1;
+         f_FireWallBurnHit(zone,enemyArrayOb["e" + int(loc1)]);
+         loc1 = loc1 + 1;
       }
    }
 }
@@ -26523,20 +26728,20 @@ function f_EmberGenerator(zone)
       zone.ember_timer = zone.ember_timer - 1;
       if(zone.ember_timer % 3 == 0)
       {
-         var _loc6_ = zone.x - 30 + random(60);
-         var _loc5_ = zone.y - random(zone.zone._height);
-         var _loc2_ = 80 + random(20);
+         var loc6 = zone.x - 30 + random(60);
+         var loc5 = zone.y - random(zone.zone._height);
+         var loc2 = 80 + random(20);
          if(random(2) == 1)
          {
-            var _loc4_ = _loc2_ * -1;
+            var loc4 = loc2 * -1;
          }
          else
          {
-            _loc4_ = _loc2_;
+            loc4 = loc2;
          }
-         var _loc3_ = f_FX(_loc6_,_loc5_,zone.y,"ember",_loc4_,_loc2_);
-         _loc3_.speed = 2 + random(5);
-         _loc3_.timer = 20 + random(20);
+         var loc3 = f_FX(loc6,loc5,zone.y,"ember",loc4,loc2);
+         loc3.speed = 2 + random(5);
+         loc3.timer = 20 + random(20);
       }
    }
 }
@@ -26555,42 +26760,42 @@ function f_BlackKnightSmoke(zone)
       zone.timer = zone.timer - 1;
       if(zone.timer % 3 == 0)
       {
-         var _loc7_ = zone._x + zone.bk._x - 25 + random(50);
+         var loc7 = zone._x + zone.bk._x - 25 + random(50);
          if(random(3) == 1)
          {
-            var _loc2_ = random(30) + 40;
-            var _loc3_ = zone._y + 1;
-            var _loc6_ = zone._y - random(20);
-            var _loc5_ = random(2);
+            var loc2 = random(30) + 40;
+            var loc3 = zone._y + 1;
+            var loc6 = zone._y - random(20);
+            var loc5 = random(2);
          }
          else
          {
-            _loc2_ = random(40) + 50;
-            _loc3_ = zone._y - 1;
-            _loc6_ = zone._y - 30 - random(100);
-            _loc5_ = random(4) + 1;
+            loc2 = random(40) + 50;
+            loc3 = zone._y - 1;
+            loc6 = zone._y - 30 - random(100);
+            loc5 = random(4) + 1;
          }
-         var _loc4_ = f_FX(_loc7_,_loc6_,_loc3_,"evilsmoke",_loc2_,_loc2_);
-         _loc4_.speed_y = _loc5_;
+         var loc4 = f_FX(loc7,loc6,loc3,"evilsmoke",loc2,loc2);
+         loc4.speed_y = loc5;
       }
    }
 }
 function f_NewShadow()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= total_shadows)
+   var loc2 = 1;
+   while(loc2 <= total_shadows)
    {
-      var _loc1_ = loader.game.game["s" + _loc2_];
-      if(!_loc1_.active)
+      var loc1 = loader.game.game["s" + loc2];
+      if(!loc1.active)
       {
-         _loc1_.gotoAndStop("on");
-         _loc1_._xscale = 100;
-         _loc1_._yscale = 100;
-         _loc1_.active = true;
-         HiFps_Reset(_loc1_);
-         return _loc1_;
+         loc1.gotoAndStop("on");
+         loc1._xscale = 100;
+         loc1._yscale = 100;
+         loc1.active = true;
+         HiFps_Reset(loc1);
+         return loc1;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_RemoveShadow(zone)
@@ -26601,68 +26806,68 @@ function f_RemoveShadow(zone)
 }
 function f_IntroDashInit1(zone)
 {
-   var _loc4_ = zone.barbarians._x + zone._x;
-   var _loc2_ = zone.barbarians._y + zone._y;
-   var _loc1_ = f_SpawnBarbarian(_loc4_,_loc2_);
-   _loc1_.speed = 14;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
-   _loc1_ = f_SpawnBarbarian(_loc4_ + 100,_loc2_ - 30);
-   _loc1_.speed = 18;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
+   var loc4 = zone.barbarians._x + zone._x;
+   var loc2 = zone.barbarians._y + zone._y;
+   var loc1 = f_SpawnBarbarian(loc4,loc2);
+   loc1.speed = 14;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
+   loc1 = f_SpawnBarbarian(loc4 + 100,loc2 - 30);
+   loc1.speed = 18;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
 }
 function f_IntroDashInit2(zone)
 {
-   var _loc4_ = zone.barbarians._x + zone._x;
-   var _loc2_ = zone.barbarians._y + zone._y;
-   var _loc1_ = f_SpawnBarbarian(_loc4_ + 50,_loc2_ - 60);
-   _loc1_.speed = 16;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
-   _loc1_ = f_SpawnBarbarian(_loc4_ + 200,_loc2_ - 50);
-   _loc1_.speed = 18;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
+   var loc4 = zone.barbarians._x + zone._x;
+   var loc2 = zone.barbarians._y + zone._y;
+   var loc1 = f_SpawnBarbarian(loc4 + 50,loc2 - 60);
+   loc1.speed = 16;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
+   loc1 = f_SpawnBarbarian(loc4 + 200,loc2 - 50);
+   loc1.speed = 18;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
 }
 function f_IntroDashInit3(zone)
 {
-   var _loc4_ = zone.barbarians._x + zone._x;
-   var _loc2_ = zone.barbarians._y + zone._y;
-   var _loc1_ = f_SpawnBarbarian(_loc4_ + 400,_loc2_ - 20);
-   _loc1_.speed = 16;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
-   _loc1_ = f_SpawnBarbarian(_loc4_ + 300,_loc2_ - 60);
-   _loc1_.speed = 16;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
+   var loc4 = zone.barbarians._x + zone._x;
+   var loc2 = zone.barbarians._y + zone._y;
+   var loc1 = f_SpawnBarbarian(loc4 + 400,loc2 - 20);
+   loc1.speed = 16;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
+   loc1 = f_SpawnBarbarian(loc4 + 300,loc2 - 60);
+   loc1.speed = 16;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
 }
 function f_IntroDashInit4(zone)
 {
-   var _loc4_ = zone.barbarians._x + zone._x;
-   var _loc2_ = zone.barbarians._y + zone._y;
-   var _loc1_ = f_SpawnBarbarian(_loc4_ + 500,_loc2_ - 50);
-   _loc1_.speed = 18;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
-   _loc1_ = f_SpawnBarbarian(_loc4_ + 350,_loc2_ - 30);
-   _loc1_.speed = 18;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
+   var loc4 = zone.barbarians._x + zone._x;
+   var loc2 = zone.barbarians._y + zone._y;
+   var loc1 = f_SpawnBarbarian(loc4 + 500,loc2 - 50);
+   loc1.speed = 18;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
+   loc1 = f_SpawnBarbarian(loc4 + 350,loc2 - 30);
+   loc1.speed = 18;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
 }
 function f_IntroDashInit5(zone)
 {
-   var _loc4_ = zone.barbarians._x + zone._x;
-   var _loc2_ = zone.barbarians._y + zone._y;
-   var _loc1_ = f_SpawnBarbarian(_loc4_ + 150,_loc2_ - 20);
-   _loc1_.speed = 16;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
-   _loc1_ = f_SpawnBarbarian(_loc4_ + 250,_loc2_);
-   _loc1_.speed = 14;
-   _loc1_.intro_timer = 160;
-   _loc1_.gotoAndStop("introdash");
+   var loc4 = zone.barbarians._x + zone._x;
+   var loc2 = zone.barbarians._y + zone._y;
+   var loc1 = f_SpawnBarbarian(loc4 + 150,loc2 - 20);
+   loc1.speed = 16;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
+   loc1 = f_SpawnBarbarian(loc4 + 250,loc2);
+   loc1.speed = 14;
+   loc1.intro_timer = 160;
+   loc1.gotoAndStop("introdash");
 }
 function f_IntroDash(zone)
 {
@@ -26675,52 +26880,56 @@ function f_IntroDash(zone)
 }
 function f_ActivatePlayers()
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root.loader.game.game["p" + int(_loc3_)];
-      _loc2_.n_groundtype = 0;
-      if(_loc2_.alive)
+      var loc2 = _root.loader.game.game["p" + int(loc3)];
+      loc2.n_groundtype = 0;
+      if(loc2.alive)
       {
-         _loc2_.shadow_pt.gotoAndStop("on");
+         loc2.shadow_pt.gotoAndStop("on");
          if(level == 23 or level == 102)
          {
-            _loc2_.fp_StandAnim = f_SwimStand;
-            _loc2_.fp_WalkAnim = f_SwimWalk;
-            _loc2_.body_y = -500;
-            _loc2_.body._y = -500;
-            _loc2_.jump_speed_y;
-            f_JumpAction(_loc2_);
-            _loc2_.speed_jump = 0;
+            loc2.fp_StandAnim = f_SwimStand;
+            loc2.fp_WalkAnim = f_SwimWalk;
+            if(loc2.p_type == 33 && loc2.undead) { // Fixing cyclops dual stand anim causing flicker with standard f_SwimStand
+               loc2.fp_StandAnim = f_StandTypeUndead;
+               loc2.fp_WalkAnim = f_WalkTypeUndead;
+            }
+            loc2.body_y = -500;
+            loc2.body._y = -500;
+            loc2.jump_speed_y;
+            f_JumpAction(loc2);
+            loc2.speed_jump = 0;
          }
          else
          {
-            _loc2_.fp_StandAnim(_loc2_);
+            loc2.fp_StandAnim(loc2);
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_PlayersEnter()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = _root.loader.game.game["p" + int(_loc2_)];
-      var _loc4_ = undefined;
-      if(_loc3_.alive)
+      var loc3 = _root.loader.game.game["p" + int(loc2)];
+      var loc4 = undefined;
+      if(loc3.alive)
       {
          if(spawn_portal_num != 1)
          {
-            _loc4_ = _root.loader.game.game["p" + _loc2_ + "_start" + spawn_portal_num];
+            loc4 = _root.loader.game.game["p" + loc2 + "_start" + spawn_portal_num];
          }
          else
          {
-            _loc4_ = _root.loader.game.game["p" + _loc2_ + "_start"];
+            loc4 = _root.loader.game.game["p" + loc2 + "_start"];
          }
-         _root.f_WalkToInit(_loc3_,_loc4_._x,_loc4_._y,_loc3_.fp_StandAnim,true);
+         _root.f_WalkToInit(loc3,loc4._x,loc4._y,loc3.fp_StandAnim,true);
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_MakeHorse(x, y)
@@ -26728,20 +26937,20 @@ function f_MakeHorse(x, y)
    i = 1;
    while(i <= total_horses)
    {
-      var _loc2_ = _root.loader.game.game["horse" + int(i)];
-      if(!_loc2_.active)
+      var loc2 = _root.loader.game.game["horse" + int(i)];
+      if(!loc2.active)
       {
-         _loc2_.active = true;
-         _loc2_.alive = true;
-         _loc2_.x = x;
-         _loc2_.y = y;
-         _loc2_._x = x;
-         _loc2_._y = y;
-         _loc2_.h = 56;
-         _loc2_.mount_type = 1;
-         f_Depth(_loc2_,_loc2_.y);
-         _loc2_.gotoAndStop("wait");
-         return _loc2_;
+         loc2.active = true;
+         loc2.alive = true;
+         loc2.x = x;
+         loc2.y = y;
+         loc2._x = x;
+         loc2._y = y;
+         loc2.h = 56;
+         loc2.mount_type = 1;
+         f_Depth(loc2,loc2.y);
+         loc2.gotoAndStop("wait");
+         return loc2;
       }
       i++;
    }
@@ -26752,25 +26961,25 @@ function f_MakeMount2(x, y)
    i = 1;
    while(i <= total_mount2)
    {
-      var _loc2_ = _root.loader.game.game["mount2" + int(i)];
-      if(!_loc2_.active)
+      var loc2 = _root.loader.game.game["mount2" + int(i)];
+      if(!loc2.active)
       {
-         _loc2_.active = true;
-         _loc2_.alive = true;
-         _loc2_.x = x;
-         _loc2_.y = y;
-         _loc2_._x = x;
-         _loc2_._y = y;
-         _loc2_.h = 44;
-         _loc2_.mount_type = 2;
-         _loc2_.fp_PunchHit = f_PunchHit;
-         _loc2_.punch_pow_low = 10;
-         _loc2_.punch_pow_medium = 10;
-         _loc2_.punch_pow_high = 10;
-         _loc2_.punch_pow_max = 10;
-         f_Depth(_loc2_,_loc2_.y);
-         _loc2_.gotoAndStop("wait");
-         return _loc2_;
+         loc2.active = true;
+         loc2.alive = true;
+         loc2.x = x;
+         loc2.y = y;
+         loc2._x = x;
+         loc2._y = y;
+         loc2.h = 44;
+         loc2.mount_type = 2;
+         loc2.fp_PunchHit = f_PunchHit;
+         loc2.punch_pow_low = 10;
+         loc2.punch_pow_medium = 10;
+         loc2.punch_pow_high = 10;
+         loc2.punch_pow_max = 10;
+         f_Depth(loc2,loc2.y);
+         loc2.gotoAndStop("wait");
+         return loc2;
       }
       i++;
    }
@@ -26781,25 +26990,25 @@ function f_MakeMount3(x, y)
    i = 1;
    while(i <= total_mount3)
    {
-      var _loc2_ = _root.loader.game.game["mount3" + int(i)];
-      if(!_loc2_.active)
+      var loc2 = _root.loader.game.game["mount3" + int(i)];
+      if(!loc2.active)
       {
-         _loc2_.active = true;
-         _loc2_.alive = true;
-         _loc2_.x = x;
-         _loc2_.y = y;
-         _loc2_._x = x;
-         _loc2_._y = y;
-         _loc2_.h = 44;
-         _loc2_.mount_type = 3;
-         _loc2_.fp_PunchHit = f_PunchHit;
-         _loc2_.punch_pow_low = 10;
-         _loc2_.punch_pow_medium = 10;
-         _loc2_.punch_pow_high = 10;
-         _loc2_.punch_pow_max = 10;
-         f_Depth(_loc2_,_loc2_.y);
-         _loc2_.gotoAndStop("wait");
-         return _loc2_;
+         loc2.active = true;
+         loc2.alive = true;
+         loc2.x = x;
+         loc2.y = y;
+         loc2._x = x;
+         loc2._y = y;
+         loc2.h = 44;
+         loc2.mount_type = 3;
+         loc2.fp_PunchHit = f_PunchHit;
+         loc2.punch_pow_low = 10;
+         loc2.punch_pow_medium = 10;
+         loc2.punch_pow_high = 10;
+         loc2.punch_pow_max = 10;
+         f_Depth(loc2,loc2.y);
+         loc2.gotoAndStop("wait");
+         return loc2;
       }
       i++;
    }
@@ -26810,25 +27019,25 @@ function f_MakeMount4(x, y)
    i = 1;
    while(i <= total_mount4)
    {
-      var _loc2_ = _root.loader.game.game["mount4" + int(i)];
-      if(!_loc2_.active)
+      var loc2 = _root.loader.game.game["mount4" + int(i)];
+      if(!loc2.active)
       {
-         _loc2_.active = true;
-         _loc2_.alive = true;
-         _loc2_.x = x;
-         _loc2_.y = y;
-         _loc2_._x = x;
-         _loc2_._y = y;
-         _loc2_.h = 75;
-         _loc2_.mount_type = 4;
-         _loc2_.fp_PunchHit = f_PunchHit;
-         _loc2_.punch_pow_low = 10;
-         _loc2_.punch_pow_medium = 10;
-         _loc2_.punch_pow_high = 10;
-         _loc2_.punch_pow_max = 10;
-         f_Depth(_loc2_,_loc2_.y);
-         _loc2_.gotoAndStop("wait");
-         return _loc2_;
+         loc2.active = true;
+         loc2.alive = true;
+         loc2.x = x;
+         loc2.y = y;
+         loc2._x = x;
+         loc2._y = y;
+         loc2.h = 75;
+         loc2.mount_type = 4;
+         loc2.fp_PunchHit = f_PunchHit;
+         loc2.punch_pow_low = 10;
+         loc2.punch_pow_medium = 10;
+         loc2.punch_pow_high = 10;
+         loc2.punch_pow_max = 10;
+         f_Depth(loc2,loc2.y);
+         loc2.gotoAndStop("wait");
+         return loc2;
       }
       i++;
    }
@@ -26851,12 +27060,12 @@ function f_ChickenWalk(zone)
    }
    else
    {
-      var _loc2_ = zone.x;
+      var loc2 = zone.x;
       f_MoveCharH(zone,zone.speed_x,0);
       zone.bounds = false;
-      var _loc3_ = zone.y;
+      var loc3 = zone.y;
       f_MoveCharV(zone,zone.speed_y,0);
-      if(!zone.hunted and zone._x < main.left or zone.x == _loc2_)
+      if(!zone.hunted and zone._x < main.left or zone.x == loc2)
       {
          if(zone._xscale < 0)
          {
@@ -26864,7 +27073,7 @@ function f_ChickenWalk(zone)
             f_FlipChar(zone);
          }
       }
-      else if(!zone.hunted and zone._x > main.right or zone.x == _loc2_)
+      else if(!zone.hunted and zone._x > main.right or zone.x == loc2)
       {
          if(zone._xscale > 0)
          {
@@ -26872,7 +27081,7 @@ function f_ChickenWalk(zone)
             f_FlipChar(zone);
          }
       }
-      if(zone.y == _loc3_)
+      if(zone.y == loc3)
       {
          zone.speed_y *= -1;
       }
@@ -26948,18 +27157,18 @@ function f_MakeChicken(x, y)
    i = 1;
    while(i <= total_chickens)
    {
-      var _loc2_ = _root.loader.game.game["chicken" + int(i)];
-      if(!_loc2_.active)
+      var loc2 = _root.loader.game.game["chicken" + int(i)];
+      if(!loc2.active)
       {
-         _loc2_.active = true;
-         _loc2_.x = x;
-         _loc2_.y = y;
-         _loc2_._x = x;
-         _loc2_._y = y;
-         f_Depth(_loc2_,y);
-         _loc2_.idle_timer = 1;
-         _loc2_.gotoAndStop("idle");
-         return _loc2_;
+         loc2.active = true;
+         loc2.x = x;
+         loc2.y = y;
+         loc2._x = x;
+         loc2._y = y;
+         f_Depth(loc2,y);
+         loc2.idle_timer = 1;
+         loc2.gotoAndStop("idle");
+         return loc2;
       }
       i++;
    }
@@ -26970,10 +27179,10 @@ function f_StopChickens()
    i = 1;
    while(i <= total_chickens)
    {
-      var _loc2_ = _root.loader.game.game["chicken" + int(i)];
-      if(_loc2_.active)
+      var loc2 = _root.loader.game.game["chicken" + int(i)];
+      if(loc2.active)
       {
-         _loc2_.gotoAndStop("sleep");
+         loc2.gotoAndStop("sleep");
       }
       i++;
    }
@@ -26983,32 +27192,32 @@ function f_MakeBodyPart(u_parent)
    i = 1;
    while(i <= 10)
    {
-      var _loc2_ = _root.loader.game.game["e_bodyparts" + int(i)];
-      if(!_loc2_.active)
+      var loc2 = _root.loader.game.game["e_bodyparts" + int(i)];
+      if(!loc2.active)
       {
-         _loc2_.active;
-         _loc2_.x = u_parent.x;
-         _loc2_.y = u_parent.y;
-         _loc2_._x = _loc2_.x;
-         _loc2_._y = _loc2_.y;
-         f_Depth(_loc2_,_loc2_._y);
+         loc2.active;
+         loc2.x = u_parent.x;
+         loc2.y = u_parent.y;
+         loc2._x = loc2.x;
+         loc2._y = loc2.y;
+         f_Depth(loc2,loc2._y);
          if(gore)
          {
-            _loc2_.helmet = u_parent.helmet;
+            loc2.helmet = u_parent.helmet;
          }
          else
          {
-            _loc2_.helmet = 100;
+            loc2.helmet = 100;
          }
-         _loc2_.gotoAndStop("head");
-         _loc2_.body._y = -75;
-         _loc2_.speed_x = 5 - random(10);
-         _loc2_.speed_y = - (random(10) + 30);
-         _loc2_.gravity = random(2) + 6;
-         _loc2_.bounces = 0;
-         _loc2_.bounces_max = 2;
-         _loc2_.hit_function = f_GeneralBounce;
-         return _loc2_;
+         loc2.gotoAndStop("head");
+         loc2.body._y = -75;
+         loc2.speed_x = 5 - random(10);
+         loc2.speed_y = - (random(10) + 30);
+         loc2.gravity = random(2) + 6;
+         loc2.bounces = 0;
+         loc2.bounces_max = 2;
+         loc2.hit_function = f_GeneralBounce;
+         return loc2;
       }
       i++;
    }
@@ -27051,27 +27260,27 @@ function f_Tour(zone)
 {
    if(Key.isDown(65))
    {
-      var _loc1_ = 100;
+      var loc1 = 100;
    }
    else
    {
-      _loc1_ = 15;
+      loc1 = 15;
    }
    if(Key.isDown(39))
    {
-      zone._x += _loc1_;
+      zone._x += loc1;
    }
    if(Key.isDown(37))
    {
-      zone._x -= _loc1_;
+      zone._x -= loc1;
    }
    if(Key.isDown(40))
    {
-      zone._y += _loc1_;
+      zone._y += loc1;
    }
    if(Key.isDown(38))
    {
-      zone._y -= _loc1_;
+      zone._y -= loc1;
    }
 }
 function f_HitRecoverInit(zone)
@@ -27178,34 +27387,34 @@ function f_WalkTo(zone)
    zone.body._y = zone.body_y + zone.body_table_y;
    zone.prev_x = zone.x;
    zone.prev_y = zone.y;
-   var _loc2_ = true;
+   var loc2 = true;
    if(zone.temp_speed_x > 0)
    {
       if(zone.x < zone.walkto_x)
       {
-         _loc2_ = false;
+         loc2 = false;
          f_MoveCharH(zone,zone.temp_speed_x,0);
       }
    }
    else if(zone.x > zone.walkto_x)
    {
-      _loc2_ = false;
+      loc2 = false;
       f_MoveCharH(zone,zone.temp_speed_x,0);
    }
    if(zone.temp_speed_y > 0)
    {
       if(zone.y < zone.walkto_y)
       {
-         _loc2_ = false;
+         loc2 = false;
          f_MoveCharV(zone,zone.temp_speed_y,0);
       }
    }
    else if(zone.y > zone.walkto_y)
    {
-      _loc2_ = false;
+      loc2 = false;
       f_MoveCharV(zone,zone.temp_speed_y,0);
    }
-   if(_loc2_ or zone.prev_x == zone.x and zone.prev_y == zone.y)
+   if(loc2 or zone.prev_x == zone.x and zone.prev_y == zone.y)
    {
       zone.WalkToAction(zone);
    }
@@ -27234,10 +27443,10 @@ function f_WalkThru(zone)
    {
       if(zone.n_groundtype < 300 or zone.n_groundtype > 302)
       {
-         var _loc4_ = (80 + random(20)) / 100;
-         var _loc3_ = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * _loc4_,100 * _loc4_);
-         _loc3_._x += random(10) - 5;
-         _loc3_._y += random(4) - 2;
+         var loc4 = (80 + random(20)) / 100;
+         var loc3 = f_FX(zone.x,zone.y + 1,int(zone.y) + 1,level_dust,zone._xscale * loc4,100 * loc4);
+         loc3._x += random(10) - 5;
+         loc3._y += random(4) - 2;
       }
       else if(level == 32)
       {
@@ -27245,7 +27454,7 @@ function f_WalkThru(zone)
       }
    }
    zone.dashing_timer = zone.dashing_timer + 1;
-   var _loc2_ = true;
+   var loc2 = true;
    if(zone.temp_speed_x > 0)
    {
       if(zone.x + zone.temp_speed_x >= zone.walkto_x)
@@ -27255,7 +27464,7 @@ function f_WalkThru(zone)
       else
       {
          zone.x += zone.temp_speed_x;
-         _loc2_ = false;
+         loc2 = false;
       }
    }
    else if(zone.x + zone.temp_speed_x <= zone.walkto_x)
@@ -27265,7 +27474,7 @@ function f_WalkThru(zone)
    else
    {
       zone.x += zone.temp_speed_x;
-      _loc2_ = false;
+      loc2 = false;
    }
    if(zone.temp_speed_y > 0)
    {
@@ -27276,7 +27485,7 @@ function f_WalkThru(zone)
       else
       {
          zone.y += zone.temp_speed_y;
-         _loc2_ = false;
+         loc2 = false;
       }
    }
    else if(zone.y + zone.temp_speed_y <= zone.walkto_y)
@@ -27286,7 +27495,7 @@ function f_WalkThru(zone)
    else
    {
       zone.y += zone.temp_speed_y;
-      _loc2_ = false;
+      loc2 = false;
    }
    zone._x = zone.x;
    zone._y = zone.y;
@@ -27305,24 +27514,24 @@ function f_WalkThru(zone)
       }
       zone.zone.y = zone.y + zone.zone._y;
    }
-   if(_loc2_)
+   if(loc2)
    {
       zone.WalkToAction(zone);
    }
 }
 function f_PlayersClose(zone)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= total_players)
+   var loc3 = 1;
+   while(loc3 <= total_players)
    {
-      var _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-      if(_loc2_.alive)
+      var loc2 = playerArrayOb["p_pt" + int(loc3)];
+      if(loc2.alive)
       {
-         if(Math.abs(_loc2_.x - zone.x) < 150)
+         if(Math.abs(loc2.x - zone.x) < 150)
          {
-            if(Math.abs(_loc2_.y - zone.y) < 20)
+            if(Math.abs(loc2.y - zone.y) < 20)
             {
-               if(_loc2_.x > zone.x)
+               if(loc2.x > zone.x)
                {
                   if(zone._xscale < 0)
                   {
@@ -27337,44 +27546,44 @@ function f_PlayersClose(zone)
             }
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
    return false;
 }
 function f_EnemyTargetCloseEnemy(zone)
 {
-   var _loc4_ = undefined;
-   var _loc5_ = undefined;
-   var _loc3_ = 1;
-   while(_loc3_ <= active_enemies)
+   var loc4 = undefined;
+   var loc5 = undefined;
+   var loc3 = 1;
+   while(loc3 <= active_enemies)
    {
-      var _loc1_ = enemyArrayOb["e" + int(_loc3_)];
-      if(_loc1_ != zone)
+      var loc1 = enemyArrayOb["e" + int(loc3)];
+      if(loc1 != zone)
       {
-         if(_loc1_.alive)
+         if(loc1.alive)
          {
-            if(!_loc1_.nohit)
+            if(!loc1.nohit)
             {
-               if(_loc4_ == undefined)
+               if(loc4 == undefined)
                {
-                  _loc4_ = _loc1_;
-                  _loc5_ = Math.abs(zone.x - _loc1_.y) + Math.abs(zone.y - _loc1_.y);
+                  loc4 = loc1;
+                  loc5 = Math.abs(zone.x - loc1.y) + Math.abs(zone.y - loc1.y);
                }
-               else if(Math.abs(zone.x - _loc1_.y) + Math.abs(zone.y - _loc1_.y) < _loc5_)
+               else if(Math.abs(zone.x - loc1.y) + Math.abs(zone.y - loc1.y) < loc5)
                {
-                  _loc4_ = _loc1_;
-                  _loc5_ = Math.abs(zone.x - _loc1_.y) + Math.abs(zone.y - _loc1_.y);
+                  loc4 = loc1;
+                  loc5 = Math.abs(zone.x - loc1.y) + Math.abs(zone.y - loc1.y);
                }
             }
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
-   if(_loc4_ == undefined)
+   if(loc4 == undefined)
    {
       return false;
    }
-   zone.prey = _loc4_;
+   zone.prey = loc4;
    return true;
 }
 function f_GetUpPuch201_2(zone)
@@ -27405,34 +27614,34 @@ function f_GetUp(zone)
 }
 function f_HitReactionSwordLock(zone, attack_pow, attack_type, damage_flags, recoil_x, recoil_y)
 {
-   var _loc2_ = false;
+   var loc2 = false;
    if(zone.horse or !zone.humanoid or !zone.hitby.humanoid or level == 43)
    {
-      _loc2_ = false;
+      loc2 = false;
    }
    else if(zone.hitby.attack_type == DMG_MELEE)
    {
       if(zone.hitby.beefy or zone.beefy or zone.attack_type != DMG_MELEE)
       {
-         _loc2_ = false;
+         loc2 = false;
       }
       else if(Math.abs(zone.x - zone.hitby.x) > 150)
       {
-         _loc2_ = false;
+         loc2 = false;
       }
       else if(Math.abs(zone.y - zone.hitby.y) > 30)
       {
-         _loc2_ = false;
+         loc2 = false;
       }
       else if(zone.body_y < 0 or zone.hitby.body_y < 0)
       {
-         _loc2_ = false;
+         loc2 = false;
       }
       else if(zone.x >= zone.hitby.x)
       {
          if(zone._xscale > 0)
          {
-            _loc2_ = false;
+            loc2 = false;
          }
          else
          {
@@ -27442,13 +27651,13 @@ function f_HitReactionSwordLock(zone, attack_pow, attack_type, damage_flags, rec
             }
             if(f_MoveCharH(zone,zone.hitby.x + 100 - zone.x,0))
             {
-               _loc2_ = true;
+               loc2 = true;
             }
          }
       }
       else if(zone._xscale < 0)
       {
-         _loc2_ = false;
+         loc2 = false;
       }
       else
       {
@@ -27458,11 +27667,11 @@ function f_HitReactionSwordLock(zone, attack_pow, attack_type, damage_flags, rec
          }
          if(f_MoveCharH(zone,zone.hitby.x - 100 - zone.x,0))
          {
-            _loc2_ = true;
+            loc2 = true;
          }
       }
    }
-   if(_loc2_)
+   if(loc2)
    {
       if(zone.prev_fp_UniqueHit)
       {
@@ -27605,10 +27814,10 @@ function f_GoDefault(zone)
       f_DropHostage(zone);
       if(zone.grappler)
       {
-         var _loc2_ = zone.grappler;
+         var loc2 = zone.grappler;
          zone.grappler.grappler = undefined;
          zone.grappler = undefined;
-         f_BeefyGrabEnemy(_loc2_,zone);
+         f_BeefyGrabEnemy(loc2,zone);
       }
    }
    zone.fp_Character = f_Character;
@@ -27625,9 +27834,9 @@ function f_GoDefault(zone)
    if(zone.restore_anim != "" and zone.beefy)
    {
       zone.beefy = false;
-      var _loc3_ = zone.restore_anim;
+      var loc3 = zone.restore_anim;
       zone.restore_anim = "";
-      zone.gotoAndStop(_loc3_);
+      zone.gotoAndStop(loc3);
    }
    else if(zone.body_y < 0 and zone.beefy)
    {
@@ -27668,8 +27877,8 @@ function f_TransformBeefy(zone)
       {
          zone.magic_gap = 0;
          zone.pressed_magic = true;
-         var _loc2_ = zone.body._currentframe + 10;
-         zone.body.gotoAndStop(_loc2_);
+         var loc2 = zone.body._currentframe + 10;
+         zone.body.gotoAndStop(loc2);
          if(zone.body._currentframe >= 60)
          {
             f_FX(zone.x,zone.y,zone.y - 1,level_shockwave,100,100);
@@ -27683,17 +27892,17 @@ function f_TransformBeefy(zone)
          zone.magic_gap = zone.magic_gap + 1;
          if(zone.magic_gap > 10)
          {
-            var _loc3_ = zone.body._currentframe - 5;
+            var loc3 = zone.body._currentframe - 5;
          }
          else if(zone.magic_gap > 5)
          {
-            _loc3_ = zone.body._currentframe - 2;
+            loc3 = zone.body._currentframe - 2;
          }
          else
          {
-            _loc3_ = zone.body._currentframe - 1;
+            loc3 = zone.body._currentframe - 1;
          }
-         zone.body.gotoAndStop(_loc3_);
+         zone.body.gotoAndStop(loc3);
       }
    }
    else
@@ -27702,17 +27911,17 @@ function f_TransformBeefy(zone)
       zone.magic_gap = zone.magic_gap + 1;
       if(zone.magic_gap > 10)
       {
-         _loc3_ = zone.body._currentframe - 5;
+         loc3 = zone.body._currentframe - 5;
       }
       else if(zone.magic_gap > 5)
       {
-         _loc3_ = zone.body._currentframe - 2;
+         loc3 = zone.body._currentframe - 2;
       }
       else
       {
-         _loc3_ = zone.body._currentframe - 1;
+         loc3 = zone.body._currentframe - 1;
       }
-      zone.body.gotoAndStop(_loc3_);
+      zone.body.gotoAndStop(loc3);
    }
    if(zone.body._currentframe < 10)
    {
@@ -27722,22 +27931,22 @@ function f_TransformBeefy(zone)
 }
 function f_bosshealthbar(zone)
 {
-   var _loc1_ = zone.u_boss.health;
-   if(_loc1_ < 0)
+   var loc1 = zone.u_boss.health;
+   if(loc1 < 0)
    {
-      _loc1_ = 0;
+      loc1 = 0;
    }
-   var _loc2_ = 101 - int(_loc1_ / zone.u_boss.health_max * 100);
-   if(_loc1_ == 0)
+   var loc2 = 101 - int(loc1 / zone.u_boss.health_max * 100);
+   if(loc1 == 0)
    {
-      _loc2_ = 101;
+      loc2 = 101;
    }
-   else if(_loc1_ > 0 && _loc2_ == 101)
+   else if(loc1 > 0 && loc2 == 101)
    {
-      _loc2_ = 100;
+      loc2 = 100;
    }
-   zone.body.bar.gotoAndStop(_loc2_);
-   if(_loc1_ <= 0)
+   zone.body.bar.gotoAndStop(loc2);
+   if(loc1 <= 0)
    {
       zone.body.face.gotoAndStop("die");
       zone.u_boss.fp_DieAction(zone);
@@ -27745,17 +27954,17 @@ function f_bosshealthbar(zone)
 }
 function f_PlayersWalkToPoint(zone)
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root.loader.game.game["p" + int(_loc3_)];
-      if(_loc2_.alive)
+      var loc2 = _root.loader.game.game["p" + int(loc3)];
+      if(loc2.alive)
       {
-         var _loc5_ = zone._x;
-         var _loc4_ = zone._y;
-         _root.f_WalkToInit(_loc2_,_loc5_,_loc4_,_loc2_.fp_StandAnim,false);
+         var loc5 = zone._x;
+         var loc4 = zone._y;
+         _root.f_WalkToInit(loc2,loc5,loc4,loc2.fp_StandAnim,false);
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_ClearTimers(zone)
@@ -27793,42 +28002,42 @@ function f_Wait(zone)
 function f_ClearVsTrueskill()
 {
    vs_time = 0;
-   var _loc2_ = 0;
-   while(_loc2_ < 4)
+   var loc2 = 0;
+   while(loc2 < 4)
    {
-      _root["hud" + (_loc2_ + 1)].death_time = 999999999999;
-      SetScores(_loc2_,0,0,0);
-      _loc2_ = _loc2_ + 1;
+      _root["hud" + (loc2 + 1)].death_time = 999999999999;
+      SetScores(loc2,0,0,0);
+      loc2 = loc2 + 1;
    }
 }
 function f_SetVsTrueskill()
 {
-   var _loc5_ = 1;
-   while(_loc5_ <= 4)
+   var loc5 = 1;
+   while(loc5 <= 4)
    {
-      var _loc4_ = _root["hud" + _loc5_];
-      var _loc6_ = 0;
-      if(_loc4_.active)
+      var loc4 = _root["hud" + loc5];
+      var loc6 = 0;
+      if(loc4.active)
       {
-         var _loc2_ = 1;
-         while(_loc2_ <= 4)
+         var loc2 = 1;
+         while(loc2 <= 4)
          {
-            var _loc3_ = _root["hud" + _loc2_];
-            if(_loc3_.active)
+            var loc3 = _root["hud" + loc2];
+            if(loc3.active)
             {
-               if(!(_loc5_ != _loc2_ && _loc4_.death_time < _loc3_.death_time))
+               if(!(loc5 != loc2 && loc4.death_time < loc3.death_time))
                {
-                  _loc6_ = _loc6_ + 1;
+                  loc6 = loc6 + 1;
                }
             }
-            _loc2_ = _loc2_ + 1;
+            loc2 = loc2 + 1;
          }
-         if(_loc4_.port > 0)
+         if(loc4.port > 0)
          {
-            SetScores(_loc4_.port - 1,-1,-1,_loc6_);
+            SetScores(loc4.port - 1,-1,-1,loc6);
          }
       }
-      _loc5_ = _loc5_ + 1;
+      loc5 = loc5 + 1;
    }
 }
 function f_GoDance(zone)
@@ -27847,116 +28056,116 @@ function f_PlayersGoDance()
 {
    if(GetGameMode() == 3)
    {
-      var _loc6_ = 0;
-      var _loc5_ = 1;
-      while(_loc5_ <= 4)
+      var loc6 = 0;
+      var loc5 = 1;
+      while(loc5 <= 4)
       {
-         var _loc2_ = _root.loader.game.game["p" + int(_loc5_)];
-         if(_loc2_)
+         var loc2 = _root.loader.game.game["p" + int(loc5)];
+         if(loc2)
          {
-            if(_loc2_.health > 0)
+            if(loc2.health > 0)
             {
-               _loc6_ = _loc2_.flag;
-               _loc5_ = 5;
+               loc6 = loc2.flag;
+               loc5 = 5;
             }
          }
-         _loc5_ = _loc5_ + 1;
+         loc5 = loc5 + 1;
       }
       if(IsNetGame())
       {
-         var _loc8_ = 0;
-         _loc5_ = 1;
-         while(_loc5_ <= 4)
+         var loc8 = 0;
+         loc5 = 1;
+         while(loc5 <= 4)
          {
-            _loc2_ = _root.loader.game.game["p" + int(_loc5_)];
-            if(_loc2_)
+            loc2 = _root.loader.game.game["p" + int(loc5)];
+            if(loc2)
             {
-               if(_loc2_.hud_pt.port > 0)
+               if(loc2.hud_pt.port > 0)
                {
-                  if(_loc2_.flag != _loc6_)
+                  if(loc2.flag != loc6)
                   {
-                     _loc8_ = _loc8_ + 1;
+                     loc8 = loc8 + 1;
                   }
                }
             }
-            _loc5_ = _loc5_ + 1;
+            loc5 = loc5 + 1;
          }
-         SetFlashGlobal("g_nArenaPoints",_loc8_);
+         SetFlashGlobal("g_nArenaPoints",loc8);
          f_SetVsTrueskill();
       }
    }
-   _loc5_ = 1;
-   while(_loc5_ <= 4)
+   loc5 = 1;
+   while(loc5 <= 4)
    {
-      _loc2_ = _root.loader.game.game["p" + int(_loc5_)];
-      if(_loc2_)
+      loc2 = _root.loader.game.game["p" + int(loc5)];
+      if(loc2)
       {
          if(GetGameMode() == 3)
          {
-            if(_loc2_.hud_pt.port > 0)
+            if(loc2.hud_pt.port > 0)
             {
                if(IsNetGame())
                {
-                  if(_loc2_.flag == _loc6_)
+                  if(loc2.flag == loc6)
                   {
-                     SetScores(_loc2_.hud_pt.port - 1,1,0,-1);
+                     SetScores(loc2.hud_pt.port - 1,1,0,-1);
                   }
                   else
                   {
-                     SetScores(_loc2_.hud_pt.port - 1,0,1,-1);
+                     SetScores(loc2.hud_pt.port - 1,0,1,-1);
                   }
                }
-               if(_loc2_.flag == _loc6_)
+               if(loc2.flag == loc6)
                {
-                  _root["player" + int(_loc2_.player_num) + "wins"] += 1;
+                  _root["player" + int(loc2.player_num) + "wins"] += 1;
                   if(IsNetGame())
                   {
-                     var _loc4_ = 0;
-                     var _loc7_ = int(_root.save_data_info.char_offset + _root.save_data_info.char_size * int(f_GetSaveDataOffset(_loc2_.p_type)) + 29);
-                     ReadStorage(_loc2_.hud_pt.port - 1,_loc7_);
-                     var _loc3_ = 0;
-                     while(_loc3_ < 4)
+                     var loc4 = 0;
+                     var loc7 = int(_root.save_data_info.char_offset + _root.save_data_info.char_size * int(f_GetSaveDataOffset(loc2.p_type)) + 29);
+                     ReadStorage(loc2.hud_pt.port - 1,loc7);
+                     var loc3 = 0;
+                     while(loc3 < 4)
                      {
-                        _loc4_ += ReadStorage(_loc2_.hud_pt.port - 1) << 8 | ReadStorage(_loc2_.hud_pt.port - 1);
-                        _loc3_ = _loc3_ + 1;
+                        loc4 += ReadStorage(loc2.hud_pt.port - 1) << 8 | ReadStorage(loc2.hud_pt.port - 1);
+                        loc3 = loc3 + 1;
                      }
-                     _root.f_UpdateAchievement("ArenaMaster",_loc2_.hud_pt.port,_loc4_);
+                     _root.f_UpdateAchievement("ArenaMaster",loc2.hud_pt.port,loc4);
                   }
                }
             }
          }
-         if(_loc2_.health > 0)
+         if(loc2.health > 0)
          {
-            if(_loc2_.horse)
+            if(loc2.horse)
             {
-               f_PlayerStop(_loc2_);
+               f_PlayerStop(loc2);
             }
             if(GetGameMode() == 3)
             {
-               _root["player" + int(_loc2_.player_num) + "winner"] = 1;
+               _root["player" + int(loc2.player_num) + "winner"] = 1;
             }
-            if(_loc2_.fp_StandAnim != f_GoDance)
+            if(loc2.fp_StandAnim != f_GoDance)
             {
-               _loc2_.fp_PrevStandAnim = _loc2_.fp_StandAnim;
-               _loc2_.fp_PrevWalkAnim = _loc2_.fp_WalkAnim;
-               _loc2_.fp_PrevDashAnim = _loc2_.fp_DashAnim;
-               _loc2_.fp_StandAnim = f_GoDance;
-               _loc2_.fp_WalkAnim = f_GoDance;
-               _loc2_.fp_DashAnim = f_GoDance;
-               _loc2_.fp_HorseRide = f_GoDance;
-               _loc2_.fp_ThrowAction = f_GoDance;
-               _loc2_.fp_Jab = f_GoDance;
-               _loc2_.fp_Fierce = f_GoDance;
-               _loc2_.fp_JabFierce = f_GoDance;
+               loc2.fp_PrevStandAnim = loc2.fp_StandAnim;
+               loc2.fp_PrevWalkAnim = loc2.fp_WalkAnim;
+               loc2.fp_PrevDashAnim = loc2.fp_DashAnim;
+               loc2.fp_StandAnim = f_GoDance;
+               loc2.fp_WalkAnim = f_GoDance;
+               loc2.fp_DashAnim = f_GoDance;
+               loc2.fp_HorseRide = f_GoDance;
+               loc2.fp_ThrowAction = f_GoDance;
+               loc2.fp_Jab = f_GoDance;
+               loc2.fp_Fierce = f_GoDance;
+               loc2.fp_JabFierce = f_GoDance;
             }
-            if(_loc2_.blocking)
+            if(loc2.blocking)
             {
-               _loc2_.blocking = false;
-               _loc2_.fp_StandAnim(_loc2_);
+               loc2.blocking = false;
+               loc2.fp_StandAnim(loc2);
             }
          }
       }
-      _loc5_ = _loc5_ + 1;
+      loc5 = loc5 + 1;
    }
 }
 function f_PlayerStop(c)
@@ -27983,12 +28192,12 @@ function f_PlayerStop(c)
 }
 function f_PlayersStop()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = _root.loader.game.game["p" + int(_loc2_)];
-      f_PlayerStop(_loc3_);
-      _loc2_ = _loc2_ + 1;
+      var loc3 = _root.loader.game.game["p" + int(loc2)];
+      f_PlayerStop(loc3);
+      loc2 = loc2 + 1;
    }
 }
 function f_PlayerGo(c)
@@ -28006,77 +28215,77 @@ function f_PlayerGo(c)
 }
 function f_PlayersGo()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = _root.loader.game.game["p" + int(_loc2_)];
-      f_PlayerGo(_loc3_);
-      _loc2_ = _loc2_ + 1;
+      var loc3 = _root.loader.game.game["p" + int(loc2)];
+      f_PlayerGo(loc3);
+      loc2 = loc2 + 1;
    }
 }
 function f_AllPlayersGo()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= total_players)
+   var loc1 = 1;
+   while(loc1 <= total_players)
    {
-      var _loc2_ = playerArrayOb["p_pt" + int(_loc1_)];
-      f_PlayerGo(_loc2_);
-      _loc1_ = _loc1_ + 1;
+      var loc2 = playerArrayOb["p_pt" + int(loc1)];
+      f_PlayerGo(loc2);
+      loc1 = loc1 + 1;
    }
 }
 function f_EnemiesGo()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= active_enemies)
+   var loc1 = 1;
+   while(loc1 <= active_enemies)
    {
-      var _loc2_ = enemyArrayOb["e" + int(_loc1_)];
-      f_PlayerGo(_loc2_);
-      _loc1_ = _loc1_ + 1;
+      var loc2 = enemyArrayOb["e" + int(loc1)];
+      f_PlayerGo(loc2);
+      loc1 = loc1 + 1;
    }
 }
 function f_EnemiesStop()
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= active_enemies)
+   var loc1 = 1;
+   while(loc1 <= active_enemies)
    {
-      var _loc2_ = enemyArrayOb["e" + int(_loc1_)];
-      f_PlayerStop(_loc2_);
-      _loc1_ = _loc1_ + 1;
+      var loc2 = enemyArrayOb["e" + int(loc1)];
+      f_PlayerStop(loc2);
+      loc1 = loc1 + 1;
    }
 }
 function f_PlayersBlank()
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = _root.loader.game.game["p" + int(_loc2_)];
-      _loc3_.gotoAndStop("blank");
-      _loc2_ = _loc2_ + 1;
+      var loc3 = _root.loader.game.game["p" + int(loc2)];
+      loc3.gotoAndStop("blank");
+      loc2 = loc2 + 1;
    }
 }
 function f_HorseScroll(zone)
 {
    zone.guide._x += zone.speed;
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root.loader.game.game["p" + int(_loc3_)];
-      if(_loc2_.alive)
+      var loc2 = _root.loader.game.game["p" + int(loc3)];
+      if(loc2.alive)
       {
-         f_MoveCharH(_loc2_,zone.speed,0);
-         f_SetXY(_loc2_.horse,_loc2_.x,_loc2_.y - 1);
+         f_MoveCharH(loc2,zone.speed,0);
+         f_SetXY(loc2.horse,loc2.x,loc2.y - 1);
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_CannonBallBombAttack()
 {
-   var _loc4_ = p_game.p1.x + 550;
-   var _loc3_ = p_game.p1.y;
-   var _loc2_ = -300;
-   var _loc1_ = f_CannonBallBomb(_loc4_,_loc3_,_loc2_,true);
-   _loc1_.speed_x = -20;
-   _loc1_.speed_y = 0;
+   var loc4 = p_game.p1.x + 550;
+   var loc3 = p_game.p1.y;
+   var loc2 = -300;
+   var loc1 = f_CannonBallBomb(loc4,loc3,loc2,true);
+   loc1.speed_x = -20;
+   loc1.speed_y = 0;
 }
 function f_HorseHeadJuggle(zone)
 {
@@ -28109,8 +28318,8 @@ function f_HorseHeadIdle(zone)
 }
 function f_NPCHorseExit(zone)
 {
-   var _loc2_ = zone.player_num - 4;
-   f_WalkToInit(p_game["p" + _loc2_],p_game["horse" + _loc2_]._x,p_game["horse" + _loc2_]._y,f_ExitOnHorse,true);
+   var loc2 = zone.player_num - 4;
+   f_WalkToInit(p_game["p" + loc2],p_game["horse" + loc2]._x,p_game["horse" + loc2]._y,f_ExitOnHorse,true);
    zone.horse.gotoAndStop("wait");
    zone.horse = undefined;
    zone.body_y = 0;
@@ -28126,22 +28335,22 @@ function f_ExitOnHorse(zone)
 function f_VillagersOnHorseback()
 {
    f_ClearQ();
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc4_ = playerArrayOb["p_pt" + int(_loc3_)];
-      if(_loc4_.alive)
+      var loc4 = playerArrayOb["p_pt" + int(loc3)];
+      if(loc4.alive)
       {
-         var _loc2_ = f_MakeFriend(6,p_game.door2._x + _loc3_ * 30,p_game.door2._y + 75 - _loc3_ * 30);
-         _loc2_.horse = p_game["horse" + _loc3_];
-         _loc2_.body_y = -56;
-         _loc2_.fp_HorseRide = f_HorseRide;
-         var _loc6_ = _loc2_._x - 300;
-         var _loc5_ = _loc2_._y;
+         var loc2 = f_MakeFriend(6,p_game.door2._x + loc3 * 30,p_game.door2._y + 75 - loc3 * 30);
+         loc2.horse = p_game["horse" + loc3];
+         loc2.body_y = -56;
+         loc2.fp_HorseRide = f_HorseRide;
+         var loc6 = loc2._x - 300;
+         var loc5 = loc2._y;
          f_PlayersStop();
-         f_WalkToInit(_loc2_,_loc6_,_loc5_,_root.f_NPCHorseExit,true);
+         f_WalkToInit(loc2,loc6,loc5,_root.f_NPCHorseExit,true);
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
    f_PlayerArray();
 }
@@ -28170,37 +28379,37 @@ function f_SlideSlice(zone)
 }
 function f_PlayersNuked()
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= 4)
+   var loc3 = 1;
+   while(loc3 <= 4)
    {
-      var _loc2_ = _root.loader.game.game["p" + int(_loc3_)];
-      if(_loc2_.alive)
+      var loc2 = _root.loader.game.game["p" + int(loc3)];
+      if(loc2.alive)
       {
-         if(_loc2_.horse)
+         if(loc2.horse)
          {
-            _loc2_.horse.gotoAndStop("splat");
-            var _loc4_ = p_game["horseblood" + _loc3_];
-            _loc4_._x = _loc2_.horse.x;
-            _loc4_._y = _loc2_.horse.y;
-            _loc4_.gotoAndStop(2);
-            f_SetXY(_loc2_.horse,_loc2_.horse._x + 20,_loc2_.y + 1);
-            _loc2_.horse.fp_StandAnim = f_HorseHeadIdle;
-            f_SetHorseHead(_loc2_.horse);
-            f_InsertEnemy(_loc2_.horse);
-            _loc2_.horse.speed_toss_x = -0.5;
-            _loc2_.horse.speed_toss_y = -94;
-            f_Juggle1Setup(_loc2_.horse);
-            _loc2_.horse.gotoAndStop("juggle1");
-            _loc2_.horse = undefined;
+            loc2.horse.gotoAndStop("splat");
+            var loc4 = p_game["horseblood" + loc3];
+            loc4._x = loc2.horse.x;
+            loc4._y = loc2.horse.y;
+            loc4.gotoAndStop(2);
+            f_SetXY(loc2.horse,loc2.horse._x + 20,loc2.y + 1);
+            loc2.horse.fp_StandAnim = f_HorseHeadIdle;
+            f_SetHorseHead(loc2.horse);
+            f_InsertEnemy(loc2.horse);
+            loc2.horse.speed_toss_x = -0.5;
+            loc2.horse.speed_toss_y = -94;
+            f_Juggle1Setup(loc2.horse);
+            loc2.horse.gotoAndStop("juggle1");
+            loc2.horse = undefined;
          }
-         _loc2_.fire_timer = 119;
-         f_ColorSwap(_loc2_,color_dark);
-         _loc2_.speed_toss_x = 0;
-         _loc2_.speed_toss_y = -100;
-         f_Juggle1Setup(_loc2_);
-         _loc2_.gotoAndStop("juggle1");
+         loc2.fire_timer = 119;
+         f_ColorSwap(loc2,color_dark);
+         loc2.speed_toss_x = 0;
+         loc2.speed_toss_y = -100;
+         f_Juggle1Setup(loc2);
+         loc2.gotoAndStop("juggle1");
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
    f_PlayerArray();
 }
@@ -28241,18 +28450,18 @@ function f_ItemToggle(zone)
             {
                zone.hud_pt.item_unlocks[11] = false;
             }
-            var _loc3_ = false;
-            var _loc2_ = 1;
-            while(_loc2_ <= 11)
+            var loc3 = false;
+            var loc2 = 1;
+            while(loc2 <= 11)
             {
-               if(zone.hud_pt.item_unlocks[_loc2_])
+               if(zone.hud_pt.item_unlocks[loc2])
                {
-                  _loc3_ = true;
+                  loc3 = true;
                   break;
                }
-               _loc2_ = _loc2_ + 1;
+               loc2 = loc2 + 1;
             }
-            if(!_loc3_)
+            if(!loc3)
             {
                return undefined;
             }
@@ -28311,18 +28520,18 @@ function f_ItemToggle(zone)
             {
                zone.hud_pt.item_unlocks[11] = false;
             }
-            _loc3_ = false;
-            _loc2_ = 1;
-            while(_loc2_ <= 11)
+            loc3 = false;
+            loc2 = 1;
+            while(loc2 <= 11)
             {
-               if(zone.hud_pt.item_unlocks[_loc2_])
+               if(zone.hud_pt.item_unlocks[loc2])
                {
-                  _loc3_ = true;
+                  loc3 = true;
                   break;
                }
-               _loc2_ = _loc2_ + 1;
+               loc2 = loc2 + 1;
             }
-            if(!_loc3_)
+            if(!loc3)
             {
                return undefined;
             }
@@ -28351,18 +28560,18 @@ function f_ItemToggle(zone)
 }
 function f_ExitAutoRight(zone)
 {
-   var _loc4_ = zone._x + 200;
-   var _loc3_ = zone._y;
-   _root.f_WalkToInit(zone,_loc4_,_loc3_,zone.fp_StandAnim,true);
+   var loc4 = zone._x + 200;
+   var loc3 = zone._y;
+   _root.f_WalkToInit(zone,loc4,loc3,zone.fp_StandAnim,true);
    zone.fp_WalkAnim = undefined;
    zone.fp_DashAnim = undefined;
    zone.fp_StandAnim = undefined;
 }
 function f_ExitAutoLeft(zone)
 {
-   var _loc4_ = zone._x - 200;
-   var _loc3_ = zone._y;
-   _root.f_WalkToInit(zone,_loc4_,_loc3_,zone.fp_StandAnim,true);
+   var loc4 = zone._x - 200;
+   var loc3 = zone._y;
+   _root.f_WalkToInit(zone,loc4,loc3,zone.fp_StandAnim,true);
    zone.fp_WalkAnim = undefined;
    zone.fp_DashAnim = undefined;
    zone.fp_StandAnim = undefined;
@@ -28468,21 +28677,21 @@ function f_CheckPushCharOut(zone, u_temp)
                {
                   if(u_temp.x < zone.u_wall_center_h)
                   {
-                     var _loc4_ = zone.u_wall_left - u_temp.x;
+                     var loc4 = zone.u_wall_left - u_temp.x;
                   }
                   else
                   {
-                     _loc4_ = zone.u_wall_right - u_temp.x;
+                     loc4 = zone.u_wall_right - u_temp.x;
                   }
                   if(u_temp.y < zone.u_wall_center_v)
                   {
-                     var _loc3_ = zone.u_wall_top - u_temp.y;
+                     var loc3 = zone.u_wall_top - u_temp.y;
                   }
                   else
                   {
-                     _loc3_ = zone.u_wall_bottom - u_temp.y;
+                     loc3 = zone.u_wall_bottom - u_temp.y;
                   }
-                  if(Math.abs(_loc4_) < Math.abs(_loc3_))
+                  if(Math.abs(loc4) < Math.abs(loc3))
                   {
                      if(zone.smasher)
                      {
@@ -28492,7 +28701,7 @@ function f_CheckPushCharOut(zone, u_temp)
                         }
                         f_FX(u_temp.x,zone.y - 10,int(zone.y) + 2,"impact1",100,100);
                         s_Punch3.start(0,0);
-                        if(u_temp.humanoid)
+                        if(f_EnemyUsesPlayerSwf(u_temp))
                         {
                            u_temp.body_y = 0;
                            u_temp.burried = true;
@@ -28510,7 +28719,7 @@ function f_CheckPushCharOut(zone, u_temp)
                      }
                      else
                      {
-                        f_MoveCharH(u_temp,_loc4_,0);
+                        f_MoveCharH(u_temp,loc4,0);
                         if(zone.ram)
                         {
                            if(!u_temp.nohit and u_temp.invincible_timer <= 0)
@@ -28518,19 +28727,19 @@ function f_CheckPushCharOut(zone, u_temp)
                               s_Punch3.start(0,0);
                               if(zone.smash_pow)
                               {
-                                 var _loc5_ = zone.smash_pow;
+                                 var loc5 = zone.smash_pow;
                               }
                               else
                               {
-                                 _loc5_ = 2;
+                                 loc5 = 2;
                               }
                               if(zone.force_x)
                               {
-                                 f_Damage(u_temp,_loc5_,DMG_MELEE,DMGFLAG_JUGGLE,zone.force_x,zone.force_y);
+                                 f_Damage(u_temp,loc5,DMG_MELEE,DMGFLAG_JUGGLE,zone.force_x,zone.force_y);
                               }
                               else
                               {
-                                 f_Damage(u_temp,_loc5_,DMG_MELEE,DMGFLAG_JUGGLE,random(6) + 10,- (random(10) + 10));
+                                 f_Damage(u_temp,loc5,DMG_MELEE,DMGFLAG_JUGGLE,random(6) + 10,- (random(10) + 10));
                               }
                            }
                         }
@@ -28545,7 +28754,7 @@ function f_CheckPushCharOut(zone, u_temp)
                      }
                      f_FX(u_temp.x,zone.y - 10,int(zone.y) + 2,"impact1",100,100);
                      s_Punch3.start(0,0);
-                     if(u_temp.humanoid)
+                     if(f_EnemyUsesPlayerSwf(u_temp))
                      {
                         u_temp.burried = true;
                         u_temp.nohit = true;
@@ -28560,7 +28769,7 @@ function f_CheckPushCharOut(zone, u_temp)
                   }
                   else
                   {
-                     f_MoveCharV(u_temp,_loc3_,0);
+                     f_MoveCharV(u_temp,loc3,0);
                      if(zone.ram)
                      {
                         if(!u_temp.nohit and u_temp.invincible_timer <= 0)
@@ -28607,22 +28816,22 @@ function f_PushCharsH(zone, speed)
    zone.u_wall_top = zone._y + zone.wall._y - zone.wall._height / 2;
    zone.u_wall_bottom = zone._y + zone.wall._y + zone.wall._height / 2;
    zone.u_wall_center_v = zone._y + zone.wall._y;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_players)
+   var loc2 = 1;
+   while(loc2 <= total_players)
    {
-      var _loc3_ = playerArrayOb["p_pt" + int(_loc2_)];
-      f_CheckPushCharH(zone,_loc3_,speed);
-      _loc2_ = _loc2_ + 1;
+      var loc3 = playerArrayOb["p_pt" + int(loc2)];
+      f_CheckPushCharH(zone,loc3,speed);
+      loc2 = loc2 + 1;
    }
-   _loc2_ = 1;
-   while(_loc2_ <= active_enemies)
+   loc2 = 1;
+   while(loc2 <= active_enemies)
    {
-      _loc3_ = enemyArrayOb["e" + int(_loc2_)];
-      if(_loc3_ != zone)
+      loc3 = enemyArrayOb["e" + int(loc2)];
+      if(loc3 != zone)
       {
-         f_CheckPushCharH(zone,_loc3_,speed);
+         f_CheckPushCharH(zone,loc3,speed);
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_PushCharsV(zone, speed)
@@ -28641,27 +28850,27 @@ function f_PushCharsV(zone, speed)
    zone.u_wall_top = zone._y + zone.wall._y - zone.wall._height / 2;
    zone.u_wall_bottom = zone._y + zone.wall._y + zone.wall._height / 2;
    zone.u_wall_center_v = zone._y + zone.wall._y;
-   var _loc2_ = 1;
-   while(_loc2_ <= total_players)
+   var loc2 = 1;
+   while(loc2 <= total_players)
    {
-      var _loc3_ = playerArrayOb["p_pt" + int(_loc2_)];
-      f_CheckPushCharV(zone,_loc3_,speed);
-      _loc2_ = _loc2_ + 1;
+      var loc3 = playerArrayOb["p_pt" + int(loc2)];
+      f_CheckPushCharV(zone,loc3,speed);
+      loc2 = loc2 + 1;
    }
-   _loc2_ = 1;
-   while(_loc2_ <= active_enemies)
+   loc2 = 1;
+   while(loc2 <= active_enemies)
    {
-      _loc3_ = enemyArrayOb["e" + int(_loc2_)];
-      if(_loc3_ != zone)
+      loc3 = enemyArrayOb["e" + int(loc2)];
+      if(loc3 != zone)
       {
-         f_CheckPushCharV(zone,_loc3_,speed);
+         f_CheckPushCharV(zone,loc3,speed);
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_PushCharsOut(zone)
 {
-   var _loc4_ = false;
+   var loc4 = false;
    if(zone._xscale > 0)
    {
       zone.u_wall_left = zone._x + zone.wall._x - zone.wall._width / 2;
@@ -28676,29 +28885,32 @@ function f_PushCharsOut(zone)
    zone.u_wall_top = zone._y + zone.wall._y - zone.wall._height / 2;
    zone.u_wall_bottom = zone._y + zone.wall._y + zone.wall._height / 2;
    zone.u_wall_center_v = zone._y + zone.wall._y;
-   var _loc2_ = 1;
-   if(!zone.human) {
-      while(_loc2_ <= total_players)
-      {
-         var _loc3_ = playerArrayOb["p_pt" + int(_loc2_)];
-         if(f_CheckPushCharOut(zone,_loc3_))
-         {
-            _loc4_ = true;
-         }
-         _loc2_ = _loc2_ + 1;
-      }
-   }
-   _loc2_ = 1;
-   while(_loc2_ <= active_enemies)
+   var loc2 = 1;
+   if(!zone.human) 
    {
-      _loc3_ = enemyArrayOb["e" + int(_loc2_)];
-      if(_loc3_ != zone)
+      while(loc2 <= total_players)
       {
-         f_CheckPushCharOut(zone,_loc3_);
+         var loc3 = playerArrayOb["p_pt" + int(loc2)];
+         if(f_CheckPushCharOut(zone,loc3))
+         {
+            loc4 = true;
+         }
+         loc2 = loc2 + 1;
       }
-      _loc2_ = _loc2_ + 1;
    }
-   return _loc4_;
+   loc2 = 1;
+   while(loc2 <= active_enemies)
+   {
+      loc3 = enemyArrayOb["e" + int(loc2)];
+      if(loc3 != zone)
+      {
+         if(f_CheckPushCharOut(zone,loc3)) {
+            loc4 = true;
+         }
+      }
+      loc2 = loc2 + 1;
+   }
+   return loc4;
 }
 function f_StarInit(zone)
 {
@@ -28763,9 +28975,9 @@ function f_WaitTimer(zone)
 }
 function f_NPCWalkLeft(zone)
 {
-   var _loc2_ = zone.x;
+   var loc2 = zone.x;
    f_MoveCharH(zone,- zone.speed,0);
-   if(zone.x == _loc2_)
+   if(zone.x == loc2)
    {
       f_FlipChar(zone);
       zone.fp_Character = f_NPCWalkRight;
@@ -28777,9 +28989,9 @@ function f_NPCWalkLeft(zone)
 }
 function f_NPCWalkRight(zone)
 {
-   var _loc2_ = zone.x;
+   var loc2 = zone.x;
    f_MoveCharH(zone,zone.speed,0);
-   if(zone.x == _loc2_)
+   if(zone.x == loc2)
    {
       f_FlipChar(zone);
       zone.fp_Character = f_NPCWalkLeft;
@@ -28818,8 +29030,8 @@ function f_CinemaPan(zone)
    u_point.x = 0;
    u_point.y = 0;
    f_LocalToGame(zone,u_point);
-   var _loc1_ = - u_point.x;
-   if(main.camera_x_goal < _loc1_)
+   var loc1 = - u_point.x;
+   if(main.camera_x_goal < loc1)
    {
       main.camera_x_goal += 30;
       return true;
@@ -28847,17 +29059,17 @@ function f_EnemyHorseMelee(zone)
 {
    if(zone.horse.mount_type == 4)
    {
-      var _loc3_ = 260;
+      var loc3 = 260;
    }
    else
    {
-      _loc3_ = 100;
+      loc3 = 100;
    }
    if(!zone.punching)
    {
       if(Math.abs(zone.y - zone.prey.y) <= zone.speed)
       {
-         if(Math.abs(zone.x - zone.prey.x) < _loc3_)
+         if(Math.abs(zone.x - zone.prey.x) < loc3)
          {
             if(!zone.prey.nohit)
             {
@@ -28888,25 +29100,25 @@ function f_EnemyHorseMelee(zone)
 }
 function f_FaceClosestPlayer(zone, noflip)
 {
-   var _loc6_ = 10000;
-   var _loc2_ = 1;
-   while(_loc2_ <= active_players)
+   var loc6 = 10000;
+   var loc2 = 1;
+   while(loc2 <= active_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc1_.alive)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc1.alive)
       {
-         var _loc3_ = Math.abs(zone.x - _loc1_.x) + Math.abs(zone.y - _loc1_.y);
-         if(_loc3_ < _loc6_)
+         var loc3 = Math.abs(zone.x - loc1.x) + Math.abs(zone.y - loc1.y);
+         if(loc3 < loc6)
          {
-            _loc6_ = _loc3_;
-            var _loc5_ = _loc1_;
+            loc6 = loc3;
+            var loc5 = loc1;
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    if(!noflip)
    {
-      if(_loc5_.x > zone.x)
+      if(loc5.x > zone.x)
       {
          if(zone._xscale < 0)
          {
@@ -28918,33 +29130,33 @@ function f_FaceClosestPlayer(zone, noflip)
          zone._xscale *= -1;
       }
    }
-   return _loc5_;
+   return loc5;
 }
 function f_FaceClosestPlayerInRange(zone)
 {
-   var _loc5_ = 10000;
-   var _loc6_ = undefined;
-   var _loc2_ = 1;
-   while(_loc2_ <= active_players)
+   var loc5 = 10000;
+   var loc6 = undefined;
+   var loc2 = 1;
+   while(loc2 <= active_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc1_.alive)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc1.alive)
       {
-         if(Math.abs(zone.y - _loc1_.y) < 15)
+         if(Math.abs(zone.y - loc1.y) < 15)
          {
-            var _loc3_ = Math.abs(zone.x - _loc1_.x);
-            if(_loc3_ < _loc5_)
+            var loc3 = Math.abs(zone.x - loc1.x);
+            if(loc3 < loc5)
             {
-               _loc5_ = _loc3_;
-               _loc6_ = _loc1_;
+               loc5 = loc3;
+               loc6 = loc1;
             }
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   if(_loc6_)
+   if(loc6)
    {
-      if(_loc6_.x > zone.x)
+      if(loc6.x > zone.x)
       {
          if(zone._xscale < 0)
          {
@@ -28956,7 +29168,7 @@ function f_FaceClosestPlayerInRange(zone)
          zone._xscale *= -1;
       }
    }
-   return _loc6_;
+   return loc6;
 }
 function f_KissClosestPlayer(zone, u_temp)
 {
@@ -29011,39 +29223,39 @@ function f_VSPrep()
    {
       friendly_fire = true;
       vs_fight = true;
-      var _loc2_ = 1;
-      while(_loc2_ <= active_players)
+      var loc2 = 1;
+      while(loc2 <= active_players)
       {
-         var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-         if(_loc1_.alive)
+         var loc1 = playerArrayOb["p_pt" + int(loc2)];
+         if(loc1.alive)
          {
-            var _loc3_ = p_game["vs" + _loc2_]._x;
-            _loc1_.temp_speed_x = (_loc3_ - _loc1_.x) / 11;
-            _loc1_.temp_speed_y = (p_game["vs" + _loc2_]._y - _loc1_.y) / 11;
-            if(_loc3_ > p_game.vs_center._x)
+            var loc3 = p_game["vs" + loc2]._x;
+            loc1.temp_speed_x = (loc3 - loc1.x) / 11;
+            loc1.temp_speed_y = (p_game["vs" + loc2]._y - loc1.y) / 11;
+            if(loc3 > p_game.vs_center._x)
             {
-               if(_loc1_._xscale > 0)
+               if(loc1._xscale > 0)
                {
-                  _loc1_._xscale *= -1;
+                  loc1._xscale *= -1;
                }
             }
-            else if(_loc1_._xscale < 0)
+            else if(loc1._xscale < 0)
             {
-               _loc1_._xscale *= -1;
+               loc1._xscale *= -1;
             }
-            _loc1_.body_y = 0;
+            loc1.body_y = 0;
             if(p_game.specialmode == 3)
             {
-               _loc1_.wait_timer = 80;
-               _loc1_.fp_Wait = f_WaitTimer;
-               _loc1_.gotoAndStop("wait");
+               loc1.wait_timer = 80;
+               loc1.fp_Wait = f_WaitTimer;
+               loc1.gotoAndStop("wait");
             }
             else
             {
-               _loc1_.gotoAndStop("vs_intro");
+               loc1.gotoAndStop("vs_intro");
             }
          }
-         _loc2_ = _loc2_ + 1;
+         loc2 = loc2 + 1;
       }
       vs_cinema.gotoAndPlay(2);
    }
@@ -29071,23 +29283,23 @@ function f_BeefyGrappleTarget(zone)
    {
       if(zone.human)
       {
-         var _loc4_ = 1;
-         while(_loc4_ <= active_enemies)
+         var loc4 = 1;
+         while(loc4 <= active_enemies)
          {
-            var _loc2_ = enemyArrayOb["e" + int(_loc4_)];
-            if(_loc2_.alive)
+            var loc2 = enemyArrayOb["e" + int(loc4)];
+            if(loc2.alive)
             {
-               if(Math.abs(zone.y - _loc2_.y) <= 10)
+               if(Math.abs(zone.y - loc2.y) <= 10)
                {
-                  if(Math.abs(zone.x - _loc2_.x) < 85)
+                  if(Math.abs(zone.x - loc2.x) < 85)
                   {
-                     if(!_loc2_.nohit and _loc2_.invincible_timer <= 0)
+                     if(!loc2.nohit and loc2.invincible_timer <= 0)
                      {
-                        if(_loc2_.body_y > -10)
+                        if(loc2.body_y > -10)
                         {
-                           if(_loc2_.beefy)
+                           if(loc2.beefy)
                            {
-                              zone.grappler = _loc2_;
+                              zone.grappler = loc2;
                               return true;
                            }
                         }
@@ -29095,32 +29307,32 @@ function f_BeefyGrappleTarget(zone)
                   }
                }
             }
-            _loc4_ = _loc4_ + 1;
+            loc4 = loc4 + 1;
          }
       }
       if(friendly_fire or !zone.human)
       {
-         _loc4_ = 1;
-         while(_loc4_ <= active_players)
+         loc4 = 1;
+         while(loc4 <= active_players)
          {
-            _loc2_ = playerArrayOb["p_pt" + int(_loc4_)];
-            if(_loc2_ != zone)
+            loc2 = playerArrayOb["p_pt" + int(loc4)];
+            if(loc2 != zone)
             {
-               if(_loc2_.alive)
+               if(loc2.alive)
                {
-                  if(f_TeamCheck(zone,_loc2_))
+                  if(f_TeamCheck(zone,loc2))
                   {
-                     if(Math.abs(zone.y - _loc2_.y) <= 10)
+                     if(Math.abs(zone.y - loc2.y) <= 10)
                      {
-                        if(Math.abs(zone.x - _loc2_.x) < 85)
+                        if(Math.abs(zone.x - loc2.x) < 85)
                         {
-                           if(!_loc2_.nohit and _loc2_.invincible_timer <= 0)
+                           if(!loc2.nohit and loc2.invincible_timer <= 0)
                            {
-                              if(_loc2_.body_y > -10)
+                              if(loc2.body_y > -10)
                               {
-                                 if(_loc2_.beefy)
+                                 if(loc2.beefy)
                                  {
-                                    zone.grappler = _loc2_;
+                                    zone.grappler = loc2;
                                     return true;
                                  }
                               }
@@ -29130,7 +29342,7 @@ function f_BeefyGrappleTarget(zone)
                   }
                }
             }
-            _loc4_ = _loc4_ + 1;
+            loc4 = loc4 + 1;
          }
       }
    }
@@ -29339,19 +29551,19 @@ function f_ScoreTally()
 {
    StopMusic();
    PlayMusic(4,true);
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc1_ = p_game["p" + int(_loc2_)];
-      if(_loc1_.spawned or _loc1_.alive or _loc1_.exp > 0 or _loc1_.kills > 0 or _loc1_.gold > 0)
+      var loc1 = p_game["p" + int(loc2)];
+      if(loc1.spawned or loc1.alive or loc1.exp > 0 or loc1.kills > 0 or loc1.gold > 0)
       {
-         _loc1_.hud_pt.score_exp = _loc1_.exp - _loc1_.exp_start;
-         _loc1_.hud_pt.score_kills = _loc1_.kills;
-         _loc1_.hud_pt.score_gold = _loc1_.gold - _loc1_.gold_start;
-         _loc1_.hud_pt.tally.active = true;
-         _loc1_.hud_pt.tally.gotoAndPlay("tally");
+         loc1.hud_pt.score_exp = loc1.exp - loc1.exp_start;
+         loc1.hud_pt.score_kills = loc1.kills;
+         loc1.hud_pt.score_gold = loc1.gold - loc1.gold_start;
+         loc1.hud_pt.tally.active = true;
+         loc1.hud_pt.tally.gotoAndPlay("tally");
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
 }
 function f_ScoreTallyEnd(zone)
@@ -29360,22 +29572,22 @@ function f_ScoreTallyEnd(zone)
    zone.player_pt.exp_start = zone.player_pt.exp;
    zone.player_pt.gold_start = zone.player_pt.gold;
    zone.player_pt.kills = 0;
-   var _loc2_ = 1;
-   while(_loc2_ <= 4)
+   var loc2 = 1;
+   while(loc2 <= 4)
    {
-      var _loc3_ = _root["hud" + int(_loc2_)];
-      if(_loc3_.tally.active)
+      var loc3 = _root["hud" + int(loc2)];
+      if(loc3.tally.active)
       {
          return undefined;
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   _loc2_ = 1;
-   while(_loc2_ <= 4)
+   loc2 = 1;
+   while(loc2 <= 4)
    {
-      _loc3_ = _root["hud" + int(_loc2_)];
-      _loc3_.tally.gotoAndStop(1);
-      _loc2_ = _loc2_ + 1;
+      loc3 = _root["hud" + int(loc2)];
+      loc3.tally.gotoAndStop(1);
+      loc2 = loc2 + 1;
    }
    boss_fight = false;
    friendly_fire = false;
@@ -29436,13 +29648,13 @@ function f_Swim(zone)
    {
       if(zone._xscale > 0)
       {
-         var _loc2_ = -60;
+         var loc2 = -60;
       }
       else
       {
-         _loc2_ = 60;
+         loc2 = 60;
       }
-      f_FX(zone.x,zone.y,int(zone.y + 1),"big_splish",_loc2_,60);
+      f_FX(zone.x,zone.y,int(zone.y + 1),"big_splish",loc2,60);
       return undefined;
    }
    if(zone.walking)
@@ -29456,19 +29668,19 @@ function f_Swim(zone)
 }
 function f_DiagonalCollision(zone, u_temp, left_x, right_x)
 {
-   var _loc2_ = zone._y + zone.hitzone._y - zone.hitzone._height / 2;
-   var _loc5_ = zone._y + zone.hitzone._y + zone.hitzone._height / 2;
-   if(u_temp.y > _loc2_)
+   var loc2 = zone._y + zone.hitzone._y - zone.hitzone._height / 2;
+   var loc5 = zone._y + zone.hitzone._y + zone.hitzone._height / 2;
+   if(u_temp.y > loc2)
    {
-      if(u_temp.y < _loc5_)
+      if(u_temp.y < loc5)
       {
-         var _loc6_ = (u_temp.y - _loc2_) / (_loc5_ - _loc2_);
-         var _loc4_ = zone._x + zone.hitzone._x - zone.hitzone._width / 2 + zone.hitzone._width * _loc6_;
-         if(u_temp.x >= _loc4_ + left_x)
+         var loc6 = (u_temp.y - loc2) / (loc5 - loc2);
+         var loc4 = zone._x + zone.hitzone._x - zone.hitzone._width / 2 + zone.hitzone._width * loc6;
+         if(u_temp.x >= loc4 + left_x)
          {
-            if(u_temp.x < _loc4_ + right_x)
+            if(u_temp.x < loc4 + right_x)
             {
-               zone.hit_x = _loc4_;
+               zone.hit_x = loc4;
                return true;
             }
          }
@@ -29478,10 +29690,10 @@ function f_DiagonalCollision(zone, u_temp, left_x, right_x)
 }
 function f_ShovelCheck(zone)
 {
-   var _loc2_ = 1;
-   while(_loc2_ <= shovelspots_total)
+   var loc2 = 1;
+   while(loc2 <= shovelspots_total)
    {
-      u_temp = shovelspots["s" + int(_loc2_)];
+      u_temp = shovelspots["s" + int(loc2)];
       if(!u_temp.dug)
       {
          if(Math.abs(zone.y - u_temp.y) < 10)
@@ -29507,7 +29719,7 @@ function f_ShovelCheck(zone)
             }
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    return false;
 }
@@ -29521,7 +29733,7 @@ function f_ShovelMash(zone)
 }
 function f_Walk(zone)
 {
-   var _loc3_ = undefined;
+   var loc3 = undefined;
    zone.walking = false;
    zone.dashing = false;
    if(console_version)
@@ -29696,15 +29908,15 @@ function f_Walk(zone)
    }
    if(level == 23 or level == 102)
    {
-      var _loc5_ = 1;
+      var loc5 = 1;
    }
    else if(level == 51 or level == 49 or level == 57)
    {
-      _loc5_ = 0.3;
+      loc5 = 0.3;
    }
    else
    {
-      _loc5_ = 0;
+      loc5 = 0;
    }
    if(zone.left_timer > 0 and zone.left_timer > zone.right_timer)
    {
@@ -29726,51 +29938,51 @@ function f_Walk(zone)
       }
       if(zone.blocking)
       {
-         _loc3_ = zone.speed_x / 2;
+         loc3 = zone.speed_x / 2;
       }
       else if(zone.left_last < g_dash_timer and zone.left_last2 < g_dash_timer and zone.fp_DashAnim)
       {
          if(zone.jumping and !zone.dashjump)
          {
-            _loc3_ = zone.speed_x;
+            loc3 = zone.speed_x;
          }
          else
          {
             if(zone.truespeed)
             {
-               _loc3_ = zone.speed_x * 2.2;
+               loc3 = zone.speed_x * 2.2;
             }
             else
             {
-               _loc3_ = zone.speed_x * 1.8;
+               loc3 = zone.speed_x * 1.8;
             }
             zone.dashing = true;
          }
       }
       else
       {
-         _loc3_ = zone.speed_x;
+         loc3 = zone.speed_x;
       }
       if(zone.horse)
       {
          if(zone.dashing)
          {
-            _loc3_ = zone.horse.speed_x;
+            loc3 = zone.horse.speed_x;
          }
          else
          {
-            _loc3_ = zone.horse.speed_x;
+            loc3 = zone.horse.speed_x;
          }
       }
       else if(level == 23 or level == 102)
       {
          if(zone.pet.animal_type == 21)
          {
-            _loc3_ = zone.speed_x;
+            loc3 = zone.speed_x;
          }
          else
          {
-            _loc3_ *= 0.6;
+            loc3 *= 0.6;
          }
       }
       if(zone.body_y >= 0)
@@ -29781,33 +29993,33 @@ function f_Walk(zone)
             {
                if(level == 32)
                {
-                  _loc3_ *= 0.4;
+                  loc3 *= 0.4;
                }
                else
                {
-                  _loc3_ *= 0.5;
+                  loc3 *= 0.5;
                }
             }
          }
       }
-      if(_loc5_)
+      if(loc5)
       {
          if(!zone.speed_x_slide)
          {
-            zone.speed_x_slide = - _loc5_;
+            zone.speed_x_slide = - loc5;
          }
          else
          {
-            zone.speed_x_slide -= _loc5_;
-            if(zone.speed_x_slide < - _loc3_)
+            zone.speed_x_slide -= loc5;
+            if(zone.speed_x_slide < - loc3)
             {
-               zone.speed_x_slide = - _loc3_;
+               zone.speed_x_slide = - loc3;
             }
          }
       }
       else
       {
-         f_MoveCharH(zone,- _loc3_,0);
+         f_MoveCharH(zone,- loc3,0);
       }
       if(ladders_total > 0)
       {
@@ -29815,10 +30027,10 @@ function f_Walk(zone)
          {
             if(!zone.beefy and !zone.horse and zone.body_y >= 0)
             {
-               var _loc4_ = 1;
-               while(_loc4_ <= ladders_total)
+               var loc4 = 1;
+               while(loc4 <= ladders_total)
                {
-                  u_temp = ladders["s" + int(_loc4_)];
+                  u_temp = ladders["s" + int(loc4)];
                   if(u_temp.side)
                   {
                      if(Math.abs(u_temp.x - zone._x) <= u_temp.w)
@@ -29841,18 +30053,18 @@ function f_Walk(zone)
                         }
                      }
                   }
-                  _loc4_ = _loc4_ + 1;
+                  loc4 = loc4 + 1;
                }
             }
          }
       }
       zone.walking = true;
    }
-   else if(_loc5_)
+   else if(loc5)
    {
       if(zone.speed_x_slide < 0)
       {
-         zone.speed_x_slide += _loc5_;
+         zone.speed_x_slide += loc5;
          if(zone.speed_x_slide > 0)
          {
             zone.speed_x_slide = 0;
@@ -29879,51 +30091,51 @@ function f_Walk(zone)
       }
       if(zone.blocking)
       {
-         _loc3_ = zone.speed_x / 2;
+         loc3 = zone.speed_x / 2;
       }
       else if(zone.right_last < g_dash_timer and zone.right_last2 < g_dash_timer and zone.fp_DashAnim)
       {
          if(zone.jumping and !zone.dashjump)
          {
-            _loc3_ = zone.speed_x;
+            loc3 = zone.speed_x;
          }
          else
          {
             if(zone.truespeed)
             {
-               _loc3_ = zone.speed_x * 2.2;
+               loc3 = zone.speed_x * 2.2;
             }
             else
             {
-               _loc3_ = zone.speed_x * 1.8;
+               loc3 = zone.speed_x * 1.8;
             }
             zone.dashing = true;
          }
       }
       else
       {
-         _loc3_ = zone.speed_x;
+         loc3 = zone.speed_x;
       }
       if(zone.horse)
       {
          if(zone.dashing)
          {
-            _loc3_ = zone.horse.speed_x;
+            loc3 = zone.horse.speed_x;
          }
          else
          {
-            _loc3_ = zone.horse.speed_x;
+            loc3 = zone.horse.speed_x;
          }
       }
       else if(level == 23 or level == 102)
       {
          if(zone.pet.animal_type == 21)
          {
-            _loc3_ = zone.speed_x;
+            loc3 = zone.speed_x;
          }
          else
          {
-            _loc3_ *= 0.6;
+            loc3 *= 0.6;
          }
       }
       if(zone.body_y >= 0)
@@ -29934,33 +30146,33 @@ function f_Walk(zone)
             {
                if(level == 32)
                {
-                  _loc3_ *= 0.4;
+                  loc3 *= 0.4;
                }
                else
                {
-                  _loc3_ *= 0.5;
+                  loc3 *= 0.5;
                }
             }
          }
       }
-      if(_loc5_)
+      if(loc5)
       {
          if(!zone.speed_x_slide)
          {
-            zone.speed_x_slide = _loc5_;
+            zone.speed_x_slide = loc5;
          }
          else
          {
-            zone.speed_x_slide += _loc5_;
-            if(zone.speed_x_slide > _loc3_)
+            zone.speed_x_slide += loc5;
+            if(zone.speed_x_slide > loc3)
             {
-               zone.speed_x_slide = _loc3_;
+               zone.speed_x_slide = loc3;
             }
          }
       }
       else
       {
-         f_MoveCharH(zone,_loc3_,0);
+         f_MoveCharH(zone,loc3,0);
       }
       if(ladders_total > 0)
       {
@@ -29968,10 +30180,10 @@ function f_Walk(zone)
          {
             if(!zone.beefy and !zone.horse)
             {
-               _loc4_ = 1;
-               while(_loc4_ <= ladders_total)
+               loc4 = 1;
+               while(loc4 <= ladders_total)
                {
-                  u_temp = ladders["s" + int(_loc4_)];
+                  u_temp = ladders["s" + int(loc4)];
                   if(u_temp.side)
                   {
                      if(Math.abs(u_temp.x - zone._x) <= u_temp.w)
@@ -29992,25 +30204,25 @@ function f_Walk(zone)
                         }
                      }
                   }
-                  _loc4_ = _loc4_ + 1;
+                  loc4 = loc4 + 1;
                }
             }
          }
       }
       zone.walking = true;
    }
-   else if(_loc5_)
+   else if(loc5)
    {
       if(zone.speed_x_slide > 0)
       {
-         zone.speed_x_slide -= _loc5_;
+         zone.speed_x_slide -= loc5;
          if(zone.speed_x_slide < 0)
          {
             zone.speed_x_slide = 0;
          }
       }
    }
-   if(_loc5_)
+   if(loc5)
    {
       if(zone.speed_x_slide != 0)
       {
@@ -30023,40 +30235,40 @@ function f_Walk(zone)
       {
          if(zone.blocking)
          {
-            _loc3_ = zone.speed_y / 2;
+            loc3 = zone.speed_y / 2;
          }
          else if(zone.up_last < g_dash_timer and zone.up_last2 < g_dash_timer and zone.fp_DashAnim)
          {
             if(zone.jumping and !zone.dashjump)
             {
-               _loc3_ = zone.speed_y;
+               loc3 = zone.speed_y;
             }
             else
             {
                if(zone.truespeed)
                {
-                  _loc3_ = zone.speed_y * 2.2;
+                  loc3 = zone.speed_y * 2.2;
                }
                else
                {
-                  _loc3_ = zone.speed_y * 1.8;
+                  loc3 = zone.speed_y * 1.8;
                }
                zone.dashing = true;
             }
          }
          else
          {
-            _loc3_ = zone.speed_y;
+            loc3 = zone.speed_y;
          }
          if((level == 23 or level == 102) and !zone.horse)
          {
             if(zone.pet.animal_type == 21)
             {
-               _loc3_ = zone.speed_y;
+               loc3 = zone.speed_y;
             }
             else
             {
-               _loc3_ *= 0.6;
+               loc3 *= 0.6;
             }
          }
          if(zone.body_y >= 0)
@@ -30067,43 +30279,43 @@ function f_Walk(zone)
                {
                   if(level == 32)
                   {
-                     _loc3_ *= 0.4;
+                     loc3 *= 0.4;
                   }
                   else
                   {
-                     _loc3_ *= 0.5;
+                     loc3 *= 0.5;
                   }
                }
             }
          }
-         if(_loc5_)
+         if(loc5)
          {
             if(!zone.speed_y_slide)
             {
-               zone.speed_y_slide = - _loc5_;
+               zone.speed_y_slide = - loc5;
             }
             else
             {
-               zone.speed_y_slide -= _loc5_;
-               if(zone.speed_y_slide < - _loc3_)
+               zone.speed_y_slide -= loc5;
+               if(zone.speed_y_slide < - loc3)
                {
-                  zone.speed_y_slide = - _loc3_;
+                  zone.speed_y_slide = - loc3;
                }
             }
          }
          else
          {
-            f_MoveCharV(zone,- _loc3_,0);
+            f_MoveCharV(zone,- loc3,0);
          }
          zone.walking = true;
          if(ladders_total > 0)
          {
             if(!zone.beefy and !zone.horse)
             {
-               _loc4_ = 1;
-               while(_loc4_ <= ladders_total)
+               loc4 = 1;
+               while(loc4 <= ladders_total)
                {
-                  u_temp = ladders["s" + int(_loc4_)];
+                  u_temp = ladders["s" + int(loc4)];
                   if(Math.abs(u_temp.x - zone._x) <= u_temp.w)
                   {
                      if(zone.y > u_temp.y and zone.y < u_temp.y + u_temp.h)
@@ -30135,16 +30347,16 @@ function f_Walk(zone)
                         return undefined;
                      }
                   }
-                  _loc4_ = _loc4_ + 1;
+                  loc4 = loc4 + 1;
                }
             }
          }
       }
-      else if(_loc5_)
+      else if(loc5)
       {
          if(zone.speed_y_slide < 0)
          {
-            zone.speed_y_slide += _loc5_;
+            zone.speed_y_slide += loc5;
             if(zone.speed_y_slide > 0)
             {
                zone.speed_y_slide = 0;
@@ -30155,40 +30367,40 @@ function f_Walk(zone)
       {
          if(zone.blocking)
          {
-            _loc3_ = zone.speed_y / 2;
+            loc3 = zone.speed_y / 2;
          }
          else if(zone.down_last < g_dash_timer and zone.down_last2 < g_dash_timer and zone.fp_DashAnim)
          {
             if(zone.jumping and !zone.dashjump)
             {
-               _loc3_ = zone.speed_y;
+               loc3 = zone.speed_y;
             }
             else
             {
                if(zone.truespeed)
                {
-                  _loc3_ = zone.speed_y * 2.2;
+                  loc3 = zone.speed_y * 2.2;
                }
                else
                {
-                  _loc3_ = zone.speed_y * 1.8;
+                  loc3 = zone.speed_y * 1.8;
                }
                zone.dashing = true;
             }
          }
          else
          {
-            _loc3_ = zone.speed_y;
+            loc3 = zone.speed_y;
          }
          if((level == 23 or level == 102) and !zone.horse)
          {
             if(zone.pet.animal_type == 21)
             {
-               _loc3_ = zone.speed_y;
+               loc3 = zone.speed_y;
             }
             else
             {
-               _loc3_ *= 0.6;
+               loc3 *= 0.6;
             }
          }
          if(zone.body_y >= 0)
@@ -30199,33 +30411,33 @@ function f_Walk(zone)
                {
                   if(level == 32)
                   {
-                     _loc3_ *= 0.4;
+                     loc3 *= 0.4;
                   }
                   else
                   {
-                     _loc3_ *= 0.5;
+                     loc3 *= 0.5;
                   }
                }
             }
          }
-         if(_loc5_)
+         if(loc5)
          {
             if(!zone.speed_y_slide)
             {
-               zone.speed_y_slide = _loc5_;
+               zone.speed_y_slide = loc5;
             }
             else
             {
-               zone.speed_y_slide += _loc5_;
-               if(zone.speed_y_slide > _loc3_)
+               zone.speed_y_slide += loc5;
+               if(zone.speed_y_slide > loc3)
                {
-                  zone.speed_y_slide = _loc3_;
+                  zone.speed_y_slide = loc3;
                }
             }
          }
          else
          {
-            f_MoveCharV(zone,_loc3_,0);
+            f_MoveCharV(zone,loc3,0);
          }
          zone.walking = true;
          if(ladders_total > 0)
@@ -30234,10 +30446,10 @@ function f_Walk(zone)
             {
                if(zone.body_y >= 0)
                {
-                  _loc4_ = 1;
-                  while(_loc4_ <= ladders_total)
+                  loc4 = 1;
+                  while(loc4 <= ladders_total)
                   {
-                     u_temp = ladders["s" + int(_loc4_)];
+                     u_temp = ladders["s" + int(loc4)];
                      if(Math.abs(u_temp.x - zone._x) <= u_temp.w)
                      {
                         if(zone.y < u_temp.y and zone.y > u_temp.y - u_temp.h)
@@ -30274,24 +30486,24 @@ function f_Walk(zone)
                            return undefined;
                         }
                      }
-                     _loc4_ = _loc4_ + 1;
+                     loc4 = loc4 + 1;
                   }
                }
             }
          }
       }
-      else if(_loc5_)
+      else if(loc5)
       {
          if(zone.speed_y_slide > 0)
          {
-            zone.speed_y_slide -= _loc5_;
+            zone.speed_y_slide -= loc5;
             if(zone.speed_y_slide < 0)
             {
                zone.speed_y_slide = 0;
             }
          }
       }
-      if(_loc5_)
+      if(loc5)
       {
          if(zone.speed_y_slide != 0)
          {
@@ -30538,8 +30750,8 @@ function f_Punch(zone)
    }
    else
    {
-      var _loc3_ = zone.fp_StandAnim != f_Wait;
-      if(_loc3_ && Key.isDown(zone.button_punch1))
+      var loc3 = zone.fp_StandAnim != f_Wait;
+      if(loc3 && Key.isDown(zone.button_punch1))
       {
          if(!zone.punched and !zone.punching)
          {
@@ -30551,7 +30763,7 @@ function f_Punch(zone)
       {
          zone.punched = false;
       }
-      if(_loc3_ && Key.isDown(zone.button_punch2))
+      if(loc3 && Key.isDown(zone.button_punch2))
       {
          if(!zone.punched2 and !zone.punching)
          {
@@ -30563,7 +30775,7 @@ function f_Punch(zone)
       {
          zone.punched2 = false;
       }
-      if(_loc3_ && Key.isDown(zone.button_projectile))
+      if(loc3 && Key.isDown(zone.button_projectile))
       {
          if(!zone.beefy)
          {
@@ -30574,12 +30786,25 @@ function f_Punch(zone)
                if(zone.magicmode and zone.magic_unlocks[0])
                {
                   zone.punching = true;
-                  var _loc2_ = 25;
-                  if(zone.magic_current >= _loc2_)
+                  var manaCost = 25;
+                  if(zone.magic_current >= manaCost)
                   {
-                     f_Magic(zone,- _loc2_);
+                     f_Magic(zone,- manaCost);
                      zone.fp_MagicMove = f_MagicBullet;
-                     if(zone.body_y < 0)
+                     if(zone.p_type == 32) {
+                        zone.magicmode = false;
+                        zone.gotoAndStop("warmachinethrow");
+                     }
+                     else if(zone.p_type == 33) {
+                        if(zone.undead) {
+                           zone.gotoAndStop("undead_coffinshotgun");
+                        }
+                        else {
+                           zone.gotoAndStop("laserbeam");
+                        }
+                        f_AlignBody(zone);
+                     }
+                     else if(zone.body_y < 0)
                      {
                         if(zone.magic_type == 32)
                         {
@@ -30596,10 +30821,6 @@ function f_Punch(zone)
                      {
                         zone.gotoAndStop("hatty_cast");
                      }
-                     else if(zone.p_type == 32) {
-                        zone.magicmode = false;
-                        zone.gotoAndStop("warmachinethrow");
-                     }
                      else
                      {
                         zone.gotoAndStop("magic1");
@@ -30612,9 +30833,9 @@ function f_Punch(zone)
                }
                else
                {
-                  if(zone.p_type == 32 && (int(zone.equippeditem) < 8 || int(zone.equippeditem) > 9)) { // Barb boss taunt
+                  if(zone.p_type > 31 && (int(zone.equippeditem) < 8 || int(zone.equippeditem) > 9)) { // Boss taunt
                      zone.gotoAndStop("taunt1");
-                     zone.body._y = zone.body_y;
+                     f_AlignBody(zone);
                      return;
                   }
                   else {
@@ -30664,21 +30885,21 @@ function f_Punch(zone)
                               zone.bombs = zone.bombs - 1;
                               if(zone.punch_pow_high > zone.magic_pow)
                               {
-                                 var _loc4_ = zone.punch_pow_high * 2;
+                                 var loc4 = zone.punch_pow_high * 2;
                               }
                               else
                               {
-                                 _loc4_ = zone.magic_pow * 2;
+                                 loc4 = zone.magic_pow * 2;
                               }
-                              _loc2_ = f_Shoot(zone,"general_projectile",_loc4_,20,0,0);
-                              _loc2_.projectile_type = 74;
-                              _loc2_.body_y = zone.body_y + zone.body_table_y - 50;
-                              _loc2_.body._y = _loc2_.body_y;
-                              _loc2_.speed_x = 0;
-                              _loc2_.bounces = 0;
-                              _loc2_.bounces_max = 1;
-                              _loc2_.speed_y = -20;
-                              _loc2_.gravity = 3;
+                              loc2 = f_Shoot(zone,"general_projectile",loc4,20,0,0);
+                              loc2.projectile_type = 74;
+                              loc2.body_y = zone.body_y + zone.body_table_y - 50;
+                              loc2.body._y = loc2.body_y;
+                              loc2.speed_x = 0;
+                              loc2.bounces = 0;
+                              loc2.bounces_max = 1;
+                              loc2.speed_y = -20;
+                              loc2.gravity = 3;
                               LOGPush(11,8,zone.hud_pt.port);
                            }
                            zone.overlay.gotoAndStop("itemselect");
@@ -30783,59 +31004,59 @@ function f_Shrapnel(zone)
 }
 function f_GetPlayerClip(zone)
 {
-   var _loc1_ = zone._parent;
-   var _loc2_ = 0;
-   while(_loc2_ < 7)
+   var loc1 = zone._parent;
+   var loc2 = 0;
+   while(loc2 < 7)
    {
-      if(_loc1_._parent.container)
+      if(loc1._parent.container)
       {
-         return _loc1_;
+         return loc1;
       }
-      _loc1_ = _loc1_._parent;
-      _loc2_ = _loc2_ + 1;
+      loc1 = loc1._parent;
+      loc2 = loc2 + 1;
    }
    return undefined;
 }
 function f_Helmet(zone)
 {
-   var _loc1_ = f_GetPlayerClip(zone);
-   if(_loc1_)
+   var loc1 = f_GetPlayerClip(zone);
+   if(loc1)
    {
-      zone.gotoAndStop(_loc1_.helmet);
+      zone.gotoAndStop(loc1.helmet);
    }
 }
 function f_Weapon(zone)
 {
-   var _loc1_ = f_GetPlayerClip(zone);
-   if(_loc1_)
+   var loc1 = f_GetPlayerClip(zone);
+   if(loc1)
    {
-      zone.gotoAndStop(_loc1_.weapon);
+      zone.gotoAndStop(loc1.weapon);
    }
 }
 function f_Shield(zone)
 {
-   var _loc1_ = f_GetPlayerClip(zone);
-   zone.gotoAndStop(_loc1_.shield);
+   var loc1 = f_GetPlayerClip(zone);
+   zone.gotoAndStop(loc1.shield);
 }
 function f_Emblem(zone)
 {
-   var _loc1_ = f_GetPlayerClip(zone);
-   zone.gotoAndStop(_loc1_.emblem);
+   var loc1 = f_GetPlayerClip(zone);
+   zone.gotoAndStop(loc1.emblem);
 }
 function f_Belt(zone)
 {
-   var _loc1_ = f_GetPlayerClip(zone);
-   zone.gotoAndStop(_loc1_.emblem);
+   var loc1 = f_GetPlayerClip(zone);
+   zone.gotoAndStop(loc1.emblem);
 }
 function f_Flag(zone)
 {
-   var _loc1_ = f_GetPlayerClip(zone);
-   zone.gotoAndStop(_loc1_.flag);
+   var loc1 = f_GetPlayerClip(zone);
+   zone.gotoAndStop(loc1.flag);
 }
 function f_Wings(zone)
 {
-   var _loc1_ = f_GetPlayerClip(zone);
-   zone.gotoAndStop(_loc1_.wings);
+   var loc1 = f_GetPlayerClip(zone);
+   zone.gotoAndStop(loc1.wings);
 }
 function f_GetButtonArt(zone, u_temp)
 {
@@ -30984,26 +31205,26 @@ function f_FlyingMonster(zone)
    zone.shadow_pt._x = zone.x;
    if(zone.body_y < -70)
    {
-      var _loc3_ = 30;
+      var loc3 = 30;
    }
    else
    {
-      _loc3_ = 100 + zone.body_y;
+      loc3 = 100 + zone.body_y;
    }
-   zone.shadow_pt._xscale = _loc3_;
-   zone.shadow_pt._yscale = _loc3_;
+   zone.shadow_pt._xscale = loc3;
+   zone.shadow_pt._yscale = loc3;
    if(Key.isDown(zone.button_punch1))
    {
       if(!zone.punched)
       {
          zone.punched = true;
          s_ShootFire.start(0,0);
-         var _loc2_ = f_Shoot(zone,"shooter_fireball",zone.magic_pow,20,0,0);
-         _loc2_.damage_type = DMG_FIRE;
-         _loc2_.body._y -= 30;
-         _loc2_.body_y = _loc2_.body._y;
-         _loc2_.x += 30;
-         _loc2_._x = _loc2_.x;
+         var loc2 = f_Shoot(zone,"shooter_fireball",zone.magic_pow,20,0,0);
+         loc2.damage_type = DMG_FIRE;
+         loc2.body._y -= 30;
+         loc2.body_y = loc2.body._y;
+         loc2.x += 30;
+         loc2._x = loc2.x;
       }
    }
    else
@@ -31013,72 +31234,72 @@ function f_FlyingMonster(zone)
 }
 function f_BottomPlayerY()
 {
-   var _loc3_ = undefined;
-   var _loc2_ = 1;
-   while(_loc2_ <= active_players)
+   var loc3 = undefined;
+   var loc2 = 1;
+   while(loc2 <= active_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc1_.alive)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc1.alive)
       {
-         if(_loc3_ == undefined)
+         if(loc3 == undefined)
          {
-            _loc3_ = _loc1_.y;
+            loc3 = loc1.y;
          }
-         else if(_loc1_.y > _loc3_)
+         else if(loc1.y > loc3)
          {
-            _loc3_ = _loc1_.y;
+            loc3 = loc1.y;
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   return _loc3_;
+   return loc3;
 }
 function f_BottomPlayerBodyY()
 {
-   var _loc3_ = undefined;
-   var _loc2_ = 1;
-   while(_loc2_ <= active_players)
+   var loc3 = undefined;
+   var loc2 = 1;
+   while(loc2 <= active_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc1_.alive)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc1.alive)
       {
-         if(_loc3_ == undefined)
+         if(loc3 == undefined)
          {
-            _loc3_ = _loc1_.body_y;
+            loc3 = loc1.body_y;
          }
-         else if(_loc1_.body_y > _loc3_)
+         else if(loc1.body_y > loc3)
          {
-            _loc3_ = _loc1_.body_y;
+            loc3 = loc1.body_y;
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
-   return _loc3_;
+   return loc3;
 }
 function f_MidPlayerX()
 {
    u_left = undefined;
-   var _loc2_ = 1;
-   while(_loc2_ <= active_players)
+   var loc2 = 1;
+   while(loc2 <= active_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc2_)];
-      if(_loc1_.alive)
+      var loc1 = playerArrayOb["p_pt" + int(loc2)];
+      if(loc1.alive)
       {
          if(u_left == undefined)
          {
-            u_left = _loc1_.x;
-            u_right = _loc1_.x;
+            u_left = loc1.x;
+            u_right = loc1.x;
          }
-         else if(_loc1_.x > u_right)
+         else if(loc1.x > u_right)
          {
-            u_right = _loc1_.x;
+            u_right = loc1.x;
          }
-         else if(_loc1_.x < u_left)
+         else if(loc1.x < u_left)
          {
-            u_left = _loc1_.x;
+            u_left = loc1.x;
          }
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    return u_left + (u_right - u_left) / 2;
 }
@@ -31151,21 +31372,21 @@ function f_JumpKick(zone)
 function f_NinjaWarp(zone)
 {
    s_AreaNinja.start(0,0);
-   var _loc2_ = _root.f_FX(zone.x,zone.y,int(zone.y),"area_ninjasmoke",100,100);
-   _loc2_.owner = zone;
-   _loc2_.attack_pow = 0;
-   _loc2_.fp_PunchHit = undefined;
-   _loc2_.magic_chain = 1;
-   _loc2_.current_chain = 1;
-   _loc2_ = _root.f_FX(zone.x,zone.y,int(zone.y - 1),"ninjerlog",100,100);
-   _loc2_.body_y = -40;
-   _loc2_.body._y = _loc2_.body_y;
-   _loc2_.speed_x = 0;
-   _loc2_.speed_y = -5;
-   _loc2_.gravity = 2;
-   _loc2_.bounces = 0;
-   _loc2_.bounces_max = 1;
-   _loc2_.hit_function = f_ShrapnelPermaBounce;
+   var loc2 = _root.f_FX(zone.x,zone.y,int(zone.y),"area_ninjasmoke",100,100);
+   loc2.owner = zone;
+   loc2.attack_pow = 0;
+   loc2.fp_PunchHit = undefined;
+   loc2.magic_chain = 1;
+   loc2.current_chain = 1;
+   loc2 = _root.f_FX(zone.x,zone.y,int(zone.y - 1),"ninjerlog",100,100);
+   loc2.body_y = -40;
+   loc2.body._y = loc2.body_y;
+   loc2.speed_x = 0;
+   loc2.speed_y = -5;
+   loc2.gravity = 2;
+   loc2.bounces = 0;
+   loc2.bounces_max = 1;
+   loc2.hit_function = f_ShrapnelPermaBounce;
    zone.nohit = true;
    zone.shadow_pt.gotoAndStop("off");
    zone.gotoAndStop("jumpkickwarp");
@@ -31173,29 +31394,29 @@ function f_NinjaWarp(zone)
 function f_CreateScorpions(u_num)
 {
    _root.total_scorpions = u_num;
-   var _loc3_ = 1;
-   while(_loc3_ <= _root.total_scorpions)
+   var loc3 = 1;
+   while(loc3 <= _root.total_scorpions)
    {
-      var _loc4_ = _root.f_GetDepthModAssignment();
-      var _loc2_ = p_game.attachMovie("invisObject","e_scorpion" + int(_loc3_),_loc4_);
-      loadMovie("../escorp/escorp.swf",_loc2_);
-      _loc2_.depth_mod = _loc4_;
-      _loc2_.active = false;
-      _loc3_ = _loc3_ + 1;
+      var loc4 = _root.f_GetDepthModAssignment();
+      var loc2 = p_game.attachMovie("invisObject","e_scorpion" + int(loc3),loc4);
+      loadMovie("../escorp/escorp.swf",loc2);
+      loc2.depth_mod = loc4;
+      loc2.active = false;
+      loc3 = loc3 + 1;
    }
 }
 function f_ScorpionsInit()
 {
    _root.loader.scorpions = true;
-   var _loc2_ = 1;
-   while(_loc2_ <= _root.total_scorpions)
+   var loc2 = 1;
+   while(loc2 <= _root.total_scorpions)
    {
-      var _loc3_ = p_game["e_scorpion" + _loc2_];
-      if(!_loc3_.alive)
+      var loc3 = p_game["e_scorpion" + loc2];
+      if(!loc3.alive)
       {
-         _root.f_ScorpionReset(_loc3_);
+         _root.f_ScorpionReset(loc3);
       }
-      _loc2_ = _loc2_ + 1;
+      loc2 = loc2 + 1;
    }
    return false;
 }
@@ -31203,7 +31424,7 @@ function f_ScorpionReset(zone)
 {
    if(_root.loader.scorpions)
    {
-      var _loc3_ = p_game.scorp_top._y + random(p_game.scorp_bottom._y - p_game.scorp_top._y);
+      var loc3 = p_game.scorp_top._y + random(p_game.scorp_bottom._y - p_game.scorp_top._y);
       if(!zone.shadow_pt)
       {
          zone.shadow_pt = f_NewShadow();
@@ -31216,7 +31437,7 @@ function f_ScorpionReset(zone)
          {
             zone._xscale *= -1;
          }
-         f_SetXY(zone,main.right + 100,_loc3_);
+         f_SetXY(zone,main.right + 100,loc3);
       }
       else
       {
@@ -31224,7 +31445,7 @@ function f_ScorpionReset(zone)
          {
             zone._xscale *= -1;
          }
-         f_SetXY(zone,main.left - 100,_loc3_);
+         f_SetXY(zone,main.left - 100,loc3);
       }
       if(zone.hitby)
       {
@@ -31345,19 +31566,19 @@ function f_ScorpionWalk(zone)
       {
          if(!cinema)
          {
-            var _loc3_ = 1;
-            while(_loc3_ <= active_players)
+            var loc3 = 1;
+            while(loc3 <= active_players)
             {
-               var _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-               if(!_loc2_.nohit and _loc2_.alive)
+               var loc2 = playerArrayOb["p_pt" + int(loc3)];
+               if(!loc2.nohit and loc2.alive)
                {
-                  if(Math.abs(_loc2_.y - zone.y) < 15)
+                  if(Math.abs(loc2.y - zone.y) < 15)
                   {
-                     if(zone.x > _loc2_.x)
+                     if(zone.x > loc2.x)
                      {
                         if(zone._xscale < 0)
                         {
-                           if(zone.x < _loc2_.x + 100)
+                           if(zone.x < loc2.x + 100)
                            {
                               zone.gotoAndStop("attack");
                               return undefined;
@@ -31366,7 +31587,7 @@ function f_ScorpionWalk(zone)
                      }
                      else if(zone._xscale > 0)
                      {
-                        if(zone.x > _loc2_.x - 100)
+                        if(zone.x > loc2.x - 100)
                         {
                            zone.gotoAndStop("attack");
                            return undefined;
@@ -31374,7 +31595,7 @@ function f_ScorpionWalk(zone)
                      }
                   }
                }
-               _loc3_ = _loc3_ + 1;
+               loc3 = loc3 + 1;
             }
          }
       }
@@ -31442,10 +31663,10 @@ function f_ShootArrowArched(zone)
 }
 function f_CheckBombSpots(zone)
 {
-   var _loc1_ = 1;
-   while(_loc1_ <= bombspots_total)
+   var loc1 = 1;
+   while(loc1 <= bombspots_total)
    {
-      u_temp = bombspots["s" + int(_loc1_)];
+      u_temp = bombspots["s" + int(loc1)];
       if(Math.abs(zone.y - u_temp.bomb_pt_y) < 25)
       {
          if(zone.x > u_temp.bomb_pt_x - u_temp.bomb_pt_w)
@@ -31456,52 +31677,52 @@ function f_CheckBombSpots(zone)
             }
          }
       }
-      _loc1_ = _loc1_ + 1;
+      loc1 = loc1 + 1;
    }
 }
 function f_PlayerBombExplosion(zone)
 {
    if(friendly_fire)
    {
-      var _loc3_ = 1;
-      while(_loc3_ <= players)
+      var loc3 = 1;
+      while(loc3 <= players)
       {
-         var _loc1_ = loader.game.game["p" + int(_loc3_)];
-         if(_loc1_.alive and _loc1_ != zone.owner)
+         var loc1 = loader.game.game["p" + int(loc3)];
+         if(loc1.alive and loc1 != zone.owner)
          {
-            if(f_TeamCheck(zone,_loc1_))
+            if(f_TeamCheck(zone,loc1))
             {
-               f_ExplosionCheckHit(zone,_loc1_);
+               f_ExplosionCheckHit(zone,loc1);
             }
          }
-         _loc3_ = _loc3_ + 1;
+         loc3 = loc3 + 1;
       }
    }
-   _loc3_ = 1;
-   while(_loc3_ <= active_enemies)
+   loc3 = 1;
+   while(loc3 <= active_enemies)
    {
-      _loc1_ = enemyArrayOb["e" + int(_loc3_)];
-      if(_loc1_.alive)
+      loc1 = enemyArrayOb["e" + int(loc3)];
+      if(loc1.alive)
       {
-         f_ExplosionCheckHit(zone,_loc1_);
+         f_ExplosionCheckHit(zone,loc1);
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
-   _loc3_ = 1;
-   while(_loc3_ <= bombspots_total)
+   loc3 = 1;
+   while(loc3 <= bombspots_total)
    {
-      _loc1_ = bombspots["s" + int(_loc3_)];
-      if(Math.abs(zone.y - _loc1_.bomb_pt_y) < 20)
+      loc1 = bombspots["s" + int(loc3)];
+      if(Math.abs(zone.y - loc1.bomb_pt_y) < 20)
       {
-         if(zone.x > _loc1_.bomb_pt_x - _loc1_.bomb_pt_w)
+         if(zone.x > loc1.bomb_pt_x - loc1.bomb_pt_w)
          {
-            if(zone.x < _loc1_.bomb_pt_x + _loc1_.bomb_pt_w)
+            if(zone.x < loc1.bomb_pt_x + loc1.bomb_pt_w)
             {
-               _loc1_.nextFrame();
+               loc1.nextFrame();
             }
          }
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
    if(random(2) == 1)
    {
@@ -31540,7 +31761,7 @@ function f_SlideGoldToHud(zone)
       zone.pos = undefined;
       return undefined;
    }
-   var _loc3_ = zone.pos;
+   var loc3 = zone.pos;
    if(zone.t < 0.5)
    {
       u_temp2 = zone.t * zone.t * zone.t * 4;
@@ -31552,25 +31773,25 @@ function f_SlideGoldToHud(zone)
    zone._xscale = zone._yscale = (1 - zone.t) * 90 + 10;
    if(zone.targ_hud)
    {
-      var _loc2_ = new Object();
-      _loc2_.x = _loc3_.x + (zone.targ_hud.stats.goldstats._x - 20 - _loc3_.x) * u_temp2;
-      _loc2_.y = _loc3_.y + (zone.targ_hud.stats.goldstats._y - _loc3_.y) * u_temp2;
-      zone.targ_hud.stats.localToGlobal(_loc2_);
-      zone._parent.globalToLocal(_loc2_);
-      zone._x = _loc2_.x;
-      zone._y = _loc2_.y;
-      _loc2_ = undefined;
+      var loc2 = new Object();
+      loc2.x = loc3.x + (zone.targ_hud.stats.goldstats._x - 20 - loc3.x) * u_temp2;
+      loc2.y = loc3.y + (zone.targ_hud.stats.goldstats._y - loc3.y) * u_temp2;
+      zone.targ_hud.stats.localToGlobal(loc2);
+      zone._parent.globalToLocal(loc2);
+      zone._x = loc2.x;
+      zone._y = loc2.y;
+      loc2 = undefined;
    }
 }
 function f_AnyButtonPressed(zone)
 {
-   var _loc2_ = false;
+   var loc2 = false;
    if(Key.isDown(zone.button_punch1))
    {
       if(zone.punched == false)
       {
          zone.punched = true;
-         _loc2_ = true;
+         loc2 = true;
       }
    }
    else
@@ -31582,7 +31803,7 @@ function f_AnyButtonPressed(zone)
       if(zone.punched2 == false)
       {
          zone.punched2 = true;
-         _loc2_ = true;
+         loc2 = true;
       }
    }
    else
@@ -31594,7 +31815,7 @@ function f_AnyButtonPressed(zone)
       if(zone.jumped == false)
       {
          zone.jumped = true;
-         _loc2_ = true;
+         loc2 = true;
       }
    }
    else
@@ -31606,30 +31827,30 @@ function f_AnyButtonPressed(zone)
       if(zone.pressed_projectile == false)
       {
          zone.pressed_projectile = true;
-         _loc2_ = true;
+         loc2 = true;
       }
    }
    else
    {
       zone.pressed_projectile = false;
    }
-   return _loc2_;
+   return loc2;
 }
 function f_TornadoMagic(zone)
 {
-   var _loc3_ = false;
+   var loc3 = false;
    f_Magic(zone,- (zone.magic_regen + 0.5));
    if(!zone.human)
    {
       zone.tornado_timer = zone.tornado_timer - 1;
       if(zone.tornado_timer > 0)
       {
-         _loc3_ = true;
-         var _loc6_ = zone.x;
-         var _loc5_ = zone.y;
+         loc3 = true;
+         var loc6 = zone.x;
+         var loc5 = zone.y;
          _root.f_MoveCharH(zone,zone.speed_x,0);
          _root.f_MoveCharV(zone,zone.speed_y,0);
-         if(Math.abs(zone.x - _loc6_) != Math.abs(zone.speed_x))
+         if(Math.abs(zone.x - loc6) != Math.abs(zone.speed_x))
          {
             zone.speed_x *= -1;
          }
@@ -31641,7 +31862,7 @@ function f_TornadoMagic(zone)
          {
             zone.speed_x *= -1;
          }
-         if(Math.abs(zone.y - _loc5_) < Math.abs(zone.speed_y))
+         if(Math.abs(zone.y - loc5) < Math.abs(zone.speed_y))
          {
             zone.speed_y *= -1;
          }
@@ -31651,7 +31872,7 @@ function f_TornadoMagic(zone)
    {
       if(Key.isDown(zone.button_punch2))
       {
-         _loc3_ = true;
+         loc3 = true;
          if(zone.body_y < 0)
          {
             zone.body_y += zone.speed_jump;
@@ -31714,22 +31935,22 @@ function f_TornadoMagic(zone)
          _root.f_MoveCharV(zone,zone.speed_y_slide,0);
       }
    }
-   if(!_loc3_)
+   if(!loc3)
    {
       zone.inputCooldown = 2;
       zone.attack_pow = zone.old_attack_pow;
       zone.punching = false;
       zone.speed_x_slide = 0;
       zone.speed_y_slide = 0;
-      var _loc4_ = f_FX(zone.x,zone.y,zone.y + 1,"tornadodone",100,100);
-      _loc4_.body._y = zone.body_y;
+      var loc4 = f_FX(zone.x,zone.y,zone.y + 1,"tornadodone",100,100);
+      loc4.body._y = zone.body_y;
       if(zone.helmet == 20)
       {
-         _loc4_.body.gotoAndStop(1);
+         loc4.body.gotoAndStop(1);
       }
       else
       {
-         _loc4_.body.gotoAndStop(2);
+         loc4.body.gotoAndStop(2);
       }
       zone.fp_StandAnim(zone);
       zone.fp_Character(zone);
@@ -31923,53 +32144,53 @@ function f_LocalToGame(zone, u_point)
 }
 function f_BeatAllLevels(c)
 {
-   var _loc1_ = c.level_unlocks[7];
-   if(_loc1_ > 2)
+   var loc1 = c.level_unlocks[7];
+   if(loc1 > 2)
    {
-      _loc1_ = c.level_unlocks[11];
-      if(_loc1_ > 2)
+      loc1 = c.level_unlocks[11];
+      if(loc1 > 2)
       {
-         _loc1_ = c.level_unlocks[4];
-         if(_loc1_ > 2)
+         loc1 = c.level_unlocks[4];
+         if(loc1 > 2)
          {
-            _loc1_ = c.level_unlocks[23];
-            if(_loc1_ > 2)
+            loc1 = c.level_unlocks[23];
+            if(loc1 > 2)
             {
-               _loc1_ = c.level_unlocks[21];
-               if(_loc1_ > 2)
+               loc1 = c.level_unlocks[21];
+               if(loc1 > 2)
                {
-                  _loc1_ = c.level_unlocks[29];
-                  if(_loc1_ > 2)
+                  loc1 = c.level_unlocks[29];
+                  if(loc1 > 2)
                   {
-                     _loc1_ = c.level_unlocks[36];
-                     if(_loc1_ > 2)
+                     loc1 = c.level_unlocks[36];
+                     if(loc1 > 2)
                      {
-                        _loc1_ = c.level_unlocks[30];
-                        if(_loc1_ > 2)
+                        loc1 = c.level_unlocks[30];
+                        if(loc1 > 2)
                         {
-                           _loc1_ = c.level_unlocks[6];
-                           if(_loc1_ > 2)
+                           loc1 = c.level_unlocks[6];
+                           if(loc1 > 2)
                            {
-                              _loc1_ = c.level_unlocks[1];
-                              if(_loc1_ > 2)
+                              loc1 = c.level_unlocks[1];
+                              if(loc1 > 2)
                               {
-                                 _loc1_ = c.level_unlocks[43];
-                                 if(_loc1_ > 2)
+                                 loc1 = c.level_unlocks[43];
+                                 if(loc1 > 2)
                                  {
-                                    _loc1_ = c.level_unlocks[10];
-                                    if(_loc1_ > 2)
+                                    loc1 = c.level_unlocks[10];
+                                    if(loc1 > 2)
                                     {
-                                       _loc1_ = c.level_unlocks[3];
-                                       if(_loc1_ > 2)
+                                       loc1 = c.level_unlocks[3];
+                                       if(loc1 > 2)
                                        {
-                                          _loc1_ = c.level_unlocks[51];
-                                          if(_loc1_ > 2)
+                                          loc1 = c.level_unlocks[51];
+                                          if(loc1 > 2)
                                           {
-                                             _loc1_ = c.level_unlocks[53];
-                                             if(_loc1_ > 2)
+                                             loc1 = c.level_unlocks[53];
+                                             if(loc1 > 2)
                                              {
-                                                _loc1_ = c.level_unlocks[55];
-                                                if(_loc1_ > 2)
+                                                loc1 = c.level_unlocks[55];
+                                                if(loc1 > 2)
                                                 {
                                                    return true;
                                                 }
@@ -31996,93 +32217,93 @@ function f_ArenaGates(zone)
    {
       if(!zone.door2.open)
       {
-         var _loc2_ = undefined;
-         var _loc5_ = undefined;
-         var _loc3_ = 1;
-         while(_loc3_ <= _root.total_enemies)
+         var loc2 = undefined;
+         var loc5 = undefined;
+         var loc3 = 1;
+         while(loc3 <= _root.total_enemies)
          {
-            _loc2_ = _root.loader.game.game["e" + int(_loc3_)];
-            if(_loc2_.active)
+            loc2 = _root.loader.game.game["e" + int(loc3)];
+            if(loc2.active)
             {
-               _loc2_.body.gotoAndPlay("finish");
+               loc2.body.gotoAndPlay("finish");
             }
-            _loc3_ = _loc3_ + 1;
+            loc3 = loc3 + 1;
          }
          zone.wave = zone.wave + 1;
          if(level == 24)
          {
-            _loc5_ = 10;
+            loc5 = 10;
          }
          else if(level == 46)
          {
-            _loc5_ = 10;
+            loc5 = 10;
          }
          else if(level == 47)
          {
-            _loc5_ = 10;
+            loc5 = 10;
          }
          else if(level == 48)
          {
-            _loc5_ = 10;
+            loc5 = 10;
          }
          else if(level == 49)
          {
-            _loc5_ = 10;
+            loc5 = 10;
          }
          else
          {
-            _loc5_ = 10;
+            loc5 = 10;
          }
-         if(zone.wave > _loc5_)
+         if(zone.wave > loc5)
          {
             f_PlayersStop();
-            _loc3_ = 1;
-            while(_loc3_ <= active_players)
+            loc3 = 1;
+            while(loc3 <= active_players)
             {
-               _loc2_ = playerArrayOb["p_pt" + int(_loc3_)];
-               if(_loc2_.alive)
+               loc2 = playerArrayOb["p_pt" + int(loc3)];
+               if(loc2.alive)
                {
-                  _loc2_.gotoAndStop("dance" + (random(4) + 1));
+                  loc2.gotoAndStop("dance" + (random(4) + 1));
                }
                if(GetGameMode() != 3)
                {
                   if(level == 24)
                   {
-                     if(!_root.f_IsCharacterUnlocked(_loc2_.hud_pt,6))
+                     if(!_root.f_IsCharacterUnlocked(loc2.hud_pt,6))
                      {
-                        _root.f_UnlockCharacter(_loc2_,6);
+                        _root.f_UnlockCharacter(loc2,6);
                      }
                   }
                   else if(level == 46)
                   {
-                     if(!_root.f_IsCharacterUnlocked(_loc2_.hud_pt,7))
+                     if(!_root.f_IsCharacterUnlocked(loc2.hud_pt,7))
                      {
-                        _root.f_UnlockCharacter(_loc2_,7);
+                        _root.f_UnlockCharacter(loc2,7);
                      }
                   }
                   else if(level == 47)
                   {
-                     if(!_root.f_IsCharacterUnlocked(_loc2_.hud_pt,21))
+                     if(!_root.f_IsCharacterUnlocked(loc2.hud_pt,21))
                      {
-                        _root.f_UnlockCharacter(_loc2_,21);
+                        _root.f_UnlockCharacter(loc2,21);
                      }
                   }
                   else if(level == 48)
                   {
-                     if(!_root.f_IsCharacterUnlocked(_loc2_.hud_pt,18))
+                     if(!_root.f_IsCharacterUnlocked(loc2.hud_pt,18))
                      {
-                        _root.f_UnlockCharacter(_loc2_,18);
+                        _root.f_UnlockCharacter(loc2,18);
                      }
                   }
                   else if(level == 49)
                   {
-                     if(!_root.f_IsCharacterUnlocked(_loc2_.hud_pt,26))
+                     if(!_root.f_IsCharacterUnlocked(loc2.hud_pt,26))
                      {
-                        _root.f_UnlockCharacter(_loc2_,26);
+                        _root.f_UnlockCharacter(loc2,26);
                      }
                   }
                }
-               _loc3_ = _loc3_ + 1;
+               loc3 = loc3 + 1;
             }
             _root.loader.fog.gotoAndPlay("go");
             StopMusic();
@@ -32184,8 +32405,8 @@ function f_TeamCheck(player, zone)
 {
    if(GetGameMode() == 3)
    {
-      var _loc1_ = player.human and zone.human;
-      if(_loc1_ and friendly_fire and arenabattle and player.flag == zone.flag)
+      var loc1 = player.human and zone.human;
+      if(loc1 and friendly_fire and arenabattle and player.flag == zone.flag)
       {
          return false;
       }
@@ -32198,42 +32419,42 @@ function f_TeamCheck(player, zone)
 }
 function f_RestrictPlayerSandwiches()
 {
-   var _loc3_ = 1;
-   while(_loc3_ <= active_players)
+   var loc3 = 1;
+   while(loc3 <= active_players)
    {
-      var _loc1_ = playerArrayOb["p_pt" + int(_loc3_)];
-      if(_loc1_.alive && _loc1_.equippeditem == 11)
+      var loc1 = playerArrayOb["p_pt" + int(loc3)];
+      if(loc1.alive && loc1.equippeditem == 11)
       {
-         if(_loc1_.healthpots > 0)
+         if(loc1.healthpots > 0)
          {
-            _loc1_.hud_pt.item_unlocks[9] = true;
+            loc1.hud_pt.item_unlocks[9] = true;
          }
          else
          {
-            _loc1_.hud_pt.item_unlocks[9] = false;
+            loc1.hud_pt.item_unlocks[9] = false;
          }
-         if(_loc1_.bombs > 0)
+         if(loc1.bombs > 0)
          {
-            _loc1_.hud_pt.item_unlocks[8] = true;
+            loc1.hud_pt.item_unlocks[8] = true;
          }
          else
          {
-            _loc1_.hud_pt.item_unlocks[8] = false;
+            loc1.hud_pt.item_unlocks[8] = false;
          }
-         _loc1_.equippeditem = 0;
-         var _loc2_ = 1;
-         while(_loc2_ < 11)
+         loc1.equippeditem = 0;
+         var loc2 = 1;
+         while(loc2 < 11)
          {
-            if(_loc1_.hud_pt.item_unlocks[_loc2_])
+            if(loc1.hud_pt.item_unlocks[loc2])
             {
-               _loc1_.equippeditem = _loc2_;
+               loc1.equippeditem = loc2;
                break;
             }
-            _loc2_ = _loc2_ + 1;
+            loc2 = loc2 + 1;
          }
-         _loc1_.hud_pt.stats.item.gotoAndStop(_loc1_.equippeditem + 1);
+         loc1.hud_pt.stats.item.gotoAndStop(loc1.equippeditem + 1);
       }
-      _loc3_ = _loc3_ + 1;
+      loc3 = loc3 + 1;
    }
 }
 function f_DisplayWeaponBonus(weapon, zone)
@@ -32247,110 +32468,110 @@ function f_DisplayWeaponBonus(weapon, zone)
    {
       SetTextNumeric(zone.level,zone.weapon_level);
    }
-   var _loc4_ = 1;
-   var _loc2_ = zone.stat1;
+   var loc4 = 1;
+   var loc2 = zone.stat1;
    if(zone.weapon_strength > 0)
    {
-      _loc2_.gotoAndStop("strength");
-      if(_loc2_.text1)
+      loc2.gotoAndStop("strength");
+      if(loc2.text1)
       {
-         SetTextNumeric(_loc2_.text1,zone.weapon_strength);
+         SetTextNumeric(loc2.text1,zone.weapon_strength);
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
    else if(zone.weapon_strength < 0)
    {
-      _loc2_.gotoAndStop("strength");
-      if(_loc2_.text1)
+      loc2.gotoAndStop("strength");
+      if(loc2.text1)
       {
-         SetTextNumeric(_loc2_.text1,- zone.weapon_strength);
+         SetTextNumeric(loc2.text1,- zone.weapon_strength);
       }
-      _loc2_.plusminus.gotoAndStop(2);
-      _loc4_ = _loc4_ + 1;
+      loc2.plusminus.gotoAndStop(2);
+      loc4 = loc4 + 1;
    }
-   _loc2_ = zone["stat" + int(_loc4_)];
+   loc2 = zone["stat" + int(loc4)];
    if(zone.weapon_magic > 0)
    {
-      _loc2_.gotoAndStop("magic");
-      if(_loc2_.text1)
+      loc2.gotoAndStop("magic");
+      if(loc2.text1)
       {
-         SetTextNumeric(_loc2_.text1,zone.weapon_magic);
+         SetTextNumeric(loc2.text1,zone.weapon_magic);
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
    else if(zone.weapon_magic < 0)
    {
-      _loc2_.gotoAndStop("magic");
-      if(_loc2_.text1)
+      loc2.gotoAndStop("magic");
+      if(loc2.text1)
       {
-         SetTextNumeric(_loc2_.text1,- zone.weapon_magic);
+         SetTextNumeric(loc2.text1,- zone.weapon_magic);
       }
-      _loc2_.plusminus.gotoAndStop(2);
-      _loc4_ = _loc4_ + 1;
+      loc2.plusminus.gotoAndStop(2);
+      loc4 = loc4 + 1;
    }
-   _loc2_ = zone["stat" + int(_loc4_)];
+   loc2 = zone["stat" + int(loc4)];
    if(zone.weapon_defense > 0)
    {
-      _loc2_.gotoAndStop("defense");
-      if(_loc2_.text1)
+      loc2.gotoAndStop("defense");
+      if(loc2.text1)
       {
-         SetTextNumeric(_loc2_.text1,zone.weapon_defense);
+         SetTextNumeric(loc2.text1,zone.weapon_defense);
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
    else if(zone.weapon_defense < 0)
    {
-      _loc2_.gotoAndStop("defense");
-      if(_loc2_.text1)
+      loc2.gotoAndStop("defense");
+      if(loc2.text1)
       {
-         SetTextNumeric(_loc2_.text1,- zone.weapon_defense);
+         SetTextNumeric(loc2.text1,- zone.weapon_defense);
       }
-      _loc2_.plusminus.gotoAndStop(2);
-      _loc4_ = _loc4_ + 1;
+      loc2.plusminus.gotoAndStop(2);
+      loc4 = loc4 + 1;
    }
-   _loc2_ = zone["stat" + int(_loc4_)];
+   loc2 = zone["stat" + int(loc4)];
    if(zone.weapon_agility > 0)
    {
-      _loc2_.gotoAndStop("agility");
-      if(_loc2_.text1)
+      loc2.gotoAndStop("agility");
+      if(loc2.text1)
       {
-         SetTextNumeric(_loc2_.text1,zone.weapon_agility);
+         SetTextNumeric(loc2.text1,zone.weapon_agility);
       }
-      _loc4_ = _loc4_ + 1;
+      loc4 = loc4 + 1;
    }
    else if(zone.weapon_agility < 0)
    {
-      _loc2_.gotoAndStop("agility");
-      if(_loc2_.text1)
+      loc2.gotoAndStop("agility");
+      if(loc2.text1)
       {
-         SetTextNumeric(_loc2_.text1,- zone.weapon_agility);
+         SetTextNumeric(loc2.text1,- zone.weapon_agility);
       }
-      _loc2_.plusminus.gotoAndStop(2);
-      _loc4_ = _loc4_ + 1;
+      loc2.plusminus.gotoAndStop(2);
+      loc4 = loc4 + 1;
    }
-   _loc2_ = zone.stat4;
+   loc2 = zone.stat4;
    if(zone.weapon_critical > 0)
    {
-      _loc2_.gotoAndStop("critical");
+      loc2.gotoAndStop("critical");
    }
    else if(zone.weapon_magic_type > 0)
    {
       switch(zone.weapon_magic_type)
       {
          case 1:
-            _loc2_.gotoAndStop("poison");
+            loc2.gotoAndStop("poison");
             break;
          case 2:
-            _loc2_.gotoAndStop("lightning");
+            loc2.gotoAndStop("lightning");
             break;
          case 3:
-            _loc2_.gotoAndStop("ice");
+            loc2.gotoAndStop("ice");
             break;
          case 4:
-            _loc2_.gotoAndStop("fire");
+            loc2.gotoAndStop("fire");
       }
    }
-   else if(_loc4_ == 1)
+   else if(loc4 == 1)
    {
       zone.stat1.gotoAndStop("strength");
       if(zone.stat1.text1)
@@ -32376,15 +32597,21 @@ function f_CheckLoadGlitch() {
 
 function f_GetSaveDataOffset(p_type)
 {
-   var _loc2_ = undefined;
+   var offset = undefined;
    switch(p_type) {
-      case 32:
-         _loc2_ = 5;
+      case 32: // barboss
+         offset = 5; // Barbarian
+         break;
+      case 33: // cyclops
+         offset = 20; // Conehead
+         break;
+      case 34: // Beetle
+         offset = 15;// Royal guard
          break;
       default:
-         _loc2_ = p_type - 1;
+         offset = p_type - 1;
    }
-   return _loc2_;
+   return offset;
 }
 
 function f_PunchSetBarbBoss1(zone) {
@@ -32558,29 +32785,29 @@ function f_WriteOtherUnlocks(hud1, hud2)
    hud1.item_unlocks = new Array(int(save_data_info.num_items));
    hud1.item_unlocks_expansion = new Array(int(save_data_info.num_items_expansion));
    hud1.relic_unlocks = new Array(int(save_data_info.num_relics));
-   var _loc3_ = 0;
-   while(_loc3_ < save_data_info.num_animals)
+   var loc3 = 0;
+   while(loc3 < save_data_info.num_animals)
    {
-      hud1.animal_unlocks[_loc3_] = hud2.animal_unlocks[_loc3_];
-      _loc3_ = _loc3_ + 1;
+      hud1.animal_unlocks[loc3] = hud2.animal_unlocks[loc3];
+      loc3 = loc3 + 1;
    }
-   _loc3_ = 0;
-   while(_loc3_ < save_data_info.num_items)
+   loc3 = 0;
+   while(loc3 < save_data_info.num_items)
    {
-      hud1.item_unlocks[_loc3_] = hud2.item_unlocks[_loc3_];
-      _loc3_ = _loc3_ + 1;
+      hud1.item_unlocks[loc3] = hud2.item_unlocks[loc3];
+      loc3 = loc3 + 1;
    }
-   _loc3_ = 0;
-   while(_loc3_ < save_data_info.num_items_expansion)
+   loc3 = 0;
+   while(loc3 < save_data_info.num_items_expansion)
    {
-      hud1.item_unlocks_expansion[_loc3_] = hud2.item_unlocks_expansion[_loc3_];
-      _loc3_ = _loc3_ + 1;
+      hud1.item_unlocks_expansion[loc3] = hud2.item_unlocks_expansion[loc3];
+      loc3 = loc3 + 1;
    }
-   _loc3_ = 0;
-   while(_loc3_ < save_data_info.num_relics)
+   loc3 = 0;
+   while(loc3 < save_data_info.num_relics)
    {
-      hud1.relic_unlocks[_loc3_] = hud2.relic_unlocks[_loc3_];
-      _loc3_ = _loc3_ + 1;
+      hud1.relic_unlocks[loc3] = hud2.relic_unlocks[loc3];
+      loc3 = loc3 + 1;
    }
 }
 
@@ -32639,4 +32866,568 @@ function f_ProjectileHitWarMachine(zone)
    fx.owner = zone.owner;
    f_RemoveShadow(zone);
    zone.gotoAndStop("remove");
+}
+
+function f_PunchSetCyclops1(zone) {
+   zone.punching = true;
+   if(zone.magicmode) {
+      f_CyclopsTransformInit(zone);
+   }
+   else {
+      zone.gotoAndStop("punch1_1");
+   }
+   f_AlignBody(zone);
+}
+
+function f_PunchSetCyclops2(zone) {
+   zone.punching = true;
+   zone.gotoAndStop("punch1_2");
+   f_AlignBody(zone);
+}
+
+function f_PunchSetBeetle1(zone) {
+   zone.punching = true;
+   zone.gotoAndStop("punch1_1");
+   f_AlignBody(zone);
+}
+
+function f_PunchSetBeetle2(zone) {
+   // Initiating burrow attack
+   if(zone.magicmode) {
+      zone.burrow_speed_x = 0;
+      zone.burrow_speed_x_max = 20;
+      zone.burrow_speed_y = 0;
+      zone.burrow_speed_y_max = 20;
+      zone.burrowTimer = 0;
+      zone.punch_group = 400;
+      zone.punch_num = 1;
+      zone.attack_pow = zone.arrow_pow;
+      zone.force_x = 2;
+      zone.force_y = - (18 + random(6)); // should probably update this more often lol
+      zone.hitnohit = true;
+      zone.invincible_timer = 999;
+      zone.gotoAndStop("punch2_1");
+   }
+   else {
+      zone.punching = true;
+      zone.force_x = 2 + random(3);
+      zone.force_y = -20;
+      zone.punch_group = 300;
+      zone.punch_num = 1;
+      zone.attack_type = DMG_MELEE;
+      zone.gotoAndStop("punch1_2");
+   }
+   f_AlignBody(zone);
+}
+
+function f_HitPlayerBeetle(zone) {
+   if(zone.health > 0)
+   {
+      zone.hit_number++;
+      if(zone.hit_number > 4)
+      {
+         zone.hit_number = 1;
+      }
+      var loc3 = int(zone.hit_number);
+      switch(loc3)
+      {
+         case 1:
+            zone.gotoAndStop("hit1");
+            break;
+         case 2:
+            zone.gotoAndStop("hit2");
+            break;
+         case 3:
+            zone.gotoAndStop("hit1");
+            break;
+         case 4:
+            zone.left = zone._xscale < 0;
+            zone.gotoAndStop("fly");
+      }
+      zone.body.gotoAndPlay(1);
+   }
+   else
+   {
+      zone.alive = false;
+      f_RemoveShadow(zone);
+      zone.gotoAndStop("die");
+   }
+}
+
+// Character function for burrowing
+function f_BeetleBurrow(zone) {
+   var exit = false;
+
+   var burrowCost = 0;
+   if(zone.magic_current > burrowCost) {
+      var ACCEL_RATE_X = 2;
+      var ACCEL_RATE_Y = 1;
+
+      zone.burrowTimer++;
+      zone.invincible_timer = 2; // Always set to invincible during burrowing
+
+      // Checking for exit burrow input
+      if(Key.isDown(zone.button_punch2)) {
+         if(!zone.pressed_punch2) {
+            zone.pressed_punch2 = true;
+            exit = true;
+         }
+      }
+      else {
+         zone.pressed_punch2 = false;
+      }
+      // Use magic
+      f_Magic(zone, - burrowCost);
+      // Check magicmode
+      f_MagicMode(zone);
+
+      // Accel right
+      if(Key.isDown(zone.button_walk_right) || Key.isDown(zone.button_right)) {
+         zone.burrow_speed_x += ACCEL_RATE_X;
+         if(zone.burrow_speed_x > zone.burrow_speed_x_max) {
+            zone.burrow_speed_x = zone.burrow_speed_x_max;
+         }
+      }
+      // Accel left
+      if(Key.isDown(zone.button_walk_left) || Key.isDown(zone.button_left)) {
+         zone.burrow_speed_x -= ACCEL_RATE_X;
+         if(zone.burrow_speed_x < -zone.burrow_speed_x_max) {
+            zone.burrow_speed_x = -zone.burrow_speed_x_max;
+         }
+      }
+      // Accel up
+      if(Key.isDown(zone.button_walk_up) || Key.isDown(zone.button_up)) {
+         zone.burrow_speed_y = -zone.speed_y;
+         /*zone.burrow_speed_y -= ACCEL_RATE_Y;
+         if(zone.burrow_speed_y < -zone.burrow_speed_y_max) {
+            zone.burrow_speed_y = -zone.burrow_speed_y_max;
+         }*/
+      }
+      // Accel down
+      else if(Key.isDown(zone.button_walk_down) || Key.isDown(zone.button_down)) {
+         zone.burrow_speed_y = zone.speed_y;
+         /*zone.burrow_speed_y += ACCEL_RATE_Y;
+         if(zone.burrow_speed_y > zone.burrow_speed_y_max) {
+            zone.burrow_speed_y = zone.burrow_speed_y_max;
+         }*/
+      }
+      else {
+         zone.burrow_speed_y = 0;
+      }
+      // Moving
+      f_MoveCharH(zone, zone.burrow_speed_x, 0);
+      f_MoveCharV(zone, zone.burrow_speed_y, 0);
+      // Updating body scale
+      zone.body._yscale = Math.abs(zone.burrow_speed_x) / zone.burrow_speed_x_max * 100;
+
+      // Dust FX
+      if(zone.burrowTimer % 2 == 0) {
+         var dustScale = 80 + random(20) * sign(zone._xscale);
+         f_FX(zone.x, zone.y + random(8), int(zone.y) + 1, level_dust, dustScale, Math.abs(dustScale));
+      }
+   }
+   else {
+      exit = true;
+   }
+
+   if(exit) {
+      zone.hitnohit = false;
+      zone.burrow_speed_x_max = zone.burrow_speed_y_max = undefined
+      zone.burrowTimer = undefined;
+      zone.gotoAndStop("punch2_3");
+   }
+}
+
+// Returns -1, 0, || 1 depending on the sign of the given value
+function sign(val) {
+   if(val > 0) {
+      return 1;
+   }
+   else if(val < 0) {
+      return -1;
+   }
+   else {
+      return 0;
+   }
+}
+
+function f_StandTypeUndead(zone) {
+   zone.gotoAndStop("undead_stand");
+}
+
+function f_WalkTypeUndead(zone) {
+   zone.gotoAndStop("undead_walk");
+}
+
+function f_PunchSetUndead1(zone) {
+   zone.punching = true;
+   if(zone.magicmode) {
+      f_CyclopsTransformInit(zone);
+   }
+   else {
+      zone.gotoAndStop("undead_punch1_1");
+   }
+   f_AlignBody(zone);
+}
+
+function f_PunchSetUndead2(zone) {
+   zone.punching = true;
+   if(zone.magicmode) {
+      zone.dashing = true; // Making you move quickly if you didn't start the attack while running
+      zone.gotoAndStop("undead_punch2_1");
+   }
+   else {
+      zone.gotoAndStop("undead_punch1_2");
+   }
+   f_AlignBody(zone);
+}
+
+// Control func for hopping around in coffin
+function f_CyclopsCoffin(zone) {
+   var exit = false;
+
+   var manaCost = zone.magic_regen + 1.5;
+   if(zone.magic_current > manaCost) {
+      // Use magic
+      f_Magic(zone, - manaCost);
+
+      // Checking for exit input
+      if(Key.isDown(zone.button_punch2)) {
+         if(!zone.pressed_punch2) {
+            zone.pressed_punch2 = true;
+            exit = true;
+         }
+      }
+      else {
+         zone.pressed_punch2 = false;
+      }
+
+      // Bouncing
+      zone.body_y = zone.body.body._y + 30;
+      zone.body._y = zone.body_y;
+      f_ShadowSize(zone);
+
+      // Allow moving
+      f_Walk(zone);
+      f_LargeObjectRanges(zone);
+   }
+   else {
+      exit = true;
+   }
+
+   if(exit) {
+      // Making undead groom start exploding
+      if(zone.buddy) {
+         zone.buddy.mode = 3;
+      }
+
+      // Get down from coffin
+      zone.body_y = 0;
+      zone.gotoAndStop("undead_punch2_3");
+   }
+}
+
+function f_CyclopsTransformInit(zone) {
+   s_CyclopsScreamCrop.start(0,0);
+   zone.transformTimer = 30;
+   f_ScreenShake(0.05, zone.transformTimer, zone);
+   zone.gotoAndStop("transform");
+}
+
+function f_CyclopsTransform(zone, undead) {
+   if(Key.isDown(zone.button_magic) && Key.isDown(zone.button_punch1)) {
+      zone.transformTimer--;
+      main.shake_intensity += 0.025;
+      if(main.shake_intensity > 0.75) {
+         main.shake_intensity = 0.75;
+      }
+      if(zone.transformTimer == 0) {
+         s_Explosion4.start(0,0);
+
+         f_ScreenShake(5, 12, zone);
+         main.resetShakeAfterDone = true; // prevent screen shake values from carrying over
+
+         var fx = f_FX(zone.x, zone.y + zone.body._y, zone.y + 5, "playerbombexplode", 200, 200);
+         fx.body._y = fx.body_y = zone.body_y / 2 + 15; // set so it looks on-ground (+ 15 is bc the sprite has a bit of an offset) (/2 is because of the doubled scale)
+         fx.attack_pow = zone.magic_pow / 10;
+         fx.owner = zone.owner;
+
+         f_SetUndead(zone, undead);
+         f_Magic(zone, zone.magic_max); // Refill mana
+         zone.punching = false;
+         zone.fp_StandAnim(zone);
+         zone.transformTimer = undefined;
+      }
+   }
+   else {
+      s_CyclopsScreamCrop.stop();
+      main.resetShakeAfterDone = true;
+      zone.fp_StandAnim(zone);
+   }
+}
+
+function f_CyclopsLaserBeam(zone) {
+   var manaCost = zone.magic_regen + 1.75;
+   if(zone.magic_current > manaCost && Key.isDown(zone.button_projectile) && Key.isDown(zone.button_magic)) {
+      // Use magic
+      if(zone.body._currentframe > 9) { // Beam is firing
+         f_Magic(zone, - manaCost);
+      }
+   }
+   else {
+      _root.s_TrollLazerCrop.stop();
+      zone.fp_StandAnim(zone);
+   }
+}
+
+// Undead Groom NPC
+
+function f_SpawnUndeadGroomNPC(x, y, spawner) {
+   var u_temp = f_SpawnPlayer(11, 1, x, y); // NPC slot 11 is reserved for this bozo
+   u_temp.haswall = false;
+   u_temp.active = true;
+   u_temp.alive = false;
+   u_temp.h = 100;
+   u_temp.w = 40;
+   u_temp.health_max = 1000;
+   u_temp.health = u_temp.health_max;
+   u_temp.invincible_timer = 100;
+   _root.f_UnresponsiveDefaults(u_temp);
+   u_temp.humanoid = false;
+   u_temp.fp_Hit1 = undefined;
+   u_temp.fp_Hit2 = undefined;
+   u_temp.fp_Hit3 = undefined;
+   u_temp.fp_Juggle = undefined;
+   u_temp.fp_Character = f_UndeadGroom;
+   u_temp.parentCyclops = spawner;
+   spawner.buddy = u_temp;
+   u_temp.fp_StandAnim = f_UndeadGroomWalk;
+   u_temp.fp_WalkAnim = f_UndeadGroomWalk;
+   u_temp.fp_WalkAnim(u_temp);
+   return u_temp;
+}
+
+function f_UndeadGroomWalk(zone) {
+   zone.gotoAndStop("undeadgroom_walk");
+}
+
+function f_UndeadGroom(zone) {
+   if(zone.prey.burried) {
+      if(friendly_fire) {
+         zone.prey = f_PickRandomPlayer();
+      }
+      else {
+         zone.prey = f_PickRandomEnemy();
+      }
+   }
+   switch(zone.mode)
+   {
+      case 1:
+         zone.mode_timer -= 1;
+         if(zone.mode_timer > 0)
+         {
+            zone.speed = zone.parentCyclops.magic_sustain_pow / 5 + 3;
+            zone.target_x = zone.prey.x;
+            zone.target_y = zone.prey.y;
+         }
+         else
+         {
+            zone.mode = 2;
+            zone.mode_timer = 15;
+            zone.mode_half = zone.mode_timer / 2;
+            zone.target_x = zone.prey.x;
+            zone.target_y = zone.prey.y;
+         }
+         break;
+      case 2:
+         zone.mode_timer -= 1;
+         if(zone.mode_timer > zone.mode_half)
+         {
+            zone.speed_x *= 1.1;
+            zone.speed_y *= 1.1;
+         }
+         else if(zone.mode_timer > 0)
+         {
+            zone.speed_x *= 0.9;
+            zone.speed_y *= 0.9;
+         }
+         else
+         {
+            zone.mode_timer = 60;
+            zone.mode = 1;
+            zone.speed = 3;
+            zone.target_x = zone.prey.x;
+            zone.target_y = zone.prey.y;
+         }
+         break;
+      case 3: // Exploding
+         zone.mode_timer += 1;
+         zone.gotoAndStop("undeadgroom_explode");
+         break;
+   }
+   if(zone.mode == 1 or zone.mode == 3 or zone.mode == 4)
+   {
+      var loc3 = Math.abs(zone.x - zone.target_x);
+      var loc4 = Math.abs(zone.y - zone.target_y);
+      if(loc3 > loc4)
+      {
+         zone.speed_x = zone.speed;
+         zone.speed_y = zone.speed * (loc4 / loc3);
+         var loc5 = loc3;
+      }
+      else
+      {
+         zone.speed_x = zone.speed * (loc3 / loc4);
+         zone.speed_y = zone.speed;
+         loc5 = loc4;
+      }
+      if(zone.x > zone.target_x)
+      {
+         zone.speed_x *= -1;
+      }
+      if(zone.y > zone.target_y)
+      {
+         zone.speed_y *= -1;
+      }
+   }
+   if(zone.speed_x > 0 and zone._xscale < 0)
+   {
+      zone._xscale *= -1;
+   }
+   else if(zone.speed_x < 0 and zone._xscale > 0)
+   {
+      zone._xscale *= -1;
+   }
+   if(Math.abs(zone.speed_x) > 10 or Math.abs(zone.speed_y) > 10)
+   {
+      var loc6 = 1;
+   }
+   else if(Math.abs(zone.speed_x) > 6 or Math.abs(zone.speed_y) > 6)
+   {
+      loc6 = 2;
+   }
+   else
+   {
+      loc6 = 5;
+   }
+   if(zone.mode_timer % loc6 == 0)
+   {
+      if(zone.mode_timer % (loc6 * 9) == 0)
+      {
+         _root["s_OrganDead" + (random(4) + 1)].start(0,0);
+      }
+      var loc7 = 80 + random(20);
+      var loc8 = _root.f_FX(zone.x,zone.y - (20 + random(60)),int(zone.y) + 1,"evilmusic",loc7,loc7);
+      loc8.body._rotation += -20 + random(40);
+   }
+   var loc9 = zone.x;
+   _root.f_MoveCharH(zone,zone.speed_x,0);
+   var loc10 = zone.y;
+   _root.f_MoveCharV(zone,zone.speed_y,0);
+   if(zone.mode == 2)
+   {
+      if(zone.x == loc9 and zone.speed_x != 0 or zone.y == loc10 and zone.speed_y != 0)
+      {
+         zone.mode = 1;
+      }
+   }
+
+   var hit = false;
+   // Hitting players
+   if(friendly_fire) {
+      var loc12 = 1;
+      while(loc12 <= active_players)
+      {
+         loc8 = playerArrayOb["p_pt" + int(loc12)];
+         if(loc8.alive and !loc8.nohit)
+         {
+            if(Math.abs(loc8.y - zone.y) < 15)
+            {
+               if(Math.abs(loc8.x - zone.x) < 40)
+               {
+                  if(loc8.body_y > -80 and !loc8.burried and loc8.toss_clock <= 0)
+                  {
+                     hit = true;
+                     loc8.hitby = zone;
+                     _root.f_PunchSound();
+                     _root.f_FX(loc8.x,loc8.body_y + loc8.y,int(loc8.y) + 15,"impact1",100,100);
+                     var loc13 = zone.parentCyclops.magic_pow / 2;
+                     _root.f_Damage(loc8,loc13,_root.DMG_MELEE,_root.DMGFLAG_JUGGLE,8 + random(4),0 - (15 + random(6)));
+                     if(loc8 == zone.prey and zone.mode == 1)
+                     {
+                        zone.mode_timer = 0;
+                     }
+                     loc7 = 80 + random(20);
+                     loc8 = _root.f_FX(loc8.x + 10,loc8.y + loc8.body_y - (20 + random(60)),int(zone.y) + 1,"evilmusic",loc7,loc7);
+                     loc8.body._rotation += -20 + random(40);
+                     loc7 = 80 + random(20);
+                     loc8 = _root.f_FX(loc8.x - 10,loc8.y + loc8.body_y - (20 + random(60)),int(zone.y) + 1,"evilmusic",loc7,loc7);
+                     loc8.body._rotation += -20 + random(40);
+                  }
+                  else if(loc8 == zone.prey and zone.mode == 1)
+                  {
+                     zone.mode_timer = 0;
+                  }
+               }
+            }
+         }
+         loc12 += 1;
+      }
+   }
+   // Hitting enemies
+   var loc12 = 1;
+   while(loc12 <= active_enemies)
+   {
+      loc8 = enemyArrayOb["e" + int(loc12)];
+      if(loc8.alive and !loc8.nohit)
+      {
+         if(Math.abs(loc8.y - zone.y) < 15)
+         {
+            if(Math.abs(loc8.x - zone.x) < 40)
+            {
+               if(loc8.body_y > -80 and !loc8.burried and loc8.toss_clock <= 0)
+               {
+                  hit = true;
+                  loc8.hitby = zone;
+                  _root.f_PunchSound();
+                  _root.f_FX(loc8.x,loc8.body_y + loc8.y,int(loc8.y) + 15,"impact1",100,100);
+                  var loc13 = zone.parentCyclops.magic_pow / 2;
+                  _root.f_Damage(loc8,loc13,_root.DMG_MELEE,_root.DMGFLAG_JUGGLE,8 + random(4),0 - (15 + random(6)));
+                  if(loc8 == zone.prey and zone.mode == 1)
+                  {
+                     zone.mode_timer = 0;
+                  }
+                  loc7 = 80 + random(20);
+                  loc8 = _root.f_FX(loc8.x + 10,loc8.y + loc8.body_y - (20 + random(60)),int(zone.y) + 1,"evilmusic",loc7,loc7);
+                  loc8.body._rotation += -20 + random(40);
+                  loc7 = 80 + random(20);
+                  loc8 = _root.f_FX(loc8.x - 10,loc8.y + loc8.body_y - (20 + random(60)),int(zone.y) + 1,"evilmusic",loc7,loc7);
+                  loc8.body._rotation += -20 + random(40);
+               }
+               else if(loc8 == zone.prey and zone.mode == 1)
+               {
+                  zone.mode_timer = 0;
+               }
+            }
+         }
+      }
+      loc12 += 1;
+   }
+
+   if(hit) {
+      if(friendly_fire) {
+         zone.prey = f_PickRandomPlayer();
+      }
+      else {
+         zone.prey = f_PickRandomEnemy();
+      }
+   }
+}
+
+function f_PickRandomEnemy() {
+   return enemyArrayOb["e" + (random(active_enemies) + 1)];
+}
+
+function f_EnemyUsesPlayerSwf(e) {
+   return e.e_type != undefined;
 }
