@@ -1085,14 +1085,13 @@ package
                      {
                         SD.squad.pop();
                      }
-                     while(true)
+                     while(Stats_Misc.getGameMode(Stats_Missions.daily.mode).teams && SD.squad.length < 5)
                      {
-                        if(Stats_Misc.getGameMode(Stats_Missions.daily.mode).teams && SD.squad.length < 5)
-                        {
-                           SD.squad.push(-1);
-                           continue;
-                        }
+                        SD.squad.push(-1);
                      }
+                     break;
+                  default:
+                     break;
                }
                this.mc_Psquadcode.PSC.filters = [new GlowFilter(0,1,5,5,5)];
                SD.createSquadCode();
@@ -1523,49 +1522,48 @@ package
                break;
             case "medals":
                _loc2_ = 0;
-               while(true)
+               while(_loc2_ < Stats_Achievements.achOrder.length)
                {
-                  if(_loc2_ < Stats_Achievements.achOrder.length)
+                  _loc19_ = Stats_Achievements.getAchievementNum(_loc2_);
+                  this["ach" + _loc2_].icon.gotoAndStop(_loc19_.sprite);
+                  this["ach" + _loc2_].txt_name.text = _loc19_.name;
+                  this["ach" + _loc2_].txt_desc.text = _loc19_.desc;
+                  if(Stats_Achievements.getAchievementNum(_loc2_).unlock)
                   {
-                     _loc19_ = Stats_Achievements.getAchievementNum(_loc2_);
-                     this["ach" + _loc2_].icon.gotoAndStop(_loc19_.sprite);
-                     this["ach" + _loc2_].txt_name.text = _loc19_.name;
-                     this["ach" + _loc2_].txt_desc.text = _loc19_.desc;
-                     if(Stats_Achievements.getAchievementNum(_loc2_).unlock)
-                     {
-                        this["ach" + _loc2_].txt_unlock.text = "Unlocks " + _loc19_.unlock + " mod";
-                     }
-                     else
-                     {
-                        this["ach" + _loc2_].txt_unlock.text = "";
-                     }
-                     if(SD.achievements.indexOf(_loc2_) != -1)
-                     {
-                        this["ach" + _loc2_].gotoAndStop(1);
-                     }
-                     else
-                     {
-                        this["ach" + _loc2_].gotoAndStop(2);
-                        if(_loc19_.unlock)
-                        {
-                           this["ach" + _loc2_].txt_desc.text = "Secret Medal";
-                        }
-                     }
-                     if(_loc19_.progress)
-                     {
-                        this["ach" + _loc2_].txt_unlock.text = UT.replaceString(_loc19_.progress,"@",UT.addNumCommas(SD.achOb[_loc19_.id]));
-                        _loc20_ = SD.achOb[_loc19_.id] == undefined ? 0 : int(SD.achOb[_loc19_.id]);
-                        this["ach" + _loc2_].mc_bar.width = Math.min(_loc20_ / _loc19_.max * 150,150);
-                     }
-                     else
-                     {
-                        this["ach" + _loc2_].mc_backbar.visible = false;
-                        this["ach" + _loc2_].mc_bar.visible = false;
-                     }
-                     _loc2_++;
-                     continue;
+                     this["ach" + _loc2_].txt_unlock.text = "Unlocks " + _loc19_.unlock + " mod";
                   }
+                  else
+                  {
+                     this["ach" + _loc2_].txt_unlock.text = "";
+                  }
+                  if(SD.achievements.indexOf(_loc2_) != -1)
+                  {
+                     this["ach" + _loc2_].gotoAndStop(1);
+                  }
+                  else
+                  {
+                     this["ach" + _loc2_].gotoAndStop(2);
+                     if(_loc19_.unlock)
+                     {
+                        this["ach" + _loc2_].txt_desc.text = "Secret Medal";
+                     }
+                  }
+                  if(_loc19_.progress)
+                  {
+                     this["ach" + _loc2_].txt_unlock.text = UT.replaceString(_loc19_.progress,"@",UT.addNumCommas(SD.achOb[_loc19_.id]));
+                     _loc20_ = SD.achOb[_loc19_.id] == undefined ? 0 : int(SD.achOb[_loc19_.id]);
+                     this["ach" + _loc2_].mc_bar.width = Math.min(_loc20_ / _loc19_.max * 150,150);
+                  }
+                  else
+                  {
+                     this["ach" + _loc2_].mc_backbar.visible = false;
+                     this["ach" + _loc2_].mc_bar.visible = false;
+                  }
+                  _loc2_++;
                }
+               break;
+            default:
+               break;
          }
       }
       
